@@ -1,0 +1,6 @@
+.idea
+.ipynb_checkpoints/
+**/.DS_Store
+.python-version
+Pipfile.lock
+*.d
