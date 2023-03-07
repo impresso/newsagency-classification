@@ -4,6 +4,7 @@ from torch.utils.data import Dataset
 from sklearn.preprocessing import (LabelEncoder,
                                    MultiLabelBinarizer)
 
+
 class NewsDataset(Dataset):
 
     def __init__(self, dataset, tokenizer, max_len, test_set=False):
