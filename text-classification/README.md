@@ -1,4 +1,4 @@
-# Multilabel and muticlass classification
-# Multitask (IOB and generic classes)
+## Multilabel, multiclass, and multitask classification
+#### of news agencies content at token-level and article-level
 
 ## 
