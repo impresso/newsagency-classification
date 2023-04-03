@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:cas="http:///uima/cas.ecore" xmlns:type="http:///de/tudarmstadt/ukp/dkpro/core/api/segmentation/type.ecore" xmlns:custom="http:///webanno/custom.ecore" xmi:version="2.0">
+  <cas:NULL xmi:id="0"/>
+  <type:Sentence xmi:id="2" begin="0" end="13" sofa="1"/>
+  <type:Sentence xmi:id="3" begin="13" end="33" sofa="1"/>
+  <type:Sentence xmi:id="4" begin="33" end="105" sofa="1"/>
+  <type:Sentence xmi:id="5" begin="105" end="183" sofa="1"/>
+  <type:Sentence xmi:id="6" begin="183" end="257" sofa="1"/>
+  <type:Sentence xmi:id="7" begin="257" end="337" sofa="1"/>
+  <type:Sentence xmi:id="8" begin="337" end="412" sofa="1"/>
+  <type:Sentence xmi:id="9" begin="412" end="481" sofa="1"/>
+  <type:Sentence xmi:id="10" begin="481" end="553" sofa="1"/>
+  <type:Sentence xmi:id="11" begin="553" end="579" sofa="1"/>
+  <type:Sentence xmi:id="12" begin="579" end="597" sofa="1"/>
+  <type:Sentence xmi:id="13" begin="597" end="668" sofa="1"/>
+  <type:Sentence xmi:id="14" begin="668" end="746" sofa="1"/>
+  <type:Sentence xmi:id="15" begin="746" end="825" sofa="1"/>
+  <type:Sentence xmi:id="16" begin="825" end="897" sofa="1"/>
+  <type:Sentence xmi:id="17" begin="897" end="962" sofa="1"/>
+  <type:Sentence xmi:id="18" begin="962" end="983" sofa="1"/>
+  <type:Sentence xmi:id="19" begin="983" end="1046" sofa="1"/>
+  <type:Sentence xmi:id="20" begin="1046" end="1127" sofa="1"/>
+  <type:Sentence xmi:id="21" begin="1127" end="1202" sofa="1"/>
+  <type:Sentence xmi:id="22" begin="1202" end="1274" sofa="1"/>
+  <type:Sentence xmi:id="23" begin="1274" end="1348" sofa="1"/>
+  <type:Sentence xmi:id="24" begin="1348" end="1424" sofa="1"/>
+  <type:Sentence xmi:id="25" begin="1424" end="1499" sofa="1"/>
+  <type:Sentence xmi:id="26" begin="1499" end="1572" sofa="1"/>
+  <type:Sentence xmi:id="27" begin="1572" end="1591" sofa="1"/>
+  <type:Sentence xmi:id="28" begin="1591" end="1664" sofa="1"/>
+  <type:Sentence xmi:id="29" begin="1664" end="1738" sofa="1"/>
+  <type:Sentence xmi:id="30" begin="1738" end="1815" sofa="1"/>
+  <type:Sentence xmi:id="31" begin="1815" end="1889" sofa="1"/>
+  <type:Sentence xmi:id="32" begin="1889" end="1959" sofa="1"/>
+  <type:Sentence xmi:id="33" begin="1959" end="2038" sofa="1"/>
+  <type:Sentence xmi:id="34" begin="2038" end="2119" sofa="1"/>
+  <type:Sentence xmi:id="35" begin="2119" end="2128" sofa="1"/>
+  <type:Sentence xmi:id="36" begin="2128" end="2148" sofa="1"/>
+  <custom:ImpressoImages xmi:id="37" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/618,3613,463,75/full/0/default.jpg" begin="0" end="13" sofa="1"/>
+  <custom:ImpressoImages xmi:id="38" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/693,3692,339,55/full/0/default.jpg" begin="13" end="33" sofa="1"/>
+  <custom:ImpressoImages xmi:id="39" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/252,3755,1248,60/full/0/default.jpg" begin="33" end="105" sofa="1"/>
+  <custom:ImpressoImages xmi:id="40" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/212,3797,1296,60/full/0/default.jpg" begin="105" end="183" sofa="1"/>
+  <custom:ImpressoImages xmi:id="41" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/210,3837,1290,60/full/0/default.jpg" begin="183" end="257" sofa="1"/>
+  <custom:ImpressoImages xmi:id="42" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/210,3878,1288,60/full/0/default.jpg" begin="257" end="337" sofa="1"/>
+  <custom:ImpressoImages xmi:id="43" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/213,3920,1284,58/full/0/default.jpg" begin="337" end="412" sofa="1"/>
+  <custom:ImpressoImages xmi:id="44" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/210,3960,1290,60/full/0/default.jpg" begin="412" end="481" sofa="1"/>
+  <custom:ImpressoImages xmi:id="45" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/212,4002,1286,60/full/0/default.jpg" begin="481" end="553" sofa="1"/>
+  <custom:ImpressoImages xmi:id="46" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/213,4042,362,60/full/0/default.jpg" begin="553" end="579" sofa="1"/>
+  <custom:ImpressoImages xmi:id="47" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/720,4090,270,57/full/0/default.jpg" begin="579" end="597" sofa="1"/>
+  <custom:ImpressoImages xmi:id="48" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/253,4135,1245,60/full/0/default.jpg" begin="597" end="668" sofa="1"/>
+  <custom:ImpressoImages xmi:id="49" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/1525,75,1283,60/full/0/default.jpg" begin="668" end="746" sofa="1"/>
+  <custom:ImpressoImages xmi:id="50" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/1527,117,1283,60/full/0/default.jpg" begin="746" end="825" sofa="1"/>
+  <custom:ImpressoImages xmi:id="51" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/1527,157,1285,60/full/0/default.jpg" begin="825" end="897" sofa="1"/>
+  <custom:ImpressoImages xmi:id="52" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/1528,198,1282,60/full/0/default.jpg" begin="897" end="962" sofa="1"/>
+  <custom:ImpressoImages xmi:id="53" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/1528,240,202,58/full/0/default.jpg" begin="962" end="983" sofa="1"/>
+  <custom:ImpressoImages xmi:id="54" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/1572,292,1243,60/full/0/default.jpg" begin="983" end="1046" sofa="1"/>
+  <custom:ImpressoImages xmi:id="55" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/1528,332,1287,60/full/0/default.jpg" begin="1046" end="1127" sofa="1"/>
+  <custom:ImpressoImages xmi:id="56" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/1532,372,1285,60/full/0/default.jpg" begin="1127" end="1202" sofa="1"/>
+  <custom:ImpressoImages xmi:id="57" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/1532,412,1283,60/full/0/default.jpg" begin="1202" end="1274" sofa="1"/>
+  <custom:ImpressoImages xmi:id="58" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/1533,452,1280,60/full/0/default.jpg" begin="1274" end="1348" sofa="1"/>
+  <custom:ImpressoImages xmi:id="59" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/1532,492,1283,60/full/0/default.jpg" begin="1348" end="1424" sofa="1"/>
+  <custom:ImpressoImages xmi:id="60" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/1533,532,1277,60/full/0/default.jpg" begin="1424" end="1499" sofa="1"/>
+  <custom:ImpressoImages xmi:id="61" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/1533,572,1283,60/full/0/default.jpg" begin="1499" end="1572" sofa="1"/>
+  <custom:ImpressoImages xmi:id="62" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/1535,612,270,60/full/0/default.jpg" begin="1572" end="1591" sofa="1"/>
+  <custom:ImpressoImages xmi:id="63" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/1575,687,1244,60/full/0/default.jpg" begin="1591" end="1664" sofa="1"/>
+  <custom:ImpressoImages xmi:id="64" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/1535,727,1281,60/full/0/default.jpg" begin="1664" end="1738" sofa="1"/>
+  <custom:ImpressoImages xmi:id="65" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/1537,768,1283,60/full/0/default.jpg" begin="1738" end="1815" sofa="1"/>
+  <custom:ImpressoImages xmi:id="66" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/1537,810,1283,58/full/0/default.jpg" begin="1815" end="1889" sofa="1"/>
+  <custom:ImpressoImages xmi:id="67" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/1537,850,1226,60/full/0/default.jpg" begin="1889" end="1959" sofa="1"/>
+  <custom:ImpressoImages xmi:id="68" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/1572,917,1251,52/full/0/default.jpg" begin="1959" end="2038" sofa="1"/>
+  <custom:ImpressoImages xmi:id="69" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/1537,948,1283,53/full/0/default.jpg" begin="2038" end="2119" sofa="1"/>
+  <custom:ImpressoImages xmi:id="70" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/1537,982,575,53/full/0/default.jpg" begin="2119" end="2128" sofa="1"/>
+  <custom:ImpressoImages xmi:id="71" link="https://impresso-project.ch/api/proxy/iiif/GDL-1841-07-27-a-p0004/2448,1043,327,52/full/0/default.jpg" begin="2128" end="2148" sofa="1"/>
+  <cas:Sofa xmi:id="1" sofaNum="1" sofaID="_InitialView" mimeType="text/plain" sofaString="POST-SCRIPTUM LONORES 22 juillet. Depuis que le chiffre de 80 voix de majorité, est définitivement acquis aux tories et que ce parti dirigera nécessairement les affaires publiques, on s'occupe beaucoup du nouveau cabinet dont on fait déjà circuler plusieurs listes. Voici les principaux personnages qui y sont désignés : Sir Robert Peel, premier lord de la trésorerie, lord Aberdeen aux affaires étrangères, lord Varendeff lieutenant en Irlande, lord Buchiiigham à l'amirauté, sir Goulburn à l'intérieur, lord Llandez aux colonies, le duc de Wellington président du conseil, etc. PARIS 24 juillet. La reine Marie-Christine vient de protester aujourd'hui solennellement contre la décision des eortès qui lui a enlevé la tutelle de ses deux filles, la reine Isabelle el l'infante, pour en investir M. Arguclles. Cet acte, ainsi qu'une lettre qui l'accompagne, ont élé adressés au duc de la Victoire, puis communiqués au ministre des affaires étrangèreset au corps diplomatique à Paris. — Des voyageurs arrivés de Naples apportent la nouvelle de la découverte dans celle ville d'une conspiration politique, ayant des ramifications dans les élats Romains. L'instruction a été fort secrète. Six jeunes gens, appartenant aux plus nobles familles, viennent d'être arrêtés, et trois d'entr'eux condamnés à la peine de mort. Mais il sera sans doute sursis à leur exécution, le roi de Naples ayant fait le vœu de ne consentir à aucune exécution de peine capitale pour délit politique. Au reste, tout cela n'ap paisera pas la fermentation qui règne en Italie et le mécontentement qui agite les esprits. — Le roi des Belges a quitté brusquement Londres pour se rendre à Paris, puis à Bruxelles. Ce voyage, entrepris beaucoup plus tôt que ce prince ne l'avait calculé, peut difficilement s'expliquer. On croit cependant qu'il se rattache à des ouvertures auxquelles ne seraient pas étrangères la Prusse et l'Autriche, appuyées secrètement par une grande puissance du Nord. — Bourse du 24 Juillet. — Cinq pour cent, 115.05. — Trois pour cent, 76.60. — Banque, 3185. — Quatre canaux, 1231.25 — Ducats, 103.05 — Rente active d'Espagne, 21 1 (4-MIÉVILLE, Rédacteur. "/>
+  <cas:View sofa="1" members="2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71"/>
+</xmi:XMI>

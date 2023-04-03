@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:cas="http:///uima/cas.ecore" xmlns:type="http:///de/tudarmstadt/ukp/dkpro/core/api/segmentation/type.ecore" xmlns:custom="http:///webanno/custom.ecore" xmi:version="2.0">
+  <cas:NULL xmi:id="0"/>
+  <type:Sentence xmi:id="2" begin="0" end="28" sofa="1"/>
+  <type:Sentence xmi:id="3" begin="28" end="49" sofa="1"/>
+  <type:Sentence xmi:id="4" begin="49" end="82" sofa="1"/>
+  <type:Sentence xmi:id="5" begin="82" end="115" sofa="1"/>
+  <type:Sentence xmi:id="6" begin="115" end="141" sofa="1"/>
+  <type:Sentence xmi:id="7" begin="141" end="182" sofa="1"/>
+  <type:Sentence xmi:id="8" begin="182" end="217" sofa="1"/>
+  <type:Sentence xmi:id="9" begin="217" end="239" sofa="1"/>
+  <type:Sentence xmi:id="10" begin="239" end="274" sofa="1"/>
+  <type:Sentence xmi:id="11" begin="274" end="301" sofa="1"/>
+  <type:Sentence xmi:id="12" begin="301" end="343" sofa="1"/>
+  <type:Sentence xmi:id="13" begin="343" end="376" sofa="1"/>
+  <type:Sentence xmi:id="14" begin="376" end="415" sofa="1"/>
+  <custom:ImpressoImages xmi:id="15" link="https://impresso-project.ch/api/proxy/iiif/IMP-1964-08-26-a-p0019/389,1619,290,49/full/0/default.jpg" begin="0" end="28" sofa="1"/>
+  <custom:ImpressoImages xmi:id="16" link="https://impresso-project.ch/api/proxy/iiif/IMP-1964-08-26-a-p0019/418,1645,231,49/full/0/default.jpg" begin="28" end="49" sofa="1"/>
+  <custom:ImpressoImages xmi:id="17" link="https://impresso-project.ch/api/proxy/iiif/IMP-1964-08-26-a-p0019/398,1676,291,44/full/0/default.jpg" begin="49" end="82" sofa="1"/>
+  <custom:ImpressoImages xmi:id="18" link="https://impresso-project.ch/api/proxy/iiif/IMP-1964-08-26-a-p0019/380,1694,308,44/full/0/default.jpg" begin="82" end="115" sofa="1"/>
+  <custom:ImpressoImages xmi:id="19" link="https://impresso-project.ch/api/proxy/iiif/IMP-1964-08-26-a-p0019/379,1713,308,43/full/0/default.jpg" begin="115" end="141" sofa="1"/>
+  <custom:ImpressoImages xmi:id="20" link="https://impresso-project.ch/api/proxy/iiif/IMP-1964-08-26-a-p0019/380,1732,309,44/full/0/default.jpg" begin="141" end="182" sofa="1"/>
+  <custom:ImpressoImages xmi:id="21" link="https://impresso-project.ch/api/proxy/iiif/IMP-1964-08-26-a-p0019/379,1751,310,44/full/0/default.jpg" begin="182" end="217" sofa="1"/>
+  <custom:ImpressoImages xmi:id="22" link="https://impresso-project.ch/api/proxy/iiif/IMP-1964-08-26-a-p0019/380,1770,170,44/full/0/default.jpg" begin="217" end="239" sofa="1"/>
+  <custom:ImpressoImages xmi:id="23" link="https://impresso-project.ch/api/proxy/iiif/IMP-1964-08-26-a-p0019/396,1788,292,44/full/0/default.jpg" begin="239" end="274" sofa="1"/>
+  <custom:ImpressoImages xmi:id="24" link="https://impresso-project.ch/api/proxy/iiif/IMP-1964-08-26-a-p0019/380,1808,308,44/full/0/default.jpg" begin="274" end="301" sofa="1"/>
+  <custom:ImpressoImages xmi:id="25" link="https://impresso-project.ch/api/proxy/iiif/IMP-1964-08-26-a-p0019/379,1827,309,44/full/0/default.jpg" begin="301" end="343" sofa="1"/>
+  <custom:ImpressoImages xmi:id="26" link="https://impresso-project.ch/api/proxy/iiif/IMP-1964-08-26-a-p0019/379,1846,310,44/full/0/default.jpg" begin="343" end="376" sofa="1"/>
+  <custom:ImpressoImages xmi:id="27" link="https://impresso-project.ch/api/proxy/iiif/IMP-1964-08-26-a-p0019/380,1865,310,44/full/0/default.jpg" begin="376" end="415" sofa="1"/>
+  <cas:Sofa xmi:id="1" sofaNum="1" sofaID="_InitialView" mimeType="text/plain" sofaString="38 e anniversaire de la mort de Rudolph Valentina UPI — Le 38 e anniversaire de la mort de Rudolph Valentina, a été marqué, comme les années précédentes, par une cérémonie devant son mausolée à laquelle participaient environ 150 personnes. Des fleurs avaient été envoyées de « Clubs _ValentinoT _? de Grande-Bretagne et d'Allemagne, mais la « dame en noin ne s'est pas montrée ainsi qu'elle le faisait chaque année. "/>
+  <cas:View sofa="1" members="2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27"/>
+</xmi:XMI>

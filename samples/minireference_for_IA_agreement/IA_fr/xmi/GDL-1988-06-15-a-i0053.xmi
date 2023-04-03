@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:cas="http:///uima/cas.ecore" xmlns:type="http:///de/tudarmstadt/ukp/dkpro/core/api/segmentation/type.ecore" xmlns:custom="http:///webanno/custom.ecore" xmi:version="2.0">
+  <cas:NULL xmi:id="0"/>
+  <type:Sentence xmi:id="2" begin="0" end="11" sofa="1"/>
+  <type:Sentence xmi:id="3" begin="11" end="35" sofa="1"/>
+  <type:Sentence xmi:id="4" begin="35" end="63" sofa="1"/>
+  <type:Sentence xmi:id="5" begin="63" end="96" sofa="1"/>
+  <type:Sentence xmi:id="6" begin="96" end="159" sofa="1"/>
+  <type:Sentence xmi:id="7" begin="159" end="213" sofa="1"/>
+  <type:Sentence xmi:id="8" begin="213" end="267" sofa="1"/>
+  <type:Sentence xmi:id="9" begin="267" end="316" sofa="1"/>
+  <type:Sentence xmi:id="10" begin="316" end="352" sofa="1"/>
+  <type:Sentence xmi:id="11" begin="352" end="400" sofa="1"/>
+  <type:Sentence xmi:id="12" begin="400" end="453" sofa="1"/>
+  <type:Sentence xmi:id="13" begin="453" end="503" sofa="1"/>
+  <type:Sentence xmi:id="14" begin="503" end="546" sofa="1"/>
+  <type:Sentence xmi:id="15" begin="546" end="584" sofa="1"/>
+  <type:Sentence xmi:id="16" begin="584" end="639" sofa="1"/>
+  <type:Sentence xmi:id="17" begin="639" end="684" sofa="1"/>
+  <type:Sentence xmi:id="18" begin="684" end="737" sofa="1"/>
+  <type:Sentence xmi:id="19" begin="737" end="790" sofa="1"/>
+  <type:Sentence xmi:id="20" begin="790" end="843" sofa="1"/>
+  <type:Sentence xmi:id="21" begin="843" end="894" sofa="1"/>
+  <type:Sentence xmi:id="22" begin="894" end="920" sofa="1"/>
+  <type:Sentence xmi:id="23" begin="920" end="963" sofa="1"/>
+  <type:Sentence xmi:id="24" begin="963" end="1012" sofa="1"/>
+  <type:Sentence xmi:id="25" begin="1012" end="1058" sofa="1"/>
+  <type:Sentence xmi:id="26" begin="1058" end="1116" sofa="1"/>
+  <type:Sentence xmi:id="27" begin="1116" end="1169" sofa="1"/>
+  <type:Sentence xmi:id="28" begin="1169" end="1179" sofa="1"/>
+  <type:Sentence xmi:id="29" begin="1179" end="1226" sofa="1"/>
+  <type:Sentence xmi:id="30" begin="1226" end="1232" sofa="1"/>
+  <type:Sentence xmi:id="31" begin="1232" end="1257" sofa="1"/>
+  <type:Sentence xmi:id="32" begin="1257" end="1303" sofa="1"/>
+  <type:Sentence xmi:id="33" begin="1303" end="1358" sofa="1"/>
+  <type:Sentence xmi:id="34" begin="1358" end="1410" sofa="1"/>
+  <type:Sentence xmi:id="35" begin="1410" end="1461" sofa="1"/>
+  <type:Sentence xmi:id="36" begin="1461" end="1512" sofa="1"/>
+  <type:Sentence xmi:id="37" begin="1512" end="1559" sofa="1"/>
+  <type:Sentence xmi:id="38" begin="1559" end="1609" sofa="1"/>
+  <type:Sentence xmi:id="39" begin="1609" end="1658" sofa="1"/>
+  <type:Sentence xmi:id="40" begin="1658" end="1681" sofa="1"/>
+  <type:Sentence xmi:id="41" begin="1681" end="1727" sofa="1"/>
+  <type:Sentence xmi:id="42" begin="1727" end="1779" sofa="1"/>
+  <type:Sentence xmi:id="43" begin="1779" end="1831" sofa="1"/>
+  <type:Sentence xmi:id="44" begin="1831" end="1872" sofa="1"/>
+  <type:Sentence xmi:id="45" begin="1872" end="1927" sofa="1"/>
+  <type:Sentence xmi:id="46" begin="1927" end="1979" sofa="1"/>
+  <type:Sentence xmi:id="47" begin="1979" end="2031" sofa="1"/>
+  <type:Sentence xmi:id="48" begin="2031" end="2045" sofa="1"/>
+  <custom:ImpressoImages xmi:id="49" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/954,2186,444,80/full/0/default.jpg" begin="0" end="11" sofa="1"/>
+  <custom:ImpressoImages xmi:id="50" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/958,2290,969,120/full/0/default.jpg" begin="11" end="35" sofa="1"/>
+  <custom:ImpressoImages xmi:id="51" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/956,2401,1240,118/full/0/default.jpg" begin="35" end="63" sofa="1"/>
+  <custom:ImpressoImages xmi:id="52" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/990,2526,793,60/full/0/default.jpg" begin="63" end="96" sofa="1"/>
+  <custom:ImpressoImages xmi:id="53" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/950,2563,831,60/full/0/default.jpg" begin="96" end="159" sofa="1"/>
+  <custom:ImpressoImages xmi:id="54" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/950,2599,831,60/full/0/default.jpg" begin="159" end="213" sofa="1"/>
+  <custom:ImpressoImages xmi:id="55" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/950,2636,831,60/full/0/default.jpg" begin="213" end="267" sofa="1"/>
+  <custom:ImpressoImages xmi:id="56" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/952,2674,831,60/full/0/default.jpg" begin="267" end="316" sofa="1"/>
+  <custom:ImpressoImages xmi:id="57" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/950,2711,560,60/full/0/default.jpg" begin="316" end="352" sofa="1"/>
+  <custom:ImpressoImages xmi:id="58" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/992,2755,793,60/full/0/default.jpg" begin="352" end="400" sofa="1"/>
+  <custom:ImpressoImages xmi:id="59" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/950,2792,848,60/full/0/default.jpg" begin="400" end="453" sofa="1"/>
+  <custom:ImpressoImages xmi:id="60" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/950,2830,841,60/full/0/default.jpg" begin="453" end="503" sofa="1"/>
+  <custom:ImpressoImages xmi:id="61" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/950,2865,712,60/full/0/default.jpg" begin="503" end="546" sofa="1"/>
+  <custom:ImpressoImages xmi:id="62" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/990,2907,794,60/full/0/default.jpg" begin="546" end="584" sofa="1"/>
+  <custom:ImpressoImages xmi:id="63" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/950,2942,829,60/full/0/default.jpg" begin="584" end="639" sofa="1"/>
+  <custom:ImpressoImages xmi:id="64" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/950,2980,833,60/full/0/default.jpg" begin="639" end="684" sofa="1"/>
+  <custom:ImpressoImages xmi:id="65" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/950,3018,836,60/full/0/default.jpg" begin="684" end="737" sofa="1"/>
+  <custom:ImpressoImages xmi:id="66" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/950,3055,831,60/full/0/default.jpg" begin="737" end="790" sofa="1"/>
+  <custom:ImpressoImages xmi:id="67" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/950,3090,831,60/full/0/default.jpg" begin="790" end="843" sofa="1"/>
+  <custom:ImpressoImages xmi:id="68" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/950,3128,831,60/full/0/default.jpg" begin="843" end="894" sofa="1"/>
+  <custom:ImpressoImages xmi:id="69" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/950,3165,450,60/full/0/default.jpg" begin="894" end="920" sofa="1"/>
+  <custom:ImpressoImages xmi:id="70" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/990,3209,792,60/full/0/default.jpg" begin="920" end="963" sofa="1"/>
+  <custom:ImpressoImages xmi:id="71" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/950,3245,833,60/full/0/default.jpg" begin="963" end="1012" sofa="1"/>
+  <custom:ImpressoImages xmi:id="72" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/950,3282,834,60/full/0/default.jpg" begin="1012" end="1058" sofa="1"/>
+  <custom:ImpressoImages xmi:id="73" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/952,3320,836,60/full/0/default.jpg" begin="1058" end="1116" sofa="1"/>
+  <custom:ImpressoImages xmi:id="74" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/952,3357,832,60/full/0/default.jpg" begin="1116" end="1169" sofa="1"/>
+  <custom:ImpressoImages xmi:id="75" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/948,3453,129,45/full/0/default.jpg" begin="1169" end="1179" sofa="1"/>
+  <custom:ImpressoImages xmi:id="76" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/1825,2526,830,60/full/0/default.jpg" begin="1179" end="1226" sofa="1"/>
+  <custom:ImpressoImages xmi:id="77" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/1827,2565,85,60/full/0/default.jpg" begin="1226" end="1232" sofa="1"/>
+  <custom:ImpressoImages xmi:id="78" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/1827,2651,502,62/full/0/default.jpg" begin="1232" end="1257" sofa="1"/>
+  <custom:ImpressoImages xmi:id="79" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/1867,2738,789,60/full/0/default.jpg" begin="1257" end="1303" sofa="1"/>
+  <custom:ImpressoImages xmi:id="80" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/1813,2776,846,60/full/0/default.jpg" begin="1303" end="1358" sofa="1"/>
+  <custom:ImpressoImages xmi:id="81" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/1827,2813,834,60/full/0/default.jpg" begin="1358" end="1410" sofa="1"/>
+  <custom:ImpressoImages xmi:id="82" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/1827,2849,834,60/full/0/default.jpg" begin="1410" end="1461" sofa="1"/>
+  <custom:ImpressoImages xmi:id="83" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/1827,2886,832,60/full/0/default.jpg" begin="1461" end="1512" sofa="1"/>
+  <custom:ImpressoImages xmi:id="84" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/1833,2924,827,60/full/0/default.jpg" begin="1512" end="1559" sofa="1"/>
+  <custom:ImpressoImages xmi:id="85" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/1827,2961,832,60/full/0/default.jpg" begin="1559" end="1609" sofa="1"/>
+  <custom:ImpressoImages xmi:id="86" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/1827,2997,834,60/full/0/default.jpg" begin="1609" end="1658" sofa="1"/>
+  <custom:ImpressoImages xmi:id="87" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/1827,3034,387,60/full/0/default.jpg" begin="1658" end="1681" sofa="1"/>
+  <custom:ImpressoImages xmi:id="88" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/1869,3092,790,60/full/0/default.jpg" begin="1681" end="1727" sofa="1"/>
+  <custom:ImpressoImages xmi:id="89" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/1829,3130,832,60/full/0/default.jpg" begin="1727" end="1779" sofa="1"/>
+  <custom:ImpressoImages xmi:id="90" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/1833,3168,839,60/full/0/default.jpg" begin="1779" end="1831" sofa="1"/>
+  <custom:ImpressoImages xmi:id="91" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/1829,3207,832,60/full/0/default.jpg" begin="1831" end="1872" sofa="1"/>
+  <custom:ImpressoImages xmi:id="92" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/1829,3245,832,60/full/0/default.jpg" begin="1872" end="1927" sofa="1"/>
+  <custom:ImpressoImages xmi:id="93" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/1829,3282,830,60/full/0/default.jpg" begin="1927" end="1979" sofa="1"/>
+  <custom:ImpressoImages xmi:id="94" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/1829,3320,832,60/full/0/default.jpg" begin="1979" end="2031" sofa="1"/>
+  <custom:ImpressoImages xmi:id="95" link="https://impresso-project.ch/api/proxy/iiif/GDL-1988-06-15-a-p0009/1825,3359,216,60/full/0/default.jpg" begin="2031" end="2045" sofa="1"/>
+  <cas:Sofa xmi:id="1" sofaNum="1" sofaID="_InitialView" mimeType="text/plain" sofaString="CONJONCTURE RFA : nette contraction de l'excédent des paiements Francfort, 14 (AFP).-La balance ouest-allemande des paiements a enregistré un excédent en nette diminution en avril, à 1,995 milliards de DM (chiffre provisoire), contre un excédent de 3,410 milliards de DM en avril 1987, indiquent des chiffre publiés mardi par la Bundesbank à Francfort. En mars, le déficit de la balance des paiemenjs était de 1,592 milliards de DM, à comparer avec un'' surplus de 4,455 milliards de DM en mars 1987, a, ajouté la banque centrale ouest-allemande. Sur les trois premiers mois de 1988 (janviermars), la balance des paiements de la RFA est en déficit de 2,937 milliards de DM, contre un excédent de 14 216 milliards de DM pendant le premier trimestre 1987. Les chiffres du mois d'avril restent provisoires en attendant la publication par l'Office statistique de Wiesbaden des données de la balance commerciale pour ce mois. Dans son communiqué, la Bundesbank indique que l'excédent de la balance ouest-allemande des paiements courants, en données corrigées des variations saisonnières, s'est réduit à 15 milliards de DM pour les trois premiers mois de l'année, contre 17,5 PUBLICITÉ milliards pendant la période correspondante de 1987. Exportation des capitaux La Bundesbank souligne que la RFA renforce sa -potion d'exportateur ftet de capitaux : le défïcilfde làTbalance des capitaux à long. terme ressort à 6,3 milliards de DM eti'àvril (provisoire), après 23,9 milliards de DM pendant les trois premiers mois de 1988, à comparer avec un excédent (et donc des entrées nettes de capitaux) de 212 millions de DM en avril 1987 et de 17,1 milliards sur les trois premiers mois de 1987. Les investissements directs ouets-allemands à l'étranger ont totalisé 641 millions de DM en avril 1988, après 3,40 milliards de DM pendant les trois, premiers mois de l'année, alors que les investissement directs étrangers en RFA restaient bien inférieurs sur cette période : 131 millions de DM en avril 1988, après 848 millions de DM sur la période janvier-mars. "/>
+  <cas:View sofa="1" members="2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95"/>
+</xmi:XMI>

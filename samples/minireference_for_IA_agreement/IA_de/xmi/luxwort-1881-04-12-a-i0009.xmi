@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:cas="http:///uima/cas.ecore" xmlns:type="http:///de/tudarmstadt/ukp/dkpro/core/api/segmentation/type.ecore" xmlns:custom="http:///webanno/custom.ecore" xmi:version="2.0">
+  <cas:NULL xmi:id="0"/>
+  <type:Sentence xmi:id="2" begin="0" end="30" sofa="1"/>
+  <type:Sentence xmi:id="3" begin="30" end="51" sofa="1"/>
+  <type:Sentence xmi:id="4" begin="51" end="107" sofa="1"/>
+  <type:Sentence xmi:id="5" begin="107" end="171" sofa="1"/>
+  <type:Sentence xmi:id="6" begin="171" end="197" sofa="1"/>
+  <type:Sentence xmi:id="7" begin="197" end="215" sofa="1"/>
+  <type:Sentence xmi:id="8" begin="215" end="236" sofa="1"/>
+  <type:Sentence xmi:id="9" begin="236" end="262" sofa="1"/>
+  <type:Sentence xmi:id="10" begin="262" end="323" sofa="1"/>
+  <type:Sentence xmi:id="11" begin="323" end="384" sofa="1"/>
+  <type:Sentence xmi:id="12" begin="384" end="447" sofa="1"/>
+  <type:Sentence xmi:id="13" begin="447" end="516" sofa="1"/>
+  <type:Sentence xmi:id="14" begin="516" end="575" sofa="1"/>
+  <type:Sentence xmi:id="15" begin="575" end="635" sofa="1"/>
+  <type:Sentence xmi:id="16" begin="635" end="691" sofa="1"/>
+  <type:Sentence xmi:id="17" begin="691" end="753" sofa="1"/>
+  <type:Sentence xmi:id="18" begin="753" end="816" sofa="1"/>
+  <type:Sentence xmi:id="19" begin="816" end="881" sofa="1"/>
+  <type:Sentence xmi:id="20" begin="881" end="945" sofa="1"/>
+  <type:Sentence xmi:id="21" begin="945" end="1003" sofa="1"/>
+  <type:Sentence xmi:id="22" begin="1003" end="1071" sofa="1"/>
+  <type:Sentence xmi:id="23" begin="1071" end="1136" sofa="1"/>
+  <type:Sentence xmi:id="24" begin="1136" end="1201" sofa="1"/>
+  <type:Sentence xmi:id="25" begin="1201" end="1267" sofa="1"/>
+  <type:Sentence xmi:id="26" begin="1267" end="1334" sofa="1"/>
+  <type:Sentence xmi:id="27" begin="1334" end="1394" sofa="1"/>
+  <type:Sentence xmi:id="28" begin="1394" end="1453" sofa="1"/>
+  <type:Sentence xmi:id="29" begin="1453" end="1516" sofa="1"/>
+  <type:Sentence xmi:id="30" begin="1516" end="1578" sofa="1"/>
+  <type:Sentence xmi:id="31" begin="1578" end="1632" sofa="1"/>
+  <type:Sentence xmi:id="32" begin="1632" end="1690" sofa="1"/>
+  <type:Sentence xmi:id="33" begin="1690" end="1751" sofa="1"/>
+  <type:Sentence xmi:id="34" begin="1751" end="1812" sofa="1"/>
+  <type:Sentence xmi:id="35" begin="1812" end="1864" sofa="1"/>
+  <type:Sentence xmi:id="36" begin="1864" end="1924" sofa="1"/>
+  <type:Sentence xmi:id="37" begin="1924" end="1987" sofa="1"/>
+  <type:Sentence xmi:id="38" begin="1987" end="2050" sofa="1"/>
+  <type:Sentence xmi:id="39" begin="2050" end="2116" sofa="1"/>
+  <type:Sentence xmi:id="40" begin="2116" end="2182" sofa="1"/>
+  <type:Sentence xmi:id="41" begin="2182" end="2248" sofa="1"/>
+  <type:Sentence xmi:id="42" begin="2248" end="2310" sofa="1"/>
+  <type:Sentence xmi:id="43" begin="2310" end="2356" sofa="1"/>
+  <type:Sentence xmi:id="44" begin="2356" end="2370" sofa="1"/>
+  <type:Sentence xmi:id="45" begin="2370" end="2438" sofa="1"/>
+  <type:Sentence xmi:id="46" begin="2438" end="2498" sofa="1"/>
+  <type:Sentence xmi:id="47" begin="2498" end="2555" sofa="1"/>
+  <type:Sentence xmi:id="48" begin="2555" end="2619" sofa="1"/>
+  <type:Sentence xmi:id="49" begin="2619" end="2657" sofa="1"/>
+  <type:Sentence xmi:id="50" begin="2657" end="2674" sofa="1"/>
+  <type:Sentence xmi:id="51" begin="2674" end="2732" sofa="1"/>
+  <type:Sentence xmi:id="52" begin="2732" end="2794" sofa="1"/>
+  <type:Sentence xmi:id="53" begin="2794" end="2855" sofa="1"/>
+  <type:Sentence xmi:id="54" begin="2855" end="2917" sofa="1"/>
+  <type:Sentence xmi:id="55" begin="2917" end="2976" sofa="1"/>
+  <type:Sentence xmi:id="56" begin="2976" end="3037" sofa="1"/>
+  <type:Sentence xmi:id="57" begin="3037" end="3101" sofa="1"/>
+  <type:Sentence xmi:id="58" begin="3101" end="3165" sofa="1"/>
+  <type:Sentence xmi:id="59" begin="3165" end="3227" sofa="1"/>
+  <type:Sentence xmi:id="60" begin="3227" end="3276" sofa="1"/>
+  <type:Sentence xmi:id="61" begin="3276" end="3330" sofa="1"/>
+  <type:Sentence xmi:id="62" begin="3330" end="3385" sofa="1"/>
+  <type:Sentence xmi:id="63" begin="3385" end="3438" sofa="1"/>
+  <custom:ImpressoImages xmi:id="64" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3274,1046,1025,80/full/0/default.jpg" begin="0" end="30" sofa="1"/>
+  <custom:ImpressoImages xmi:id="65" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3455,1120,658,94/full/0/default.jpg" begin="30" end="51" sofa="1"/>
+  <custom:ImpressoImages xmi:id="66" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3274,1211,1023,53/full/0/default.jpg" begin="51" end="107" sofa="1"/>
+  <custom:ImpressoImages xmi:id="67" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3274,1249,1023,54/full/0/default.jpg" begin="107" end="171" sofa="1"/>
+  <custom:ImpressoImages xmi:id="68" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3562,1288,444,48/full/0/default.jpg" begin="171" end="197" sofa="1"/>
+  <custom:ImpressoImages xmi:id="69" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3346,1344,886,84/full/0/default.jpg" begin="197" end="215" sofa="1"/>
+  <custom:ImpressoImages xmi:id="70" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3561,1428,457,48/full/0/default.jpg" begin="215" end="236" sofa="1"/>
+  <custom:ImpressoImages xmi:id="71" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3475,1477,626,50/full/0/default.jpg" begin="236" end="262" sofa="1"/>
+  <custom:ImpressoImages xmi:id="72" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3318,1527,981,49/full/0/default.jpg" begin="262" end="323" sofa="1"/>
+  <custom:ImpressoImages xmi:id="73" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3279,1566,1020,55/full/0/default.jpg" begin="323" end="384" sofa="1"/>
+  <custom:ImpressoImages xmi:id="74" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3276,1602,1021,53/full/0/default.jpg" begin="384" end="447" sofa="1"/>
+  <custom:ImpressoImages xmi:id="75" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3276,1640,1024,54/full/0/default.jpg" begin="447" end="516" sofa="1"/>
+  <custom:ImpressoImages xmi:id="76" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3278,1678,1022,55/full/0/default.jpg" begin="516" end="575" sofa="1"/>
+  <custom:ImpressoImages xmi:id="77" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3278,1716,1012,54/full/0/default.jpg" begin="575" end="635" sofa="1"/>
+  <custom:ImpressoImages xmi:id="78" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3278,1752,1022,55/full/0/default.jpg" begin="635" end="691" sofa="1"/>
+  <custom:ImpressoImages xmi:id="79" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3278,1790,1021,54/full/0/default.jpg" begin="691" end="753" sofa="1"/>
+  <custom:ImpressoImages xmi:id="80" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3276,1828,1027,54/full/0/default.jpg" begin="753" end="816" sofa="1"/>
+  <custom:ImpressoImages xmi:id="81" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3276,1866,1027,55/full/0/default.jpg" begin="816" end="881" sofa="1"/>
+  <custom:ImpressoImages xmi:id="82" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3277,1902,1024,56/full/0/default.jpg" begin="881" end="945" sofa="1"/>
+  <custom:ImpressoImages xmi:id="83" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3277,1941,1016,54/full/0/default.jpg" begin="945" end="1003" sofa="1"/>
+  <custom:ImpressoImages xmi:id="84" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3277,1979,1027,54/full/0/default.jpg" begin="1003" end="1071" sofa="1"/>
+  <custom:ImpressoImages xmi:id="85" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3277,2017,1026,48/full/0/default.jpg" begin="1071" end="1136" sofa="1"/>
+  <custom:ImpressoImages xmi:id="86" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3278,2054,1028,55/full/0/default.jpg" begin="1136" end="1201" sofa="1"/>
+  <custom:ImpressoImages xmi:id="87" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3277,2091,1041,56/full/0/default.jpg" begin="1201" end="1267" sofa="1"/>
+  <custom:ImpressoImages xmi:id="88" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3278,2130,1023,53/full/0/default.jpg" begin="1267" end="1334" sofa="1"/>
+  <custom:ImpressoImages xmi:id="89" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3278,2167,1024,55/full/0/default.jpg" begin="1334" end="1394" sofa="1"/>
+  <custom:ImpressoImages xmi:id="90" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3277,2205,1026,55/full/0/default.jpg" begin="1394" end="1453" sofa="1"/>
+  <custom:ImpressoImages xmi:id="91" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3278,2242,1024,49/full/0/default.jpg" begin="1453" end="1516" sofa="1"/>
+  <custom:ImpressoImages xmi:id="92" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3277,2286,1024,43/full/0/default.jpg" begin="1516" end="1578" sofa="1"/>
+  <custom:ImpressoImages xmi:id="93" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3277,2319,897,54/full/0/default.jpg" begin="1578" end="1632" sofa="1"/>
+  <custom:ImpressoImages xmi:id="94" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3315,2356,988,47/full/0/default.jpg" begin="1632" end="1690" sofa="1"/>
+  <custom:ImpressoImages xmi:id="95" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3277,2392,1027,54/full/0/default.jpg" begin="1690" end="1751" sofa="1"/>
+  <custom:ImpressoImages xmi:id="96" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3277,2430,1024,53/full/0/default.jpg" begin="1751" end="1812" sofa="1"/>
+  <custom:ImpressoImages xmi:id="97" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3279,2468,820,55/full/0/default.jpg" begin="1812" end="1864" sofa="1"/>
+  <custom:ImpressoImages xmi:id="98" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3318,2506,991,55/full/0/default.jpg" begin="1864" end="1924" sofa="1"/>
+  <custom:ImpressoImages xmi:id="99" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3281,2544,1029,54/full/0/default.jpg" begin="1924" end="1987" sofa="1"/>
+  <custom:ImpressoImages xmi:id="100" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3282,2583,1029,53/full/0/default.jpg" begin="1987" end="2050" sofa="1"/>
+  <custom:ImpressoImages xmi:id="101" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3281,2619,1031,54/full/0/default.jpg" begin="2050" end="2116" sofa="1"/>
+  <custom:ImpressoImages xmi:id="102" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3282,2657,1034,54/full/0/default.jpg" begin="2116" end="2182" sofa="1"/>
+  <custom:ImpressoImages xmi:id="103" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3282,2695,1033,55/full/0/default.jpg" begin="2182" end="2248" sofa="1"/>
+  <custom:ImpressoImages xmi:id="104" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3282,2733,1029,48/full/0/default.jpg" begin="2248" end="2310" sofa="1"/>
+  <custom:ImpressoImages xmi:id="105" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3284,2769,741,55/full/0/default.jpg" begin="2310" end="2356" sofa="1"/>
+  <custom:ImpressoImages xmi:id="106" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3659,2808,282,47/full/0/default.jpg" begin="2356" end="2370" sofa="1"/>
+  <custom:ImpressoImages xmi:id="107" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3287,2845,1034,54/full/0/default.jpg" begin="2370" end="2438" sofa="1"/>
+  <custom:ImpressoImages xmi:id="108" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3325,2881,998,48/full/0/default.jpg" begin="2438" end="2498" sofa="1"/>
+  <custom:ImpressoImages xmi:id="109" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3289,2918,1034,47/full/0/default.jpg" begin="2498" end="2555" sofa="1"/>
+  <custom:ImpressoImages xmi:id="110" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3289,2956,1026,55/full/0/default.jpg" begin="2555" end="2619" sofa="1"/>
+  <custom:ImpressoImages xmi:id="111" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3291,2994,576,55/full/0/default.jpg" begin="2619" end="2657" sofa="1"/>
+  <custom:ImpressoImages xmi:id="112" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3291,3030,1001,48/full/0/default.jpg" begin="2657" end="2674" sofa="1"/>
+  <custom:ImpressoImages xmi:id="113" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3330,3067,992,49/full/0/default.jpg" begin="2674" end="2732" sofa="1"/>
+  <custom:ImpressoImages xmi:id="114" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3291,3105,1031,56/full/0/default.jpg" begin="2732" end="2794" sofa="1"/>
+  <custom:ImpressoImages xmi:id="115" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3292,3144,1031,53/full/0/default.jpg" begin="2794" end="2855" sofa="1"/>
+  <custom:ImpressoImages xmi:id="116" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3291,3179,1031,47/full/0/default.jpg" begin="2855" end="2917" sofa="1"/>
+  <custom:ImpressoImages xmi:id="117" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3292,3216,1030,47/full/0/default.jpg" begin="2917" end="2976" sofa="1"/>
+  <custom:ImpressoImages xmi:id="118" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3291,3252,1031,53/full/0/default.jpg" begin="2976" end="3037" sofa="1"/>
+  <custom:ImpressoImages xmi:id="119" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3290,3288,1032,53/full/0/default.jpg" begin="3037" end="3101" sofa="1"/>
+  <custom:ImpressoImages xmi:id="120" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3289,3323,1034,47/full/0/default.jpg" begin="3101" end="3165" sofa="1"/>
+  <custom:ImpressoImages xmi:id="121" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3289,3365,1031,42/full/0/default.jpg" begin="3165" end="3227" sofa="1"/>
+  <custom:ImpressoImages xmi:id="122" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3289,3396,827,54/full/0/default.jpg" begin="3227" end="3276" sofa="1"/>
+  <custom:ImpressoImages xmi:id="123" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3327,3432,991,55/full/0/default.jpg" begin="3276" end="3330" sofa="1"/>
+  <custom:ImpressoImages xmi:id="124" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3289,3468,1028,56/full/0/default.jpg" begin="3330" end="3385" sofa="1"/>
+  <custom:ImpressoImages xmi:id="125" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fzg858r%2fpages%2f3/3289,3506,869,48/full/0/default.jpg" begin="3385" end="3438" sofa="1"/>
+  <cas:Sofa xmi:id="1" sofaNum="1" sofaID="_InitialView" mimeType="text/plain" sofaString="Wen Appetit, Verdauung, Schws, Gesundheit und Kraft ohne Medizin, ohne Puigirungen und ohne Kosten, den &lt;«&gt; wachsenen und Kindern, durch baS deliciöse (9efujjbijeftSfiu|t, Sefonnt unter dem Namen : REVaLENTÄ ÄBABICA DU BARRY ou? London. Slillioncn von Ueilunsen. Seit 1846 heilt fie die schlechten Verdauungen (dyspep«iei)J Magenentzündungen, Darmentzündungen, Gastralgie«, Harllnbig« keit, Hämorrhoiden, Verschlcimung, Blähungen, Aufgeblasenheit, Herzklopfen, Durchfall, Dysenterien, Ausschmellungen, SBetautumgetTs Ohrensausen, ©Sure, Kopfschmerzen, Migräne, Taubheit, 9tü, Erbrechen nach dem (äffen oder während der Schwangerschaft; Schmerzen, Säuren im Magen, Songeftionsn, Entzündung in Eingemeide und der Harnblase, Krämpfe, Schlafiofigleit, NnlK» fïuEionen, Fieberkälte, Husten, Beklemmung, Asthma, Nronchil«» Auszehrung (consomption), Flechten, Hautausschläge, Eiterbe«ll», Hautgeschwüre, Melancholie, Reizbarkeit, Erschöpfung, Übzeh»»B, Rheumatismus, Gicht, Fieber, Grippe, Schnupfen, ttatotr|i Kehlkopfieiz, Erhitzung, Hysterie, Neuralgie, Epilepsie, Palalysi», die Zufälle des fogenannten retour de l'âge, Scorbut, llhloros», Blutfehler und Blutarmuth, sowie jede Erregung und jeden stöbet» haften Geruch beim Aufstehen ober nach gewissen stall gewttr}tm ' Gerichten wie Zwiebeln, Knoblauch «♦, oder alcoolischen Getlünle«. selbst nach dem Taback; Schwäche, Tages» und Nachtschulliß, Wassersucht, Unordnungen in der Gurgel, des Athmens und d« Stimme. Auch ist dieselbe jeder anderen Nahrung für die ltind» van der Geburt an vorzuziehen. Verweigert die Nachahmung« »»&gt; fordert die Fabrikmarke „Bevalenta Arabica Du Barry&quot;. Unter den Heilungen erwähnen wir die der Frau Herzogin &lt;« Castlestuart, des Herzogs von Pluskow, der Frau Marquis« &gt;»» Bréhan, Lord Stuart de Decies, Pair von England, des Dolt»l&gt; Professor Wurzer «c. «c. Hier einige der Heilungen: Heilung Nr. 48,816: Certifilat des berühmten Arztes Rudolph Nurzer. Dieses leicht zu verdauend« und angenehme Mehl ersetzt auf bewunderungswürdige Art jede Arznei in sehr vielen ikranl» heitsfällen als bei Harnruhr, hartnäckiger und eingewurzelter Nn» stopsung, sowie bei Durchfall, bei Beschwerden der Nieren und be« Harnblase, bei Nierengrieß, entzündlichen Erregungen u. KillmpftN in der Harnröhre, bei Hämorrhoiden, dann auch bei Lungen» uni LuftrohrenKrankheiten, Husten und Auszehrung. Rud. Würz er, Arzt und Mitglied mehrerer wissenschaftlicher Gesellschaften, Nonn^ Nr. 73,632: Bäckerstrahe Nr. 25 zu Mülhausen (Elf.) 2. FH«. 1880. Nachdem ich während fünf Monaten die Revalenta gv&gt; brauchte, ward ich von einer chronischen Lebeikranlheit geseilt welche mich 15 Jahre lang belästigte. 4 N. J. Charli«: Viermal nahrhafter als das Fleifch, erfpart die Rêvaient« fünfzigmal ihren Preis in Medikamenten. In Schachteln: i Hill Fr. 2,25, 1 Kilo 4 Fr., 1 Kilo 7 Fr., 6 Kilo 36 Fr., 12 «il« 70 Fr. — Die Revalentll'Biscuits in Schachteln von 4, 7 «teil 70 Fr. — Die ÎRebalenta-Œ^ocolabe in Kistchen für 12 Kaff« Fr. 2,25, für 24 Tassen 4 Fr,, für 48 Tassen ? Fr., fill I*o Tassen 16 Fr., für 576 Soffen 70 Fr, oder ungefähr 10 Senti»«:, die Tasse. Zusendung erfolgt gegen Postvorschuß; die Schachtel« von 36 und 70 Fr. franco, — Niederlage bei den Apotheken» «l» Epicerie«Handlungen. — Da Barry &amp; Co. (limited). Haupt»Agent für Belgien: Emile Tiramermans, 6 4 8 ru« Rouppe à Bruxelles und für Luxemburg: Bernhard N»oll», Rue du Curé N° 9, und Delahaye-Bourg 1, @rofsftro6e. "/>
+  <cas:View sofa="1" members="2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125"/>
+</xmi:XMI>

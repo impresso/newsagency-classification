@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:cas="http:///uima/cas.ecore" xmlns:type="http:///de/tudarmstadt/ukp/dkpro/core/api/segmentation/type.ecore" xmlns:custom="http:///webanno/custom.ecore" xmi:version="2.0">
+  <cas:NULL xmi:id="0"/>
+  <type:Sentence xmi:id="2" begin="0" end="36" sofa="1"/>
+  <type:Sentence xmi:id="3" begin="36" end="60" sofa="1"/>
+  <type:Sentence xmi:id="4" begin="60" end="93" sofa="1"/>
+  <type:Sentence xmi:id="5" begin="93" end="124" sofa="1"/>
+  <type:Sentence xmi:id="6" begin="124" end="153" sofa="1"/>
+  <type:Sentence xmi:id="7" begin="153" end="196" sofa="1"/>
+  <type:Sentence xmi:id="8" begin="196" end="225" sofa="1"/>
+  <type:Sentence xmi:id="9" begin="225" end="263" sofa="1"/>
+  <type:Sentence xmi:id="10" begin="263" end="304" sofa="1"/>
+  <type:Sentence xmi:id="11" begin="304" end="341" sofa="1"/>
+  <type:Sentence xmi:id="12" begin="341" end="371" sofa="1"/>
+  <type:Sentence xmi:id="13" begin="371" end="405" sofa="1"/>
+  <type:Sentence xmi:id="14" begin="405" end="438" sofa="1"/>
+  <type:Sentence xmi:id="15" begin="438" end="470" sofa="1"/>
+  <type:Sentence xmi:id="16" begin="470" end="509" sofa="1"/>
+  <type:Sentence xmi:id="17" begin="509" end="548" sofa="1"/>
+  <type:Sentence xmi:id="18" begin="548" end="584" sofa="1"/>
+  <type:Sentence xmi:id="19" begin="584" end="621" sofa="1"/>
+  <type:Sentence xmi:id="20" begin="621" end="657" sofa="1"/>
+  <type:Sentence xmi:id="21" begin="657" end="695" sofa="1"/>
+  <type:Sentence xmi:id="22" begin="695" end="728" sofa="1"/>
+  <type:Sentence xmi:id="23" begin="728" end="770" sofa="1"/>
+  <type:Sentence xmi:id="24" begin="770" end="793" sofa="1"/>
+  <type:Sentence xmi:id="25" begin="793" end="824" sofa="1"/>
+  <type:Sentence xmi:id="26" begin="824" end="859" sofa="1"/>
+  <type:Sentence xmi:id="27" begin="859" end="900" sofa="1"/>
+  <type:Sentence xmi:id="28" begin="900" end="938" sofa="1"/>
+  <type:Sentence xmi:id="29" begin="938" end="975" sofa="1"/>
+  <type:Sentence xmi:id="30" begin="975" end="1007" sofa="1"/>
+  <type:Sentence xmi:id="31" begin="1007" end="1040" sofa="1"/>
+  <type:Sentence xmi:id="32" begin="1040" end="1075" sofa="1"/>
+  <type:Sentence xmi:id="33" begin="1075" end="1096" sofa="1"/>
+  <type:Sentence xmi:id="34" begin="1096" end="1130" sofa="1"/>
+  <type:Sentence xmi:id="35" begin="1130" end="1166" sofa="1"/>
+  <type:Sentence xmi:id="36" begin="1166" end="1202" sofa="1"/>
+  <type:Sentence xmi:id="37" begin="1202" end="1239" sofa="1"/>
+  <type:Sentence xmi:id="38" begin="1239" end="1280" sofa="1"/>
+  <type:Sentence xmi:id="39" begin="1280" end="1317" sofa="1"/>
+  <type:Sentence xmi:id="40" begin="1317" end="1355" sofa="1"/>
+  <type:Sentence xmi:id="41" begin="1355" end="1391" sofa="1"/>
+  <type:Sentence xmi:id="42" begin="1391" end="1425" sofa="1"/>
+  <type:Sentence xmi:id="43" begin="1425" end="1461" sofa="1"/>
+  <type:Sentence xmi:id="44" begin="1461" end="1492" sofa="1"/>
+  <type:Sentence xmi:id="45" begin="1492" end="1529" sofa="1"/>
+  <type:Sentence xmi:id="46" begin="1529" end="1565" sofa="1"/>
+  <type:Sentence xmi:id="47" begin="1565" end="1598" sofa="1"/>
+  <type:Sentence xmi:id="48" begin="1598" end="1606" sofa="1"/>
+  <type:Sentence xmi:id="49" begin="1606" end="1633" sofa="1"/>
+  <type:Sentence xmi:id="50" begin="1633" end="1674" sofa="1"/>
+  <type:Sentence xmi:id="51" begin="1674" end="1701" sofa="1"/>
+  <type:Sentence xmi:id="52" begin="1701" end="1737" sofa="1"/>
+  <type:Sentence xmi:id="53" begin="1737" end="1779" sofa="1"/>
+  <type:Sentence xmi:id="54" begin="1779" end="1812" sofa="1"/>
+  <type:Sentence xmi:id="55" begin="1812" end="1851" sofa="1"/>
+  <type:Sentence xmi:id="56" begin="1851" end="1878" sofa="1"/>
+  <type:Sentence xmi:id="57" begin="1878" end="1912" sofa="1"/>
+  <type:Sentence xmi:id="58" begin="1912" end="1947" sofa="1"/>
+  <type:Sentence xmi:id="59" begin="1947" end="1981" sofa="1"/>
+  <type:Sentence xmi:id="60" begin="1981" end="2019" sofa="1"/>
+  <type:Sentence xmi:id="61" begin="2019" end="2053" sofa="1"/>
+  <type:Sentence xmi:id="62" begin="2053" end="2090" sofa="1"/>
+  <type:Sentence xmi:id="63" begin="2090" end="2128" sofa="1"/>
+  <type:Sentence xmi:id="64" begin="2128" end="2164" sofa="1"/>
+  <type:Sentence xmi:id="65" begin="2164" end="2197" sofa="1"/>
+  <type:Sentence xmi:id="66" begin="2197" end="2203" sofa="1"/>
+  <custom:ImpressoImages xmi:id="67" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2300,1911,1223,91/full/0/default.jpg" begin="0" end="36" sofa="1"/>
+  <custom:ImpressoImages xmi:id="68" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2521,2001,754,91/full/0/default.jpg" begin="36" end="60" sofa="1"/>
+  <custom:ImpressoImages xmi:id="69" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2267,2099,596,58/full/0/default.jpg" begin="60" end="93" sofa="1"/>
+  <custom:ImpressoImages xmi:id="70" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2340,2142,523,53/full/0/default.jpg" begin="93" end="124" sofa="1"/>
+  <custom:ImpressoImages xmi:id="71" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2281,2182,582,53/full/0/default.jpg" begin="124" end="153" sofa="1"/>
+  <custom:ImpressoImages xmi:id="72" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2281,2224,580,51/full/0/default.jpg" begin="153" end="196" sofa="1"/>
+  <custom:ImpressoImages xmi:id="73" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2279,2263,584,53/full/0/default.jpg" begin="196" end="225" sofa="1"/>
+  <custom:ImpressoImages xmi:id="74" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2279,2303,583,53/full/0/default.jpg" begin="225" end="263" sofa="1"/>
+  <custom:ImpressoImages xmi:id="75" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2281,2342,581,53/full/0/default.jpg" begin="263" end="304" sofa="1"/>
+  <custom:ImpressoImages xmi:id="76" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2281,2382,560,53/full/0/default.jpg" begin="304" end="341" sofa="1"/>
+  <custom:ImpressoImages xmi:id="77" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2323,2426,540,51/full/0/default.jpg" begin="341" end="371" sofa="1"/>
+  <custom:ImpressoImages xmi:id="78" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2281,2465,581,53/full/0/default.jpg" begin="371" end="405" sofa="1"/>
+  <custom:ImpressoImages xmi:id="79" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2281,2505,583,53/full/0/default.jpg" begin="405" end="438" sofa="1"/>
+  <custom:ImpressoImages xmi:id="80" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2281,2545,582,53/full/0/default.jpg" begin="438" end="470" sofa="1"/>
+  <custom:ImpressoImages xmi:id="81" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2281,2584,582,53/full/0/default.jpg" begin="470" end="509" sofa="1"/>
+  <custom:ImpressoImages xmi:id="82" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2281,2626,583,51/full/0/default.jpg" begin="509" end="548" sofa="1"/>
+  <custom:ImpressoImages xmi:id="83" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2281,2665,582,53/full/0/default.jpg" begin="548" end="584" sofa="1"/>
+  <custom:ImpressoImages xmi:id="84" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2279,2705,583,53/full/0/default.jpg" begin="584" end="621" sofa="1"/>
+  <custom:ImpressoImages xmi:id="85" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2279,2745,584,53/full/0/default.jpg" begin="621" end="657" sofa="1"/>
+  <custom:ImpressoImages xmi:id="86" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2283,2784,580,53/full/0/default.jpg" begin="657" end="695" sofa="1"/>
+  <custom:ImpressoImages xmi:id="87" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2281,2826,581,51/full/0/default.jpg" begin="695" end="728" sofa="1"/>
+  <custom:ImpressoImages xmi:id="88" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2281,2865,584,53/full/0/default.jpg" begin="728" end="770" sofa="1"/>
+  <custom:ImpressoImages xmi:id="89" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2281,2905,350,53/full/0/default.jpg" begin="770" end="793" sofa="1"/>
+  <custom:ImpressoImages xmi:id="90" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2323,2947,542,53/full/0/default.jpg" begin="793" end="824" sofa="1"/>
+  <custom:ImpressoImages xmi:id="91" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2279,2986,586,53/full/0/default.jpg" begin="824" end="859" sofa="1"/>
+  <custom:ImpressoImages xmi:id="92" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2281,3028,584,51/full/0/default.jpg" begin="859" end="900" sofa="1"/>
+  <custom:ImpressoImages xmi:id="93" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2281,3068,583,53/full/0/default.jpg" begin="900" end="938" sofa="1"/>
+  <custom:ImpressoImages xmi:id="94" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2281,3107,584,53/full/0/default.jpg" begin="938" end="975" sofa="1"/>
+  <custom:ImpressoImages xmi:id="95" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2281,3147,583,53/full/0/default.jpg" begin="975" end="1007" sofa="1"/>
+  <custom:ImpressoImages xmi:id="96" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2281,3186,584,53/full/0/default.jpg" begin="1007" end="1040" sofa="1"/>
+  <custom:ImpressoImages xmi:id="97" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2281,3228,584,51/full/0/default.jpg" begin="1040" end="1075" sofa="1"/>
+  <custom:ImpressoImages xmi:id="98" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2281,3268,356,53/full/0/default.jpg" begin="1075" end="1096" sofa="1"/>
+  <custom:ImpressoImages xmi:id="99" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2323,3309,541,53/full/0/default.jpg" begin="1096" end="1130" sofa="1"/>
+  <custom:ImpressoImages xmi:id="100" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2281,3351,584,51/full/0/default.jpg" begin="1130" end="1166" sofa="1"/>
+  <custom:ImpressoImages xmi:id="101" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2931,2105,574,53/full/0/default.jpg" begin="1166" end="1202" sofa="1"/>
+  <custom:ImpressoImages xmi:id="102" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2931,2147,573,51/full/0/default.jpg" begin="1202" end="1239" sofa="1"/>
+  <custom:ImpressoImages xmi:id="103" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2931,2186,575,53/full/0/default.jpg" begin="1239" end="1280" sofa="1"/>
+  <custom:ImpressoImages xmi:id="104" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2931,2226,575,53/full/0/default.jpg" begin="1280" end="1317" sofa="1"/>
+  <custom:ImpressoImages xmi:id="105" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2931,2265,577,53/full/0/default.jpg" begin="1317" end="1355" sofa="1"/>
+  <custom:ImpressoImages xmi:id="106" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2933,2305,584,53/full/0/default.jpg" begin="1355" end="1391" sofa="1"/>
+  <custom:ImpressoImages xmi:id="107" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2933,2347,574,51/full/0/default.jpg" begin="1391" end="1425" sofa="1"/>
+  <custom:ImpressoImages xmi:id="108" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2933,2386,500,53/full/0/default.jpg" begin="1425" end="1461" sofa="1"/>
+  <custom:ImpressoImages xmi:id="109" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2973,2440,542,53/full/0/default.jpg" begin="1461" end="1492" sofa="1"/>
+  <custom:ImpressoImages xmi:id="110" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2931,2480,575,53/full/0/default.jpg" begin="1492" end="1529" sofa="1"/>
+  <custom:ImpressoImages xmi:id="111" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2933,2520,573,53/full/0/default.jpg" begin="1529" end="1565" sofa="1"/>
+  <custom:ImpressoImages xmi:id="112" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2933,2559,575,53/full/0/default.jpg" begin="1565" end="1598" sofa="1"/>
+  <custom:ImpressoImages xmi:id="113" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2935,2601,94,51/full/0/default.jpg" begin="1598" end="1606" sofa="1"/>
+  <custom:ImpressoImages xmi:id="114" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2971,2655,536,53/full/0/default.jpg" begin="1606" end="1633" sofa="1"/>
+  <custom:ImpressoImages xmi:id="115" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2931,2695,573,53/full/0/default.jpg" begin="1633" end="1674" sofa="1"/>
+  <custom:ImpressoImages xmi:id="116" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2933,2732,573,53/full/0/default.jpg" begin="1674" end="1701" sofa="1"/>
+  <custom:ImpressoImages xmi:id="117" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2931,2772,586,53/full/0/default.jpg" begin="1701" end="1737" sofa="1"/>
+  <custom:ImpressoImages xmi:id="118" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2933,2811,574,53/full/0/default.jpg" begin="1737" end="1779" sofa="1"/>
+  <custom:ImpressoImages xmi:id="119" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2931,2851,579,51/full/0/default.jpg" begin="1779" end="1812" sofa="1"/>
+  <custom:ImpressoImages xmi:id="120" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2933,2888,575,53/full/0/default.jpg" begin="1812" end="1851" sofa="1"/>
+  <custom:ImpressoImages xmi:id="121" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2933,2928,419,53/full/0/default.jpg" begin="1851" end="1878" sofa="1"/>
+  <custom:ImpressoImages xmi:id="122" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2975,2988,533,53/full/0/default.jpg" begin="1878" end="1912" sofa="1"/>
+  <custom:ImpressoImages xmi:id="123" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2933,3030,575,51/full/0/default.jpg" begin="1912" end="1947" sofa="1"/>
+  <custom:ImpressoImages xmi:id="124" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2935,3070,573,53/full/0/default.jpg" begin="1947" end="1981" sofa="1"/>
+  <custom:ImpressoImages xmi:id="125" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2933,3109,579,53/full/0/default.jpg" begin="1981" end="2019" sofa="1"/>
+  <custom:ImpressoImages xmi:id="126" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2933,3149,575,53/full/0/default.jpg" begin="2019" end="2053" sofa="1"/>
+  <custom:ImpressoImages xmi:id="127" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2935,3188,588,53/full/0/default.jpg" begin="2053" end="2090" sofa="1"/>
+  <custom:ImpressoImages xmi:id="128" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2933,3230,583,51/full/0/default.jpg" begin="2090" end="2128" sofa="1"/>
+  <custom:ImpressoImages xmi:id="129" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2933,3270,576,53/full/0/default.jpg" begin="2128" end="2164" sofa="1"/>
+  <custom:ImpressoImages xmi:id="130" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2933,3309,575,53/full/0/default.jpg" begin="2164" end="2197" sofa="1"/>
+  <custom:ImpressoImages xmi:id="131" link="https://impresso-project.ch/api/proxy/iiif/GDL-1995-05-23-a-p0032/2938,3349,84,53/full/0/default.jpg" begin="2197" end="2203" sofa="1"/>
+  <cas:Sofa xmi:id="1" sofaNum="1" sofaID="_InitialView" mimeType="text/plain" sofaString="Les patrons suisses les plus formés, mais pas à l'université Trois quarts des dirigeants des petites et moyennes entreprises (PME) suisses possèdent une formation commerciale, ce qui est supérieur à la moyenne européenne. En revanche, le pourcentage de formations universitaires est le plus faible, selon une étude publiée lundi à Bruxelles. 76 % des responsables de PME interrogés en Suisse ont reçu une formation commerciale, contre une moyenne européenne de 72 %. Le niveau le plus élevé est enregistré en Allemagne (85 %), le plus bas en France et au Royaume-Uni (56 %). Parmi les dirigeants suisses au bénéfice d'une formation commerciale, sept sur dix (69 %) ont un diplôme de fin d'études secondaires. Cela représente le pourcentage le plus élevé de tous les pays touchés par l'enquête. En revanche, le pourcentage de personnes ayant reçu une formation universitaire est le plus faible de tous les pays. En effet, il ne dépasse pas 25 % au niveau de la licence, contre une moyenne européenne de 46 %. Seuls 12 % enfin disposent d'un diplôme de troisième cycle (15 % en moyenne européenne). L'enquête montre par ailleurs une planification insuffisante chez les PME quant à leur propriété future, estime le directeur de l'étude Clive Bennett. 15 % des entreprises ne sont pas à même de dire ce qu'elles prévoient dans les trois à cinq années à venir. Pour la Suisse, le pourcentage des entreprises n'ayant fourni aucune indication à cet égard atteint 21 %. Pour les autres, 55 % des PME suisses ne prévoient aucun changement d'ici la fin du siècle, ce qui est supérieur à la moyenne européenne (43 %). Mais 18 % des entreprises seulement indiquent qu'elles resteront en mains familiales (moyenne européenne 35 %). Elles sont 10 % à envisager la vente à des tiers, ce qui est proche de la moyenne européenne, 3 % à prévoir la vente aux employés et 2 % la mise sur le marché. La troisième enquête annuelle des PME de la société de conseil Grant Thonrton (Londres) a été menée en octobre et novembre derniers dans les quinze pays de l'Union européenne (UE), ainsi qu'à Malte et en Suisse. Près de 5000 entreprises ont répondu, dont 147 sociétés helvétiques (taux de réponse pour la Suisse 10 %). (ATS) "/>
+  <cas:View sofa="1" members="2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131"/>
+</xmi:XMI>
