@@ -4,8 +4,8 @@ This repository holds the code related to the master project of Lea Marxen on th
 
 ## Organization
 
-`inception`: ..
-`notebooks`: ..
+`inception`: ..\
+`notebooks`: ..\
 `samples`: ..
 
 
