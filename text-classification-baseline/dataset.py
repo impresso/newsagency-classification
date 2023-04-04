@@ -18,9 +18,9 @@ class NewsDataset(Dataset):
         else:
             df = pd.read_csv(dataset, sep="\t", names=["id", "text", "labels"])
 
-            label_encoder = MultiLabelBinarizer()
-            df['labels'] = label_encoder.fit_transform(df['labels'])
-            self.classes = label_encoder.classes_
+            self.label_encoder = MultiLabelBinarizer()
+            df['labels'] = self.label_encoder.fit_transform(df['labels'])
+            self.classes = self.label_encoder.classes_
             self.encoded_classes = pd.unique(df['labels'])
             self.targets = df['label'].to_numpy()
 
