@@ -8,7 +8,7 @@ from transformers import (PreTrainedModel,
 from torch.nn import BCEWithLogitsLoss, CrossEntropyLoss, MSELoss
 
 
-class BertForSequenceAndTokenClassification(PreTrainedModel):
+class ModelForSequenceAndTokenClassification(PreTrainedModel):
     def __init__(self, config):
         super().__init__(config)
         self.num_token_labels = config.num_token_labels
@@ -44,7 +44,8 @@ class BertForSequenceAndTokenClassification(PreTrainedModel):
         output_attentions: Optional[bool] = None,
         output_hidden_states: Optional[bool] = None,
         return_dict: Optional[bool] = None,
-    ) -> Union[Tuple[torch.Tensor], SequenceClassifierOutput]:
+    ) -> Union[Union[Tuple[torch.Tensor], SequenceClassifierOutput],
+            Union[Tuple[torch.Tensor], TokenClassifierOutput]]:
         r"""
         labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*):
             Labels for computing the sequence classification/regression loss. Indices should be in `[0, ...,

@@ -1,7 +1,8 @@
 import argparse
 import numpy as np
 import torch
-from transformers import AutoModelForSequenceClassification, AutoTokenizer, AdamW, get_linear_schedule_with_warmup
+from transformers import AutoTokenizer, AdamW, get_linear_schedule_with_warmup
+from model import ModelForSequenceAndTokenClassification
 from sklearn.metrics import accuracy_score, classification_report
 from torch import nn
 from collections import defaultdict
@@ -80,5 +81,11 @@ def main():
     logging.info("Shape of the train set: {}".format(train_set_shape))
     train_data_loader = DataLoader(train_set, args.train_batch_size, shuffle=False, num_workers=0)
 
-    model = AutoModelForSequenceClassification.from_pretrained(args.model, num_labels=len(encoded_classes))
+    model = ModelForSequenceAndTokenClassification.from_pretrained(args.model, num_labels=len(encoded_classes))
     model = model.to(args.device)
+
+    import pdb;pdb.set_trace()
+
+
+
+    
