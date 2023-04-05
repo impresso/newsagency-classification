@@ -2,18 +2,19 @@ import torch
 from torch import nn
 from typing import List, Optional, Tuple, Union
 from transformers import (PreTrainedModel,
-                          AutoModel,
-                          SequenceClassifierOutput,
-                          TokenClassifierOutput)
+                          AutoModel, AutoConfig)
 from torch.nn import BCEWithLogitsLoss, CrossEntropyLoss, MSELoss
+from transformers.modeling_outputs import (SequenceClassifierOutput,
+                                           TokenClassifierOutput)
 
 
 class ModelForSequenceAndTokenClassification(PreTrainedModel):
-    def __init__(self, config):
+    def __init__(self, config, problem_type, num_sequence_labels, num_token_labels):
         super().__init__(config)
-        self.num_token_labels = config.num_token_labels
-        self.num_sequence_labels = config.num_sequence_labels
+        self.num_token_labels = num_token_labels
+        self.num_sequence_labels = num_sequence_labels
         self.config = config
+        self.problem_type = problem_type
 
         self.bert = AutoModel(config)
         classifier_dropout = (
@@ -31,6 +32,37 @@ class ModelForSequenceAndTokenClassification(PreTrainedModel):
         # Initialize weights and apply final processing
         self.post_init()
 
+    """
+    An abstract class to handle weights initialization and a simple interface for downloading and loading pretrained
+    models.
+    """
+
+    config_class = AutoConfig
+    # load_tf_weights = load_tf_weights_in_bert
+    # base_model_prefix = "bert"
+    # supports_gradient_checkpointing = True
+    _keys_to_ignore_on_load_missing = [r"position_ids"]
+
+    def _init_weights(self, module):
+        """Initialize the weights"""
+        if isinstance(module, nn.Linear):
+            # Slightly different from the TF version which uses truncated_normal for initialization
+            # cf https://github.com/pytorch/pytorch/pull/5617
+            module.weight.data.normal_(mean=0.0, std=self.config.initializer_range)
+            if module.bias is not None:
+                module.bias.data.zero_()
+        elif isinstance(module, nn.Embedding):
+            module.weight.data.normal_(mean=0.0, std=self.config.initializer_range)
+            if module.padding_idx is not None:
+                module.weight.data[module.padding_idx].zero_()
+        elif isinstance(module, nn.LayerNorm):
+            module.bias.data.zero_()
+            module.weight.data.fill_(1.0)
+
+    # def _set_gradient_checkpointing(self, module, value=False):
+    #     if isinstance(module, AutoEncoder):
+    #         module.gradient_checkpointing = value
+
     def forward(
         self,
         input_ids: Optional[torch.Tensor] = None,
@@ -45,7 +77,7 @@ class ModelForSequenceAndTokenClassification(PreTrainedModel):
         output_hidden_states: Optional[bool] = None,
         return_dict: Optional[bool] = None,
     ) -> Union[Union[Tuple[torch.Tensor], SequenceClassifierOutput],
-            Union[Tuple[torch.Tensor], TokenClassifierOutput]]:
+               Union[Tuple[torch.Tensor], TokenClassifierOutput]]:
         r"""
         labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*):
             Labels for computing the sequence classification/regression loss. Indices should be in `[0, ...,
@@ -85,11 +117,17 @@ class ModelForSequenceAndTokenClassification(PreTrainedModel):
             loss_tokens = loss_fct(
                 token_logits.view(-1, self.num_labels), token_labels.view(-1))
 
-            if self.config.problem_type == "single_label_classification":
+            if self.problem_type == "regression":
+                loss_fct = MSELoss()
+                if self.num_labels == 1:
+                    loss_sequence = loss_fct(sequence_logits.squeeze(), sequence_labels.squeeze())
+                else:
+                    loss_sequence = loss_fct(sequence_logits, sequence_labels)
+            if self.problem_type == "single_label_classification":
                 loss_fct = CrossEntropyLoss()
                 loss_sequence = loss_fct(
                     sequence_logits.view(-1, self.num_labels), sequence_labels.view(-1))
-            elif self.config.problem_type == "multi_label_classification":
+            elif self.problem_type == "multi_label_classification":
                 loss_fct = BCEWithLogitsLoss()
                 loss_sequence = loss_fct(sequence_logits, sequence_labels)
 
