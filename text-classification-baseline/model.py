@@ -9,25 +9,24 @@ from transformers.modeling_outputs import (SequenceClassifierOutput,
 
 
 class ModelForSequenceAndTokenClassification(PreTrainedModel):
-    def __init__(self, config, problem_type, num_sequence_labels, num_token_labels):
+    def __init__(self, config, num_sequence_labels, num_token_labels):
         super().__init__(config)
         self.num_token_labels = num_token_labels
         self.num_sequence_labels = num_sequence_labels
         self.config = config
-        self.problem_type = problem_type
 
-        self.bert = AutoModel(config)
+        self.bert = AutoModel.from_config(config)
         classifier_dropout = (
             config.classifier_dropout if config.classifier_dropout is not None else config.hidden_dropout_prob)
         self.dropout = nn.Dropout(classifier_dropout)
 
         # For token classification
         self.token_classifier = nn.Linear(
-            self.hidden_size, self.num_token_labels)
+            config.hidden_size, self.num_token_labels)
 
         # For the entire sequence classification
         self.sequence_classifier = nn.Linear(
-            self.hidden_size, self.num_sequence_labels)
+            config.hidden_size, self.num_sequence_labels)
 
         # Initialize weights and apply final processing
         self.post_init()
@@ -117,17 +116,17 @@ class ModelForSequenceAndTokenClassification(PreTrainedModel):
             loss_tokens = loss_fct(
                 token_logits.view(-1, self.num_labels), token_labels.view(-1))
 
-            if self.problem_type == "regression":
+            if self.config.problem_type == "regression":
                 loss_fct = MSELoss()
                 if self.num_labels == 1:
                     loss_sequence = loss_fct(sequence_logits.squeeze(), sequence_labels.squeeze())
                 else:
                     loss_sequence = loss_fct(sequence_logits, sequence_labels)
-            if self.problem_type == "single_label_classification":
+            if self.config.problem_type == "single_label_classification":
                 loss_fct = CrossEntropyLoss()
                 loss_sequence = loss_fct(
                     sequence_logits.view(-1, self.num_labels), sequence_labels.view(-1))
-            elif self.problem_type == "multi_label_classification":
+            elif self.config.problem_type == "multi_label_classification":
                 loss_fct = BCEWithLogitsLoss()
                 loss_sequence = loss_fct(sequence_logits, sequence_labels)
 

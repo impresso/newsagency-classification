@@ -1,7 +1,10 @@
 import argparse
 import numpy as np
 import torch
-from transformers import AutoTokenizer, AdamW, get_linear_schedule_with_warmup
+from transformers import (AutoTokenizer,
+                          AutoConfig,
+                          AdamW,
+                          get_linear_schedule_with_warmup)
 from model import ModelForSequenceAndTokenClassification
 from sklearn.metrics import accuracy_score, classification_report
 from torch import nn
@@ -142,19 +145,18 @@ if __name__ == '__main__':
     train_set = NewsDataset(args.train_dataset, tokenizer, args.max_sequence_len)
     num_sequence_labels, num_token_labels = train_set.get_info()
 
-    # logging.info("Label Encoding of {} --> {}".format(classes,
-    #              str(np.sort(encoded_classes))))
-    #
-    # encoded_classes = encoded_classes.astype(str)
-    # logging.info("Shape of the train set: {}".format(train_set_shape))
+    logging.info("Number of unique token labels {}, number of unique sequence labels {}.".format(num_token_labels,
+                                                                                                 num_sequence_labels))
+
     train_data_loader = DataLoader(
         train_set,
         args.train_batch_size,
-        shuffle=False,
-        num_workers=0)
+        shuffle=True,
+        num_workers=os.cpu_count())
+
+    config = AutoConfig.from_pretrained('bert-base-uncased', problem_type="single_label_classification")
 
     model = ModelForSequenceAndTokenClassification.from_pretrained(args.model,
-                                                                   problem_type="single_label_classification",
                                                                    num_sequence_labels=num_sequence_labels,
                                                                    num_token_labels=num_token_labels)
     #, num_labels=len(encoded_classes)

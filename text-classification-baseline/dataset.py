@@ -182,7 +182,7 @@ class NewsDataset(Dataset):
         # import pdb;pdb.set_trace()
 
     def __len__(self):
-        return len(self.sequences)
+        return len(self.phrases)
 
     def __getitem__(self, index):
         sequence = str(self.sequences[index])
