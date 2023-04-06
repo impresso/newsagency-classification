@@ -113,19 +113,19 @@ class ModelForSequenceAndTokenClassification(PreTrainedModel):
         loss = None
         if token_labels is not None:
             loss_fct = CrossEntropyLoss()
-            loss_tokens = loss_fct(
-                token_logits.view(-1, self.num_labels), token_labels.view(-1))
+            # import pdb;pdb.set_trace()
+            loss_tokens = loss_fct(token_logits.view(-1, self.num_token_labels), token_labels.view(-1))
 
             if self.config.problem_type == "regression":
                 loss_fct = MSELoss()
-                if self.num_labels == 1:
+                if self.num_sequence_labels == 1:
                     loss_sequence = loss_fct(sequence_logits.squeeze(), sequence_labels.squeeze())
                 else:
                     loss_sequence = loss_fct(sequence_logits, sequence_labels)
             if self.config.problem_type == "single_label_classification":
                 loss_fct = CrossEntropyLoss()
                 loss_sequence = loss_fct(
-                    sequence_logits.view(-1, self.num_labels), sequence_labels.view(-1))
+                    sequence_logits.view(-1, self.num_sequence_labels), sequence_labels.view(-1))
             elif self.config.problem_type == "multi_label_classification":
                 loss_fct = BCEWithLogitsLoss()
                 loss_sequence = loss_fct(sequence_logits, sequence_labels)

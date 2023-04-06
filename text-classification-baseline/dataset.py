@@ -179,13 +179,22 @@ class NewsDataset(Dataset):
         self.token_targets = [item[1][1] for item in self.phrases]
         self.tokens = [item[1][0] for item in self.phrases]
 
-        # import pdb;pdb.set_trace()
+        unique_token_labels = set(sum(self.token_targets, []))
+        self.label_map = dict(zip(unique_token_labels, range(len(unique_token_labels))))
+
+        self.token_targets = [[self.label_map[element] for element in item[1][1]] for item in self.phrases]
 
     def __len__(self):
         return len(self.phrases)
 
+    def get_label_map(self):
+        return self.label_map
+
+    def get_inverse_label_map(self):
+        return {v: k for k, v in self.label_map.items()}
+
     def __getitem__(self, index):
-        sequence = str(self.sequences[index])
+        sequence = str(self.tokens[index])
         if not self.test:
             sequence_targets = self.sequence_targets[index]
             token_targets = self.token_targets[index]
@@ -199,20 +208,28 @@ class NewsDataset(Dataset):
             return_token_type_ids=True,
             truncation=True
         )
-        # import pdb;pdb.set_trace()
-        if self.test_set:
+
+        if self.test:
             return {
                 'sequence': sequence,
                 'input_ids': torch.tensor(encoding['input_ids'], dtype=torch.long),
                 'attention_mask': torch.tensor(encoding['attention_mask'], dtype=torch.long)
             }
         else:
+            # print(token_targets)
+            # Pad the tensor with zeros until the maximum length
+            input_ids = torch.tensor(encoding['input_ids'], dtype=torch.long)
+            token_targets = torch.tensor(token_targets, dtype=torch.long)
+            # print(input_ids.shape, token_targets.shape)
+            padded_tensor = torch.zeros(self.max_len, dtype=torch.long)
+            padded_tensor[:token_targets[:self.max_len].size(0)] = token_targets[:self.max_len]
+
             return {
                 'sequence': sequence,
-                'input_ids': torch.tensor(encoding['input_ids'], dtype=torch.long),
+                'input_ids': input_ids,
                 'attention_mask': torch.tensor(encoding['attention_mask'], dtype=torch.long),
                 'sequence_targets': torch.tensor(sequence_targets, dtype=torch.long),
-                'token_targets': torch.tensor(token_targets, dtype=torch.long)
+                'token_targets': padded_tensor
             }
 
     def get_info(self):
