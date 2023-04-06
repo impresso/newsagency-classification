@@ -3,8 +3,10 @@ from __future__ import division
 import argparse
 import collections
 import json
+from sklearn.metrics import classification_report
 
 Entity = collections.namedtuple('Entity', ['text', 'type', 'start'])
+
 
 def has_overlap(x, y):
     """
@@ -19,17 +21,20 @@ def has_overlap(x, y):
     end_y = y.start + len(y.text)
     return x.start < end_y and y.start < end_x
 
+
 def correct_text(x, y):
     """
     Assert entity boundaries are correct regardless of entity type.
     """
     return x.text == y.text and x.start == y.start
 
+
 def correct_type(x, y):
     """
     Assert entity types match and that there is an overlap in the text of the two entities.
     """
     return x.type == y.type and has_overlap(x, y)
+
 
 def count_correct(true, pred):
     """
@@ -68,11 +73,13 @@ def count_correct(true, pred):
 
     return count_text, count_type
 
+
 def precision(correct, actual):
     if actual == 0:
         return 0
 
     return correct / actual
+
 
 def recall(correct, possible):
     if possible == 0:
@@ -80,13 +87,15 @@ def recall(correct, possible):
 
     return correct / possible
 
+
 def f1(p, r):
     if p + r == 0:
         return 0
 
     return 2 * (p * r) / (p + r)
 
-def evaluate(y_true, y_pred):
+
+def token_level_evaluate(y_true, y_pred):
     """
     Evaluate classification results for a whole dataset. Each row corresponds to one text in the
     dataset.
@@ -116,7 +125,8 @@ def evaluate(y_true, y_pred):
     0.6666666666666666
     """
     if len(y_true) != len(y_pred):
-        raise ValueError('Bad input shape: y_true and y_pred should have the same length.')
+        raise ValueError(
+            'Bad input shape: y_true and y_pred should have the same length.')
 
     correct, actual, possible = 0, 0, 0
 
@@ -128,13 +138,21 @@ def evaluate(y_true, y_pred):
 
     return f1(precision(correct, actual), recall(correct, possible))
 
+
+def sequence_level_evaluate(y_true, y_pred, target_names):
+    if target_names is not None:
+        return classification_report(y_true, y_pred, target_names=target_names)
+    else:
+        return classification_report(y_true, y_pred)
+
+
 def sign_test(truth, model_a, model_b):
     better = 0
     worse = 0
 
     for true, a, b in zip(truth, model_a, model_b):
-        score_a = evaluate([true], [a])
-        score_b = evaluate([true], [b])
+        score_a = token_level_evaluate([true], [a])
+        score_b = token_level_evaluate([true], [b])
 
         if score_a - score_b > 0:
             worse += 1
@@ -143,18 +161,21 @@ def sign_test(truth, model_a, model_b):
 
     return better, worse
 
+
 def _parse_json(file_name):
     data = None
 
     with open(file_name) as json_file:
         data = json.load(json_file)
 
-        dict_to_entity = lambda e: Entity(e['text'], e['type'], e['start'])
+        def dict_to_entity(e): return Entity(e['text'], e['type'], e['start'])
         for instance in data:
             instance['true'] = [dict_to_entity(e) for e in instance['true']]
-            instance['predicted'] = [dict_to_entity(e) for e in instance['predicted']]
+            instance['predicted'] = [
+                dict_to_entity(e) for e in instance['predicted']]
 
     return data
+
 
 def evaluate_json(file_name):
     """
@@ -167,11 +188,15 @@ def evaluate_json(file_name):
         y_true.append(instance['true'])
         y_pred.append(instance['predicted'])
 
-    return evaluate(y_true, y_pred)
+    return token_level_evaluate(y_true, y_pred)
+
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Compute F1 score for predictions in JSON file.')
-    parser.add_argument('file_name', help='The JSON containing classification results')
+    parser = argparse.ArgumentParser(
+        description='Compute F1 score for predictions in JSON file.')
+    parser.add_argument(
+        'file_name',
+        help='The JSON containing classification results')
     args = parser.parse_args()
 
     print('F1-score: %.2f' % evaluate_json(args.file_name))
