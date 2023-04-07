@@ -205,7 +205,7 @@ class NewsDataset(Dataset):
             add_special_tokens=True,
             max_length=self.max_len,
             padding='max_length',
-            return_token_type_ids=True,
+            return_token_type_ids=True, #TODO: add token type ids
             truncation=True
         )
 
