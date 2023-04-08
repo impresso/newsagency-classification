@@ -47,11 +47,13 @@ class ModelForSequenceAndTokenClassification(PreTrainedModel):
         if isinstance(module, nn.Linear):
             # Slightly different from the TF version which uses truncated_normal for initialization
             # cf https://github.com/pytorch/pytorch/pull/5617
-            module.weight.data.normal_(mean=0.0, std=self.config.initializer_range)
+            module.weight.data.normal_(
+                mean=0.0, std=self.config.initializer_range)
             if module.bias is not None:
                 module.bias.data.zero_()
         elif isinstance(module, nn.Embedding):
-            module.weight.data.normal_(mean=0.0, std=self.config.initializer_range)
+            module.weight.data.normal_(
+                mean=0.0, std=self.config.initializer_range)
             if module.padding_idx is not None:
                 module.weight.data[module.padding_idx].zero_()
         elif isinstance(module, nn.LayerNorm):
@@ -114,12 +116,14 @@ class ModelForSequenceAndTokenClassification(PreTrainedModel):
         if token_labels is not None:
             loss_fct = CrossEntropyLoss()
             # import pdb;pdb.set_trace()
-            loss_tokens = loss_fct(token_logits.view(-1, self.num_token_labels), token_labels.view(-1))
+            loss_tokens = loss_fct(
+                token_logits.view(-1, self.num_token_labels), token_labels.view(-1))
 
             if self.config.problem_type == "regression":
                 loss_fct = MSELoss()
                 if self.num_sequence_labels == 1:
-                    loss_sequence = loss_fct(sequence_logits.squeeze(), sequence_labels.squeeze())
+                    loss_sequence = loss_fct(
+                        sequence_logits.squeeze(), sequence_labels.squeeze())
                 else:
                     loss_sequence = loss_fct(sequence_logits, sequence_labels)
             if self.config.problem_type == "single_label_classification":

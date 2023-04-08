@@ -174,15 +174,18 @@ class NewsDataset(Dataset):
             dropna=True)
 
         self.sequence_targets = [int(item[-1]) for item in self.phrases]
-        # take the last element which says if the sentence contains entities or not
+        # take the last element which says if the sentence contains entities or
+        # not
 
         self.token_targets = [item[1][1] for item in self.phrases]
         self.tokens = [item[1][0] for item in self.phrases]
 
         unique_token_labels = set(sum(self.token_targets, []))
-        self.label_map = dict(zip(unique_token_labels, range(len(unique_token_labels))))
+        self.label_map = dict(
+            zip(unique_token_labels, range(len(unique_token_labels))))
 
-        self.token_targets = [[self.label_map[element] for element in item[1][1]] for item in self.phrases]
+        self.token_targets = [[self.label_map[element]
+                               for element in item[1][1]] for item in self.phrases]
 
     def __len__(self):
         return len(self.phrases)
@@ -205,16 +208,19 @@ class NewsDataset(Dataset):
             add_special_tokens=True,
             max_length=self.max_len,
             padding='max_length',
-            return_token_type_ids=True, #TODO: add token type ids
+            return_token_type_ids=True,  # TODO: add token type ids
             truncation=True
         )
 
         if self.test:
             return {
                 'sequence': sequence,
-                'input_ids': torch.tensor(encoding['input_ids'], dtype=torch.long),
-                'attention_mask': torch.tensor(encoding['attention_mask'], dtype=torch.long)
-            }
+                'input_ids': torch.tensor(
+                    encoding['input_ids'],
+                    dtype=torch.long),
+                'attention_mask': torch.tensor(
+                    encoding['attention_mask'],
+                    dtype=torch.long)}
         else:
             # print(token_targets)
             # Pad the tensor with zeros until the maximum length
@@ -222,15 +228,19 @@ class NewsDataset(Dataset):
             token_targets = torch.tensor(token_targets, dtype=torch.long)
             # print(input_ids.shape, token_targets.shape)
             padded_tensor = torch.zeros(self.max_len, dtype=torch.long)
-            padded_tensor[:token_targets[:self.max_len].size(0)] = token_targets[:self.max_len]
+            padded_tensor[:token_targets[:self.max_len].size(
+                0)] = token_targets[:self.max_len]
 
             return {
                 'sequence': sequence,
                 'input_ids': input_ids,
-                'attention_mask': torch.tensor(encoding['attention_mask'], dtype=torch.long),
-                'sequence_targets': torch.tensor(sequence_targets, dtype=torch.long),
-                'token_targets': padded_tensor
-            }
+                'attention_mask': torch.tensor(
+                    encoding['attention_mask'],
+                    dtype=torch.long),
+                'sequence_targets': torch.tensor(
+                    sequence_targets,
+                    dtype=torch.long),
+                'token_targets': padded_tensor}
 
     def get_info(self):
         num_sequence_labels = len(set(self.sequence_targets))
