@@ -7,6 +7,7 @@ from transformers import (AutoTokenizer,
                           get_linear_schedule_with_warmup)
 from model import ModelForSequenceAndTokenClassification
 from sklearn.metrics import accuracy_score, classification_report
+from seqeval.metrics import classification_report as seq_classification_report
 from torch import nn
 from collections import defaultdict
 from tqdm import tqdm, trange
@@ -58,9 +59,11 @@ def evaluate(args, model, eval_dataset, labels, mode, prefix=""):
     logger.info("  Batch size = %d", args.eval_batch_size)
     eval_loss = 0.0
     nb_eval_steps = 0
-    preds = None
-    out_label_ids = None
+    out_sequence_ids, out_token_ids = None, None
+    out_sequence_preds, out_token_preds = None, None
     model.eval()
+
+    finish = 0
     for batch in tqdm(eval_dataloader, desc="Evaluating"):
         # batch = tuple(t.to(args.device) for t in batch)
 
@@ -77,8 +80,13 @@ def evaluate(args, model, eval_dataset, labels, mode, prefix=""):
             # tmp_eval_loss, logits = outputs[:2]
 
             sequence_result, tokens_result = outputs[0], outputs[1]
-            sequence_logits = sequence_result.logits
             token_logits = tokens_result.logits
+
+
+            # the second return value is logits
+            sequence_logits = sequence_result.logits
+
+            # correct_predictions += torch.sum(sequence_preds == sequence_targets)
 
             tmp_eval_loss = sequence_result.loss
 
@@ -87,26 +95,46 @@ def evaluate(args, model, eval_dataset, labels, mode, prefix=""):
 
             eval_loss += tmp_eval_loss.item()
         nb_eval_steps += 1
-        if preds is None:
-            preds = token_logits.detach().cpu().numpy()
-            out_label_ids = inputs["token_labels"].detach().cpu().numpy()
+        if out_token_preds is None:
+            out_token_preds = token_logits.detach().cpu().numpy()
+            out_sequence_preds = sequence_logits.detach().cpu().numpy()
+
+            out_token_ids = inputs["token_labels"].detach().cpu().numpy()
+            out_sequence_ids = inputs["sequence_labels"].detach().cpu().numpy()
         else:
-            preds = np.append(preds, token_logits.detach().cpu().numpy(), axis=0)
-            out_label_ids = np.append(out_label_ids, inputs["token_labels"].detach().cpu().numpy(), axis=0)
+            out_token_preds = np.append(out_token_preds, token_logits.detach().cpu().numpy(), axis=0)
+            out_sequence_ids = np.append(out_sequence_ids, inputs["sequence_labels"].detach().cpu().numpy(), axis=0)
+
+            out_token_ids = np.append(out_token_ids, inputs["token_labels"].detach().cpu().numpy(), axis=0)
+            out_sequence_preds = np.append(out_sequence_preds, sequence_logits.detach().cpu().numpy(), axis=0)
+        finish += 1
+
+        if finish == 20:
+            break
+
+    out_token_preds = np.argmax(out_token_preds, axis=2)
+    # out_sequence_preds = np.max(out_sequence_preds, axis=1)
+    out_sequence_preds = np.argmax(out_sequence_preds, axis=1)
+    # sequence_preds
+
+    logger.info('Evaluation for yes/no classification.')
+    report = classification_report(out_sequence_ids, out_sequence_preds, digits=4)
+    logger.info("\n%s", report)
 
     eval_loss = eval_loss / nb_eval_steps
-    preds = np.argmax(preds, axis=2)
 
     label_map = {i: label for i, label in enumerate(labels)}
 
-    out_label_list = [[] for _ in range(out_label_ids.shape[0])]
-    preds_list = [[] for _ in range(out_label_ids.shape[0])]
+    # import pdb;
+    # pdb.set_trace()
+    out_label_list = [[] for _ in range(out_token_ids.shape[0])]
+    preds_list = [[] for _ in range(out_token_ids.shape[0])]
 
-    for i in range(out_label_ids.shape[0]):
-        for j in range(out_label_ids.shape[1]):
+    for i in range(out_token_ids.shape[0]):
+        for j in range(out_token_ids.shape[1]):
             # if out_label_ids[i, j] != pad_token_label_id:
-                out_label_list[i].append(label_map[out_label_ids[i][j]])
-                preds_list[i].append(label_map[preds[i][j]])
+                out_label_list[i].append(label_map[out_token_ids[i][j]])
+                preds_list[i].append(label_map[out_token_preds[i][j]])
 
     results = {
         "loss": eval_loss,
@@ -115,9 +143,17 @@ def evaluate(args, model, eval_dataset, labels, mode, prefix=""):
         "f1": f1_score(out_label_list, preds_list),
     }
 
+    logger.info('Evaluation for named entity recognition & classification.')
+    report = seq_classification_report(out_label_list, preds_list, digits=4)
+    logger.info("\n%s", report)
+
+    logger.info('Evaluation for named entity recognition classification.')
     logger.info("***** Eval results %s *****", prefix)
     for key in sorted(results.keys()):
         logger.info("  %s = %s", key, str(results[key]))
+
+
+
 
     return results, preds_list
 
