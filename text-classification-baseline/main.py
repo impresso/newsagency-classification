@@ -14,19 +14,31 @@ from tqdm import tqdm, trange
 from datetime import datetime
 import os
 from dataset import NewsDataset
-from torch.utils.data import DataLoader
 import uuid
 import logging
 import math
-import torch.nn.functional as F
 from torch.utils.data.distributed import DistributedSampler
 import random
-from torch.utils.data import DataLoader, RandomSampler, SequentialSampler, TensorDataset
+from torch.utils.data import (DataLoader, RandomSampler, SequentialSampler, TensorDataset)
+from transformers import (
+    CONFIG_MAPPING,
+    MODEL_MAPPING,
+    AdamW,
+    AutoConfig,
+    AutoModelForTokenClassification,
+    AutoTokenizer,
+    DataCollatorForTokenClassification,
+    PretrainedConfig,
+    SchedulerType,
+    default_data_collator,
+    get_scheduler,
+)
 try:
     from torch.utils.tensorboard import SummaryWriter
 except ImportError:
     from tensorboardX import SummaryWriter
 from seqeval.metrics import f1_score, precision_score, recall_score
+from utils import write_predictions_to_tsv
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -44,7 +56,7 @@ def set_seed(args):
         torch.cuda.manual_seed_all(args.seed)
 
 
-def evaluate(args, model, eval_dataset, labels, mode, prefix=""):
+def evaluate(args, model, eval_dataset, labels, mode, prefix="", tokenizer=None):
     # eval_dataset = load_and_cache_examples(args, tokenizer, labels, pad_token_label_id, mode=mode)
 
     args.eval_batch_size = args.eval_batch_size * max(1, args.n_gpu)
@@ -68,6 +80,7 @@ def evaluate(args, model, eval_dataset, labels, mode, prefix=""):
     nb_eval_steps = 0
     out_sequence_ids, out_token_ids = None, None
     out_sequence_preds, out_token_preds = None, None
+    sentences = None
     model.eval()
 
     finish = 0
@@ -80,6 +93,7 @@ def evaluate(args, model, eval_dataset, labels, mode, prefix=""):
                     args.device), "attention_mask": batch["attention_mask"].to(
                     args.device), "sequence_labels": batch["sequence_targets"].to(
                     args.device), "token_labels": batch["token_targets"].to(
+                    args.device), "offset_mapping": batch["offset_mapping"].to(
                     args.device)}
             # if args.model_type != "distilbert":
             #     inputs["token_type_ids"] = (
@@ -98,18 +112,22 @@ def evaluate(args, model, eval_dataset, labels, mode, prefix=""):
 
             tmp_eval_loss = sequence_result.loss
 
+
             if args.n_gpu > 1:
                 # mean() to average on multi-gpu parallel evaluating
                 tmp_eval_loss = tmp_eval_loss.mean()
 
             eval_loss += tmp_eval_loss.item()
         nb_eval_steps += 1
+
         if out_token_preds is None:
             out_token_preds = token_logits.detach().cpu().numpy()
             out_sequence_preds = sequence_logits.detach().cpu().numpy()
 
             out_token_ids = inputs["token_labels"].detach().cpu().numpy()
             out_sequence_ids = inputs["sequence_labels"].detach().cpu().numpy()
+
+            sentences = inputs["input_ids"].detach().cpu().numpy()
         else:
             out_token_preds = np.append(
                 out_token_preds, token_logits.detach().cpu().numpy(), axis=0)
@@ -126,6 +144,9 @@ def evaluate(args, model, eval_dataset, labels, mode, prefix=""):
                 out_sequence_preds,
                 sequence_logits.detach().cpu().numpy(),
                 axis=0)
+
+            sentences = np.append(sentences, inputs["input_ids"].detach().cpu().numpy(), axis=0)
+
         finish += 1
 
         if finish == 20:
@@ -145,16 +166,22 @@ def evaluate(args, model, eval_dataset, labels, mode, prefix=""):
 
     label_map = {i: label for i, label in enumerate(labels)}
 
-    # import pdb;
-    # pdb.set_trace()
     out_label_list = [[] for _ in range(out_token_ids.shape[0])]
     preds_list = [[] for _ in range(out_token_ids.shape[0])]
+    words_list = [[] for _ in range(out_token_ids.shape[0])]
 
     for i in range(out_token_ids.shape[0]):
+        sentence = sentences[i]
         for j in range(out_token_ids.shape[1]):
-            # if out_label_ids[i, j] != pad_token_label_id:
-            out_label_list[i].append(label_map[out_token_ids[i][j]])
-            preds_list[i].append(label_map[out_token_preds[i][j]])
+            word = tokenizer.decode(sentence[j])
+
+            if word not in [tokenizer.sep_token, tokenizer.pad_token, tokenizer.cls_token]:
+                # if out_label_ids[i, j] != pad_token_label_id:
+                out_label_list[i].append(label_map[out_token_ids[i][j]])
+                preds_list[i].append(label_map[out_token_preds[i][j]])
+                words_list[i].append(word)
+    import pdb;
+    pdb.set_trace()
 
     results = {
         "loss": eval_loss,
@@ -172,6 +199,7 @@ def evaluate(args, model, eval_dataset, labels, mode, prefix=""):
     for key in sorted(results.keys()):
         logger.info("  %s = %s", key, str(results[key]))
 
+
     return results, preds_list
 
 
@@ -183,16 +211,15 @@ def train(args, train_dataset, model, tokenizer, labels):
     args.train_batch_size = args.train_batch_size * max(1, args.n_gpu)
     train_sampler = RandomSampler(
         train_dataset) if args.local_rank == -1 else DistributedSampler(train_dataset)
+
+    data_collator = DataCollatorForTokenClassification(
+        tokenizer, pad_to_multiple_of=(8 if args.fp16 else None)
+    )
     train_dataloader = DataLoader(
         train_dataset,
         sampler=train_sampler,
-        batch_size=args.train_batch_size)
-
-    # if args.max_steps > 0:
-    #     t_total = args.max_steps
-    #     args.epochs = args.max_steps // (len(train_dataloader) // args.gradient_accumulation_steps) + 1
-    # else:
-    #     t_total = len(train_dataloader) // args.gradient_accumulation_steps * args.epochs
+        batch_size=args.train_batch_size,
+        collate_fn=data_collator)
 
     t_total = math.ceil(len(train_dataset) /
                         args.train_batch_size) * args.epochs  # assume 10 epochs
@@ -283,7 +310,7 @@ def train(args, train_dataset, model, tokenizer, labels):
     steps_trained_in_current_epoch = 0
     # Check if continuing training from a checkpoint
     if os.path.exists(args.model_name_or_path):
-        # set global_step to gobal_step of last saved checkpoint from model
+        # set global_step to global_step of last saved checkpoint from model
         # path
         global_step = int(args.model_name_or_path.split("-")[-1].split("/")[0])
         epochs_trained = global_step // (len(train_dataloader) //
@@ -304,6 +331,7 @@ def train(args, train_dataset, model, tokenizer, labels):
     train_iterator = trange(epochs_trained, int(
         args.epochs), desc="Epoch", disable=args.local_rank not in [-1, 0])
     set_seed(args)  # Added here for reproductibility
+
     for _ in train_iterator:
         epoch_iterator = tqdm(train_dataloader, desc="Iteration",
                               disable=args.local_rank not in [-1, 0])
@@ -317,8 +345,7 @@ def train(args, train_dataset, model, tokenizer, labels):
 
             model.train()
             # batch = tuple(t for t in batch)
-            inputs = {
-                "input_ids": batch["input_ids"].to(
+            inputs = {"input_ids": batch["input_ids"].to(
                     args.device), "attention_mask": batch["attention_mask"].to(
                     args.device), "sequence_labels": batch["sequence_targets"].to(
                     args.device), "token_labels": batch["token_targets"].to(
@@ -328,6 +355,8 @@ def train(args, train_dataset, model, tokenizer, labels):
             #     inputs["token_type_ids"] = (
             #         batch[2] if args.model_type in ["bert", "xlnet"] else None
             #     )  # XLM and RoBERTa don"t use segment_ids
+
+            import pdb;pdb.set_trace()
 
             outputs = model(**inputs)
 
@@ -374,7 +403,7 @@ def train(args, train_dataset, model, tokenizer, labels):
                             1 and args.evaluate_during_training):
 
                         results, _ = evaluate(
-                            args, model, train_dataset, labels, mode="dev")
+                            args, model, train_dataset, labels, mode="dev", tokenizer=tokenizer)
                         for key, value in results.items():
                             tb_writer.add_scalar(
                                 "eval_{}".format(key), value, global_step)
