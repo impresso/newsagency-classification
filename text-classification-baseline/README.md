@@ -28,3 +28,23 @@ This sentence has one coarse entity of type `loc`, thus the article-level class 
 The multiclass classifier will have two predictions heads:
 - for predicting at token-level the entities (Munich is a `loc`)
 - for predicting at article-level the class (`has_locations`)
+
+## How-tos
+
+
+### Training a model
+```
+TOKENIZERS_PARALLELISM=false python main.py \
+      --train_dataset data/hipe2020/fr/HIPE-2022-v2.1-hipe2020-train-fr.tsv \
+      --dev_dataset data/hipe2020/fr/HIPE-2022-v2.1-hipe2020-dev-fr.tsv \
+      --test_dataset data/hipe2020/fr/HIPE-2022-v2.1-hipe2020-test-fr.tsv \
+      --output_dir experiments \
+      --device cpu \
+      --train_batch_size 16 \
+      --logging_steps 100 \
+      --evaluate_during_training
+```
+
+`--train_dataset`, `--train_dataset`, and `--train_dataset`: point to the path of the *.tsv files;
+`--output_dir`: points to the folder where the experiments (models and predictions) are saved;
+`--device`: can be `cuda` or `cpu`
