@@ -142,59 +142,38 @@ class NERDataset(Dataset):
 
 class NewsDataset(Dataset):
 
-    def __init__(self, train_dataset, dev_dataset, test_dataset, tokenizer, max_len, mode='train'):
+    def __init__(self, dataset, tokenizer, max_len, test=False, label_map=None):
         self.tokenizer = tokenizer
         self.max_len = max_len
-        self.mode = mode
+        self.test = test
+
+
         columns = ["TOKEN", "NE-COARSE-LIT", "NE-COARSE-METO", "NE-FINE-LIT",
                    "NE-FINE-METO", "NE-FINE-COMP", "NE-NESTED",
                    "NEL-LIT", "NEL-METO", "MISC"]
         indexes = list(range(len(columns)))
 
-        self.train_phrases = _read_conll(
-            train_dataset,
-            encoding='utf-8',
-            sep='\t',
-            indexes=indexes,
-            dropna=True)
-        self.dev_phrases = _read_conll(
-            dev_dataset,
-            encoding='utf-8',
-            sep='\t',
-            indexes=indexes,
-            dropna=True)
-        self.test_phrases = _read_conll(
-            test_dataset,
+        self.phrases = _read_conll(
+            dataset,
             encoding='utf-8',
             sep='\t',
             indexes=indexes,
             dropna=True)
 
-        self.train_sequence_targets = [int(item[-1]) for item in self.train_phrases]
-        self.train_token_targets = [item[1][1] for item in self.train_phrases]
-        self.train_tokens = [item[1][0] for item in self.train_phrases]
-
-        self.dev_sequence_targets = [int(item[-1]) for item in self.dev_phrases]
-        self.dev_token_targets = [item[1][1] for item in self.dev_phrases]
-        self.dev_tokens = [item[1][0] for item in self.dev_phrases]
-
-        self.test_sequence_targets = [int(item[-1]) for item in self.test_phrases]
-        self.test_token_targets = [item[1][1] for item in self.test_phrases]
-        self.test_tokens = [item[1][0] for item in self.test_phrases]
+        self.sequence_targets = [int(item[-1]) for item in self.phrases]
+        self.token_targets = [item[1][1] for item in self.phrases]
+        self.tokens = [item[1][0] for item in self.phrases]
 
         unique_token_labels = set(sum(self.train_token_targets, []))
-        self.label_map = dict(
-            zip(unique_token_labels, range(len(unique_token_labels))))
+        if label_map is not None:
+            self.label_map = label_map
+        else:
+            self.label_map = dict(zip(unique_token_labels, range(len(unique_token_labels))))
 
-        self.train_token_targets = [[self.label_map[element]
-                               for element in item[1][1]] for item in self.train_phrases]
-        self.dev_token_targets = [[self.label_map[element]
-                               for element in item[1][1]] for item in self.dev_phrases]
-        self.test_token_targets = [[self.label_map[element]
-                               for element in item[1][1]] for item in self.test_phrases]
+        self.token_targets = [[self.label_map[element] for element in item[1][1]] for item in self.phrases]
 
     def __len__(self):
-        return len(self.train_phrases)
+        return len(self.phrases)
 
     def get_label_map(self):
         return self.label_map
@@ -202,25 +181,12 @@ class NewsDataset(Dataset):
     def get_inverse_label_map(self):
         return {v: k for k, v in self.label_map.items()}
 
-    def change_mode(self, mode):
-        self.mode = mode
-
     def __getitem__(self, index):
-        if self.mode == 'train':
-            sequence = self.train_tokens[index]
-            # if not self.test:
-            sequence_targets = self.train_sequence_targets[index]
-            token_targets = self.train_token_targets[index]
-        elif self.mode == 'dev':
-            sequence = self.dev_tokens[index]
-            # if not self.test:
-            sequence_targets = self.dev_sequence_targets[index]
-            token_targets = self.dev_token_targets[index]
-        else:
-            sequence = self.test_tokens
-            # if not self.test:
-            sequence_targets = self.test_sequence_targets[index]
-            token_targets = self.test_token_targets[index]
+        sequence = self.tokens[index]
+        # sequence = ' '.join(self.tokens[index])
+        if not self.test:
+            sequence_targets = self.sequence_targets[index]
+            token_targets = self.token_targets[index]
 
         encoding = self.tokenizer.encode_plus(
             sequence,
@@ -242,7 +208,7 @@ class NewsDataset(Dataset):
         offset_mapping = torch.sub(torch.transpose(offset_mapping, 0, 1)[1],
                                    torch.transpose(offset_mapping, 0, 1)[0])
 
-        if self.mode in ['test']:
+        if self.test:
             return {
                 'sequence': ' '.join(sequence),
                 'input_ids': input_ids,
@@ -272,8 +238,8 @@ class NewsDataset(Dataset):
                 'offset_mapping': offset_mapping}
 
     def get_info(self):
-        num_sequence_labels = len(set(self.train_sequence_targets))
-        num_token_labels = len(set(sum(self.train_token_targets, [])))
+        num_sequence_labels = len(set(self.sequence_targets))
+        num_token_labels = len(set(sum(self.token_targets, [])))
         return num_sequence_labels, num_token_labels
 
     def get_dataframe(self):

@@ -47,10 +47,6 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-def eval(model):
-    pass
-
-
 def set_seed(args):
     random.seed(args.seed)
     np.random.seed(args.seed)
@@ -59,17 +55,15 @@ def set_seed(args):
         torch.cuda.manual_seed_all(args.seed)
 
 
-def evaluate(args, model, eval_dataset, labels, mode='dev', prefix="", tokenizer=None):
+def evaluate(args, model, dev_dataset, labels, mode='dev', prefix="", tokenizer=None):
     # eval_dataset = load_and_cache_examples(args, tokenizer, labels, pad_token_label_id, mode=mode)
-
-    eval_dataset.change_mode(mode)
 
     args.eval_batch_size = args.eval_batch_size * max(1, args.n_gpu)
     # Note that DistributedSampler samples randomly
     eval_sampler = SequentialSampler(
-        eval_dataset) if args.local_rank == -1 else DistributedSampler(eval_dataset)
+        dev_dataset) if args.local_rank == -1 else DistributedSampler(dev_dataset)
     eval_dataloader = DataLoader(
-        eval_dataset,
+        dev_dataset,
         sampler=eval_sampler,
         batch_size=args.eval_batch_size)
 
@@ -79,7 +73,7 @@ def evaluate(args, model, eval_dataset, labels, mode='dev', prefix="", tokenizer
 
     # Eval!
     logger.info("***** Running evaluation %s *****", prefix)
-    logger.info("  Num examples = %d", len(eval_dataset))
+    logger.info("  Num examples = %d", len(dev_dataset))
     logger.info("  Batch size = %d", args.eval_batch_size)
     eval_loss = 0.0
     nb_eval_steps = 0
@@ -89,7 +83,7 @@ def evaluate(args, model, eval_dataset, labels, mode='dev', prefix="", tokenizer
     offset_mappings = None
     model.eval()
 
-    finish = 0
+    # finish = 0
     for batch in tqdm(eval_dataloader, desc="Evaluating"):
         # batch = tuple(t.to(args.device) for t in batch)
 
@@ -163,7 +157,7 @@ def evaluate(args, model, eval_dataset, labels, mode='dev', prefix="", tokenizer
                 offset_mappings,
                 inputs["offset_mapping"].detach().cpu().numpy(),
                 axis=0)
-        finish += 1
+        # finish += 1
 
         # if finish == 20:
         #     break
@@ -185,6 +179,8 @@ def evaluate(args, model, eval_dataset, labels, mode='dev', prefix="", tokenizer
     preds_list = [[] for _ in range(out_token_ids.shape[0])]
     words_list = [[] for _ in range(out_token_ids.shape[0])]
 
+    # import pdb;
+    # pdb.set_trace()
 
     for idx_sentence, item in enumerate(zip(text_sentences, out_token_ids, out_token_preds)):
         text_sentence, out_label_ids, out_label_preds = item
@@ -234,30 +230,27 @@ def evaluate(args, model, eval_dataset, labels, mode='dev', prefix="", tokenizer
     for key in sorted(results.keys()):
         logger.info("  %s = %s", key, str(results[key]))
 
-
     return results, words_list, preds_list
 
 
-def train(args, dataset, model, tokenizer, labels):
+def train(args, train_dataset, dev_dataset, test_dataset, model, tokenizer, labels):
     """ Train the model """
     if args.local_rank in [-1, 0]:
         tb_writer = SummaryWriter()
 
-    dataset.change_mode('train')
-
     args.train_batch_size = args.train_batch_size * max(1, args.n_gpu)
     train_sampler = RandomSampler(
-        dataset) if args.local_rank == -1 else DistributedSampler(dataset)
+        train_dataset) if args.local_rank == -1 else DistributedSampler(train_dataset)
 
     # data_collator = DataCollatorForTokenClassification(
     #     tokenizer, pad_to_multiple_of=(8 if args.fp16 else None)
     # )
     train_dataloader = DataLoader(
-        dataset,
+        train_dataset,
         sampler=train_sampler,
         batch_size=args.train_batch_size)
 
-    t_total = math.ceil(len(dataset) /
+    t_total = math.ceil(len(train_dataset) /
                         args.train_batch_size) * args.epochs  # assume 10 epochs
     # 10% of training steps for warmup
     num_warmup_steps = math.ceil(t_total * 0.1)
@@ -325,7 +318,7 @@ def train(args, dataset, model, tokenizer, labels):
 
     # Train!
     logger.info("***** Running training *****")
-    logger.info("  Num examples = %d", len(dataset))
+    logger.info("  Num examples = %d", len(train_dataset))
     logger.info("  Num Epochs = %d", args.epochs)
     logger.info(
         "  Instantaneous batch size per GPU = %d",
@@ -437,9 +430,7 @@ def train(args, dataset, model, tokenizer, labels):
                             1 and args.evaluate_during_training):
 
                         results, words_list, preds_list = evaluate(
-                            args, model, dataset, labels, mode="dev", tokenizer=tokenizer)
-
-                        dataset.change_mode('train')
+                            args, model, dev_dataset, labels, mode="dev", tokenizer=tokenizer)
 
                         with open(args.dev_dataset, 'r') as f:
                             tsv_lines = f.readlines()
@@ -463,8 +454,8 @@ def train(args, dataset, model, tokenizer, labels):
                                     idx += 1
                                     f.flush()
 
-                        import pdb;
-                        pdb.set_trace()
+                        # import pdb;
+                        # pdb.set_trace()
 
                         for key, value in results.items():
                             tb_writer.add_scalar(
@@ -672,27 +663,37 @@ if __name__ == '__main__':
 
     tokenizer = AutoTokenizer.from_pretrained(args.model_name_or_path)
 
-    dataset = NewsDataset(
+    train_dataset = NewsDataset(
         args.train_dataset,
-        args.dev_dataset,
-        args.test_dataset,
         tokenizer,
         args.max_sequence_len)
 
-    num_sequence_labels, num_token_labels = dataset.get_info()
+    num_sequence_labels, num_token_labels = train_dataset.get_info()
 
-    labels = dataset.get_label_map()
+    labels = train_dataset.get_label_map()
+
+    dev_dataset = NewsDataset(
+        args.dev_dataset,
+        tokenizer,
+        args.max_sequence_len,
+        labels)
+
+    test_dataset = NewsDataset(
+        args.test_dataset,
+        tokenizer,
+        args.max_sequence_len,
+        labels)
 
     logging.info(
         "Number of unique token labels {}, number of unique sequence labels {}.".format(
             num_token_labels,
             num_sequence_labels))
 
-    train_data_loader = DataLoader(
-        dataset,
-        args.train_batch_size,
-        shuffle=True,
-        num_workers=os.cpu_count())
+    # train_data_loader = DataLoader(
+    #     train_dataset,
+    #     args.train_batch_size,
+    #     shuffle=True,
+    #     num_workers=os.cpu_count())
 
     config = AutoConfig.from_pretrained(
         'bert-base-uncased',
@@ -716,18 +717,6 @@ if __name__ == '__main__':
             "params": [
                 p for n, p in model.named_parameters() if any(
                     nd in n for nd in no_decay)], "weight_decay": 0.0}, ]
-    # optimizer = AdamW(optimizer_grouped_parameters, lr=args.lr, eps=args.adam_epsilon)
-    # num_training_steps = math.ceil(len(train_dataset) / args.train_batch_size) * args.epochs  # assume 10 epochs
-    # num_warmup_steps = math.ceil(num_training_steps * 0.1)  # 10% of training steps for warmup
-    #
-    # scheduler = get_linear_schedule_with_warmup(optimizer, num_warmup_steps, num_training_steps)
-    #
-    # run(model,
-    #     train_data_loader,
-    #     optimizer,
-    #     args.device,
-    #     scheduler,
-    #     len(train_dataset),
-    #     mode='train')
 
-    train(args, dataset, model, tokenizer, labels.keys())
+
+    train(args, train_dataset, dev_dataset, test_dataset, model, tokenizer, labels.keys())
