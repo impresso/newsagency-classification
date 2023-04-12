@@ -45,6 +45,6 @@ TOKENIZERS_PARALLELISM=false python main.py \
       --evaluate_during_training
 ```
 
-`--train_dataset`, `--train_dataset`, and `--train_dataset`: point to the path of the *.tsv files;
-`--output_dir`: points to the folder where the experiments (models and predictions) are saved;
+`--train_dataset`, `--train_dataset`, and `--train_dataset`: point to the path of the *.tsv files;\
+`--output_dir`: points to the folder where the experiments (models and predictions) are saved;\
 `--device`: can be `cuda` or `cpu`
