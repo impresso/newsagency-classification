@@ -142,10 +142,10 @@ class NERDataset(Dataset):
 
 class NewsDataset(Dataset):
 
-    def __init__(self, train_dataset, dev_dataset, test_dataset, tokenizer, max_len, test=False):
+    def __init__(self, train_dataset, dev_dataset, test_dataset, tokenizer, max_len, mode='train'):
         self.tokenizer = tokenizer
         self.max_len = max_len
-        self.test = test
+        self.mode = mode
         columns = ["TOKEN", "NE-COARSE-LIT", "NE-COARSE-METO", "NE-FINE-LIT",
                    "NE-FINE-METO", "NE-FINE-COMP", "NE-NESTED",
                    "NEL-LIT", "NEL-METO", "MISC"]
@@ -202,22 +202,25 @@ class NewsDataset(Dataset):
     def get_inverse_label_map(self):
         return {v: k for k, v in self.label_map.items()}
 
-    def __getitem__(self, index, mode='train'):
-        if mode == 'train':
+    def change_mode(self, mode):
+        self.mode = mode
+
+    def __getitem__(self, index):
+        if self.mode == 'train':
             sequence = self.train_tokens[index]
-            if not self.test:
-                sequence_targets = self.train_sequence_targets[index]
-                token_targets = self.train_token_targets[index]
-        elif mode == 'dev':
+            # if not self.test:
+            sequence_targets = self.train_sequence_targets[index]
+            token_targets = self.train_token_targets[index]
+        elif self.mode == 'dev':
             sequence = self.dev_tokens[index]
-            if not self.test:
-                sequence_targets = self.dev_sequence_targets[index]
-                token_targets = self.dev_token_targets[index]
+            # if not self.test:
+            sequence_targets = self.dev_sequence_targets[index]
+            token_targets = self.dev_token_targets[index]
         else:
             sequence = self.test_tokens
-            if not self.test:
-                sequence_targets = self.test_sequence_targets[index]
-                token_targets = self.test_token_targets[index]
+            # if not self.test:
+            sequence_targets = self.test_sequence_targets[index]
+            token_targets = self.test_token_targets[index]
 
         encoding = self.tokenizer.encode_plus(
             sequence,
@@ -239,7 +242,7 @@ class NewsDataset(Dataset):
         offset_mapping = torch.sub(torch.transpose(offset_mapping, 0, 1)[1],
                                    torch.transpose(offset_mapping, 0, 1)[0])
 
-        if self.test:
+        if self.mode in ['test']:
             return {
                 'sequence': ' '.join(sequence),
                 'input_ids': input_ids,
