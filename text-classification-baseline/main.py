@@ -33,6 +33,9 @@ from transformers import (
     default_data_collator,
     get_scheduler,
 )
+from dataset import COLUMNS
+from utils import write_predictions_to_tsv
+
 try:
     from torch.utils.tensorboard import SummaryWriter
 except ImportError:
@@ -80,7 +83,8 @@ def evaluate(args, model, eval_dataset, labels, mode, prefix="", tokenizer=None)
     nb_eval_steps = 0
     out_sequence_ids, out_token_ids = None, None
     out_sequence_preds, out_token_preds = None, None
-    sentences = None
+    sentences, text_sentences = None, None
+    offset_mappings = None
     model.eval()
 
     finish = 0
@@ -89,12 +93,13 @@ def evaluate(args, model, eval_dataset, labels, mode, prefix="", tokenizer=None)
 
         with torch.no_grad():
             inputs = {
-                "input_ids": batch["input_ids"].to(
-                    args.device), "attention_mask": batch["attention_mask"].to(
+                "input_ids": batch["input_ids"].to(args.device), "attention_mask": batch["attention_mask"].to(
                     args.device), "sequence_labels": batch["sequence_targets"].to(
                     args.device), "token_labels": batch["token_targets"].to(
                     args.device), "offset_mapping": batch["offset_mapping"].to(
                     args.device)}
+
+            # import
             # if args.model_type != "distilbert":
             #     inputs["token_type_ids"] = (
             #         batch[2] if args.model_type in ["bert", "xlnet"] else None
@@ -112,7 +117,6 @@ def evaluate(args, model, eval_dataset, labels, mode, prefix="", tokenizer=None)
 
             tmp_eval_loss = sequence_result.loss
 
-
             if args.n_gpu > 1:
                 # mean() to average on multi-gpu parallel evaluating
                 tmp_eval_loss = tmp_eval_loss.mean()
@@ -127,7 +131,10 @@ def evaluate(args, model, eval_dataset, labels, mode, prefix="", tokenizer=None)
             out_token_ids = inputs["token_labels"].detach().cpu().numpy()
             out_sequence_ids = inputs["sequence_labels"].detach().cpu().numpy()
 
-            sentences = inputs["input_ids"].detach().cpu().numpy()
+            sentences = [tokenizer.convert_ids_to_tokens(input_ids) for input_ids in inputs["input_ids"].detach().cpu().numpy()]
+            text_sentences = [text.split(' ') for text in batch["sequence"]]
+
+            offset_mappings = inputs["offset_mapping"].detach().cpu().numpy()
         else:
             out_token_preds = np.append(
                 out_token_preds, token_logits.detach().cpu().numpy(), axis=0)
@@ -145,17 +152,23 @@ def evaluate(args, model, eval_dataset, labels, mode, prefix="", tokenizer=None)
                 sequence_logits.detach().cpu().numpy(),
                 axis=0)
 
-            sentences = np.append(sentences, inputs["input_ids"].detach().cpu().numpy(), axis=0)
+            sentences = np.append(sentences, [tokenizer.convert_ids_to_tokens(input_ids)
+                                              for input_ids in inputs["input_ids"].detach().cpu().numpy()],
+                                  axis=0)
+            text_sentences = np.append(text_sentences, [text.split(' ') for text in batch["sequence"]], axis=0)
 
+            offset_mappings = np.append(
+                offset_mappings,
+                inputs["offset_mapping"].detach().cpu().numpy(),
+                axis=0)
         finish += 1
 
         if finish == 20:
             break
 
+
     out_token_preds = np.argmax(out_token_preds, axis=2)
-    # out_sequence_preds = np.max(out_sequence_preds, axis=1)
     out_sequence_preds = np.argmax(out_sequence_preds, axis=1)
-    # sequence_preds
 
     logger.info('Evaluation for yes/no classification.')
     report = classification_report(
@@ -170,18 +183,38 @@ def evaluate(args, model, eval_dataset, labels, mode, prefix="", tokenizer=None)
     preds_list = [[] for _ in range(out_token_ids.shape[0])]
     words_list = [[] for _ in range(out_token_ids.shape[0])]
 
-    for i in range(out_token_ids.shape[0]):
-        sentence = sentences[i]
-        for j in range(out_token_ids.shape[1]):
-            word = tokenizer.decode(sentence[j])
 
-            if word not in [tokenizer.sep_token, tokenizer.pad_token, tokenizer.cls_token]:
-                # if out_label_ids[i, j] != pad_token_label_id:
-                out_label_list[i].append(label_map[out_token_ids[i][j]])
-                preds_list[i].append(label_map[out_token_preds[i][j]])
-                words_list[i].append(word)
-    import pdb;
-    pdb.set_trace()
+    for idx_sentence, item in enumerate(zip(text_sentences, out_token_ids, out_token_preds)):
+        text_sentence, out_label_ids, out_label_preds = item
+        word_ids = tokenizer(text_sentence, is_split_into_words=True).word_ids()
+        for idx, word in enumerate(text_sentence):
+            beginning_index = word_ids.index(idx)
+            try:
+                out_label_list[idx_sentence].append(label_map[out_label_ids[beginning_index]])
+            except: # the sentence was longer then max_length
+                out_label_list[idx_sentence].append('O')
+            try:
+                preds_list[idx_sentence].append(label_map[out_label_preds[beginning_index]])
+            except:  # the sentence was longer then max_length
+                preds_list[idx_sentence].append('O')
+            words_list[idx_sentence].append(word)
+        assert len(text_sentence) == len(words_list[idx_sentence])
+        assert len(text_sentence) == len(out_label_list[idx_sentence])
+        assert len(text_sentence) == len(preds_list[idx_sentence])
+
+    # for i in range(out_token_ids.shape[0]):
+    #     sentence = sentences[i]
+    #     for j in range(out_token_ids.shape[1]):
+    #         word = tokenizer.decode(sentence[j])
+    #
+    #         if word not in [tokenizer.sep_token, tokenizer.pad_token, tokenizer.cls_token]:
+    #             # if out_label_ids[i, j] != pad_token_label_id:
+    #             out_label_list[i].append(label_map[out_token_ids[i][j]])
+    #             preds_list[i].append(label_map[out_token_preds[i][j]])
+    #             words_list[i].append(word)
+    # import pdb;
+    # pdb.set_trace()
+
 
     results = {
         "loss": eval_loss,
@@ -200,7 +233,7 @@ def evaluate(args, model, eval_dataset, labels, mode, prefix="", tokenizer=None)
         logger.info("  %s = %s", key, str(results[key]))
 
 
-    return results, preds_list
+    return results, words_list, preds_list
 
 
 def train(args, train_dataset, model, tokenizer, labels):
@@ -212,14 +245,13 @@ def train(args, train_dataset, model, tokenizer, labels):
     train_sampler = RandomSampler(
         train_dataset) if args.local_rank == -1 else DistributedSampler(train_dataset)
 
-    data_collator = DataCollatorForTokenClassification(
-        tokenizer, pad_to_multiple_of=(8 if args.fp16 else None)
-    )
+    # data_collator = DataCollatorForTokenClassification(
+    #     tokenizer, pad_to_multiple_of=(8 if args.fp16 else None)
+    # )
     train_dataloader = DataLoader(
         train_dataset,
         sampler=train_sampler,
-        batch_size=args.train_batch_size,
-        collate_fn=data_collator)
+        batch_size=args.train_batch_size)
 
     t_total = math.ceil(len(train_dataset) /
                         args.train_batch_size) * args.epochs  # assume 10 epochs
@@ -356,8 +388,6 @@ def train(args, train_dataset, model, tokenizer, labels):
             #         batch[2] if args.model_type in ["bert", "xlnet"] else None
             #     )  # XLM and RoBERTa don"t use segment_ids
 
-            import pdb;pdb.set_trace()
-
             outputs = model(**inputs)
 
             sequence_result, tokens_result = outputs[0], outputs[1]
@@ -402,8 +432,26 @@ def train(args, train_dataset, model, tokenizer, labels):
                     if (args.local_rank == -
                             1 and args.evaluate_during_training):
 
-                        results, _ = evaluate(
-                            args, model, train_dataset, labels, mode="dev", tokenizer=tokenizer)
+                        results, words_list, preds_list = evaluate(
+                            args, model, dev_dataset, labels, mode="dev", tokenizer=tokenizer)
+
+                        with open(args.dev_dataset, 'r') as f:
+                            tsv_lines = f.readlines()
+
+                        flat_words_list = [item for sublist in words_list for item in sublist]
+                        flat_preds_list = [item for sublist in preds_list for item in sublist]
+                        with open(args.dev_dataset.replace('.tsv', '_pred.tsv'), 'w') as f:
+                            idx = 0
+                            for tsv_line in tsv_lines:
+                                if len(tsv_line.split('\t')) != len(COLUMNS):
+                                    f.write(tsv_line)
+                                elif len(tsv_line.strip()) == 0:
+                                    f.write(tsv_line)
+                                else:
+                                    f.write(flat_words_list[idx] + '\t' + flat_preds_list[idx] + '\n')
+                                    idx += 1
+
+
                         for key, value in results.items():
                             tb_writer.add_scalar(
                                 "eval_{}".format(key), value, global_step)
@@ -612,8 +660,11 @@ if __name__ == '__main__':
 
     train_dataset = NewsDataset(
         args.train_dataset,
+        args.dev_dataset,
+        args.test_dataset,
         tokenizer,
         args.max_sequence_len)
+
     num_sequence_labels, num_token_labels = train_dataset.get_info()
 
     labels = train_dataset.get_label_map()

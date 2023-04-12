@@ -74,6 +74,7 @@ class ModelForSequenceAndTokenClassification(PreTrainedModel):
         inputs_embeds: Optional[torch.Tensor] = None,
         token_labels: Optional[torch.Tensor] = None,
         sequence_labels: Optional[torch.Tensor] = None,
+        offset_mapping: Optional[torch.Tensor] = None,
         output_attentions: Optional[bool] = None,
         output_hidden_states: Optional[bool] = None,
         return_dict: Optional[bool] = None,

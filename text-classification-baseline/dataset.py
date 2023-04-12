@@ -4,7 +4,9 @@ from torch.utils.data import Dataset
 from sklearn.preprocessing import (LabelEncoder,
                                    MultiLabelBinarizer)
 
-
+COLUMNS = ["TOKEN", "NE-COARSE-LIT", "NE-COARSE-METO", "NE-FINE-LIT",
+                   "NE-FINE-METO", "NE-FINE-COMP", "NE-NESTED",
+                   "NEL-LIT", "NEL-METO", "MISC"]
 def _read_conll(path, encoding='utf-8', sep=None, indexes=None, dropna=True):
     r"""
     Construct a generator to read conll items.
@@ -113,10 +115,8 @@ def _read_conll(path, encoding='utf-8', sep=None, indexes=None, dropna=True):
 class NERDataset(Dataset):
 
     def __init__(self, filename):
-        columns = ["TOKEN", "NE-COARSE-LIT", "NE-COARSE-METO", "NE-FINE-LIT",
-                   "NE-FINE-METO", "NE-FINE-COMP", "NE-NESTED",
-                   "NEL-LIT", "NEL-METO", "MISC"]
-        indexes = list(range(len(columns)))
+
+        indexes = list(range(len(COLUMNS)))
 
         self.phrases = _read_conll(
             filename,
@@ -142,53 +142,59 @@ class NERDataset(Dataset):
 
 class NewsDataset(Dataset):
 
-    def __init__(self, dataset, tokenizer, max_len, test=False):
+    def __init__(self, train_dataset, dev_dataset, test_dataset, tokenizer, max_len, test=False):
         self.tokenizer = tokenizer
         self.max_len = max_len
         self.test = test
-        # if self.test_set:
-        #     df = pd.read_csv(dataset, sep="\t", names=["id", "text"])
-        #     self.classes = None
-        #     self.encoded_classes = None
-        # else:
-        #     df = pd.read_csv(dataset, sep="\t", names=["id", "text", "labels"])
-        #
-        #     self.label_encoder = MultiLabelBinarizer()
-        #     df['labels'] = self.label_encoder.fit_transform(df['labels'])
-        #     self.classes = self.label_encoder.classes_
-        #     self.encoded_classes = pd.unique(df['labels'])
-        #     self.targets = df['label'].to_numpy()
-        #
-        # self.sequences = df['text'].to_numpy()
-        # self.df = df
         columns = ["TOKEN", "NE-COARSE-LIT", "NE-COARSE-METO", "NE-FINE-LIT",
                    "NE-FINE-METO", "NE-FINE-COMP", "NE-NESTED",
                    "NEL-LIT", "NEL-METO", "MISC"]
         indexes = list(range(len(columns)))
 
-        self.phrases = _read_conll(
-            dataset,
+        self.train_phrases = _read_conll(
+            train_dataset,
+            encoding='utf-8',
+            sep='\t',
+            indexes=indexes,
+            dropna=True)
+        self.dev_phrases = _read_conll(
+            dev_dataset,
+            encoding='utf-8',
+            sep='\t',
+            indexes=indexes,
+            dropna=True)
+        self.test_phrases = _read_conll(
+            test_dataset,
             encoding='utf-8',
             sep='\t',
             indexes=indexes,
             dropna=True)
 
-        self.sequence_targets = [int(item[-1]) for item in self.phrases]
-        # take the last element which says if the sentence contains entities or
-        # not
+        self.train_sequence_targets = [int(item[-1]) for item in self.train_phrases]
+        self.train_token_targets = [item[1][1] for item in self.train_phrases]
+        self.train_tokens = [item[1][0] for item in self.train_phrases]
 
-        self.token_targets = [item[1][1] for item in self.phrases]
-        self.tokens = [item[1][0] for item in self.phrases]
+        self.dev_sequence_targets = [int(item[-1]) for item in self.dev_phrases]
+        self.dev_token_targets = [item[1][1] for item in self.dev_phrases]
+        self.dev_tokens = [item[1][0] for item in self.dev_phrases]
 
-        unique_token_labels = set(sum(self.token_targets, []))
+        self.test_sequence_targets = [int(item[-1]) for item in self.test_phrases]
+        self.test_token_targets = [item[1][1] for item in self.test_phrases]
+        self.test_tokens = [item[1][0] for item in self.test_phrases]
+
+        unique_token_labels = set(sum(self.train_token_targets, []))
         self.label_map = dict(
             zip(unique_token_labels, range(len(unique_token_labels))))
 
-        self.token_targets = [[self.label_map[element]
-                               for element in item[1][1]] for item in self.phrases]
+        self.train_token_targets = [[self.label_map[element]
+                               for element in item[1][1]] for item in self.train_phrases]
+        self.dev_token_targets = [[self.label_map[element]
+                               for element in item[1][1]] for item in self.dev_phrases]
+        self.test_token_targets = [[self.label_map[element]
+                               for element in item[1][1]] for item in self.test_phrases]
 
     def __len__(self):
-        return len(self.phrases)
+        return len(self.train_phrases)
 
     def get_label_map(self):
         return self.label_map
@@ -196,12 +202,22 @@ class NewsDataset(Dataset):
     def get_inverse_label_map(self):
         return {v: k for k, v in self.label_map.items()}
 
-    def __getitem__(self, index):
-        sequence = self.tokens[index]
-        # sequence = ' '.join(self.tokens[index])
-        if not self.test:
-            sequence_targets = self.sequence_targets[index]
-            token_targets = self.token_targets[index]
+    def __getitem__(self, index, mode='train'):
+        if mode == 'train':
+            sequence = self.train_tokens[index]
+            if not self.test:
+                sequence_targets = self.train_sequence_targets[index]
+                token_targets = self.train_token_targets[index]
+        elif mode == 'dev':
+            sequence = self.dev_tokens[index]
+            if not self.test:
+                sequence_targets = self.dev_sequence_targets[index]
+                token_targets = self.dev_token_targets[index]
+        else:
+            sequence = self.test_tokens
+            if not self.test:
+                sequence_targets = self.test_sequence_targets[index]
+                token_targets = self.test_token_targets[index]
 
         encoding = self.tokenizer.encode_plus(
             sequence,
@@ -210,6 +226,7 @@ class NewsDataset(Dataset):
             max_length=self.max_len,
             padding='max_length',
             is_split_into_words=True,
+            return_offsets_mapping=True,
             return_token_type_ids=True,  # TODO: add token type ids
             truncation=True
         )
@@ -224,7 +241,7 @@ class NewsDataset(Dataset):
 
         if self.test:
             return {
-                # 'sequence': sequence,
+                'sequence': ' '.join(sequence),
                 'input_ids': input_ids,
                 'attention_mask': attention_mask,
                 'offset_mapping': offset_mapping}
@@ -233,29 +250,27 @@ class NewsDataset(Dataset):
             # Pad the tensor with zeros until the maximum length
             token_targets = torch.tensor(token_targets, dtype=torch.long)
             # print(input_ids.shape, token_targets.shape)
-            padded_tensor = torch.zeros(self.max_len, dtype=torch.long)
-            padded_tensor[:token_targets[:self.max_len].size(
+            padded_token_targets = torch.zeros(self.max_len, dtype=torch.long)
+            padded_token_targets[:token_targets[:self.max_len].size(
                 0)] = token_targets[:self.max_len]
 
-            sequence_targets = torch.tensor(
-                    sequence_targets,
-                    dtype=torch.long)
+            sequence_targets = torch.tensor(sequence_targets, dtype=torch.long)
 
             assert input_ids.shape == attention_mask.shape
             # assert sequence_targets.shape == attention_mask.shape
-            assert padded_tensor.shape == input_ids.shape
+            assert padded_token_targets.shape == input_ids.shape
 
             return {
-                # 'sequence': sequence,
+                'sequence': ' '.join(sequence),
                 'input_ids': input_ids,
                 'attention_mask': attention_mask,
                 'sequence_targets': sequence_targets,
-                'token_targets': padded_tensor,
+                'token_targets': padded_token_targets,
                 'offset_mapping': offset_mapping}
 
     def get_info(self):
-        num_sequence_labels = len(set(self.sequence_targets))
-        num_token_labels = len(set(sum(self.token_targets, [])))
+        num_sequence_labels = len(set(self.train_sequence_targets))
+        num_token_labels = len(set(sum(self.train_token_targets, [])))
         return num_sequence_labels, num_token_labels
 
     def get_dataframe(self):
