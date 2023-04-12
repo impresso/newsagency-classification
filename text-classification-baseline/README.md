@@ -35,6 +35,7 @@ The multiclass classifier will have two predictions heads:
 ### Training a model
 ```
 TOKENIZERS_PARALLELISM=false python main.py \
+      --model_name_or_path bert-base-cased\
       --train_dataset data/hipe2020/fr/HIPE-2022-v2.1-hipe2020-train-fr.tsv \
       --dev_dataset data/hipe2020/fr/HIPE-2022-v2.1-hipe2020-dev-fr.tsv \
       --test_dataset data/hipe2020/fr/HIPE-2022-v2.1-hipe2020-test-fr.tsv \
@@ -45,6 +46,8 @@ TOKENIZERS_PARALLELISM=false python main.py \
       --evaluate_during_training
 ```
 
+`--model_name_or_path`: the preffered languge model (by default, `bert-base-cased`);\
+Other models can be found at [HuggingFace](https://huggingface.co/), such as models trained on [historical documents]([https://huggingface.co/](https://huggingface.co/dbmdz). To change a model, one needs to specify the name in the HuggingFace site, e.g., for [hmBERT](https://huggingface.co/dbmdz/bert-base-historic-multilingual-cased), `--model_name_or_path dbmdz/bert-base-historic-multilingual-cased`;\
 `--train_dataset`, `--train_dataset`, and `--train_dataset`: point to the path of the *.tsv files;\
 `--output_dir`: points to the folder where the experiments (models and predictions) are saved;\
 `--device`: can be `cuda` or `cpu`
