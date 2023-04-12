@@ -1,4 +1,4 @@
-## Multilabel, multiclass, and multitask classification
+## Multitask classification (binary and multiclass, sequence-based and token-based classification)
 #### of news agencies content at token-level and article-level
 
 ## hipe2020 working example
