@@ -6,7 +6,7 @@ from model import ModelForSequenceAndTokenClassification
 import os
 from dataset import NewsDataset
 import logging
-from transformers import AutoTokenizer, AutoConfig
+from transformers import AutoTokenizer, AutoConfig, AdamW
 import yaml
 from utils import write_predictions
 
@@ -68,6 +68,11 @@ if __name__ == '__main__':
         type=str,
         default='',
         help="The folder where the experiment details and the predictions should be saved.")
+    parser.add_argument(
+        '--checkpoint',
+        type=str,
+        default='',
+        help="The folder with a checkpoint model to be loaded and continue training or evaluate.")
     parser.add_argument(
         "--learning_rate",
         default=5e-5,
@@ -215,7 +220,6 @@ if __name__ == '__main__':
 
     model = model.to(args.device)
 
-    # Prepare optimizer and schedule (linear warmup and decay)
     no_decay = ["bias", "LayerNorm.weight"]
     optimizer_grouped_parameters = [
         {
@@ -225,6 +229,10 @@ if __name__ == '__main__':
             "params": [
                 p for n, p in model.named_parameters() if any(
                     nd in n for nd in no_decay)], "weight_decay": 0.0}, ]
+    optimizer = AdamW(
+        optimizer_grouped_parameters,
+        lr=args.learning_rate,
+        eps=args.adam_epsilon)
 
     if args.do_train:
         train(
@@ -234,10 +242,30 @@ if __name__ == '__main__':
             test_dataset=test_dataset,
             model=model,
             tokenizer=tokenizer,
+            optimizer=optimizer,
             label_map=label_map)
+
     elif args.continue_train:
-        pass
+        logger.info(f"Resumed from checkpoint: {args.checkpoint}")
+        checkpoint = torch.load(args.checkpoint)
+        model.load_state_dict(checkpoint['model_state_dict'])
+        optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+        epoch = checkpoint['epoch']
+        loss = checkpoint['loss']
+
+        train(
+            args=args,
+            train_dataset=train_dataset,
+            dev_dataset=dev_dataset,
+            test_dataset=test_dataset,
+            model=model,
+            tokenizer=tokenizer,
+            optimizer=optimizer,
+            label_map=label_map)
     else:
+        logger.info(f"Resumed from checkpoint: {args.checkpoint}")
+        checkpoint = torch.load(args.checkpoint)
+        model.load_state_dict(checkpoint['model_state_dict'])
         results, words_list, preds_list = evaluate(
             args=args, model=model, dataset=test_dataset, label_map=label_map, tokenizer=tokenizer)
 

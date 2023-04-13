@@ -7,7 +7,7 @@ from transformers import (PreTrainedModel,
 from torch.nn import BCEWithLogitsLoss, CrossEntropyLoss, MSELoss
 from transformers.modeling_outputs import (SequenceClassifierOutput,
                                            TokenClassifierOutput)
-import argparse
+import json
 import numpy as np
 import torch
 from transformers import (AutoTokenizer,
@@ -366,6 +366,9 @@ def evaluate(
     for key in sorted(results.keys()):
         logger.info("  %s = %s", key, str(results[key]))
 
+    with open(os.path.join(args.output_dir, "all_results.json"), "w") as f:
+        json.dump(results, f)
+
     return results, words_list, preds_list
 
 
@@ -376,7 +379,8 @@ def train(
         test_dataset,
         model,
         tokenizer,
-        labels):
+        optimizer,
+        label_map):
     """ Train the model """
     if args.local_rank in [-1, 0]:
         tb_writer = SummaryWriter()
@@ -399,19 +403,7 @@ def train(
     num_warmup_steps = math.ceil(t_total * 0.1)
 
     # Prepare optimizer and schedule (linear warmup and decay)
-    no_decay = ["bias", "LayerNorm.weight"]
-    optimizer_grouped_parameters = [
-        {
-            "params": [
-                p for n, p in model.named_parameters() if not any(
-                    nd in n for nd in no_decay)], "weight_decay": args.weight_decay, }, {
-            "params": [
-                p for n, p in model.named_parameters() if any(
-                    nd in n for nd in no_decay)], "weight_decay": 0.0}, ]
-    optimizer = AdamW(
-        optimizer_grouped_parameters,
-        lr=args.learning_rate,
-        eps=args.adam_epsilon)
+
     scheduler = get_linear_schedule_with_warmup(
         optimizer,
         num_warmup_steps=num_warmup_steps,
@@ -566,7 +558,7 @@ def train(
                             1 and args.evaluate_during_training):
 
                         results, words_list, preds_list = evaluate(
-                            args, model, dev_dataset, labels, tokenizer=tokenizer)
+                            args, model, dev_dataset, label_map, tokenizer=tokenizer)
 
                         write_predictions(dev_dataset, words_list, preds_list)
 
@@ -619,7 +611,7 @@ def train(
         tb_writer.close()
 
     results, words_list, preds_list = evaluate(
-        args, model, test_dataset, labels, tokenizer=tokenizer)
+        args, model, test_dataset, label_map, tokenizer=tokenizer)
 
     write_predictions(test_dataset, words_list, preds_list)
 
