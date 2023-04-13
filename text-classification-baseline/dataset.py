@@ -164,13 +164,15 @@ class NewsDataset(Dataset):
         self.token_targets = [item[1][1] for item in self.phrases]
         self.tokens = [item[1][0] for item in self.phrases]
 
-        unique_token_labels = set(sum(self.train_token_targets, []))
         if label_map is not None:
             self.label_map = label_map
         else:
+            unique_token_labels = set(sum(self.token_targets, []))
             self.label_map = dict(zip(unique_token_labels, range(len(unique_token_labels))))
 
         self.token_targets = [[self.label_map[element] for element in item[1][1]] for item in self.phrases]
+
+        print(self.label_map)
 
     def __len__(self):
         return len(self.phrases)
@@ -181,61 +183,115 @@ class NewsDataset(Dataset):
     def get_inverse_label_map(self):
         return {v: k for k, v in self.label_map.items()}
 
+    def tokenize_and_align_labels(self, sequence, token_targets):
+        tokenized_inputs = self.tokenizer(
+            sequence,
+            padding="max_length",
+            truncation=True,
+            max_length=self.max_len,
+            # We use this argument because the texts in our dataset are lists of words (with a label for each word).
+            is_split_into_words=True,
+            return_token_type_ids=True
+        )
+        labels = []
+        attention_mask = []
+        token_type_ids = []
+        label_all_tokens = False
+        # for i, label in enumerate(tokens):
+        word_ids = tokenized_inputs.word_ids()
+        previous_word_idx = None
+
+        for word_idx in word_ids:
+            # Special tokens have a word id that is None. We set the label to -100 so they are automatically
+            # ignored in the loss function.
+            if word_idx is None:
+                labels.append(-100)
+                attention_mask.append(0)
+                token_type_ids.append(0)
+            # We set the label for the first token of each word.
+            elif word_idx != previous_word_idx:
+                labels.append(token_targets[word_idx])
+                attention_mask.append(1)
+                token_type_ids.append(0)
+            # For the other tokens in a word, we set the label to either the current label or -100, depending on
+            # the label_all_tokens flag.
+            else:
+                if label_all_tokens:
+                    labels.append(token_targets[word_idx])
+                    attention_mask.append(1)
+                    token_type_ids.append(0)
+                else:
+                    labels.append(-100)
+                    attention_mask.append(0)
+                    token_type_ids.append(0)
+            previous_word_idx = word_idx
+
+        tokenized_inputs["token_targets"] = labels
+        return tokenized_inputs
+
     def __getitem__(self, index):
         sequence = self.tokens[index]
         # sequence = ' '.join(self.tokens[index])
-        if not self.test:
-            sequence_targets = self.sequence_targets[index]
-            token_targets = self.token_targets[index]
+        # if not self.test:
+        sequence_targets = self.sequence_targets[index]
+        token_targets = self.token_targets[index]
 
-        encoding = self.tokenizer.encode_plus(
-            sequence,
-            None,
-            add_special_tokens=True,
-            max_length=self.max_len,
-            padding='max_length',
-            is_split_into_words=True,
-            return_offsets_mapping=True,
-            return_token_type_ids=True,  # TODO: add token type ids
-            truncation=True
-        )
+        # encoding = self.tokenizer.encode_plus(
+        #     sequence,
+        #     None,
+        #     add_special_tokens=True,
+        #     max_length=self.max_len,
+        #     padding='max_length',
+        #     is_split_into_words=True,
+        #     return_offsets_mapping=True,
+        #     return_token_type_ids=True,  # TODO: add token type ids
+        #     truncation=True
+        # )
+
+        encoding = self.tokenize_and_align_labels(sequence, token_targets)
 
         input_ids = torch.tensor(encoding['input_ids'], dtype=torch.long)
-        attention_mask = torch.tensor(
-                    encoding['attention_mask'],
-                    dtype=torch.long)
-        offset_mapping = torch.tensor(encoding['offset_mapping'], dtype=torch.long)
-        offset_mapping = torch.sub(torch.transpose(offset_mapping, 0, 1)[1],
-                                   torch.transpose(offset_mapping, 0, 1)[0])
+        token_type_ids = torch.tensor(encoding['token_type_ids'], dtype=torch.long)
+        attention_mask = torch.tensor(encoding['attention_mask'], dtype=torch.long)
+        # offset_mapping = torch.tensor(encoding['offset_mapping'], dtype=torch.long)
+        # offset_mapping = torch.sub(torch.transpose(offset_mapping, 0, 1)[1],
+        #                            torch.transpose(offset_mapping, 0, 1)[0])
+
+        # print(token_targets)
+        # Pad the tensor with zeros until the maximum length
+        token_targets = torch.tensor(encoding['token_targets'], dtype=torch.long)
+        # print(input_ids.shape, token_targets.shape)
+        # import pdb;pdb.set_trace()
+        # padded_token_targets = torch.empty(self.max_len, dtype=torch.long).fill_(-100)
+        # padded_token_targets[:token_targets[:self.max_len].size(0)] = token_targets[:self.max_len]
+
+        sequence_targets = torch.tensor(sequence_targets, dtype=torch.long)
+
+        assert input_ids.shape == attention_mask.shape
+        # assert sequence_targets.shape == attention_mask.shape
+
+        assert token_targets.shape == input_ids.shape
 
         if self.test:
             return {
                 'sequence': ' '.join(sequence),
                 'input_ids': input_ids,
                 'attention_mask': attention_mask,
-                'offset_mapping': offset_mapping}
+                'sequence_targets': sequence_targets,
+                'token_targets': token_targets,
+                # 'offset_mapping': offset_mapping,
+                'token_type_ids': token_type_ids}
         else:
-            # print(token_targets)
-            # Pad the tensor with zeros until the maximum length
-            token_targets = torch.tensor(token_targets, dtype=torch.long)
-            # print(input_ids.shape, token_targets.shape)
-            padded_token_targets = torch.zeros(self.max_len, dtype=torch.long)
-            padded_token_targets[:token_targets[:self.max_len].size(
-                0)] = token_targets[:self.max_len]
 
-            sequence_targets = torch.tensor(sequence_targets, dtype=torch.long)
-
-            assert input_ids.shape == attention_mask.shape
-            # assert sequence_targets.shape == attention_mask.shape
-            assert padded_token_targets.shape == input_ids.shape
 
             return {
                 'sequence': ' '.join(sequence),
                 'input_ids': input_ids,
                 'attention_mask': attention_mask,
                 'sequence_targets': sequence_targets,
-                'token_targets': padded_token_targets,
-                'offset_mapping': offset_mapping}
+                'token_targets': token_targets,
+                # 'offset_mapping': offset_mapping,
+                'token_type_ids':token_type_ids}
 
     def get_info(self):
         num_sequence_labels = len(set(self.sequence_targets))

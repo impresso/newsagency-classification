@@ -5,6 +5,8 @@
 #predictions
 #checkpoints
 #notebooks
+runs
+experiments
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

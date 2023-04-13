@@ -55,7 +55,7 @@ def set_seed(args):
         torch.cuda.manual_seed_all(args.seed)
 
 
-def evaluate(args, model, dev_dataset, labels, mode='dev', prefix="", tokenizer=None):
+def evaluate(args, model, dev_dataset, label_map, mode='dev', prefix="", tokenizer=None):
     # eval_dataset = load_and_cache_examples(args, tokenizer, labels, pad_token_label_id, mode=mode)
 
     args.eval_batch_size = args.eval_batch_size * max(1, args.n_gpu)
@@ -92,8 +92,7 @@ def evaluate(args, model, dev_dataset, labels, mode='dev', prefix="", tokenizer=
                 "input_ids": batch["input_ids"].to(args.device), "attention_mask": batch["attention_mask"].to(
                     args.device), "sequence_labels": batch["sequence_targets"].to(
                     args.device), "token_labels": batch["token_targets"].to(
-                    args.device), "offset_mapping": batch["offset_mapping"].to(
-                    args.device)}
+                    args.device), 'token_type_ids': batch['token_type_ids'].to(device)}
 
             # import
             # if args.model_type != "distilbert":
@@ -130,7 +129,7 @@ def evaluate(args, model, dev_dataset, labels, mode='dev', prefix="", tokenizer=
             sentences = [tokenizer.convert_ids_to_tokens(input_ids) for input_ids in inputs["input_ids"].detach().cpu().numpy()]
             text_sentences = [text.split(' ') for text in batch["sequence"]]
 
-            offset_mappings = inputs["offset_mapping"].detach().cpu().numpy()
+            # offset_mappings = inputs["offset_mapping"].detach().cpu().numpy()
         else:
             out_token_preds = np.append(
                 out_token_preds, token_logits.detach().cpu().numpy(), axis=0)
@@ -153,10 +152,10 @@ def evaluate(args, model, dev_dataset, labels, mode='dev', prefix="", tokenizer=
                                   axis=0)
             text_sentences = np.append(text_sentences, [text.split(' ') for text in batch["sequence"]], axis=0)
 
-            offset_mappings = np.append(
-                offset_mappings,
-                inputs["offset_mapping"].detach().cpu().numpy(),
-                axis=0)
+            # offset_mappings = np.append(
+            #     offset_mappings,
+            #     inputs["offset_mapping"].detach().cpu().numpy(),
+            #     axis=0)
         # finish += 1
 
         # if finish == 20:
@@ -173,14 +172,11 @@ def evaluate(args, model, dev_dataset, labels, mode='dev', prefix="", tokenizer=
 
     eval_loss = eval_loss / nb_eval_steps
 
-    label_map = {i: label for i, label in enumerate(labels)}
+    label_map = {label: i for i, label in label_map.items()}
 
     out_label_list = [[] for _ in range(out_token_ids.shape[0])]
     preds_list = [[] for _ in range(out_token_ids.shape[0])]
     words_list = [[] for _ in range(out_token_ids.shape[0])]
-
-    # import pdb;
-    # pdb.set_trace()
 
     for idx_sentence, item in enumerate(zip(text_sentences, out_token_ids, out_token_preds)):
         text_sentence, out_label_ids, out_label_preds = item
@@ -196,10 +192,19 @@ def evaluate(args, model, dev_dataset, labels, mode='dev', prefix="", tokenizer=
             except:  # the sentence was longer then max_length
                 preds_list[idx_sentence].append('O')
             words_list[idx_sentence].append(word)
+
+        print(text_sentence)
+        print(out_label_list[idx_sentence])
+        print(preds_list[idx_sentence])
+        print('--'*20)
         assert len(text_sentence) == len(words_list[idx_sentence])
         assert len(text_sentence) == len(out_label_list[idx_sentence])
         assert len(text_sentence) == len(preds_list[idx_sentence])
+        # import pdb;
+        # pdb.set_trace()
 
+    # import pdb;
+    # pdb.set_trace()
     # for i in range(out_token_ids.shape[0]):
     #     sentence = sentences[i]
     #     for j in range(out_token_ids.shape[1]):
@@ -378,7 +383,7 @@ def train(args, train_dataset, dev_dataset, test_dataset, model, tokenizer, labe
                     args.device), "attention_mask": batch["attention_mask"].to(
                     args.device), "sequence_labels": batch["sequence_targets"].to(
                     args.device), "token_labels": batch["token_targets"].to(
-                    args.device)}
+                    args.device), 'token_type_ids': batch['token_type_ids'].to(device)}
 
             # if args.model_type != "distilbert":
             #     inputs["token_type_ids"] = (
@@ -664,25 +669,25 @@ if __name__ == '__main__':
     tokenizer = AutoTokenizer.from_pretrained(args.model_name_or_path)
 
     train_dataset = NewsDataset(
-        args.train_dataset,
-        tokenizer,
-        args.max_sequence_len)
+        dataset=args.train_dataset,
+        tokenizer=tokenizer,
+        max_len=args.max_sequence_len)
 
     num_sequence_labels, num_token_labels = train_dataset.get_info()
 
-    labels = train_dataset.get_label_map()
-
+    label_map = train_dataset.get_label_map()
+    # dataset, tokenizer, max_len, test = False, label_map = None
     dev_dataset = NewsDataset(
-        args.dev_dataset,
-        tokenizer,
-        args.max_sequence_len,
-        labels)
+        dataset=args.dev_dataset,
+        tokenizer=tokenizer,
+        max_len=args.max_sequence_len,
+        label_map=label_map)
 
     test_dataset = NewsDataset(
-        args.test_dataset,
-        tokenizer,
-        args.max_sequence_len,
-        labels)
+        dataset=args.test_dataset,
+        tokenizer=tokenizer,
+        max_len=args.max_sequence_len,
+        label_map=label_map)
 
     logging.info(
         "Number of unique token labels {}, number of unique sequence labels {}.".format(
@@ -719,4 +724,4 @@ if __name__ == '__main__':
                     nd in n for nd in no_decay)], "weight_decay": 0.0}, ]
 
 
-    train(args, train_dataset, dev_dataset, test_dataset, model, tokenizer, labels.keys())
+    train(args, train_dataset, dev_dataset, test_dataset, model, tokenizer, label_map)
