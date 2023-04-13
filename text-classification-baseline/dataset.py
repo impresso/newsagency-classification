@@ -5,8 +5,10 @@ from sklearn.preprocessing import (LabelEncoder,
                                    MultiLabelBinarizer)
 
 COLUMNS = ["TOKEN", "NE-COARSE-LIT", "NE-COARSE-METO", "NE-FINE-LIT",
-                   "NE-FINE-METO", "NE-FINE-COMP", "NE-NESTED",
-                   "NEL-LIT", "NEL-METO", "MISC"]
+           "NE-FINE-METO", "NE-FINE-COMP", "NE-NESTED",
+           "NEL-LIT", "NEL-METO", "MISC"]
+
+
 def _read_conll(path, encoding='utf-8', sep=None, indexes=None, dropna=True):
     r"""
     Construct a generator to read conll items.
@@ -142,11 +144,16 @@ class NERDataset(Dataset):
 
 class NewsDataset(Dataset):
 
-    def __init__(self, dataset, tokenizer, max_len, test=False, label_map=None):
+    def __init__(
+            self,
+            dataset,
+            tokenizer,
+            max_len,
+            test=False,
+            label_map=None):
         self.tokenizer = tokenizer
         self.max_len = max_len
         self.test = test
-
 
         columns = ["TOKEN", "NE-COARSE-LIT", "NE-COARSE-METO", "NE-FINE-LIT",
                    "NE-FINE-METO", "NE-FINE-COMP", "NE-NESTED",
@@ -168,9 +175,11 @@ class NewsDataset(Dataset):
             self.label_map = label_map
         else:
             unique_token_labels = set(sum(self.token_targets, []))
-            self.label_map = dict(zip(unique_token_labels, range(len(unique_token_labels))))
+            self.label_map = dict(
+                zip(unique_token_labels, range(len(unique_token_labels))))
 
-        self.token_targets = [[self.label_map[element] for element in item[1][1]] for item in self.phrases]
+        self.token_targets = [[self.label_map[element]
+                               for element in item[1][1]] for item in self.phrases]
 
         print(self.label_map)
 
@@ -189,7 +198,8 @@ class NewsDataset(Dataset):
             padding="max_length",
             truncation=True,
             max_length=self.max_len,
-            # We use this argument because the texts in our dataset are lists of words (with a label for each word).
+            # We use this argument because the texts in our dataset are lists
+            # of words (with a label for each word).
             is_split_into_words=True,
             return_token_type_ids=True
         )
@@ -251,15 +261,18 @@ class NewsDataset(Dataset):
         encoding = self.tokenize_and_align_labels(sequence, token_targets)
 
         input_ids = torch.tensor(encoding['input_ids'], dtype=torch.long)
-        token_type_ids = torch.tensor(encoding['token_type_ids'], dtype=torch.long)
-        attention_mask = torch.tensor(encoding['attention_mask'], dtype=torch.long)
+        token_type_ids = torch.tensor(
+            encoding['token_type_ids'], dtype=torch.long)
+        attention_mask = torch.tensor(
+            encoding['attention_mask'], dtype=torch.long)
         # offset_mapping = torch.tensor(encoding['offset_mapping'], dtype=torch.long)
         # offset_mapping = torch.sub(torch.transpose(offset_mapping, 0, 1)[1],
         #                            torch.transpose(offset_mapping, 0, 1)[0])
 
         # print(token_targets)
         # Pad the tensor with zeros until the maximum length
-        token_targets = torch.tensor(encoding['token_targets'], dtype=torch.long)
+        token_targets = torch.tensor(
+            encoding['token_targets'], dtype=torch.long)
         # print(input_ids.shape, token_targets.shape)
         # import pdb;pdb.set_trace()
         # padded_token_targets = torch.empty(self.max_len, dtype=torch.long).fill_(-100)
@@ -283,7 +296,6 @@ class NewsDataset(Dataset):
                 'token_type_ids': token_type_ids}
         else:
 
-
             return {
                 'sequence': ' '.join(sequence),
                 'input_ids': input_ids,
@@ -291,7 +303,7 @@ class NewsDataset(Dataset):
                 'sequence_targets': sequence_targets,
                 'token_targets': token_targets,
                 # 'offset_mapping': offset_mapping,
-                'token_type_ids':token_type_ids}
+                'token_type_ids': token_type_ids}
 
     def get_info(self):
         num_sequence_labels = len(set(self.sequence_targets))

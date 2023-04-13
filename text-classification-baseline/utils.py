@@ -10,6 +10,24 @@ from typing import List, Union
 import numpy as np
 import urllib.request
 from typing import Set, List, Union, NamedTuple, Dict, Optional
+import torch
+
+from dataset import COLUMNS
+
+SEED = 42
+
+
+def set_seed(seed) -> None:
+    # np.random.seed(seed)
+    # random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    # When running on the CuDNN backend, two further options must be set
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+    # Set a fixed value for the hash seed
+    # os.environ["PYTHONHASHSEED"] = str(seed)
+    # print(f"Random seed set as {seed}")
 
 
 def get_custom_logger(
@@ -54,6 +72,35 @@ def get_tsv_data(path: Optional[str] = None, url: Optional[str] = None) -> str:
     elif path:
         with open(path) as f:
             return f.read()
+
+def write_predictions(dataset, words_list, preds_list):
+    with open(dataset, 'r') as f:
+        tsv_lines = f.readlines()
+
+    flat_words_list = [item for sublist in words_list for item in sublist]
+    flat_preds_list = [item for sublist in preds_list for item in sublist]
+    with open(dataset.replace('.tsv', '_pred.tsv'), 'w') as f:
+        idx = 0
+        for idx_tsv_line, tsv_line in enumerate(tsv_lines):
+            if idx_tsv_line == 0:
+                f.write(tsv_line)
+            elif len(tsv_line.split('\t')) != len(COLUMNS):
+                f.write(tsv_line)
+            elif len(tsv_line.strip()) == 0:
+                f.write(tsv_line)
+            else:
+                try:
+                    f.write(
+                        flat_words_list[idx] +
+                        '\t' +
+                        flat_preds_list[idx] +
+                        '\n')
+                except BaseException:
+                    import pdb
+                    pdb.set_trace()
+                idx += 1
+                f.flush()
+
 
 
 def write_predictions_to_tsv(words: List[List[Union[str, None]]],
