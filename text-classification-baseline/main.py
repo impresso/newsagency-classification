@@ -19,7 +19,11 @@ import logging
 import math
 from torch.utils.data.distributed import DistributedSampler
 import random
-from torch.utils.data import (DataLoader, RandomSampler, SequentialSampler, TensorDataset)
+from torch.utils.data import (
+    DataLoader,
+    RandomSampler,
+    SequentialSampler,
+    TensorDataset)
 from transformers import (
     CONFIG_MAPPING,
     MODEL_MAPPING,
@@ -34,36 +38,81 @@ from transformers import (
     get_scheduler,
 )
 from dataset import COLUMNS
-from utils import write_predictions_to_tsv
 
 try:
     from torch.utils.tensorboard import SummaryWriter
 except ImportError:
     from tensorboardX import SummaryWriter
 from seqeval.metrics import f1_score, precision_score, recall_score
-from utils import write_predictions_to_tsv
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-def set_seed(args):
-    random.seed(args.seed)
-    np.random.seed(args.seed)
-    torch.manual_seed(args.seed)
-    if args.n_gpu > 0:
-        torch.cuda.manual_seed_all(args.seed)
+SEED = 42
 
 
-def evaluate(args, model, dev_dataset, label_map, mode='dev', prefix="", tokenizer=None):
+def set_seed(seed: int = 42) -> None:
+    np.random.seed(seed)
+    random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    # When running on the CuDNN backend, two further options must be set
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+    # Set a fixed value for the hash seed
+    os.environ["PYTHONHASHSEED"] = str(seed)
+    print(f"Random seed set as {seed}")
+
+
+set_seed(42)
+
+
+def write_predictions(dataset, words_list, preds_list):
+    with open(args.dev_dataset, 'r') as f:
+        tsv_lines = f.readlines()
+
+    flat_words_list = [item for sublist in words_list for item in sublist]
+    flat_preds_list = [item for sublist in preds_list for item in sublist]
+    with open(args.dev_dataset.replace('.tsv', '_pred.tsv'), 'w') as f:
+        idx = 0
+        for idx_tsv_line, tsv_line in enumerate(tsv_lines):
+            if idx_tsv_line == 0:
+                f.write(tsv_line)
+            elif len(tsv_line.split('\t')) != len(COLUMNS):
+                f.write(tsv_line)
+            elif len(tsv_line.strip()) == 0:
+                f.write(tsv_line)
+            else:
+                try:
+                    f.write(
+                        flat_words_list[idx] +
+                        '\t' +
+                        flat_preds_list[idx] +
+                        '\n')
+                except BaseException:
+                    import pdb
+                    pdb.set_trace()
+                idx += 1
+                f.flush()
+
+
+def evaluate(
+        args,
+        model,
+        dataset,
+        label_map,
+        mode='dev',
+        prefix="",
+        tokenizer=None):
     # eval_dataset = load_and_cache_examples(args, tokenizer, labels, pad_token_label_id, mode=mode)
 
     args.eval_batch_size = args.eval_batch_size * max(1, args.n_gpu)
     # Note that DistributedSampler samples randomly
     eval_sampler = SequentialSampler(
-        dev_dataset) if args.local_rank == -1 else DistributedSampler(dev_dataset)
+        dataset) if args.local_rank == -1 else DistributedSampler(dataset)
     eval_dataloader = DataLoader(
-        dev_dataset,
+        dataset,
         sampler=eval_sampler,
         batch_size=args.eval_batch_size)
 
@@ -73,7 +122,7 @@ def evaluate(args, model, dev_dataset, label_map, mode='dev', prefix="", tokeniz
 
     # Eval!
     logger.info("***** Running evaluation %s *****", prefix)
-    logger.info("  Num examples = %d", len(dev_dataset))
+    logger.info("  Num examples = %d", len(dataset))
     logger.info("  Batch size = %d", args.eval_batch_size)
     eval_loss = 0.0
     nb_eval_steps = 0
@@ -89,7 +138,8 @@ def evaluate(args, model, dev_dataset, label_map, mode='dev', prefix="", tokeniz
 
         with torch.no_grad():
             inputs = {
-                "input_ids": batch["input_ids"].to(args.device), "attention_mask": batch["attention_mask"].to(
+                "input_ids": batch["input_ids"].to(
+                    args.device), "attention_mask": batch["attention_mask"].to(
                     args.device), "sequence_labels": batch["sequence_targets"].to(
                     args.device), "token_labels": batch["token_targets"].to(
                     args.device), 'token_type_ids': batch['token_type_ids'].to(device)}
@@ -126,7 +176,8 @@ def evaluate(args, model, dev_dataset, label_map, mode='dev', prefix="", tokeniz
             out_token_ids = inputs["token_labels"].detach().cpu().numpy()
             out_sequence_ids = inputs["sequence_labels"].detach().cpu().numpy()
 
-            sentences = [tokenizer.convert_ids_to_tokens(input_ids) for input_ids in inputs["input_ids"].detach().cpu().numpy()]
+            sentences = [tokenizer.convert_ids_to_tokens(
+                input_ids) for input_ids in inputs["input_ids"].detach().cpu().numpy()]
             text_sentences = [text.split(' ') for text in batch["sequence"]]
 
             # offset_mappings = inputs["offset_mapping"].detach().cpu().numpy()
@@ -147,10 +198,11 @@ def evaluate(args, model, dev_dataset, label_map, mode='dev', prefix="", tokeniz
                 sequence_logits.detach().cpu().numpy(),
                 axis=0)
 
-            sentences = np.append(sentences, [tokenizer.convert_ids_to_tokens(input_ids)
-                                              for input_ids in inputs["input_ids"].detach().cpu().numpy()],
-                                  axis=0)
-            text_sentences = np.append(text_sentences, [text.split(' ') for text in batch["sequence"]], axis=0)
+            sentences = np.append(sentences, [tokenizer.convert_ids_to_tokens(
+                input_ids) for input_ids in inputs["input_ids"].detach().cpu().numpy()], axis=0)
+            text_sentences = np.append(
+                text_sentences, [
+                    text.split(' ') for text in batch["sequence"]], axis=0)
 
             # offset_mappings = np.append(
             #     offset_mappings,
@@ -178,30 +230,25 @@ def evaluate(args, model, dev_dataset, label_map, mode='dev', prefix="", tokeniz
     preds_list = [[] for _ in range(out_token_ids.shape[0])]
     words_list = [[] for _ in range(out_token_ids.shape[0])]
 
-    for idx_sentence, item in enumerate(zip(text_sentences, out_token_ids, out_token_preds)):
+    for idx_sentence, item in enumerate(
+            zip(text_sentences, out_token_ids, out_token_preds)):
         text_sentence, out_label_ids, out_label_preds = item
-        word_ids = tokenizer(text_sentence, is_split_into_words=True).word_ids()
+        word_ids = tokenizer(
+            text_sentence,
+            is_split_into_words=True).word_ids()
         for idx, word in enumerate(text_sentence):
             beginning_index = word_ids.index(idx)
             try:
-                out_label_list[idx_sentence].append(label_map[out_label_ids[beginning_index]])
-            except: # the sentence was longer then max_length
+                out_label_list[idx_sentence].append(
+                    label_map[out_label_ids[beginning_index]])
+            except BaseException:  # the sentence was longer then max_length
                 out_label_list[idx_sentence].append('O')
             try:
-                preds_list[idx_sentence].append(label_map[out_label_preds[beginning_index]])
-            except:  # the sentence was longer then max_length
+                preds_list[idx_sentence].append(
+                    label_map[out_label_preds[beginning_index]])
+            except BaseException:  # the sentence was longer then max_length
                 preds_list[idx_sentence].append('O')
             words_list[idx_sentence].append(word)
-        #
-        # print(text_sentence)
-        # print(out_label_list[idx_sentence])
-        # print(preds_list[idx_sentence])
-        # print('--'*20)
-        # assert len(text_sentence) == len(words_list[idx_sentence])
-        # assert len(text_sentence) == len(out_label_list[idx_sentence])
-        # assert len(text_sentence) == len(preds_list[idx_sentence])
-        # import pdb;
-
 
     results = {
         "loss": eval_loss,
@@ -222,7 +269,14 @@ def evaluate(args, model, dev_dataset, label_map, mode='dev', prefix="", tokeniz
     return results, words_list, preds_list
 
 
-def train(args, train_dataset, dev_dataset, test_dataset, model, tokenizer, labels):
+def train(
+        args,
+        train_dataset,
+        dev_dataset,
+        test_dataset,
+        model,
+        tokenizer,
+        labels):
     """ Train the model """
     if args.local_rank in [-1, 0]:
         tb_writer = SummaryWriter()
@@ -239,8 +293,8 @@ def train(args, train_dataset, dev_dataset, test_dataset, model, tokenizer, labe
         sampler=train_sampler,
         batch_size=args.train_batch_size)
 
-    t_total = math.ceil(len(train_dataset) /
-                        args.train_batch_size) * args.epochs  # assume 10 epochs
+    t_total = math.ceil(len(train_dataset) / \
+                        args.train_batch_size) * args.epochs # assume 10 epochs
     # 10% of training steps for warmup
     num_warmup_steps = math.ceil(t_total * 0.1)
 
@@ -363,17 +417,11 @@ def train(args, train_dataset, dev_dataset, test_dataset, model, tokenizer, labe
                 continue
 
             model.train()
-            # batch = tuple(t for t in batch)
             inputs = {"input_ids": batch["input_ids"].to(
-                    args.device), "attention_mask": batch["attention_mask"].to(
-                    args.device), "sequence_labels": batch["sequence_targets"].to(
-                    args.device), "token_labels": batch["token_targets"].to(
-                    args.device), 'token_type_ids': batch['token_type_ids'].to(device)}
-
-            # if args.model_type != "distilbert":
-            #     inputs["token_type_ids"] = (
-            #         batch[2] if args.model_type in ["bert", "xlnet"] else None
-            #     )  # XLM and RoBERTa don"t use segment_ids
+                args.device), "attention_mask": batch["attention_mask"].to(
+                args.device), "sequence_labels": batch["sequence_targets"].to(
+                args.device), "token_labels": batch["token_targets"].to(
+                args.device), 'token_type_ids': batch['token_type_ids'].to(device)}
 
             outputs = model(**inputs)
 
@@ -406,10 +454,6 @@ def train(args, train_dataset, dev_dataset, test_dataset, model, tokenizer, labe
                 model.zero_grad()
                 global_step += 1
 
-                # print(args.logging_steps, global_step, args.logging_steps)
-                # print(args.local_rank in [-1, 0] and args.logging_steps > 0 and global_step % args.logging_steps == 0)
-                # print(args.local_rank in [-1, 0] and args.save_steps > 0 and global_step % args.save_steps == 0)
-                # print('---')
                 if args.local_rank in [
                     -1,
                         0] and args.logging_steps > 0 and global_step % args.logging_steps == 0:
@@ -422,30 +466,7 @@ def train(args, train_dataset, dev_dataset, test_dataset, model, tokenizer, labe
                         results, words_list, preds_list = evaluate(
                             args, model, dev_dataset, labels, mode="dev", tokenizer=tokenizer)
 
-                        with open(args.dev_dataset, 'r') as f:
-                            tsv_lines = f.readlines()
-
-                        flat_words_list = [item for sublist in words_list for item in sublist]
-                        flat_preds_list = [item for sublist in preds_list for item in sublist]
-                        with open(args.dev_dataset.replace('.tsv', '_pred.tsv'), 'w') as f:
-                            idx = 0
-                            for idx_tsv_line, tsv_line in enumerate(tsv_lines):
-                                if idx_tsv_line == 0:
-                                    f.write(tsv_line)
-                                elif len(tsv_line.split('\t')) != len(COLUMNS):
-                                    f.write(tsv_line)
-                                elif len(tsv_line.strip()) == 0:
-                                    f.write(tsv_line)
-                                else:
-                                    try:
-                                        f.write(flat_words_list[idx] + '\t' + flat_preds_list[idx] + '\n')
-                                    except:
-                                        import pdb;pdb.set_trace()
-                                    idx += 1
-                                    f.flush()
-
-                        # import pdb;
-                        # pdb.set_trace()
+                        write_predictions(dev_dataset, words_list, preds_list)
 
                         for key, value in results.items():
                             tb_writer.add_scalar(
@@ -494,6 +515,11 @@ def train(args, train_dataset, dev_dataset, test_dataset, model, tokenizer, labe
 
     if args.local_rank in [-1, 0]:
         tb_writer.close()
+
+    results, words_list, preds_list = evaluate(
+        args, model, test_dataset, labels, mode="test", tokenizer=tokenizer)
+
+    write_predictions(test_dataset, words_list, preds_list)
 
     return global_step, tr_loss / global_step
 
@@ -601,11 +627,7 @@ if __name__ == '__main__':
         help="The warmup steps - the number of steps in on epoch or 0.")
     parser.add_argument("--local_rank", type=int, default=-
                         1, help="For distributed training: local_rank")
-    parser.add_argument(
-        "--seed",
-        type=int,
-        default=42,
-        help="random seed for initialization")
+
     parser.add_argument(
         '--device',
         default='cuda',
@@ -708,5 +730,11 @@ if __name__ == '__main__':
                 p for n, p in model.named_parameters() if any(
                     nd in n for nd in no_decay)], "weight_decay": 0.0}, ]
 
-
-    train(args, train_dataset, dev_dataset, test_dataset, model, tokenizer, label_map)
+    train(
+        args,
+        train_dataset,
+        dev_dataset,
+        test_dataset,
+        model,
+        tokenizer,
+        label_map)

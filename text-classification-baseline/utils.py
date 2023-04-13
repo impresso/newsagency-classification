@@ -11,10 +11,12 @@ import numpy as np
 import urllib.request
 from typing import Set, List, Union, NamedTuple, Dict, Optional
 
-def get_custom_logger(name: str,
-                      level: int = logging.INFO,
-                      fmt: str = "%(asctime)s - %(levelname)s - %(name)s - %(message)s",
-                      datefmt: str = '%Y-%m-%d %H:%M'):
+
+def get_custom_logger(
+        name: str,
+        level: int = logging.INFO,
+        fmt: str = "%(asctime)s - %(levelname)s - %(name)s - %(message)s",
+        datefmt: str = '%Y-%m-%d %H:%M'):
     """Custom logging wraper, called each time a logger is declared in the package."""
 
     logger = logging.getLogger(name)
@@ -39,18 +41,20 @@ def set_seed(seed):
 
 logger = get_custom_logger(__name__)
 
+
 def get_tsv_data(path: Optional[str] = None, url: Optional[str] = None) -> str:
     """Fetches tsv data from a path or an url."""
 
     assert path or url, """`path` or `url` must be provided"""
 
     if url:
-        response = urllib.request.urlopen(url) # TODO: dangerous
+        response = urllib.request.urlopen(url)  # TODO: dangerous
         return response.read().decode('utf-8')
 
     elif path:
         with open(path) as f:
             return f.read()
+
 
 def write_predictions_to_tsv(words: List[List[Union[str, None]]],
                              labels: List[List[Union[str, None]]],
@@ -66,15 +70,15 @@ def write_predictions_to_tsv(words: List[List[Union[str, None]]],
 
     logger.info(f'Writing predictions to {output_file}')
 
-    tsv_lines = [l.split('\t') for l in get_tsv_data(tsv_path, tsv_url).split('\n')]
+    tsv_lines = [l.split('\t')
+                 for l in get_tsv_data(tsv_path, tsv_url).split('\n')]
     label_col_number = tsv_lines[0].index(labels_column)
     for i in range(len(words)):
         for j in range(len(words[i])):
             if words[i][j]:
                 assert tsv_lines[tsv_line_numbers[i][j]][0] == words[i][j]
-                tsv_lines[tsv_line_numbers[i][j]][label_col_number] = labels[i][j]
+                tsv_lines[tsv_line_numbers[i][j]
+                          ][label_col_number] = labels[i][j]
 
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write('\n'.join(['\t'.join(l) for l in tsv_lines]))
-
-
