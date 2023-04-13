@@ -192,31 +192,15 @@ def evaluate(args, model, dev_dataset, label_map, mode='dev', prefix="", tokeniz
             except:  # the sentence was longer then max_length
                 preds_list[idx_sentence].append('O')
             words_list[idx_sentence].append(word)
-
-        print(text_sentence)
-        print(out_label_list[idx_sentence])
-        print(preds_list[idx_sentence])
-        print('--'*20)
-        assert len(text_sentence) == len(words_list[idx_sentence])
-        assert len(text_sentence) == len(out_label_list[idx_sentence])
-        assert len(text_sentence) == len(preds_list[idx_sentence])
+        #
+        # print(text_sentence)
+        # print(out_label_list[idx_sentence])
+        # print(preds_list[idx_sentence])
+        # print('--'*20)
+        # assert len(text_sentence) == len(words_list[idx_sentence])
+        # assert len(text_sentence) == len(out_label_list[idx_sentence])
+        # assert len(text_sentence) == len(preds_list[idx_sentence])
         # import pdb;
-        # pdb.set_trace()
-
-    # import pdb;
-    # pdb.set_trace()
-    # for i in range(out_token_ids.shape[0]):
-    #     sentence = sentences[i]
-    #     for j in range(out_token_ids.shape[1]):
-    #         word = tokenizer.decode(sentence[j])
-    #
-    #         if word not in [tokenizer.sep_token, tokenizer.pad_token, tokenizer.cls_token]:
-    #             # if out_label_ids[i, j] != pad_token_label_id:
-    #             out_label_list[i].append(label_map[out_token_ids[i][j]])
-    #             preds_list[i].append(label_map[out_token_preds[i][j]])
-    #             words_list[i].append(word)
-    # import pdb;
-    # pdb.set_trace()
 
 
     results = {
@@ -311,6 +295,7 @@ def train(args, train_dataset, dev_dataset, test_dataset, model, tokenizer, labe
     # multi-gpu training (should be after apex fp16 initialization)
     if args.n_gpu > 1:
         model = torch.nn.DataParallel(model)
+        # model.to(f'cuda:{model.device_ids[1]}')
 
     # Distributed training (should be after apex fp16 initialization)
     if args.local_rank != -1:
@@ -416,8 +401,8 @@ def train(args, train_dataset, dev_dataset, test_dataset, model, tokenizer, labe
                     torch.nn.utils.clip_grad_norm_(
                         model.parameters(), args.max_grad_norm)
 
-                scheduler.step()  # Update learning rate schedule
                 optimizer.step()
+                scheduler.step()  # Update learning rate schedule
                 model.zero_grad()
                 global_step += 1
 
@@ -701,7 +686,7 @@ if __name__ == '__main__':
     #     num_workers=os.cpu_count())
 
     config = AutoConfig.from_pretrained(
-        'bert-base-uncased',
+        args.model_name_or_path,
         problem_type="single_label_classification")
 
     model = ModelForSequenceAndTokenClassification.from_pretrained(
