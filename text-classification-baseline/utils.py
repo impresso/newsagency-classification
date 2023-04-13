@@ -73,6 +73,7 @@ def get_tsv_data(path: Optional[str] = None, url: Optional[str] = None) -> str:
         with open(path) as f:
             return f.read()
 
+
 def write_predictions(dataset, words_list, preds_list):
     with open(dataset, 'r') as f:
         tsv_lines = f.readlines()
@@ -100,7 +101,6 @@ def write_predictions(dataset, words_list, preds_list):
                     pdb.set_trace()
                 idx += 1
                 f.flush()
-
 
 
 def write_predictions_to_tsv(words: List[List[Union[str, None]]],

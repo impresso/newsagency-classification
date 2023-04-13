@@ -7,6 +7,8 @@ import os
 from dataset import NewsDataset
 import logging
 from transformers import AutoTokenizer, AutoConfig
+import yaml
+from utils import write_predictions
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -97,11 +99,6 @@ if __name__ == '__main__':
         default=50,
         help="Save checkpoint every X updates steps.")
     parser.add_argument(
-        "--eval_all_checkpoints",
-        action="store_true",
-        help="Evaluate all checkpoints starting with the same prefix as model_name ending and ending with step number",
-    )
-    parser.add_argument(
         "--max_steps",
         default=-
         1,
@@ -125,6 +122,16 @@ if __name__ == '__main__':
         action="store_true",
         help="Whether to run evaluation during training at each logging step.",
     )
+
+    parser.add_argument("--do_train",
+                        action='store_true',
+                        help="Whether to run training.")
+    parser.add_argument("--continue_train",
+                        action='store_true',
+                        help="Whether to run training.")
+    parser.add_argument("--do_eval",
+                        action='store_true',
+                        help="Whether to run eval or not.")
 
     set_seed(SEED)
 
@@ -165,10 +172,15 @@ if __name__ == '__main__':
 
     tokenizer = AutoTokenizer.from_pretrained(args.model_name_or_path)
 
+    with open('config.yml', 'r') as f:
+        label_map = yaml.load(f)
+        print(label_map)
+
     train_dataset = NewsDataset(
         dataset=args.train_dataset,
         tokenizer=tokenizer,
-        max_len=args.max_sequence_len)
+        max_len=args.max_sequence_len,
+        label_map=label_map)
 
     num_sequence_labels, num_token_labels = train_dataset.get_info()
 
@@ -214,11 +226,19 @@ if __name__ == '__main__':
                 p for n, p in model.named_parameters() if any(
                     nd in n for nd in no_decay)], "weight_decay": 0.0}, ]
 
-    train(
-        args,
-        train_dataset,
-        dev_dataset,
-        test_dataset,
-        model,
-        tokenizer,
-        label_map)
+    if args.do_train:
+        train(
+            args=args,
+            train_dataset=train_dataset,
+            dev_dataset=dev_dataset,
+            test_dataset=test_dataset,
+            model=model,
+            tokenizer=tokenizer,
+            label_map=label_map)
+    elif args.continue_train:
+        pass
+    else:
+        results, words_list, preds_list = evaluate(
+            args=args, model=model, dataset=test_dataset, label_map=label_map, tokenizer=tokenizer)
+
+        write_predictions(test_dataset, words_list, preds_list)

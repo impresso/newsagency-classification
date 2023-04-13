@@ -1,0 +1,11 @@
+'O': 0
+B-pers: 1
+I-pers: 2
+B-loc: 3
+I-loc: 4
+B-org: 5
+I-org: 6
+B-prod: 7
+I-prod: 8
+B-time: 9
+I-time: 10
