@@ -75,6 +75,12 @@ def get_tsv_data(path: Optional[str] = None, url: Optional[str] = None) -> str:
 
 
 def write_predictions(tsv_dataset, words_list, preds_list):
+    """
+    @param tsv_dataset:
+    @param words_list:
+    @param preds_list:
+    @return:
+    """
     with open(tsv_dataset, 'r') as f:
         tsv_lines = f.readlines()
 

@@ -1,8 +1,5 @@
 import torch
-import pandas as pd
 from torch.utils.data import Dataset
-from sklearn.preprocessing import (LabelEncoder,
-                                   MultiLabelBinarizer)
 
 COLUMNS = ["TOKEN", "NE-COARSE-LIT", "NE-COARSE-METO", "NE-FINE-LIT",
            "NE-FINE-METO", "NE-FINE-COMP", "NE-NESTED",
@@ -44,10 +41,8 @@ def _read_conll(path, encoding='utf-8', sep=None, indexes=None, dropna=True):
             if any(
                     substring in line for substring in [
                         'DOCSTART',
-                        '###',
                         "# id",
-                        "# ",
-                        '###']):
+                        "# "]):
                 continue
 
             if line == '':
@@ -103,8 +98,6 @@ def _read_conll(path, encoding='utf-8', sep=None, indexes=None, dropna=True):
                     if ['Token'] not in res:
                         has_entities = all(v == 'O' for v in res[1])
                         data.append([line_idx, res, has_entities])
-                        # import pdb;
-                        # pdb.set_trace()
             except Exception as e:
                 if dropna:
                     return
@@ -114,51 +107,27 @@ def _read_conll(path, encoding='utf-8', sep=None, indexes=None, dropna=True):
         return data
 
 
-class NERDataset(Dataset):
-
-    def __init__(self, filename):
-
-        indexes = list(range(len(COLUMNS)))
-
-        self.phrases = _read_conll(
-            filename,
-            encoding='utf-8',
-            sep='\t',
-            indexes=indexes,
-            dropna=True)
-
-    def __len__(self):
-        return len(self.phrases)
-
-    def __getitem__(self, index):
-        phrase = str(self.phrases[index])
-
-        return phrase
-
-    def get_info(self):
-        return self.phrases
-
-    def get_dataframe(self):
-        return self.phrases
-
-
 class NewsDataset(Dataset):
+    """
+    """
 
-    def __init__(
-            self,
-            tsv_dataset,
-            tokenizer,
-            max_len,
-            test=False,
-            label_map=None):
+    def __init__(self, tsv_dataset, tokenizer,
+                 max_len,
+                 test=False,
+                 label_map=None):
+        """
+        Initiliazes a dataset in IOB format.
+        :param tsv_dataset: tsv filename of the train/test/dev dataset
+        :param tokenizer: the LM tokenizer
+        :param max_len: the maximum sequence length, get be 512 for BERT-based LMs
+        :param test: if it is the test dataset or not - can be disconsidered for now
+        :param label_map: the label map {0: 'B-pers'}
+        """
         self.tokenizer = tokenizer
         self.max_len = max_len
         self.test = test
 
-        columns = ["TOKEN", "NE-COARSE-LIT", "NE-COARSE-METO", "NE-FINE-LIT",
-                   "NE-FINE-METO", "NE-FINE-COMP", "NE-NESTED",
-                   "NEL-LIT", "NEL-METO", "MISC"]
-        indexes = list(range(len(columns)))
+        indexes = list(range(len(COLUMNS)))
 
         self.tsv_dataset = tsv_dataset
 
@@ -198,6 +167,11 @@ class NewsDataset(Dataset):
         return {v: k for k, v in self.label_map.items()}
 
     def tokenize_and_align_labels(self, sequence, token_targets):
+        """
+        :param sequence:
+        :param token_targets:
+        :return:
+        """
         tokenized_inputs = self.tokenizer(
             sequence,
             padding="max_length",
@@ -245,6 +219,10 @@ class NewsDataset(Dataset):
         return tokenized_inputs
 
     def __getitem__(self, index):
+        """
+        :param index:
+        :return:
+        """
         sequence = self.tokens[index]
         # sequence = ' '.join(self.tokens[index])
         # if not self.test:
@@ -270,47 +248,27 @@ class NewsDataset(Dataset):
             encoding['token_type_ids'], dtype=torch.long)
         attention_mask = torch.tensor(
             encoding['attention_mask'], dtype=torch.long)
-        # offset_mapping = torch.tensor(encoding['offset_mapping'], dtype=torch.long)
-        # offset_mapping = torch.sub(torch.transpose(offset_mapping, 0, 1)[1],
-        #                            torch.transpose(offset_mapping, 0, 1)[0])
 
-        # print(token_targets)
-        # Pad the tensor with zeros until the maximum length
         token_targets = torch.tensor(
             encoding['token_targets'], dtype=torch.long)
-        # print(input_ids.shape, token_targets.shape)
-        # import pdb;pdb.set_trace()
-        # padded_token_targets = torch.empty(self.max_len, dtype=torch.long).fill_(-100)
-        # padded_token_targets[:token_targets[:self.max_len].size(0)] = token_targets[:self.max_len]
 
         sequence_targets = torch.tensor(sequence_targets, dtype=torch.long)
 
         assert input_ids.shape == attention_mask.shape
-        # assert sequence_targets.shape == attention_mask.shape
-
         assert token_targets.shape == input_ids.shape
 
-        if self.test:
-            return {
-                'sequence': ' '.join(sequence),
-                'input_ids': input_ids,
-                'attention_mask': attention_mask,
-                'sequence_targets': sequence_targets,
-                'token_targets': token_targets,
-                # 'offset_mapping': offset_mapping,
-                'token_type_ids': token_type_ids}
-        else:
-
-            return {
-                'sequence': ' '.join(sequence),
-                'input_ids': input_ids,
-                'attention_mask': attention_mask,
-                'sequence_targets': sequence_targets,
-                'token_targets': token_targets,
-                # 'offset_mapping': offset_mapping,
-                'token_type_ids': token_type_ids}
+        return {
+            'sequence': ' '.join(sequence),
+            'input_ids': input_ids,
+            'attention_mask': attention_mask,
+            'sequence_targets': sequence_targets,
+            'token_targets': token_targets,
+            'token_type_ids': token_type_ids}
 
     def get_info(self):
+        """
+        :return:
+        """
         num_sequence_labels = len(set(self.sequence_targets))
         num_token_labels = len(set(sum(self.token_targets, [])))
         return num_sequence_labels, num_token_labels
