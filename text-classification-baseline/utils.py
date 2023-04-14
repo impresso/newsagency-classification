@@ -74,13 +74,13 @@ def get_tsv_data(path: Optional[str] = None, url: Optional[str] = None) -> str:
             return f.read()
 
 
-def write_predictions(dataset, words_list, preds_list):
-    with open(dataset, 'r') as f:
+def write_predictions(tsv_dataset, words_list, preds_list):
+    with open(tsv_dataset, 'r') as f:
         tsv_lines = f.readlines()
 
     flat_words_list = [item for sublist in words_list for item in sublist]
     flat_preds_list = [item for sublist in preds_list for item in sublist]
-    with open(dataset.replace('.tsv', '_pred.tsv'), 'w') as f:
+    with open(tsv_dataset.replace('.tsv', '_pred.tsv'), 'w') as f:
         idx = 0
         for idx_tsv_line, tsv_line in enumerate(tsv_lines):
             if idx_tsv_line == 0:

@@ -182,7 +182,7 @@ if __name__ == '__main__':
         print(label_map)
 
     train_dataset = NewsDataset(
-        dataset=args.train_dataset,
+        tsv_dataset=args.train_dataset,
         tokenizer=tokenizer,
         max_len=args.max_sequence_len,
         label_map=label_map)
@@ -192,13 +192,13 @@ if __name__ == '__main__':
     label_map = train_dataset.get_label_map()
     # dataset, tokenizer, max_len, test = False, label_map = None
     dev_dataset = NewsDataset(
-        dataset=args.dev_dataset,
+        tsv_dataset=args.dev_dataset,
         tokenizer=tokenizer,
         max_len=args.max_sequence_len,
         label_map=label_map)
 
     test_dataset = NewsDataset(
-        dataset=args.test_dataset,
+        tsv_dataset=args.test_dataset,
         tokenizer=tokenizer,
         max_len=args.max_sequence_len,
         label_map=label_map)
@@ -269,4 +269,4 @@ if __name__ == '__main__':
         results, words_list, preds_list = evaluate(
             args=args, model=model, dataset=test_dataset, label_map=label_map, tokenizer=tokenizer)
 
-        write_predictions(test_dataset, words_list, preds_list)
+        write_predictions(test_dataset.get_filename(), words_list, preds_list)

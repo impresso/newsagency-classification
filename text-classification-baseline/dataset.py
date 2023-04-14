@@ -146,7 +146,7 @@ class NewsDataset(Dataset):
 
     def __init__(
             self,
-            dataset,
+            tsv_dataset,
             tokenizer,
             max_len,
             test=False,
@@ -160,8 +160,10 @@ class NewsDataset(Dataset):
                    "NEL-LIT", "NEL-METO", "MISC"]
         indexes = list(range(len(columns)))
 
+        self.tsv_dataset = tsv_dataset
+
         self.phrases = _read_conll(
-            dataset,
+            tsv_dataset,
             encoding='utf-8',
             sep='\t',
             indexes=indexes,
@@ -185,6 +187,9 @@ class NewsDataset(Dataset):
 
     def __len__(self):
         return len(self.phrases)
+
+    def get_filename(self):
+        return self.tsv_dataset
 
     def get_label_map(self):
         return self.label_map

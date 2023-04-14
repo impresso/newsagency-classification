@@ -560,7 +560,7 @@ def train(
                         results, words_list, preds_list = evaluate(
                             args, model, dev_dataset, label_map, tokenizer=tokenizer)
 
-                        write_predictions(dev_dataset, words_list, preds_list)
+                        write_predictions(dev_dataset.get_filename(), words_list, preds_list)
 
                         for key, value in results.items():
                             tb_writer.add_scalar(
@@ -613,6 +613,6 @@ def train(
     results, words_list, preds_list = evaluate(
         args, model, test_dataset, label_map, tokenizer=tokenizer)
 
-    write_predictions(test_dataset, words_list, preds_list)
+    write_predictions(test_dataset.get_filename(), words_list, preds_list)
 
     return global_step, tr_loss / global_step
