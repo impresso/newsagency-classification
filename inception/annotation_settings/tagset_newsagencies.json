@@ -84,6 +84,9 @@
     "tag_name" : "Wolff",
     "tag_description" : "Wolffs Telegraphisches Bureau, 1849-1934\r\n\r\nother variations: Wolffagentur, Wolffsbüro, Kontinental-Telegraphencompagnie, Continental-Telegraphen-Compagnie Wolff's Telegraphisches Büro"
   }, {
+    "tag_name" : "ag",
+    "tag_description" : "for an agency mention without specifying the agency, i.e. \"ag.\" or \"agence\", \"Agentur\""
+  }, {
     "tag_name" : "pers.ind.articleauthor",
     "tag_description" : "author of the newspaper article"
   }, {

@@ -128,6 +128,9 @@
         "tag_name" : "Wolff",
         "tag_description" : "Wolffs Telegraphisches Bureau, 1849-1934\r\n\r\nother variations: Wolffagentur, Wolffsbüro, Kontinental-Telegraphencompagnie, Continental-Telegraphen-Compagnie Wolff's Telegraphisches Büro"
       }, {
+        "tag_name" : "ag",
+        "tag_description" : "for an agency mention without specifying the agency, i.e. \"ag.\" or \"agence\", \"Agentur\""
+      }, {
         "tag_name" : "pers.ind.articleauthor",
         "tag_description" : "author of the newspaper article"
       }, {
@@ -151,7 +154,7 @@
     "link_type_name" : null,
     "link_type_role_feature_name" : null,
     "link_type_target_feature_name" : null,
-    "traits" : "{\"multipleRows\":false,\"dynamicSize\":false,\"collapsedRows\":1,\"expandedRows\":1,\"editorType\":\"AUTO\",\"keyBindings\":[{\"keyCombo\":\"1\",\"value\":\"AFP\"},{\"keyCombo\":\"2\",\"value\":\"AP\"},{\"keyCombo\":\"3\",\"value\":\"ATS-SDA\"},{\"keyCombo\":\"R\",\"value\":\"Reuters\"},{\"keyCombo\":\"H\",\"value\":\"Havas\"},{\"keyCombo\":\"W\",\"value\":\"Wolff\"},{\"keyCombo\":\"T\",\"value\":\"TASS\"},{\"keyCombo\":\"U\",\"value\":\"UP-UPI\"}]}",
+    "traits" : "{\"multipleRows\":false,\"dynamicSize\":false,\"collapsedRows\":1,\"expandedRows\":1,\"editorType\":\"AUTO\",\"keyBindings\":[{\"keyCombo\":\"1\",\"value\":\"AFP\"},{\"keyCombo\":\"2\",\"value\":\"AP\"},{\"keyCombo\":\"3\",\"value\":\"ATS-SDA\"},{\"keyCombo\":\"R\",\"value\":\"Reuters\"},{\"keyCombo\":\"H\",\"value\":\"Havas\"},{\"keyCombo\":\"W\",\"value\":\"Wolff\"},{\"keyCombo\":\"T\",\"value\":\"TASS\"},{\"keyCombo\":\"U\",\"value\":\"UP-UPI\"},{\"keyCombo\":\"D\",\"value\":\"DPA\"},{\"keyCombo\":\"P\",\"value\":\"pers.ind.articleauthor\"}]}",
     "curatable" : true
   } ],
   "uiName" : "Impresso News Agencies",
@@ -165,11 +168,11 @@
   "allow_stacking" : false,
   "cross_sentence" : true,
   "show_hover" : true,
-  "anchoring_mode" : "TOKENS",
+  "anchoring_mode" : "CHARACTERS",
   "overlap_mode" : "NO_OVERLAP",
   "validation_mode" : "ALWAYS",
   "lock_to_token_offset" : false,
-  "multiple_tokens" : true,
+  "multiple_tokens" : false,
   "project_name" : "impresso-newsagencies: test project",
   "linked_list_behavior" : false,
   "on_click_javascript_action" : null,
