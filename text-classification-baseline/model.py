@@ -81,9 +81,6 @@ class ModelForSequenceAndTokenClassification(PreTrainedModel):
     """
 
     config_class = AutoConfig
-    # load_tf_weights = load_tf_weights_in_bert
-    # base_model_prefix = "bert"
-    # supports_gradient_checkpointing = True
     _keys_to_ignore_on_load_missing = [r"position_ids"]
 
     def _init_weights(self, module):
@@ -104,9 +101,6 @@ class ModelForSequenceAndTokenClassification(PreTrainedModel):
             module.bias.data.zero_()
             module.weight.data.fill_(1.0)
 
-    # def _set_gradient_checkpointing(self, module, value=False):
-    #     if isinstance(module, AutoEncoder):
-    #         module.gradient_checkpointing = value
 
     def forward(
         self,
@@ -244,21 +238,17 @@ def evaluate(
                     args.device), "token_labels": batch["token_targets"].to(
                     args.device), 'token_type_ids': batch['token_type_ids'].to(args.device)}
 
-            # import
-            # if args.model_type != "distilbert":
-            #     inputs["token_type_ids"] = (
-            #         batch[2] if args.model_type in ["bert", "xlnet"] else None
-            #     )  # XLM and RoBERTa don"t use segment_ids
+            if args.model_type != "distilbert":
+                inputs["token_type_ids"] = (
+                    batch[2] if args.model_type in ["bert", "xlnet"] else None
+                )  # XLM and RoBERTa don"t use segment_ids
             outputs = model(**inputs)
-            # tmp_eval_loss, logits = outputs[:2]
 
             sequence_result, tokens_result = outputs[0], outputs[1]
             token_logits = tokens_result.logits
 
             # the second return value is logits
             sequence_logits = sequence_result.logits
-
-            # correct_predictions += torch.sum(sequence_preds == sequence_targets)
 
             tmp_eval_loss = sequence_result.loss
 
@@ -280,7 +270,6 @@ def evaluate(
                 input_ids) for input_ids in inputs["input_ids"].detach().cpu().numpy()]
             text_sentences = [text.split(' ') for text in batch["sequence"]]
 
-            # offset_mappings = inputs["offset_mapping"].detach().cpu().numpy()
         else:
             out_token_preds = np.append(
                 out_token_preds, token_logits.detach().cpu().numpy(), axis=0)
@@ -303,16 +292,6 @@ def evaluate(
             text_sentences = np.append(
                 text_sentences, [
                     text.split(' ') for text in batch["sequence"]], axis=0)
-
-            # offset_mappings = np.append(
-            #     offset_mappings,
-            #     inputs["offset_mapping"].detach().cpu().numpy(),
-            #     axis=0)
-        # finish += 1
-
-        # if finish == 20:
-        #     break
-        #
 
     out_token_preds = np.argmax(out_token_preds, axis=2)
     out_sequence_preds = np.argmax(out_sequence_preds, axis=1)
@@ -389,9 +368,6 @@ def train(
     train_sampler = RandomSampler(
         train_dataset) if args.local_rank == -1 else DistributedSampler(train_dataset)
 
-    # data_collator = DataCollatorForTokenClassification(
-    #     tokenizer, pad_to_multiple_of=(8 if args.fp16 else None)
-    # )
     train_dataloader = DataLoader(
         train_dataset,
         sampler=train_sampler,

@@ -183,8 +183,6 @@ class NewsDataset(Dataset):
             return_token_type_ids=True
         )
         labels = []
-        attention_mask = []
-        token_type_ids = []
         label_all_tokens = False
         # for i, label in enumerate(tokens):
         word_ids = tokenized_inputs.word_ids()
@@ -195,24 +193,16 @@ class NewsDataset(Dataset):
             # ignored in the loss function.
             if word_idx is None:
                 labels.append(-100)
-                attention_mask.append(0)
-                token_type_ids.append(0)
             # We set the label for the first token of each word.
             elif word_idx != previous_word_idx:
                 labels.append(token_targets[word_idx])
-                attention_mask.append(1)
-                token_type_ids.append(0)
             # For the other tokens in a word, we set the label to either the current label or -100, depending on
             # the label_all_tokens flag.
             else:
                 if label_all_tokens:
                     labels.append(token_targets[word_idx])
-                    attention_mask.append(1)
-                    token_type_ids.append(0)
                 else:
                     labels.append(-100)
-                    attention_mask.append(0)
-                    token_type_ids.append(0)
             previous_word_idx = word_idx
 
         tokenized_inputs["token_targets"] = labels
@@ -224,22 +214,8 @@ class NewsDataset(Dataset):
         :return:
         """
         sequence = self.tokens[index]
-        # sequence = ' '.join(self.tokens[index])
-        # if not self.test:
         sequence_targets = self.sequence_targets[index]
         token_targets = self.token_targets[index]
-
-        # encoding = self.tokenizer.encode_plus(
-        #     sequence,
-        #     None,
-        #     add_special_tokens=True,
-        #     max_length=self.max_len,
-        #     padding='max_length',
-        #     is_split_into_words=True,
-        #     return_offsets_mapping=True,
-        #     return_token_type_ids=True,  # TODO: add token type ids
-        #     truncation=True
-        # )
 
         encoding = self.tokenize_and_align_labels(sequence, token_targets)
 
@@ -273,5 +249,3 @@ class NewsDataset(Dataset):
         num_token_labels = len(set(sum(self.token_targets, [])))
         return num_sequence_labels, num_token_labels
 
-    def get_dataframe(self):
-        return self.df
