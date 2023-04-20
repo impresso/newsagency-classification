@@ -31,8 +31,16 @@ The multiclass classifier will have two predictions heads:
 
 ## How-tos
 
+First, you need an environement with `python >= 3.7` on the server, and activate it.
+`source activate YOUR_ENV`
 
-### Training a model
+Next, if you do not have already the project on `/scratch/USERNAME`, you can move them from your computer with `scp`. Example:
+`scp -r newsagency-classification/text-classification-baseline/ USERNAME@iccluster040.iccluster.epfl.ch:/scratch/USERNAME/OTHER_FOLDERS/newsagency-classification/`
+
+Install the requirements:
+`pip install -r requirements.txt`
+
+Training a model based on `bert-base-cased`:
 ```
 TOKENIZERS_PARALLELISM=false python main.py \
       --model_name_or_path bert-base-cased\
@@ -51,3 +59,5 @@ Other models can be found at [HuggingFace](https://huggingface.co/), such as mod
 `--train_dataset`, `--train_dataset`, and `--train_dataset`: point to the path of the *.tsv files;\
 `--output_dir`: points to the folder where the experiments (models and predictions) are saved;\
 `--device`: can be `cuda` or `cpu`
+
+
