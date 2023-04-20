@@ -238,10 +238,10 @@ def evaluate(
                     args.device), "token_labels": batch["token_targets"].to(
                     args.device), 'token_type_ids': batch['token_type_ids'].to(args.device)}
 
-            if args.model_type != "distilbert":
-                inputs["token_type_ids"] = (
-                    batch[2] if args.model_type in ["bert", "xlnet"] else None
-                )  # XLM and RoBERTa don"t use segment_ids
+            # if args.model_type != "distilbert":
+            #     inputs["token_type_ids"] = (
+            #         batch[2] if args.model_type in ["bert", "xlnet"] else None
+            #     )  # XLM and RoBERTa don"t use segment_ids
             outputs = model(**inputs)
 
             sequence_result, tokens_result = outputs[0], outputs[1]
