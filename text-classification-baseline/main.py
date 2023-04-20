@@ -177,8 +177,9 @@ if __name__ == '__main__':
 
     tokenizer = AutoTokenizer.from_pretrained(args.model_name_or_path)
 
+    # import pdb;pdb.set_trace()
     with open('config.yml', 'r') as f:
-        label_map = yaml.load(f)
+        label_map = yaml.safe_load(f)
         print(label_map)
 
     train_dataset = NewsDataset(
