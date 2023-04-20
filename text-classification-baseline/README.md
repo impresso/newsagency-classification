@@ -42,7 +42,7 @@ Install the requirements:
 
 Training a model based on `bert-base-cased`:
 ```
-TOKENIZERS_PARALLELISM=false python main.py \
+CUDA_VISIBLE_DEVICES=1 TOKENIZERS_PARALLELISM=false python main.py \
       --model_name_or_path bert-base-cased\
       --train_dataset data/hipe2020/fr/HIPE-2022-v2.1-hipe2020-train-fr.tsv \
       --dev_dataset data/hipe2020/fr/HIPE-2022-v2.1-hipe2020-dev-fr.tsv \
