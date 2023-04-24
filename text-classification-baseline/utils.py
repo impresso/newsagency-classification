@@ -81,12 +81,12 @@ def write_predictions(tsv_dataset, words_list, preds_list):
     @param preds_list:
     @return:
     """
-    with open(tsv_dataset, 'r') as f:
+    with open(tsv_dataset, 'r', encoding='utf-8', errors='replace') as f:
         tsv_lines = f.readlines()
 
     flat_words_list = [item for sublist in words_list for item in sublist]
     flat_preds_list = [item for sublist in preds_list for item in sublist]
-    with open(tsv_dataset.replace('.tsv', '_pred.tsv'), 'w') as f:
+    with open(tsv_dataset.replace('.tsv', '_pred.tsv'), 'w', encoding='utf-8') as f:
         idx = 0
         for idx_tsv_line, tsv_line in enumerate(tsv_lines):
             if idx_tsv_line == 0:
@@ -105,6 +105,7 @@ def write_predictions(tsv_dataset, words_list, preds_list):
                 except BaseException:
                     import pdb
                     pdb.set_trace()
+                    #continue
                 idx += 1
                 f.flush()
 
