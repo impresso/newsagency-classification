@@ -76,9 +76,9 @@ def download_document(
     """Downloads an annotated document (by ID) from INCEpTION as unzipped UIMA/XMI."""
 
     annotated_doc = inception_client.api.annotation(
-        project_id, document_id, user, annotation_format=InceptionFormat.XMI
+        project_id, document_id, user, annotation_format=InceptionFormat.UIMA_CAS_XMI
     )
-
+    
     xmi_document = zipfile.ZipFile(io.BytesIO(annotated_doc))
     xmi_document.extractall(output_dir)
     LOGGER.info(f'Downloaded annotations from user {user} for {document_id} from project {project_id}')

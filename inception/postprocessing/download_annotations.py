@@ -102,11 +102,10 @@ def run_download_annotations(
                 input_dir, ann_planning, lang
         )
 
-    import pdb; pdb.set_trace()
     # create a couple of inverted indexes to be able to roundtrip from document name (canonical) to
     # inception document ID and viceversa
     inception_project = find_project_by_name(
-        inception_client, f"impresso-newsagencies: {lang.upper()}"
+        inception_client, f"impresso-newsagencies_-{lang.lower()}"
     )
     idx_id2name, idx_name2id = index_project_documents(
         inception_project.project_id, inception_client
@@ -114,7 +113,7 @@ def run_download_annotations(
 
     # create the download folder if not yet existing
     download_dir = os.path.join(output_dir, lang)
-    Path(download_dir).mkdir(exist_ok=True)
+    Path(download_dir).mkdir(parents=True, exist_ok=True)
 
     #only download finished annotations
     finished_df = assignees_df[assignees_df["Finished Annotation"] == True]
@@ -124,8 +123,9 @@ def run_download_annotations(
     for index, row in tqdm(list(finished_df.iterrows())):
 
         assignee = row["Annotator"]
-        document_name = row["Document ID"]
+        document_name = row["Document ID"] + ".xmi"
 
+        
         try:
             assert document_name in idx_name2id
         except AssertionError:
