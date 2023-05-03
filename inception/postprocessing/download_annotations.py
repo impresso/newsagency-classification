@@ -21,7 +21,7 @@ import pandas as pd
 from docopt import docopt
 from tqdm import tqdm
 
-from helpers_inception import (
+from helpers import (
     download_document,
     find_project_by_name,
     index_project_documents,
