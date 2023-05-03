@@ -26,6 +26,7 @@ END_OF_LINE_FLAG = "EndOfLine"
 NIL_FLAG = "NIL"
 LEVENSHTEIN_FLAG = "LED"
 AUTO_SENTENCE_FLAG = "PySBDSegment"
+TRANSCIPT_FLAG = "Transcript:"
 
 COL_LABELS = [
     "TOKEN",
@@ -37,8 +38,41 @@ COL_LABELS = [
     "NE-NESTED",
     "NEL-LIT",
     "NEL-METO",
+    "RENDER",
+    "SEG",
+    "OCR-INFO",
     "MISC",
 ]
+
+WIKIDATA_IDs = {
+    "AFP": "Q40464",
+    "ANP": "Q966898",
+    "ANSA": "Q392934",
+    "AP":	"Q40469",
+    "APA": "Q680662",
+    "ATS-SDA": "Q430109",
+    "Belga": "Q815453",
+    "BTA": "Q2031809",
+    "CTK": "Q341118",
+    "DDP-DAPD": "Q265330",
+    "DNB": "Q1205856",
+    "Domei": "Q2913752",
+    "DPA": "Q312653",
+    "Europapress": "Q1315548",
+    "Extel": "Q1525848",
+    "Havas": "Q2826560",
+    "Interfax": "Q379271",
+    "PAP": "Q1484980",
+    "Reuters": "Q130879",
+    "SPK-SMP": "Q2256560",
+    "Stefani": "Q1415690",
+    "TANJUG": "Q371267",
+    "TASS": "Q223799",
+    "Telunion": "Q3517301",
+    "TT": "Q1312158",
+    "UP-UPI": "Q493845",
+    "Wolff": "Q552226",
+}
 
 
 def parse_args():
@@ -95,13 +129,14 @@ def read_xmi(xmi_file: str, xml_file: str, sanity_check: bool = True) -> Impress
     :param str xmi_file: path to xmi_file.
     :param str xml_file: path to xml schema file.
     :param bool sanity_check: Perform annotation-independent sanity check.
-    :return: A namedtuple with all the annotation information.
+    :return: "too_noisy" if document-level OCRNoise flag is set to True
+                else: A namedtuple with all the annotation information.
     :rtype: ImpressoDocument
 
     """
 
     neType = "webanno.custom.ImpressoNewsAgencies" #"webanno.custom.ImpressoNamedEntity"
-    corefType = "webanno.custom.ImpressoCoreference"
+    OCRNoiseType = "webanno.custom.OCRNoise"
     tokenType = "de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token"
     segmentType = "de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Sentence"
     pySBDSegmentType = "webanno.custom.PySBDSegment"
@@ -129,6 +164,12 @@ def read_xmi(xmi_file: str, xml_file: str, sanity_check: bool = True) -> Impress
     if sanity_check:
         check_entity_boundaries(cas.select(neType), tokenType, cas, filename)
 
+    #if OCRNoise flag on document level: discard the document
+    if cas.select(OCRNoiseType):
+        #check if OCRNoise flag is set to True
+        if cas.select(OCRNoiseType)[0].not_usable:
+            return "too_noisy"
+
     # read in the tokens
     for seg in cas.select(segmentType):
         tokens = []
@@ -150,7 +191,7 @@ def read_xmi(xmi_file: str, xml_file: str, sanity_check: bool = True) -> Impress
             except Exception as e:
                 msg = f"Problem with token annotation {tok.xmiID} in {xmi_file}"
                 logging.error(msg)
-
+        
         for img in cas.select_covered(imgLinkType, seg):
             try:
                 iiif_link = img.link
@@ -170,7 +211,7 @@ def read_xmi(xmi_file: str, xml_file: str, sanity_check: bool = True) -> Impress
             "tokens": tokens,
             "iiif_link": iiif_link,
         }
-
+        
         segments[seg.xmiID] = segment
 
 
@@ -263,7 +304,7 @@ def read_xmi(xmi_file: str, xml_file: str, sanity_check: bool = True) -> Impress
         relations,
         cas.sofa_string,
     )
-
+    
     return document
 
 
@@ -278,13 +319,11 @@ def convert_data(doc: ImpressoDocument, drop_fine: bool) -> List[List]:
     """
 
     rows = []
-
-    # add meta header on the level of document
-    rows += get_document_metadata(doc)
+    newsagencies = set()
 
     for i_seg, seg in enumerate(doc.segments.values()):
 
-        # rows.append(["# segment_iiif_link = " + seg["iiif_link"]])
+        rows.append(["# segment_iiif_link = " + seg["iiif_link"]])
 
         for i_tok, tok in enumerate(seg["tokens"]):
 
@@ -327,11 +366,11 @@ def convert_data(doc: ImpressoDocument, drop_fine: bool) -> List[List]:
             # to look up NEL
             main_ent_nonlit = non_literals[0][1] if non_literals else None
             main_ent_lit = literals[0][1] if literals else None
-
+            
             nel_nonlit = "_" #lookup_nel(tok, main_ent_nonlit, doc)
-            nel_lit = "_" #lookup_nel(tok, main_ent_lit, doc)
+            nel_lit = lookup_nel(tok, main_ent_lit, doc)
 
-            misc = set_special_flags(tok, seg, main_ent_lit, main_ent_nonlit, doc)
+            render, segmentation, ocr_info, misc = set_special_flags(tok, seg, main_ent_lit, main_ent_nonlit, doc)
 
             row = [
                 tok["surface"],
@@ -343,10 +382,32 @@ def convert_data(doc: ImpressoDocument, drop_fine: bool) -> List[List]:
                 fine_2,  # nested
                 nel_lit,
                 nel_nonlit,
+                render,
+                segmentation,
+                ocr_info,
                 misc,
             ]
-
+            
             rows.append(row)
+
+            #check if newsagency is in the row
+            if "org" in coarse_lit:
+                if nel_lit != "_":
+                    newsagencies.add(nel_lit)
+                else:
+                    newsagencies.add("unk")
+    
+    #get metadata
+    metadata = get_document_metadata(doc)
+    
+    #check if newsagency is present in the data (as a source) and add result to metadata
+    if newsagencies:
+        metadata.append(["# news-agency-as-source: " + ", ".join(newsagencies)])
+    else:
+        metadata.append(["# news-agency-as-source: _"])
+    
+    # add meta header on the level of document
+    rows = metadata + rows
 
     return rows
 
@@ -370,6 +431,7 @@ def get_document_metadata(doc: ImpressoDocument) -> List[List]:
         msg = f"Couldn't infer language from folder structure for file {doc.filepath}"
         logging.info(msg)
 
+    rows.append(["# global.columns = " + " ".join(COL_LABELS)])
     rows.append(["# language = " + lang])
     rows.append(["# newspaper = " + doc.newspaper])
     rows.append(["# date = " + doc.date])
@@ -433,7 +495,7 @@ def lookup_entity(tok: dict, mentions: dict, doc: ImpressoDocument) -> Tuple:
 
 
 def lookup_nel(
-    token, entity, doc: ImpressoDocument, strip_base: bool = True, discard_time_links: bool = True
+    token, entity, doc: ImpressoDocument, strip_base: bool = True, discard_time_links: bool = True, Wikidata: dict = WIKIDATA_IDs
 ) -> str:
     """Get the link to wikidata entry of a named entity (NE).
 
@@ -442,19 +504,25 @@ def lookup_nel(
     :param ImpressoDocument doc: Document with all the annotation information.
     :param bool strip_base: Keep only wikidata identifier instead of entire link.
     :param bool discard_time_links: Discard the wikidata link for time mentions even if present.
+    :param Wikidata: Dictionary of Wikidata Ids of News Agencies, of form WIKIDATA_IDs = {"AFP": "Q40464",}
     :return: A Link to corresponding wikidata of the entity.
     :rtype: str
 
     """
 
     if entity:
-        nel = doc.links[entity["id"]]
+        #nel = doc.links[entity["id"]]
+        agency = entity["entity_fine"].split(".")[-1]
+        try:
+            link = Wikidata[agency]
+        except:
+            link = "_"
 
         # do sanity checks only once per named entity
-        if entity["start_offset"] == token["start_offset"]:
-            validate_link(nel, entity, doc)
+        #if entity["start_offset"] == token["start_offset"]:
+        #    validate_link(nel, entity, doc)
 
-        link = nel["wikidata_id"] if nel["wikidata_id"] else NIL_FLAG
+        #link = nel["wikidata_id"] if nel["wikidata_id"] else NIL_FLAG
 
         if discard_time_links and "time" in entity["entity_coarse"]:
             link = NIL_FLAG
@@ -467,6 +535,7 @@ def lookup_nel(
     return link
 
 
+
 def set_special_flags(
     tok: dict, seg: dict, ent_lit: dict, ent_meto: dict, doc: ImpressoDocument
 ) -> str:
@@ -477,12 +546,12 @@ def set_special_flags(
     :param dict ent_lit: Annotation of the literal entity.
     :param dict ent_meto: Annotation of the metonymic entity.
     :param ImpressoDocument doc: Document with all the annotation information.
-    :return: Flags concatenated by a '|' and sorted alphabetically.
+    :return: render, segmentation, ocr_info, misc; if several flags: concatenated by a '|' and sorted alphabetically.
     :rtype: str
 
     """
-
-    flags = []
+    
+    render, seg_flag, ocr_info, misc = [], [], [], []
 
     # set flag if there is no space after the token
     first_char_after_token = doc.text[tok["end_offset"] : tok["end_offset"] + 1]
@@ -492,11 +561,11 @@ def set_special_flags(
     # the second case is necessary as the underscore is use as a replacement symbol
     # for any control characters in the retokenization script
     if first_char_after_token != " " or first_char_after_token == "_":
-        flags.append(NO_SPACE_FLAG)
+        render.append(NO_SPACE_FLAG)
 
     # set flag if token is at the end of a segment (line)
     if tok == seg["tokens"][-1]:
-        flags.append(END_OF_LINE_FLAG)
+        render.append(END_OF_LINE_FLAG)
 
     # set flag if entity boundary doesn't match token boundary
     # e.g. Ruhrgebiet -> Ruhr is the entity
@@ -508,27 +577,33 @@ def set_special_flags(
         ):
             start = ent_lit["start_offset"] - tok["start_offset"]
             end = min(len(tok["surface"]), ent_lit["end_offset"] - tok["start_offset"])
-            flags.append(f"{PARTIAL_FLAG}-{start}:{end}")
-
+            seg_flag.append(f"{PARTIAL_FLAG}-{start}:{end}")
+        
         try:
             # sometimes the transcript is recorded for the metonymic entity instead of the literal one
             levenshtein_dist = max(ent_lit["levenshtein_norm"], ent_meto["levenshtein_norm"])
         except TypeError:
             levenshtein_dist = ent_lit["levenshtein_norm"]
 
-        flags.append(f"{LEVENSHTEIN_FLAG}{levenshtein_dist:.2f}")
-
+        ocr_info.append(f"{LEVENSHTEIN_FLAG}{levenshtein_dist:.2f}")
+        
+        #set a transcript flag if transcription was recorded
+        if ent_lit["transcript"]:
+            ocr_info.append(f"{TRANSCIPT_FLAG}{ent_lit['transcript']}")
 
     # set a sentence boundary
     if any(sent["end_offset"] == tok["end_offset"] for _, sent in doc.autosentences.items()):
-        flags.append(AUTO_SENTENCE_FLAG)
+        seg_flag.append(AUTO_SENTENCE_FLAG)
 
-    # set blank flag if none others are present
-    if not flags:
-        flags.append("_")
 
-    # sort alphabetically, Levenshtein always last
-    return "|".join(sorted(flags, key=lambda x: "Z" if "LED" in x else x))
+    def format_flag(flag):
+        # set blank flag if none others are present
+        if not flag:
+            flag.append("_")
+        # sort alphabetically, Levenshtein always last
+        return "|".join(sorted(flag, key=lambda x: "Z" if "LED" in x else x))
+    
+    return format_flag(render), format_flag(seg_flag), format_flag(ocr_info), format_flag(misc)
 
 
 def assemble_entity_label(matches, level, nested=False) -> str:
@@ -659,6 +734,7 @@ def start_batch_conversion(
     :rtype: None
 
     """
+    too_noisy = []
 
     xmi_files = index_inception_files(dir_in)
 
@@ -673,16 +749,29 @@ def start_batch_conversion(
         logging.info(info_msg)
 
         doc = read_xmi(f_xmi, f_schema)
+
+        #if the document is tagged with too much OCR noise, discard
+        if doc == "too_noisy":
+            logging.error(f"{f_xmi} discarded, unusable because of too much OCR Noise.")
+            too_noisy.append(str(f_xmi).split("\\")[-1])
+            continue
+
         f_tsv.parent.mkdir(parents=True, exist_ok=True)
 
         data = convert_data(doc, drop_fine)
-
-        with f_tsv.open("w", encoding="utf-8") as tsvfile:
+        
+        with f_tsv.open("w", encoding="utf-8", newline="") as tsvfile:
             writer = csv.writer(tsvfile, delimiter="\t", quoting=csv.QUOTE_NONE, quotechar="")
-            writer.writerow(COL_LABELS)
+            #writer.writerow(COL_LABELS)
             writer.writerows(data)
 
     logging.info(f"Conversion completed.")
+
+    #list all discarded documents at the end of the logfile
+    if not too_noisy:
+        too_noisy.append("None")
+    too_noisy = "\n".join(too_noisy)
+    logging.info(f"Discarded documents due to too much OCR Noise:\n{too_noisy}")
 
 
 def main():
