@@ -30,12 +30,11 @@ from helpers import (
     find_project_by_name,
     index_project_documents,
     make_inception_client,
-    make_annotation_planning_per_doc,
 )
 
 
 def run_download_annotations(
-    lang: str, output_dir: str, annotation_dir: str
+    lang: str, output_dir: str, ann_planning: str
 ) -> None:
     """Downloads annotated documents from INCEpTION.
 
@@ -45,7 +44,7 @@ def run_download_annotations(
 
     :param str lang: Language of annotated documents.
     :param str output_dir: Path of output directory where to download annotated documents.
-    :param str annotation_dir: Path of the annotation planning (csv with one row per project & annotator expected).
+    :param str ann_planning: Path to csv file with annotation planning (1 row per doc)
     :return: Does not return anything.
     :rtype: None
 
@@ -55,9 +54,10 @@ def run_download_annotations(
     inception_client = make_inception_client()
 
     # read annotation assignments for all annotated documents
-    assignees_df = make_annotation_planning_per_doc(
-                annotation_dir, lang
+    assignees_df = pd.read_csv(
+                ann_planning
         )
+    assignees_df = assignees_df[assignees_df["Corpus"] == lang]
 
     # create a couple of inverted indexes to be able to roundtrip from document name (canonical) to
     # inception document ID and viceversa

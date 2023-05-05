@@ -7,7 +7,7 @@
 CLI script to download curated documents from inception.
 
 Usage:
-    libs/download_curated.py --user=<u> --password=<pwd> --project-id=<pid> --output-dir=<od> --api-endpoint=<api> [--name-contains=<name>]
+    download_curated.py --user=<u> --password=<pwd> --project-id=<pid> --output-dir=<od> --api-endpoint=<api> [--name-contains=<name>]
 """
 
 import requests
@@ -54,6 +54,7 @@ def main(args):
     name_filter = args['--name-contains']
     api_endpoint = args['--api-endpoint']
 
+    not_completed = []
     for doc in fetch_documents(project_id, user, pwd, api_endpoint):
 
         if name_filter is not None:
@@ -66,6 +67,10 @@ def main(args):
             assert success
 
             # TODO: rename stage1 to stage2
+        else:
+            not_completed.append(doc['name'])
+    if not_completed:
+        print("The following files have not been downloaded (curation not completed yet):\n", not_completed)
 
 
 if __name__ == '__main__':

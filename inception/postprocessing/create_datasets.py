@@ -2,7 +2,7 @@
 ...
 
 Usage:
-    create_datasets.py --log-file=<log> --input-dir=<id> --output-dir=<od> --data-version=<v> --annotation-planning=<ann> [--discarded-dir=<dis>]
+    create_datasets.py --log-file=<log> --input-dir=<id> --output-dir=<od> --data-version=<v> --annotation-planning=<ann> [--discarded-dir=<dis>] [--language=<lang>]
 """  # noqa
 
 from docopt import docopt
@@ -12,7 +12,7 @@ import os
 import pandas as pd
 import random
 from typing import List, Optional
-from helpers import make_annotation_planning_per_doc, is_tsv_complete
+from helpers import is_tsv_complete
 
 LOGGER = logging.getLogger(__name__)
 
@@ -72,14 +72,14 @@ def create_sample(input_dir, output_dir, version):
             out_tsv_file.write("\n".join(data))
 
 
-def create_datasets(input_dir: str, output_dir: str, ann_planning_dir: str, version: str, discarded_dir: str) -> None:
+def create_datasets(input_dir: str, output_dir: str, ann_planning: str, version: str, 
+                    discarded_dir: str, language: Optional[str]) -> None:
     """ 
-    Create a tsv dataset file for each language (de, fr) and split (train, dev, test)
+    Create a tsv dataset file for each (or selected) language (de, fr) and split (train, dev, test)
     
     :param input_dir: base directory where input tsv files are stored (should include folder "annotated_retok_autosegment")
     :param output_dir: directory where concatenated tsv files are stored
-    :param ann_planning_dir: path to the documents containing the annotation planning 
-            (document with 1 row per project & annotator [ANNOTATION_PLANNING in helpers.py] and doc with train/dev/test info [train-def-text_{lang}.csv] )
+    :param ann_planning: path to the document containing the annotation planning (one row per doc)
     :param version: version of data, will be included in filename
     """
     def derive_document_path(row, input_dir, lang):
@@ -99,7 +99,11 @@ def create_datasets(input_dir: str, output_dir: str, ann_planning_dir: str, vers
         else:
             return None
 
-    langs = ["de"]# ["fr", "de"]
+    if language:
+        langs = [language]
+    else:
+        langs = ["de", "fr"]
+
     splits = ["train", "dev", "test"]
     basedir = os.path.join(output_dir, version)
 
@@ -108,28 +112,25 @@ def create_datasets(input_dir: str, output_dir: str, ann_planning_dir: str, vers
         Path(basedir).mkdir(parents=True, exist_ok=True)
 
     for lang in langs:
+
         #check if there are discarded files (due to too bad OCR)
         discarded =[]
         if discarded_dir:
-            discarded_file = discarded_dir + "\\" + f"discarded_{lang}.txt"
+            discarded_file = discarded_dir + "/" + f"discarded_{lang}.txt"
             #check if file exists for this language
             if Path(discarded_file).is_file():
                 with open(Path(discarded_file), "r") as f:
                     discarded = [line.strip() for line in f.readlines()]
 
-        assignments_df = make_annotation_planning_per_doc(
-                ann_planning_dir, lang
+        assignments_df = pd.read_csv(
+                ann_planning
         )
         assignments_df = assignments_df[
-            (assignments_df["Document ID"].notnull())
+            (assignments_df["Corpus"] == lang)
+            & (assignments_df["Document ID"].notnull())
             & (assignments_df["Finished Annotation"] == True)
             & (~assignments_df["Document ID"].isin(discarded))
         ]
-
-        #add information of split
-        split_df = pd.read_csv(ann_planning_dir + f"train-dev-test_{lang}.csv")
-        assignments_df = assignments_df.merge(split_df, left_on="Document ID", right_on="uid", how="left")
-        assignments_df.drop(columns="uid", inplace=True)
 
         # add path of each document in the dataframe
         # if it's marked as isMiniRef, then it's different
@@ -187,11 +188,9 @@ def main(args):
     input_dir = args["--input-dir"]
     output_dir = args["--output-dir"]
     data_version = args["--data-version"]
-    ann_planning_dir = args["--annotation-planning"]
-    try:
-        discarded_dir = args["--discarded-dir"]
-    except:
-        discarded_dir = None
+    ann_planning = args["--annotation-planning"]
+    discarded_dir = args["--discarded-dir"]
+    language = args["--language"]
 
     logging.basicConfig(
         filename=log_file,
@@ -200,7 +199,7 @@ def main(args):
         format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     )
 
-    create_datasets(input_dir, output_dir, ann_planning_dir, data_version, discarded_dir)
+    create_datasets(input_dir, output_dir, ann_planning, data_version, discarded_dir, language)
 
 
 if __name__ == "__main__":

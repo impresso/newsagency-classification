@@ -21,93 +21,11 @@ from pycaprio import Pycaprio
 from pycaprio.core.objects.project import Project
 from pycaprio.mappings import InceptionFormat
 
-ANNOTATION_PLANNING = "Annotation Planning.csv"
-DATA_PATH = "data/"
-
 
 LOGGER = logging.getLogger(__name__)
 
 HYPHENS = ["-", "¬"]
 PATTERN_HYPHEN_CLEANING = re.compile(fr'[{"".join(HYPHENS)}]\s*')
-
-
-
-
-def get_annotated_ids(annotated_docs: str, lang: str) -> List[str]:
-    """ 
-    Parameters:
-        annotated_docs: either directory which contains all the articles for annotation (xmi-articles are queried in subfolder core_{lang}/xmi/)
-                        or path of txt-file which contains list of all the annotated articles
-        lang: language ("de" or "fr")
-    """
-    if os.path.isfile(annotated_docs):
-        with open(annotated_docs, "r") as f:
-            doc_IDs = [line.rstrip() for line in f]
-
-    if os.path.isdir(annotated_docs):
-        annotation_core_dir = join(DATA_PATH, f"for_annotation/core_{lang.lower()}/xmi/")
-        annotation_IA_dir = join(DATA_PATH, f"for_annotation/IA_{lang.lower()}/xmi/")
-
-        #get document IDs of docs which were annotated for the project 
-        doc_IDs_with_ending = [f for f in listdir(annotation_core_dir) if isfile(join(annotation_core_dir, f))]
-        doc_IDs_with_ending += [f for f in listdir(annotation_IA_dir) if isfile(join(annotation_IA_dir, f))]
-
-        doc_IDs = sorted([filename[:-4] for filename in doc_IDs_with_ending])
-
-        with open(annotated_docs + f"annotated_{lang}_docIDs.txt", "w") as f:
-            for id in doc_IDs:
-                f.write(id +"\n")
-    
-    return doc_IDs
-        
-
-
-def annotation_planning2df(annotation_planning_path: str):
-    """
-    Takes the csv file used to organise for annotation and turns it into a pandas Dataframe with the following columns:
-        Annotator (str), Inception Project (str), Newspapers (list of str), Finished Annotation (bool)
-    :rtype pd.DataFrame
-    """
-    ann_planning = pd.read_csv(annotation_planning_path, usecols=["Annotator", "Inception Project", "Newspapers", "Finished Annotation"])
-    ann_planning['Annotator'] = ann_planning['Annotator'].fillna(method='ffill')
-    ann_planning['Newspapers'] = ann_planning['Newspapers'].apply(lambda x: x.split(", "))
-
-    return ann_planning
-
-
-def make_annotation_planning_per_doc(annotation_dir: str, lang: str):
-    """
-    Makes an annotation planning for one project, with one row per annotated document
-
-    Parameters:
-        annotation_dir: path to the directory containing the annotation planning (1 row per project & annotator), 
-                                    as well as a txt-file with all the articles which were annotated
-        lang: language ("de" or "fr")
-        output_dir: directory where the "new" annotation planning should be stored
-
-    returns: DataFrame with columns ['Document ID', 'Annotator', 'Inception Project', 'Finished Annotation']
-    :rtype pd.DataFrame
-    """
-
-    #specify the project and its directory
-    project = "impresso-newsagencies: " + lang.upper()
-  
-
-    #get the annotation planning and select only the lines specific to the project
-    annotation_df = annotation_planning2df(annotation_dir + ANNOTATION_PLANNING)
-    annotation_df = annotation_df.loc[annotation_df['Inception Project'] == project]
-
-    #get IDs of all annotated documents
-    doc_IDs = get_annotated_ids(annotation_dir, lang)
-
-    #join annotation planning with document IDs (-> one entry per doc ID)
-    annotation_df = annotation_df.explode("Newspapers")
-    doc_IDs_df = pd.DataFrame(doc_IDs, columns=['Document ID'])
-    doc_IDs_df['Newspapers'] = doc_IDs_df['Document ID'].apply(lambda s: s.split("-")[0])
-    annotation_df = doc_IDs_df.merge(annotation_df, on='Newspapers')
-    annotation_df.drop("Newspapers", axis=1, inplace=True)
-    
-    return annotation_df
 
 
 

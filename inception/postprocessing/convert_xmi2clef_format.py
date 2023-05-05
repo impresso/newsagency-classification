@@ -719,9 +719,9 @@ def check_entity_boundaries(entities: Generator, tokenType: str, cas: Cas, fname
             msg = f"Entity boundary of '{ent_surface}' doesn't match token boundary in {fname}. Full tokens covered: '{ent_tok_surfaces}'"
             logging.error(msg)
 
-def append_discarded_docs_to_file(out_file: str, discarded: List[str]):
+def append_discarded_docs_to_file(out_file: str, discarded: List[str]) -> None:
     """ 
-    :param out_file: path to the file where the discarded doc IDs are stored
+    :param out_file: path to the file where the discarded doc IDs are (to be) stored
     :param discarded: list of IDs of discarded documents
     """
     already_discarded = []
@@ -731,12 +731,12 @@ def append_discarded_docs_to_file(out_file: str, discarded: List[str]):
         with open(out_file, "r") as f:
             already_discarded += [line.strip() for line in f.readlines()]
 
-
     #append additional IDs to the file
     with open(out_file, "a") as f:
         for doc in discarded:
-            if not doc in already_discarded:
-                f.write(doc + "\n") 
+            if doc not in already_discarded:
+                f.write(doc)
+                f.write("\n")
 
 
 def start_batch_conversion(
@@ -787,9 +787,7 @@ def start_batch_conversion(
     logging.info(f"Conversion completed.")
 
     #store discarded documents
-    if not too_noisy:
-        too_noisy.append("None")
-    else:
+    if too_noisy:
         #save discarded docs in a seperate document
         #get language from metadata of last document
         lang = data[1][0][-2:]
