@@ -719,9 +719,28 @@ def check_entity_boundaries(entities: Generator, tokenType: str, cas: Cas, fname
             msg = f"Entity boundary of '{ent_surface}' doesn't match token boundary in {fname}. Full tokens covered: '{ent_tok_surfaces}'"
             logging.error(msg)
 
+def append_discarded_docs_to_file(out_file: str, discarded: List[str]):
+    """ 
+    :param out_file: path to the file where the discarded doc IDs are stored
+    :param discarded: list of IDs of discarded documents
+    """
+    already_discarded = []
+
+    if Path(out_file).is_file():
+        #check which IDs are already in the file
+        with open(out_file, "r") as f:
+            already_discarded += [line.strip() for line in f.readlines()]
+
+
+    #append additional IDs to the file
+    with open(out_file, "a") as f:
+        for doc in discarded:
+            if not doc in already_discarded:
+                f.write(doc + "\n") 
+
 
 def start_batch_conversion(
-    dir_in: str, dir_out: str, f_schema: str, drop_fine: bool = False
+    dir_in: str, dir_out: str, f_schema: str, dir_log: str, drop_fine: bool = False, 
 ):
     """Start a batch conversion of xmi files in the given folder .
 
@@ -753,7 +772,7 @@ def start_batch_conversion(
         #if the document is tagged with too much OCR noise, discard
         if doc == "too_noisy":
             logging.error(f"{f_xmi} discarded, unusable because of too much OCR Noise.")
-            too_noisy.append(str(f_xmi).split("\\")[-1])
+            too_noisy.append(str(f_xmi).split("\\")[-1][:-4])
             continue
 
         f_tsv.parent.mkdir(parents=True, exist_ok=True)
@@ -767,17 +786,25 @@ def start_batch_conversion(
 
     logging.info(f"Conversion completed.")
 
-    #list all discarded documents at the end of the logfile
+    #store discarded documents
     if not too_noisy:
         too_noisy.append("None")
-    too_noisy = "\n".join(too_noisy)
-    logging.info(f"Discarded documents due to too much OCR Noise:\n{too_noisy}")
+    else:
+        #save discarded docs in a seperate document
+        #get language from metadata of last document
+        lang = data[1][0][-2:]
+        discarded_path = dir_log + "/" + f"discarded_{lang}.txt"
+        discarded_path = Path(discarded_path)
+        append_discarded_docs_to_file(discarded_path, too_noisy)
+        logging.info(f"{len(too_noisy)} discarded documents due to too much OCR Noise were saved in file {discarded_path}")
 
 
 def main():
 
     args = parse_args()
 
+    dir_log = "\\".join(args.f_log.split("\\")[:-1])
+    
     logging.basicConfig(
         filename=args.f_log,
         filemode="w",
@@ -785,7 +812,7 @@ def main():
         format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     )
 
-    start_batch_conversion(args.dir_in, args.dir_out, args.f_schema, args.drop_fine)
+    start_batch_conversion(args.dir_in, args.dir_out, args.f_schema, dir_log, args.drop_fine)
 
 
 ################################################################################

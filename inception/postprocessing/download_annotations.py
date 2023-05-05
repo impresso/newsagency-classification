@@ -5,15 +5,19 @@ largely based on HIPE code (https://github.com/impresso/CLEF-HIPE-2020-internal/
 NB: to be able to run this script you need to be a user who has the rights to make API calls to an INCEpTION instance.
 
 Usage:
-    download_annotations.py --language=<l> --input-dir=<id> --output-dir=<od> --log-file=<log> --annotation-planning=<ann>
+    download_annotations.py --language=<l> --output-dir=<od> --log-file=<log> --annotation-planning=<ann>
 """  # noqa
+
+# Set the following environment variables to access Inception
+# INCEPTION_HOST=https://inception.dhlab.epfl.ch/prod/
+# INCEPTION_USERNAME=*
+# INCEPTION_PASSWORD=*
+
 
 from __future__ import print_function
 
 import ipdb as pdb
 import logging
-from os import listdir
-from os.path import isfile, join
 import os.path
 from pathlib import Path
 
@@ -26,58 +30,12 @@ from helpers import (
     find_project_by_name,
     index_project_documents,
     make_inception_client,
+    make_annotation_planning_per_doc,
 )
 
 
-
-def annotation_planning2df(annotation_planning_path):
-    """
-    Takes the csv file used to organise for annotation and turns it into a pandas Dataframe with the following columns:
-        Annotator (str), Inception Project (str), Newspapers (list of str), Finished Annotation (bool)
-    """
-    ann_planning = pd.read_csv(annotation_planning_path, usecols=["Annotator", "Inception Project", "Newspapers", "Finished Annotation"])
-    ann_planning['Annotator'] = ann_planning['Annotator'].fillna(method='ffill')
-    ann_planning['Newspapers'] = ann_planning['Newspapers'].apply(lambda x: x.split(", "))
-
-    return ann_planning
-
-
-def make_annotation_planning_per_doc(annotation_dir, annotation_planning_path, lang):
-    """
-    Makes an annotation planning for one project, with one row per annotated document
-
-    Parameters:
-        annotation_dir: directory which contains all the articles for annotation (xmi-articles are queried in subfolder core_{lang}/xmi/)
-        annotation_planning_path: path to the document containing the annotation planning (1 row per project & annotator)
-        lang: language ("de" or "fr")
-        output_dir: directory where the "new" annotation planning should be stored
-    """
-
-    #specify the project and its directory
-    project = "impresso-newsagencies: " + lang.upper()
-    annotation_project_dir = annotation_dir + f"core_{lang.lower()}/xmi/"
-
-    #get document IDs of docs which were annotated for the project 
-    doc_IDs_with_ending = [f for f in listdir(annotation_project_dir) if isfile(join(annotation_project_dir, f))]
-    doc_IDs = [filename[:-4] for filename in doc_IDs_with_ending]
-
-    #get the annotation planning and select only the lines specific to the project
-    annotation_df = annotation_planning2df(annotation_planning_path)
-    annotation_df = annotation_df.loc[annotation_df['Inception Project'] == project]
-
-    #join annotation planning with document IDs (-> one entry per doc ID)
-    annotation_df = annotation_df.explode("Newspapers")
-    doc_IDs_df = pd.DataFrame(doc_IDs, columns=['Document ID'])
-    doc_IDs_df['Newspapers'] = doc_IDs_df['Document ID'].apply(lambda s: s.split("-")[0])
-    annotation_df = doc_IDs_df.merge(annotation_df, on='Newspapers')
-    annotation_df.drop("Newspapers", axis=1, inplace=True)
-
-    return annotation_df
-
-
-
 def run_download_annotations(
-    lang: str, input_dir: str, output_dir: str, ann_planning: str
+    lang: str, output_dir: str, annotation_dir: str
 ) -> None:
     """Downloads annotated documents from INCEpTION.
 
@@ -86,9 +44,8 @@ def run_download_annotations(
     are to be trusted as the final version of the annotated document.
 
     :param str lang: Language of annotated documents.
-    :param str input_dir: Path of input directory (with documents uploaded to Inception for annotation).
     :param str output_dir: Path of output directory where to download annotated documents.
-    :param str ann_planning: Path of the annotation planning (csv with one row per project & annotator expected).
+    :param str annotation_dir: Path of the annotation planning (csv with one row per project & annotator expected).
     :return: Does not return anything.
     :rtype: None
 
@@ -99,7 +56,7 @@ def run_download_annotations(
 
     # read annotation assignments for all annotated documents
     assignees_df = make_annotation_planning_per_doc(
-                input_dir, ann_planning, lang
+                annotation_dir, lang
         )
 
     # create a couple of inverted indexes to be able to roundtrip from document name (canonical) to
@@ -146,7 +103,6 @@ def run_download_annotations(
 def main(args):
 
     lang = args["--language"]
-    input_dir = args["--input-dir"]
     output_dir = args["--output-dir"]
     log_file = args["--log-file"]
     ann_planning = args["--annotation-planning"]
@@ -158,7 +114,7 @@ def main(args):
         format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     )
 
-    run_download_annotations(lang, input_dir, output_dir, ann_planning)
+    run_download_annotations(lang, output_dir, ann_planning)
 
 
 if __name__ == "__main__":

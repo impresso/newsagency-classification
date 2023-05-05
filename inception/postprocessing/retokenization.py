@@ -219,7 +219,6 @@ def batch_retokenization(dir_in: str, dir_out: str, f_schema: str):
 
     xmi_in_files = index_inception_files(dir_in)
     xmi_out_files = [Path(str(p).replace(dir_in, dir_out)) for p in xmi_in_files]
-    import pdb; pdb.set_trace()
 
     msg = f"Start retokenization of {len(xmi_in_files)} files."
     logging.info(msg)
