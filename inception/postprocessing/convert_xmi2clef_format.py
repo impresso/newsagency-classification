@@ -402,9 +402,9 @@ def convert_data(doc: ImpressoDocument, drop_fine: bool) -> List[List]:
     
     #check if newsagency is present in the data (as a source) and add result to metadata
     if newsagencies:
-        metadata.append(["# news-agency-as-source: " + ", ".join(newsagencies)])
+        metadata.append(["# news-agency-as-source = " + ", ".join(newsagencies)])
     else:
-        metadata.append(["# news-agency-as-source: _"])
+        metadata.append(["# news-agency-as-source = _"])
     
     # add meta header on the level of document
     rows = metadata + rows

@@ -90,7 +90,8 @@ def run_download_annotations(
             continue
 
         document_inception_id = idx_name2id[document_name]
-
+        #print(document_inception_id, document_name)
+        
         download_document(
             document_id=document_inception_id,
             project_id=inception_project.project_id,
