@@ -25,7 +25,7 @@ NO_SPACE_FLAG = "NoSpaceAfter"
 END_OF_LINE_FLAG = "EndOfLine"
 NIL_FLAG = "NIL"
 LEVENSHTEIN_FLAG = "LED"
-AUTO_SENTENCE_FLAG = "PySBDSegment"
+AUTO_SENTENCE_FLAG = "EndOfSentence"
 TRANSCIPT_FLAG = "Transcript:"
 
 COL_LABELS = [
@@ -58,7 +58,7 @@ WIKIDATA_IDs = {
     "DNB": "Q1205856",
     "Domei": "Q2913752",
     "DPA": "Q312653",
-    "Europapress": "Q1315548",
+    "Europapress": "NIL",
     "Extel": "Q1525848",
     "Havas": "Q2826560",
     "Interfax": "Q379271",

@@ -95,7 +95,7 @@ def create_datasets(input_dir: str, output_dir: str, ann_planning: str, version:
 
             annotation_dir = "annotated_retok_autosegment"
 
-            return os.path.join(input_dir, annotation_dir, lang, "tsv", document_name)
+            return os.path.join(input_dir, annotation_dir, lang, "tsv-corrected", document_name)
         else:
             return None
 
