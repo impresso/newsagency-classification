@@ -48,7 +48,7 @@ CUDA_VISIBLE_DEVICES=1 TOKENIZERS_PARALLELISM=false python main.py \
       --dev_dataset data/hipe2020/fr/HIPE-2022-v2.1-hipe2020-dev-fr.tsv \
       --test_dataset data/hipe2020/fr/HIPE-2022-v2.1-hipe2020-test-fr.tsv \
       --output_dir experiments \
-      --device cpu \
+      --device cuda \
       --train_batch_size 16 \
       --logging_steps 100 \
       --evaluate_during_training
