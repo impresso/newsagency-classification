@@ -101,7 +101,7 @@ if __name__ == '__main__':
     parser.add_argument(
         "--save_steps",
         type=int,
-        default=50,
+        default=1000,
         help="Save checkpoint every X updates steps.")
     parser.add_argument(
         "--max_steps",
@@ -177,20 +177,20 @@ if __name__ == '__main__':
 
     tokenizer = AutoTokenizer.from_pretrained(args.model_name_or_path)
 
-    # import pdb;pdb.set_trace()
-    with open('config.yml', 'r') as f:
-        label_map = yaml.safe_load(f)
-        print(label_map)
+    #with open('config.yml', 'r') as f:
+    #    label_map = yaml.safe_load(f)
+        #print(label_map)
 
     train_dataset = NewsDataset(
         tsv_dataset=args.train_dataset,
         tokenizer=tokenizer,
-        max_len=args.max_sequence_len,
-        label_map=label_map)
-
+        max_len=args.max_sequence_len)
+    
     num_sequence_labels, num_token_labels = train_dataset.get_info()
 
     label_map = train_dataset.get_label_map()
+
+    print(label_map)
     # dataset, tokenizer, max_len, test = False, label_map = None
     dev_dataset = NewsDataset(
         tsv_dataset=args.dev_dataset,

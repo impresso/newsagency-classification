@@ -238,10 +238,13 @@ def evaluate(
                     args.device), "token_labels": batch["token_targets"].to(
                     args.device), 'token_type_ids': batch['token_type_ids'].to(args.device)}
 
-            # if args.model_type != "distilbert":
-            #     inputs["token_type_ids"] = (
-            #         batch[2] if args.model_type in ["bert", "xlnet"] else None
-            #     )  # XLM and RoBERTa don"t use segment_ids
+            '''
+            if args.model_type != "distilbert":
+                inputs["token_type_ids"] = (
+                    batch[2] if args.model_type in ["bert", "xlnet"] else None
+                )  # XLM and RoBERTa don"t use segment_ids
+            '''
+            
             outputs = model(**inputs)
 
             sequence_result, tokens_result = outputs[0], outputs[1]
@@ -265,7 +268,7 @@ def evaluate(
 
             out_token_ids = inputs["token_labels"].detach().cpu().numpy()
             out_sequence_ids = inputs["sequence_labels"].detach().cpu().numpy()
-
+            
             sentences = [tokenizer.convert_ids_to_tokens(
                 input_ids) for input_ids in inputs["input_ids"].detach().cpu().numpy()]
             text_sentences = [text.split(' ') for text in batch["sequence"]]
@@ -286,9 +289,10 @@ def evaluate(
                 out_sequence_preds,
                 sequence_logits.detach().cpu().numpy(),
                 axis=0)
-
+            
             sentences = np.append(sentences, [tokenizer.convert_ids_to_tokens(
                 input_ids) for input_ids in inputs["input_ids"].detach().cpu().numpy()], axis=0)
+            
             text_sentences = np.append(
                 text_sentences, [
                     text.split(' ') for text in batch["sequence"]], axis=0)

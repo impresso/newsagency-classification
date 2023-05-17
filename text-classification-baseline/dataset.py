@@ -1,9 +1,19 @@
 import torch
 from torch.utils.data import Dataset
 
-COLUMNS = ["TOKEN", "NE-COARSE-LIT", "NE-COARSE-METO", "NE-FINE-LIT",
-           "NE-FINE-METO", "NE-FINE-COMP", "NE-NESTED",
-           "NEL-LIT", "NEL-METO", "MISC"]
+COLUMNS = ["TOKEN",
+    "NE-COARSE-LIT",
+    "NE-COARSE-METO",
+    "NE-FINE-LIT",
+    "NE-FINE-METO",
+    "NE-FINE-COMP",
+    "NE-NESTED",
+    "NEL-LIT",
+    "NEL-METO",
+    "RENDER",
+    "SEG",
+    "OCR-INFO",
+    "MISC"]
 
 
 def _read_conll(path, encoding='utf-8', sep=None, indexes=None, dropna=True):
@@ -114,7 +124,7 @@ class NewsDataset(Dataset):
     def __init__(self, tsv_dataset, tokenizer,
                  max_len,
                  test=False,
-                 label_map=None):
+                 label_map={}):
         """
         Initiliazes a dataset in IOB format.
         :param tsv_dataset: tsv filename of the train/test/dev dataset
@@ -137,20 +147,26 @@ class NewsDataset(Dataset):
             sep='\t',
             indexes=indexes,
             dropna=True)
-
+       
         self.sequence_targets = [int(item[-1]) for item in self.phrases]
-        self.token_targets = [item[1][1] for item in self.phrases]
+        self.token_targets = [item[1][3] for item in self.phrases]
         self.tokens = [item[1][0] for item in self.phrases]
 
-        if label_map is not None:
-            self.label_map = label_map
-        else:
-            unique_token_labels = set(sum(self.token_targets, []))
-            self.label_map = dict(
+        #if label_map is not None:
+        self.label_map = label_map
+        #else:
+        unique_token_labels = set(sum(self.token_targets, []))
+        label_mapped = dict(
                 zip(unique_token_labels, range(len(unique_token_labels))))
+        missed_labels = set(label_mapped) - set(label_map)
+        print(missed_labels)
+        num_labels = len(self.label_map)
+        for i, missed_label in enumerate(missed_labels):
+            self.label_map[missed_label] = num_labels + i
+
 
         self.token_targets = [[self.label_map[element]
-                               for element in item[1][1]] for item in self.phrases]
+                               for element in item[1][3]] for item in self.phrases]
 
         print(self.label_map)
 
