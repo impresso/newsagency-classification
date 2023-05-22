@@ -186,7 +186,7 @@ if __name__ == '__main__':
         tokenizer=tokenizer,
         max_len=args.max_sequence_len)
     
-    num_sequence_labels, num_token_labels = train_dataset.get_info()
+
 
     label_map = train_dataset.get_label_map()
 
@@ -203,6 +203,9 @@ if __name__ == '__main__':
         tokenizer=tokenizer,
         max_len=args.max_sequence_len,
         label_map=label_map)
+
+    label_map = test_dataset.get_label_map()
+    num_sequence_labels, num_token_labels = test_dataset.get_info()
 
     logging.info(
         "Number of unique token labels {}, number of unique sequence labels {}.".format(

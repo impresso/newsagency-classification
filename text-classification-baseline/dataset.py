@@ -152,14 +152,14 @@ class NewsDataset(Dataset):
         self.token_targets = [item[1][3] for item in self.phrases]
         self.tokens = [item[1][0] for item in self.phrases]
 
-        #if label_map is not None:
         self.label_map = label_map
-        #else:
         unique_token_labels = set(sum(self.token_targets, []))
         label_mapped = dict(
                 zip(unique_token_labels, range(len(unique_token_labels))))
         missed_labels = set(label_mapped) - set(label_map)
+
         print(missed_labels)
+
         num_labels = len(self.label_map)
         for i, missed_label in enumerate(missed_labels):
             self.label_map[missed_label] = num_labels + i
@@ -262,6 +262,6 @@ class NewsDataset(Dataset):
         :return:
         """
         num_sequence_labels = len(set(self.sequence_targets))
-        num_token_labels = len(set(sum(self.token_targets, [])))
+        num_token_labels = len(self.label_map)
         return num_sequence_labels, num_token_labels
 

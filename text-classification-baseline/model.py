@@ -290,13 +290,13 @@ def evaluate(
                 sequence_logits.detach().cpu().numpy(),
                 axis=0)
             
-            sentences = np.append(sentences, [tokenizer.convert_ids_to_tokens(
-                input_ids) for input_ids in inputs["input_ids"].detach().cpu().numpy()], axis=0)
-            
-            text_sentences = np.append(
-                text_sentences, [
-                    text.split(' ') for text in batch["sequence"]], axis=0)
+            sentences = np.append(sentences, [tokenizer.convert_ids_to_tokens(input_ids) for input_ids in inputs["input_ids"].detach().cpu().numpy()], axis=0)
 
+            try:
+                # text_sentences = np.append(text_sentences, [text.split(' ') for text in batch["sequence"]], axis=0)
+                text_sentences = text_sentences + [text.split(' ') for text in batch["sequence"]]
+            except:
+                import pdb;pdb.set_trace()
     out_token_preds = np.argmax(out_token_preds, axis=2)
     out_sequence_preds = np.argmax(out_sequence_preds, axis=1)
 
