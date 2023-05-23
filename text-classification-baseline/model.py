@@ -301,9 +301,9 @@ def evaluate(
     out_sequence_preds = np.argmax(out_sequence_preds, axis=1)
 
     logger.info('Evaluation for yes/no classification.')
-    report = classification_report(
+    report_bin = classification_report(
         out_sequence_ids, out_sequence_preds, digits=4)
-    logger.info("\n%s", report)
+    logger.info("\n%s", report_bin)
 
     eval_loss = eval_loss / nb_eval_steps
 
@@ -341,18 +341,15 @@ def evaluate(
     }
 
     logger.info('Evaluation for named entity recognition & classification.')
-    report = seq_classification_report(out_label_list, preds_list, digits=4)
-    logger.info("\n%s", report)
+    report_class = seq_classification_report(out_label_list, preds_list, digits=4)
+    logger.info("\n%s", report_class)
 
     logger.info('Evaluation for named entity recognition classification.')
     logger.info("***** Eval results %s *****", prefix)
     for key in sorted(results.keys()):
         logger.info("  %s = %s", key, str(results[key]))
 
-    with open(os.path.join(args.output_dir, "all_results.json"), "w") as f:
-        json.dump(results, f)
-
-    return results, words_list, preds_list
+    return results, words_list, preds_list, report_bin, report_class
 
 
 def train(
@@ -477,6 +474,7 @@ def train(
         args.epochs), desc="Epoch", disable=args.local_rank not in [-1, 0])
     set_seed(SEED)  # Added here for reproductibility
 
+    results_devset = {result: [] for result in ["global", "sent-level", "token-level"]}
     for _ in train_iterator:
         epoch_iterator = tqdm(train_dataloader, desc="Iteration",
                               disable=args.local_rank not in [-1, 0])
@@ -537,7 +535,7 @@ def train(
                     if (args.local_rank == -
                             1 and args.evaluate_during_training):
 
-                        results, words_list, preds_list = evaluate(
+                        results, words_list, preds_list, report_bin, report_class = evaluate(
                             args, model, dev_dataset, label_map, tokenizer=tokenizer)
 
                         write_predictions(dev_dataset.get_filename(), words_list, preds_list)
@@ -545,6 +543,11 @@ def train(
                         for key, value in results.items():
                             tb_writer.add_scalar(
                                 "eval_{}".format(key), value, global_step)
+
+                        results_devset["global"].append(results)
+                        results_devset["sent-level"].append(report_bin)
+                        results_devset["token-level"].append(report_class)  
+                        
 
                     tb_writer.add_scalar(
                         "lr", scheduler.get_lr()[0], global_step)
@@ -590,9 +593,18 @@ def train(
     if args.local_rank in [-1, 0]:
         tb_writer.close()
 
-    results, words_list, preds_list = evaluate(
+    results, words_list, preds_list, report_bin, report_class = evaluate(
         args, model, test_dataset, label_map, tokenizer=tokenizer)
 
     write_predictions(test_dataset.get_filename(), words_list, preds_list)
+
+    results_testset = dict()
+    results_testset["global"] = results
+    results_testset["sent-level"] = report_bin
+    results_testset["token-level"] = report_class
+    
+    all_results = {"dev": results_devset, "test": results_testset}
+    with open(os.path.join(args.output_dir, "all_results.json"), "w") as f:
+        json.dump(all_results, f)
 
     return global_step, tr_loss / global_step

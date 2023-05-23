@@ -10,9 +10,6 @@ from transformers import AutoTokenizer, AutoConfig, AdamW
 import yaml
 from utils import write_predictions
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -99,6 +96,12 @@ if __name__ == '__main__':
         default=50,
         help="Log every X updates steps.")
     parser.add_argument(
+        "--logging_suffix",
+        type=str,
+        default="",
+        help="Suffix to further specify name of the folder where the logging is stored."
+    )
+    parser.add_argument(
         "--save_steps",
         type=int,
         default=1000,
@@ -141,6 +144,7 @@ if __name__ == '__main__':
     set_seed(SEED)
 
     args = parser.parse_args()
+
     args.model_name_or_path = args.model_name_or_path.lower()
 
     if not os.path.exists(args.output_dir):
@@ -148,16 +152,31 @@ if __name__ == '__main__':
 
     args.output_dir = os.path.join(
         args.output_dir,
-        "model_{}_max_sequence_length_{}_epochs_{}".format(
+        "model_{}_max_sequence_length_{}_epochs_{}{}".format(
             args.model_name_or_path.replace(
                 '/',
                 '_').replace(
                 '-',
                 '_'),
             args.max_sequence_len,
-            args.epochs))
+            args.epochs,
+            args.logging_suffix),
+            )
     if not os.path.exists(args.output_dir):
         os.mkdir(args.output_dir)
+    
+
+    #logging.basicConfig(level=logging.INFO)
+    logging.root.handlers = []
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+        handlers=[
+        logging.FileHandler(os.path.join(args.output_dir, "logging.log")),
+        logging.StreamHandler()
+    ]
+    )
+    logger = logging.getLogger(__name__)
 
     logging.info(
         "Trained models and results will be saved in {}.".format(
