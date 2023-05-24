@@ -13,6 +13,7 @@ from typing import Set, List, Union, NamedTuple, Dict, Optional
 import torch
 
 from dataset import COLUMNS
+import os
 
 SEED = 42
 
@@ -74,7 +75,7 @@ def get_tsv_data(path: Optional[str] = None, url: Optional[str] = None) -> str:
             return f.read()
 
 
-def write_predictions(tsv_dataset, words_list, preds_list):
+def write_predictions(output_folder, tsv_dataset, words_list, preds_list):
     """
     @param tsv_dataset:
     @param words_list:
@@ -84,9 +85,11 @@ def write_predictions(tsv_dataset, words_list, preds_list):
     with open(tsv_dataset, 'r', encoding='utf-8', errors='replace') as f:
         tsv_lines = f.readlines()
 
+    output_file = os.path.join(output_folder, tsv_dataset.split('/')[-1].replace('.tsv', '_pred.tsv'))
+
     flat_words_list = [item for sublist in words_list for item in sublist]
     flat_preds_list = [item for sublist in preds_list for item in sublist]
-    with open(tsv_dataset.replace('.tsv', '_pred.tsv'), 'w', encoding='utf-8') as f:
+    with open(output_file, 'w', encoding='utf-8') as f:
         idx = 0
         for idx_tsv_line, tsv_line in enumerate(tsv_lines):
             if idx_tsv_line == 0:
@@ -97,11 +100,12 @@ def write_predictions(tsv_dataset, words_list, preds_list):
                 f.write(tsv_line)
             else:
                 try:
-                    f.write(
-                        flat_words_list[idx] +
-                        '\t' +
-                        flat_preds_list[idx] +
-                        '\n')
+                    if '-' in flat_preds_list[idx]:
+                        course_pred = flat_preds_list[idx].split('.')[0]
+                    else:
+                        course_pred = 'O'
+                    f.write(flat_words_list[idx] + '\t' + course_pred + '\t' + 'O\t' + flat_preds_list[idx] + '\t' \
+                            + '\t'.join(tsv_line.split('\t')[4:]))
                 except BaseException:
                     import pdb
                     pdb.set_trace()
@@ -124,15 +128,14 @@ def write_predictions_to_tsv(words: List[List[Union[str, None]]],
 
     logger.info(f'Writing predictions to {output_file}')
 
-    tsv_lines = [l.split('\t')
-                 for l in get_tsv_data(tsv_path, tsv_url).split('\n')]
+    tsv_lines = [l.split('\t') for l in get_tsv_data(tsv_path, tsv_url).split('\n')]
+    import pdb;pdb.set_trace()
     label_col_number = tsv_lines[0].index(labels_column)
     for i in range(len(words)):
         for j in range(len(words[i])):
             if words[i][j]:
                 assert tsv_lines[tsv_line_numbers[i][j]][0] == words[i][j]
-                tsv_lines[tsv_line_numbers[i][j]
-                          ][label_col_number] = labels[i][j]
+                tsv_lines[tsv_line_numbers[i][j]][label_col_number] = labels[i][j]
 
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write('\n'.join(['\t'.join(l) for l in tsv_lines]))

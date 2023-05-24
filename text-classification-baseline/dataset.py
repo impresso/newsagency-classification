@@ -30,6 +30,7 @@ def _read_conll(path, encoding='utf-8', sep=None, indexes=None, dropna=True):
 
     def parse_conll(sample):
 
+        # print(sample)
         sample = list(map(list, zip(*sample)))
         sample = [sample[i] for i in indexes]
 

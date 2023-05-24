@@ -153,11 +153,7 @@ if __name__ == '__main__':
     args.output_dir = os.path.join(
         args.output_dir,
         "model_{}_max_sequence_length_{}_epochs_{}{}".format(
-            args.model_name_or_path.replace(
-                '/',
-                '_').replace(
-                '-',
-                '_'),
+            args.model_name_or_path.replace('/', '_').replace('-', '_'),
             args.max_sequence_len,
             args.epochs,
             args.logging_suffix),
@@ -196,16 +192,10 @@ if __name__ == '__main__':
 
     tokenizer = AutoTokenizer.from_pretrained(args.model_name_or_path)
 
-    #with open('config.yml', 'r') as f:
-    #    label_map = yaml.safe_load(f)
-        #print(label_map)
-
     train_dataset = NewsDataset(
         tsv_dataset=args.train_dataset,
         tokenizer=tokenizer,
         max_len=args.max_sequence_len)
-    
-
 
     label_map = train_dataset.get_label_map()
 
@@ -292,4 +282,4 @@ if __name__ == '__main__':
         results, words_list, preds_list = evaluate(
             args=args, model=model, dataset=test_dataset, label_map=label_map, tokenizer=tokenizer)
 
-        write_predictions(test_dataset.get_filename(), words_list, preds_list)
+        write_predictions(args.output_dir, test_dataset.get_filename(), words_list, preds_list)

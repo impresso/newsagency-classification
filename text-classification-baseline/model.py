@@ -526,19 +526,16 @@ def train(
                 model.zero_grad()
                 global_step += 1
 
-                if args.local_rank in [
-                    -1,
-                        0] and args.logging_steps > 0 and global_step % args.logging_steps == 0:
+                if args.local_rank in [-1, 0] and args.logging_steps > 0 and global_step % args.logging_steps == 0:
                     # Log metrics
                     # Only evaluate when single GPU otherwise metrics may not
                     # average well
-                    if (args.local_rank == -
-                            1 and args.evaluate_during_training):
+                    if args.local_rank == -1 and args.evaluate_during_training:
 
                         results, words_list, preds_list, report_bin, report_class = evaluate(
                             args, model, dev_dataset, label_map, tokenizer=tokenizer)
 
-                        write_predictions(dev_dataset.get_filename(), words_list, preds_list)
+                        write_predictions(args.output_dir, dev_dataset.get_filename(), words_list, preds_list)
 
                         for key, value in results.items():
                             tb_writer.add_scalar(
@@ -555,8 +552,7 @@ def train(
                         "loss", (tr_loss - logging_loss) / args.logging_steps, global_step)
                     logging_loss = tr_loss
 
-                if args.local_rank in [-1,
-                                       0] and args.save_steps > 0 and global_step % args.save_steps == 0:
+                if args.local_rank in [-1, 0] and args.save_steps > 0 and global_step % args.save_steps == 0:
                     # Save model checkpoint
                     output_dir = os.path.join(
                         args.output_dir, "checkpoint-{}".format(global_step))
