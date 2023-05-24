@@ -33,7 +33,7 @@ do
         do
             echo "Running experiment with model = $model, max_seq_len = $max_seq_len, language = $language and logging_suffix = $logging_suffix"
 
-            TOKENIZERS_PARALLELISM=false python3 main.py \
+            CUDA_VISIBLE_DEVICES=1 TOKENIZERS_PARALLELISM=false python3 main.py \
                 --model_name_or_path $model \
                 --train_dataset data/newsagency/newsagency-data-2-test-$language-copy.tsv \
                 --dev_dataset data/newsagency/newsagency-data-2-dev-$language.tsv \
