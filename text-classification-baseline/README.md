@@ -60,4 +60,11 @@ Other models can be found at [HuggingFace](https://huggingface.co/), such as mod
 `--output_dir`: points to the folder where the experiments (models and predictions) are saved;\
 `--device`: can be `cuda` or `cpu`
 
-
+## Evaluation with HIPE-scorer:
+```
+python clef_evaluation.py --ref ../data/newsagency/newsagency-data-2-dev-fr.tsv \
+      --pred ../experiments/model_bert_base_cased_max_sequence_length_64_epochs_3/newsagency-data-2-dev-fr_pred.tsv \
+      --task nerc_coarse --outdir ../experiments/model_bert_base_cased_max_sequence_length_64_epochs_3 \
+      --hipe_edition HIPE-2022 --log ../experiments/model_bert_base_cased_max_sequence_length_64_epochs_3/logs_scorer.txt
+```
+For fine-grained, change to --task nerc_fine
