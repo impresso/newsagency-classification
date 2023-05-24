@@ -35,7 +35,7 @@ do
 
             CUDA_VISIBLE_DEVICES=1 TOKENIZERS_PARALLELISM=false python3 main.py \
                 --model_name_or_path $model \
-                --train_dataset data/newsagency/newsagency-data-2-test-$language-copy.tsv \
+                --train_dataset data/newsagency/newsagency-data-2-train-$language.tsv \
                 --dev_dataset data/newsagency/newsagency-data-2-dev-$language.tsv \
                 --test_dataset data/newsagency/newsagency-data-2-test-$language.tsv \
                 --output_dir experiments \
