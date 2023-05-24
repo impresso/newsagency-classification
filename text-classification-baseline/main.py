@@ -152,7 +152,7 @@ if __name__ == '__main__':
 
     args.output_dir = os.path.join(
         args.output_dir,
-        "model_{}_max_sequence_length_{}_epochs_{}{}".format(
+        "model_{}_max_sequence_length_{}_epochs_{}_run{}".format(
             args.model_name_or_path.replace('/', '_').replace('-', '_'),
             args.max_sequence_len,
             args.epochs,
