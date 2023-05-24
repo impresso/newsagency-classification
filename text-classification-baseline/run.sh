@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define an array of max_seq_len values
-max_seq_len_values=(128 256 512 1024)
+max_seq_len_values=(64 128 256 512)
 
 # Define a range of logging_suffix values
 logging_suffix_values=(1 2 3 4 5)
