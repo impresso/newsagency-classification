@@ -278,12 +278,22 @@ if __name__ == '__main__':
             label_map=label_map)
     else:
         logger.info(f"Resumed from checkpoint: {args.checkpoint}")
-        checkpoint = torch.load(args.checkpoint)
-        model.load_state_dict(checkpoint['model_state_dict'])
+        # checkpoint = torch.load(args.checkpoint)
+        # model.load_state_dict(checkpoint['model_state_dict'])
+        config = AutoConfig.from_pretrained(
+            args.checkpoint,
+            problem_type="single_label_classification")
+
+        model = ModelForSequenceAndTokenClassification.from_pretrained(
+            args.checkpoint,
+            config=config,
+            num_sequence_labels=num_sequence_labels,
+            num_token_labels=num_token_labels)
+
+        tokenizer = AutoTokenizer.from_pretrained(args.checkpoint)
 
         #dev data
-        results, words_list, preds_list, report_bin, report_class = evaluate(
-        args, model, dev_dataset, label_map, tokenizer=tokenizer)
+        results, words_list, preds_list, report_bin, report_class = evaluate(args, model, dev_dataset, label_map, tokenizer=tokenizer)
 
         write_predictions(args.output_dir, dev_dataset.get_filename(), words_list, preds_list)
 
