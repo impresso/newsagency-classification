@@ -8,6 +8,7 @@ from dataset import NewsDataset
 import logging
 from transformers import AutoTokenizer, AutoConfig, AdamW
 import yaml
+import json
 from utils import write_predictions
 
 
@@ -279,7 +280,40 @@ if __name__ == '__main__':
         logger.info(f"Resumed from checkpoint: {args.checkpoint}")
         checkpoint = torch.load(args.checkpoint)
         model.load_state_dict(checkpoint['model_state_dict'])
-        results, words_list, preds_list = evaluate(
-            args=args, model=model, dataset=test_dataset, label_map=label_map, tokenizer=tokenizer)
+
+        #dev data
+        results, words_list, preds_list, report_bin, report_class = evaluate(
+        args, model, dev_dataset, label_map, tokenizer=tokenizer)
+
+        write_predictions(args.output_dir, dev_dataset.get_filename(), words_list, preds_list)
+
+        results_devset = dict()
+        results_devset["global"] = results
+        results_devset["sent-level"] = report_bin
+        results_devset["token-level"] = report_class
+
+
+        #test data
+        results, words_list, preds_list, report_bin, report_class = evaluate(
+        args, model, test_dataset, label_map, tokenizer=tokenizer)
 
         write_predictions(args.output_dir, test_dataset.get_filename(), words_list, preds_list)
+
+        results_testset = dict()
+        results_testset["global"] = results
+        results_testset["sent-level"] = report_bin
+        results_testset["token-level"] = report_class
+
+
+        #results to json
+        all_results = {"dev": results_devset, "test": results_testset}
+        if "-de" in test_dataset.get_filename():
+            with open(os.path.join(args.output_dir, "all_results_de.json"), "w") as f:
+                json.dump(all_results, f)
+        elif "-fr" in test_dataset.get_filename():
+            with open(os.path.join(args.output_dir, "all_results_fr.json"), "w") as f:
+                json.dump(all_results, f)
+        else:
+            logger.info(f"Was not able to deduct language from filename of testset, thus no metrics were saved.")
+
+

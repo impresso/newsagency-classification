@@ -592,7 +592,7 @@ def train(
     results, words_list, preds_list, report_bin, report_class = evaluate(
         args, model, test_dataset, label_map, tokenizer=tokenizer)
 
-    write_predictions(test_dataset.get_filename(), words_list, preds_list)
+    write_predictions(args.output_dir, test_dataset.get_filename(), words_list, preds_list)
 
     results_testset = dict()
     results_testset["global"] = results
@@ -600,7 +600,13 @@ def train(
     results_testset["token-level"] = report_class
     
     all_results = {"dev": results_devset, "test": results_testset}
-    with open(os.path.join(args.output_dir, "all_results.json"), "w") as f:
-        json.dump(all_results, f)
+    if "-de" in test_dataset.get_filename():
+        with open(os.path.join(args.output_dir, "all_results_de.json"), "w") as f:
+            json.dump(all_results, f)
+    elif "-fr" in test_dataset.get_filename():
+        with open(os.path.join(args.output_dir, "all_results_fr.json"), "w") as f:
+            json.dump(all_results, f)
+    else:
+        logger.info(f"Was not able to deduct language from filename of testset, thus no metrics were saved.")
 
     return global_step, tr_loss / global_step
