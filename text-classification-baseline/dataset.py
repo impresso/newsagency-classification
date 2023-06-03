@@ -159,7 +159,7 @@ class NewsDataset(Dataset):
                 zip(unique_token_labels, range(len(unique_token_labels))))
         missed_labels = set(label_mapped) - set(label_map)
 
-        print(missed_labels)
+        print("Appended following labels to label_map:", missed_labels)
 
         num_labels = len(self.label_map)
         for i, missed_label in enumerate(missed_labels):
@@ -169,7 +169,6 @@ class NewsDataset(Dataset):
         self.token_targets = [[self.label_map[element]
                                for element in item[1][3]] for item in self.phrases]
 
-        print(self.label_map)
 
     def __len__(self):
         return len(self.phrases)

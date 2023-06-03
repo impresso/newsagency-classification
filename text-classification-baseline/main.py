@@ -32,6 +32,10 @@ if __name__ == '__main__':
                         type=str,
                         default='',
                         help="Path to the *csv or *tsv test file.")
+    parser.add_argument('--label_map',
+                        type=str,
+                        default='',
+                        help="Path to the *json file for the label mapping.")
     parser.add_argument('--max_sequence_len',
                         type=int, default=64,
                         help="Maximum text length.")
@@ -193,28 +197,56 @@ if __name__ == '__main__':
 
     tokenizer = AutoTokenizer.from_pretrained(args.model_name_or_path)
 
-    train_dataset = NewsDataset(
-        tsv_dataset=args.train_dataset,
-        tokenizer=tokenizer,
-        max_len=args.max_sequence_len)
+    #if label map was not specified, generate it from data and save it in output folder
+    if not args.label_map:
+        train_dataset = NewsDataset(
+            tsv_dataset=args.train_dataset,
+            tokenizer=tokenizer,
+            max_len=args.max_sequence_len)
+    
+        label_map = train_dataset.get_label_map()
 
-    label_map = train_dataset.get_label_map()
+        # dataset, tokenizer, max_len, test = False, label_map = None
+        dev_dataset = NewsDataset(
+            tsv_dataset=args.dev_dataset,
+            tokenizer=tokenizer,
+            max_len=args.max_sequence_len,
+            label_map=label_map)
+        
+        label_map = dev_dataset.get_label_map()
 
-    print(label_map)
-    # dataset, tokenizer, max_len, test = False, label_map = None
-    dev_dataset = NewsDataset(
-        tsv_dataset=args.dev_dataset,
-        tokenizer=tokenizer,
-        max_len=args.max_sequence_len,
-        label_map=label_map)
+        test_dataset = NewsDataset(
+            tsv_dataset=args.test_dataset,
+            tokenizer=tokenizer,
+            max_len=args.max_sequence_len,
+            label_map=label_map)
 
-    test_dataset = NewsDataset(
-        tsv_dataset=args.test_dataset,
-        tokenizer=tokenizer,
-        max_len=args.max_sequence_len,
-        label_map=label_map)
+        label_map = test_dataset.get_label_map()
+    #if specified, load the label map and use it for the data
+    else:
+        label_map = json.load(open(args.label_map, "r"))
 
-    label_map = test_dataset.get_label_map()
+        train_dataset = NewsDataset(
+            tsv_dataset=args.train_dataset,
+            tokenizer=tokenizer,
+            max_len=args.max_sequence_len,
+            label_map=label_map)
+
+        dev_dataset = NewsDataset(
+            tsv_dataset=args.dev_dataset,
+            tokenizer=tokenizer,
+            max_len=args.max_sequence_len,
+            label_map=label_map)
+
+
+        test_dataset = NewsDataset(
+            tsv_dataset=args.test_dataset,
+            tokenizer=tokenizer,
+            max_len=args.max_sequence_len,
+            label_map=label_map)
+
+    json.dump(label_map, open(os.path.join(args.output_dir, "label_map.json"), "w"))
+
     num_sequence_labels, num_token_labels = test_dataset.get_info()
 
     logging.info(
@@ -289,6 +321,8 @@ if __name__ == '__main__':
             config=config,
             num_sequence_labels=num_sequence_labels,
             num_token_labels=num_token_labels)
+
+        model = model.to(args.device)
 
         tokenizer = AutoTokenizer.from_pretrained(args.checkpoint)
 
