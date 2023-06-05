@@ -314,17 +314,19 @@ if __name__ == '__main__':
         # model.load_state_dict(checkpoint['model_state_dict'])
         config = AutoConfig.from_pretrained(
             args.checkpoint,
-            problem_type="single_label_classification")
+            problem_type="single_label_classification",
+            local_files_only=True)
 
         model = ModelForSequenceAndTokenClassification.from_pretrained(
             args.checkpoint,
             config=config,
             num_sequence_labels=num_sequence_labels,
-            num_token_labels=num_token_labels)
+            num_token_labels=num_token_labels,
+            local_files_only=True)
 
         model = model.to(args.device)
 
-        tokenizer = AutoTokenizer.from_pretrained(args.checkpoint)
+        tokenizer = AutoTokenizer.from_pretrained(args.checkpoint, local_files_only=True)
 
         #dev data
         results, words_list, preds_list, report_bin, report_class = evaluate(args, model, dev_dataset, label_map, tokenizer=tokenizer)
