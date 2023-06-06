@@ -51,12 +51,13 @@ CUDA_VISIBLE_DEVICES=1 TOKENIZERS_PARALLELISM=false python main.py \
       --device cuda \
       --train_batch_size 16 \
       --logging_steps 100 \
-      --evaluate_during_training
+      --evaluate_during_training \
+      --do_train
 ```
 
 `--model_name_or_path`: the preffered languge model (by default, `bert-base-cased`);\
 Other models can be found at [HuggingFace](https://huggingface.co/), such as models trained on [historical documents](https://huggingface.co/dbmdz/). To change a model, one needs to specify the name in the HuggingFace site, e.g., for [hmBERT](https://huggingface.co/dbmdz/bert-base-historic-multilingual-cased), `--model_name_or_path dbmdz/bert-base-historic-multilingual-cased`;\
-`--train_dataset`, `--train_dataset`, and `--train_dataset`: point to the path of the *.tsv files;\
+`--train_dataset`, `--dev_dataset`, and `--test_dataset`: point to the path of the *.tsv files;\
 `--output_dir`: points to the folder where the experiments (models and predictions) are saved;\
 `--device`: can be `cuda` or `cpu`
 
@@ -68,3 +69,14 @@ python clef_evaluation.py --ref ../data/newsagency/newsagency-data-2-dev-fr.tsv 
       --hipe_edition HIPE-2022 --log ../experiments/model_bert_base_cased_max_sequence_length_64_epochs_3/logs_scorer.txt
 ```
 For fine-grained, change to --task nerc_fine
+
+## Running with `bash` scripts 
+Both to train and evaluate the models
+
+```
+bash run.sh de
+bash run.sh fr
+bash run_multilingual.sh
+```
+
+`run_multilingual.sh` will train on a dataset with French and German articles and evaluate on French and German separately.
