@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Define an array of max_seq_len values
-max_seq_len_values=(64 128 256 512)
+max_seq_len_values=(256 512) #(64 128 256 512)
 #
 # Define a range of logging_suffix values
 logging_suffix_values=(1 2 3 4 5)
@@ -10,7 +10,7 @@ logging_suffix_values=(1 2 3 4 5)
 language="multilingual"
 log_steps=2051
 #models=("bert-base-multilingual-cased")
-models=("bert-base-cased" "bert-base-multilingual-cased" "dbmdz/bert-base-historic-multilingual-cased" "xlm-roberta-base")
+models=("bert-base-cased" "bert-base-multilingual-cased") #"dbmdz/bert-base-historic-multilingual-cased" "xlm-roberta-base")
 
 #
 # Loop over the models array

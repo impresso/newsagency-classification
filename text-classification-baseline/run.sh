@@ -27,8 +27,8 @@ fi
 
 if [ $language == "de" ]
 then
-    models=("dbmdz/bert-base-german-europeana-cased" "bert-base-cased" "bert-base-german-cased" "bert-base-multilingual-cased" "dbmdz/bert-base-historic-multilingual-cased" "xlm-roberta-base")
-    #models=("bert-base-multilingual-cased") # "dbmdz/bert-base-german-europeana-cased" "xlm-roberta-base")
+    #models=("dbmdz/bert-base-german-europeana-cased" "bert-base-cased" "bert-base-german-cased" "bert-base-multilingual-cased" "dbmdz/bert-base-historic-multilingual-cased" "xlm-roberta-base")
+    models=("dbmdz/bert-base-historic-multilingual-cased") # "xlm-roberta-base")
     log_steps=584
 fi
 
@@ -57,7 +57,7 @@ do
 
             logging_suffix=_${language}_$run
 
-            CUDA_VISIBLE_DEVICES=0 TOKENIZERS_PARALLELISM=false python3 main.py \
+            CUDA_VISIBLE_DEVICES=1 TOKENIZERS_PARALLELISM=false python3 main.py \
                 --model_name_or_path $model \
                 --train_dataset ./../data/$language/newsagency-data-2-train-$language.tsv \
                 --dev_dataset ./../data/$language/newsagency-data-2-dev-$language.tsv \
