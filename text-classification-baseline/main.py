@@ -135,7 +135,7 @@ if __name__ == '__main__':
         action="store_true",
         help="Whether to run evaluation during training at each logging step.",
     )
-
+    
     parser.add_argument("--do_train",
                         action='store_true',
                         help="Whether to run training.")
@@ -145,10 +145,16 @@ if __name__ == '__main__':
     parser.add_argument("--do_eval",
                         action='store_true',
                         help="Whether to run eval or not.")
-
-    set_seed(SEED)
+    parser.add_argument(
+        "--seed",
+        type=int,
+        default=42,
+        help="Seed to make experiment reproducible.")
+    
 
     args = parser.parse_args()
+
+    set_seed(args.seed)
 
     args.model_name_or_path = args.model_name_or_path.lower()
 

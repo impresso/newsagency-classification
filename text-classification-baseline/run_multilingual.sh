@@ -1,16 +1,16 @@
 #!/bin/bash
 #
 # Define an array of max_seq_len values
-max_seq_len_values=(256 512) #(64 128 256 512)
+max_seq_len_values=(64 128 256 512)
 #
 # Define a range of logging_suffix values
 logging_suffix_values=(1 2 3 4 5)
 #
 # Get the language from the first command line argument
 language="multilingual"
-log_steps=2051
+log_steps=8204 #2051*4
 #models=("bert-base-multilingual-cased")
-models=("bert-base-cased" "bert-base-multilingual-cased") #"dbmdz/bert-base-historic-multilingual-cased" "xlm-roberta-base")
+models=("bert-base-cased" "bert-base-multilingual-cased" "dbmdz/bert-base-historic-multilingual-cased" "xlm-roberta-base")
 
 #
 # Loop over the models array
@@ -21,7 +21,8 @@ do
 
     # Loop over the max_seq_len_values array
     for max_seq_len in "${max_seq_len_values[@]}"
-    do
+    do  
+        <<Block_comment #batch size will be set to 2
         #smaller batch size for max_seq_len 512
         if [ $max_seq_len == 512 ]
         then
@@ -31,6 +32,8 @@ do
             batch_size=16
             checkpoint="checkpoint-6153"
         fi
+Block_comment
+
         # Loop over the logging_suffix_values array
         for run in "${logging_suffix_values[@]}"
         do
@@ -48,12 +51,13 @@ do
                 --label_map ./../data/label_map.json \
                 --output_dir experiments \
                 --device cuda \
-                --train_batch_size $batch_size \
+                --train_batch_size 2 \
                 --logging_steps $log_steps \
                 --save_steps $log_steps \
                 --max_sequence_len $max_seq_len \
                 --logging_suffix $logging_suffix \
                 --evaluate_during_training \
+                --seed $run \
                 --do_train
 #Block_comment
 
@@ -68,20 +72,21 @@ do
                 --label_map ./../data/label_map.json \
                 --output_dir experiments \
                 --device cuda \
-                --train_batch_size $batch_size \
+                --train_batch_size 2 \
                 --logging_steps $log_steps \
                 --save_steps $log_steps \
                 --max_sequence_len $max_seq_len \
                 --logging_suffix $logging_suffix \
                 --evaluate_during_training \
-                --checkpoint ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/$checkpoint
+                --checkpoint ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/$checkpoint \
+                --seed $run
                 #--do_train
 
             #evaluation on German dataset
             python3 HIPE-scorer/clef_evaluation.py \
                 --ref ./../data/de/newsagency-data-2-dev-de.tsv \
                 --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-2-dev-de_pred.tsv \
-                --task nerc_coarse \
+                --task nerc_fine \
                 --outdir ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix} \
                 --hipe_edition HIPE-2022 \
                 --log ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/logs_dev_scorer.txt
@@ -89,7 +94,7 @@ do
             python3 HIPE-scorer/clef_evaluation.py \
                 --ref ./../data/de/newsagency-data-2-test-de.tsv \
                 --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-2-test-de_pred.tsv \
-                --task nerc_coarse \
+                --task nerc_fine \
                 --outdir ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix} \
                 --hipe_edition HIPE-2022 \
                 --log ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/logs_test_scorer.txt
@@ -98,7 +103,7 @@ do
             python3 HIPE-scorer/clef_evaluation.py \
                 --ref ./../data/fr/newsagency-data-2-dev-fr.tsv \
                 --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-2-dev-fr_pred.tsv \
-                --task nerc_coarse \
+                --task nerc_fine \
                 --outdir ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix} \
                 --hipe_edition HIPE-2022 \
                 --log ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/logs_dev_scorer.txt
@@ -106,7 +111,7 @@ do
             python3 HIPE-scorer/clef_evaluation.py \
                 --ref ./../data/fr/newsagency-data-2-test-fr.tsv \
                 --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-2-test-fr_pred.tsv \
-                --task nerc_coarse \
+                --task nerc_fine \
                 --outdir ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix} \
                 --hipe_edition HIPE-2022 \
                 --log ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/logs_test_scorer.txt
