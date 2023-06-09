@@ -197,7 +197,8 @@ def read_conll_annotations(fname, glueing_col_pairs=None, structure_only=False):
 
                 try:
                     # parse Levenshtein distance from MISC column if possible
-                    row["LEVENSHTEIN"] = float(re.search(r"LED(\d+(\.\d+)?)", row["MISC"]).group(1))
+                    #row["LEVENSHTEIN"] = float(re.search(r"LED(\d+(\.\d+)?)", row["MISC"]).group(1))
+                    row["LEVENSHTEIN"] = float(re.search(r"LED(\d+(\.\d+)?)", row["OCR-INFO"]).group(1))
 
                 except (AttributeError, KeyError):
                     row["LEVENSHTEIN"] = None
