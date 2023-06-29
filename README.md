@@ -21,7 +21,7 @@ This repository holds the code related to the master project of Lea Marxen on th
 - `notebooks/`: Contains the notebooks used in the creation of the training corpus, annotation and analysis.
   - `1_sampling_training_data/`
   - `2_annotation/`
-  - `3_classification_analysis/`
+  - `3_classification/`
   - `4_analysis/`
 
 
