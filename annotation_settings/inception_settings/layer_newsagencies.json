@@ -1,0 +1,180 @@
+[ {
+  "name" : "webanno.custom.ImpressoNewsAgencies",
+  "features" : [ {
+    "name" : "noisy_ocr",
+    "tag_set" : null,
+    "uiName" : "noisy_ocr",
+    "type" : "uima.cas.Boolean",
+    "enabled" : true,
+    "visible" : false,
+    "include_in_hover" : false,
+    "required" : true,
+    "remember" : false,
+    "hideUnconstraintFeature" : false,
+    "description" : "Indicates whether the annotated text contains noise from OCR.",
+    "project_name" : "impresso-newsagencies: test project",
+    "multi_value_mode" : "NONE",
+    "link_mode" : "NONE",
+    "link_type_name" : null,
+    "link_type_role_feature_name" : null,
+    "link_type_target_feature_name" : null,
+    "traits" : null,
+    "curatable" : true
+  }, {
+    "name" : "transcript",
+    "tag_set" : null,
+    "uiName" : "transcript",
+    "type" : "uima.cas.String",
+    "enabled" : true,
+    "visible" : false,
+    "include_in_hover" : false,
+    "required" : false,
+    "remember" : false,
+    "hideUnconstraintFeature" : false,
+    "description" : "Manual transcription of an annotated text that contains noise from OCR.",
+    "project_name" : "impresso-newsagencies: test project",
+    "multi_value_mode" : "NONE",
+    "link_mode" : "NONE",
+    "link_type_name" : null,
+    "link_type_role_feature_name" : null,
+    "link_type_target_feature_name" : null,
+    "traits" : "{\"multipleRows\":false,\"dynamicSize\":false,\"collapsedRows\":1,\"expandedRows\":1,\"editorType\":\"AUTO\",\"keyBindings\":[]}",
+    "curatable" : true
+  }, {
+    "name" : "value",
+    "tag_set" : {
+      "name" : "Impresso News Agencies",
+      "description" : "News Agency annotation. Tagset defined for classification of News Agencies within Impresso.",
+      "language" : null,
+      "tags" : [ {
+        "tag_name" : "AFP",
+        "tag_description" : "Agence France Presse, 1944-today\r\n\r\nother variations: A.F.P."
+      }, {
+        "tag_name" : "ANP",
+        "tag_description" : "Algemeen Nederlands Persbureau, 1934-today"
+      }, {
+        "tag_name" : "ANSA",
+        "tag_description" : "Agenzia Nationale Stampa Associata, 1945-today"
+      }, {
+        "tag_name" : "AP",
+        "tag_description" : "Associated Press, 1848-today\r\n\r\nother variations: Assoc. Press"
+      }, {
+        "tag_name" : "APA",
+        "tag_description" : "Austria Press Agentur, 1946-today"
+      }, {
+        "tag_name" : "ATS-SDA",
+        "tag_description" : "Agence télégraphique suisse/Schweizerische Depeschenagentur, 1894-today\r\n\r\nother variations:\r\nATS, SDA"
+      }, {
+        "tag_name" : "BTA",
+        "tag_description" : "Bulgarska Telegrafitscheka Agentzia, 1898-today\r\n\r\nother variations: Agence Bulgare"
+      }, {
+        "tag_name" : "Belga",
+        "tag_description" : "Agence Belga SA, 1920-today"
+      }, {
+        "tag_name" : "CTK",
+        "tag_description" : "Czechoslavenska Tiskova Kancelar, 1918-today\r\n\r\nother variations: Ceteka, Agence Ceteka"
+      }, {
+        "tag_name" : "DDP-DAPD",
+        "tag_description" : "Deutscher Depeschendienst, 1971-2009\r\nDeutscher Auslands-Depeschendienst, 2009-2013\r\n\r\nother variations: DDP, DAPD"
+      }, {
+        "tag_name" : "DNB",
+        "tag_description" : "Deutsches Nachrichtenbüro GmbH, 1933-1945\r\n\r\nother variations: D.N.B."
+      }, {
+        "tag_name" : "DPA",
+        "tag_description" : "Deutsche Presse Agentur, 1949-today"
+      }, {
+        "tag_name" : "Domei",
+        "tag_description" : "Domei Tsushin/Domein News Agency, 1936-1945\r\n(Japan)"
+      }, {
+        "tag_name" : "Europapress",
+        "tag_description" : "Europapress\r\n\r\nother variations: Europapreß, Europapr."
+      }, {
+        "tag_name" : "Extel",
+        "tag_description" : "Exchange Telegraph Co. Ltd., 1872-1993\r\n\r\nother variations: Agence Extel"
+      }, {
+        "tag_name" : "Havas",
+        "tag_description" : "Havas, 1835-today\r\n\r\nother variations: Agence Havas"
+      }, {
+        "tag_name" : "Interfax",
+        "tag_description" : "Interfax News Agency, 1989-today"
+      }, {
+        "tag_name" : "PAP",
+        "tag_description" : "Polska Agencja Prasowa, 1944-today"
+      }, {
+        "tag_name" : "Reuters",
+        "tag_description" : "Reuters, 1851-today\r\n\r\nother variations: Reuter, Reutermeldung, Reuter'sche Bureau"
+      }, {
+        "tag_name" : "SPK-SMP",
+        "tag_description" : "Schweizer Mittelpresse, 1917-1947\r\nSchweizerische Politische Korrespondenz, 1947-1993\r\n\r\nother variations: SPK, SMP"
+      }, {
+        "tag_name" : "Stefani",
+        "tag_description" : "Agenzia Stefani, 1853-1945\r\n\r\nother variations: Agence Stefani"
+      }, {
+        "tag_name" : "TANJUG",
+        "tag_description" : "Telegrafska Agencija nova Jugoslavija, 1943-2018"
+      }, {
+        "tag_name" : "TASS",
+        "tag_description" : "Telegrafnoie Agenstvo sovietskavo Soyusa, 1925-today\r\n\r\nother variations: ITAR-TASS, Taß, Telegraphen-Agentur der Sowietunion, Telegraphen-Agentur der U.S.S.R."
+      }, {
+        "tag_name" : "TT",
+        "tag_description" : "Tidningarnas Telegrambyra (SE), 1921-today"
+      }, {
+        "tag_name" : "Telunion",
+        "tag_description" : "Telegraphen-Union, 1913, 1934\r\n\r\nother variations: TU"
+      }, {
+        "tag_name" : "UP-UPI",
+        "tag_description" : "United Press, 1907-1958\r\nUnited Press International, 1958-1990\r\n\r\nother variations: UP, UPI, United Press/Preß, United Press/Preß International"
+      }, {
+        "tag_name" : "Wolff",
+        "tag_description" : "Wolffs Telegraphisches Bureau, 1849-1934\r\n\r\nother variations: Wolffagentur, Wolffsbüro, Kontinental-Telegraphencompagnie, Continental-Telegraphen-Compagnie Wolff's Telegraphisches Büro"
+      }, {
+        "tag_name" : "ag",
+        "tag_description" : "for an agency mention without specifying the agency, i.e. \"ag.\" or \"agence\", \"Agentur\""
+      }, {
+        "tag_name" : "pers.ind.articleauthor",
+        "tag_description" : "author of the newspaper article"
+      }, {
+        "tag_name" : "unk",
+        "tag_description" : "unknown: any Agency whose name is not contained in Tagset"
+      } ],
+      "create_tag" : false
+    },
+    "uiName" : "value",
+    "type" : "uima.cas.String",
+    "enabled" : true,
+    "visible" : true,
+    "include_in_hover" : false,
+    "required" : true,
+    "remember" : false,
+    "hideUnconstraintFeature" : false,
+    "description" : "News Agency (Named Entity)",
+    "project_name" : "impresso-newsagencies: test project",
+    "multi_value_mode" : "NONE",
+    "link_mode" : "NONE",
+    "link_type_name" : null,
+    "link_type_role_feature_name" : null,
+    "link_type_target_feature_name" : null,
+    "traits" : "{\"multipleRows\":false,\"dynamicSize\":false,\"collapsedRows\":1,\"expandedRows\":1,\"editorType\":\"AUTO\",\"keyBindings\":[{\"keyCombo\":\"1\",\"value\":\"AFP\"},{\"keyCombo\":\"2\",\"value\":\"AP\"},{\"keyCombo\":\"3\",\"value\":\"ATS-SDA\"},{\"keyCombo\":\"R\",\"value\":\"Reuters\"},{\"keyCombo\":\"H\",\"value\":\"Havas\"},{\"keyCombo\":\"W\",\"value\":\"Wolff\"},{\"keyCombo\":\"T\",\"value\":\"TASS\"},{\"keyCombo\":\"U\",\"value\":\"UP-UPI\"},{\"keyCombo\":\"D\",\"value\":\"DPA\"},{\"keyCombo\":\"P\",\"value\":\"pers.ind.articleauthor\"}]}",
+    "curatable" : true
+  } ],
+  "uiName" : "Impresso News Agencies",
+  "type" : "span",
+  "description" : "Identifying News Agencies",
+  "enabled" : true,
+  "built_in" : false,
+  "readonly" : false,
+  "attach_type" : null,
+  "attach_feature" : null,
+  "allow_stacking" : false,
+  "cross_sentence" : true,
+  "show_hover" : true,
+  "anchoring_mode" : "CHARACTERS",
+  "overlap_mode" : "NO_OVERLAP",
+  "validation_mode" : "ALWAYS",
+  "lock_to_token_offset" : false,
+  "multiple_tokens" : false,
+  "project_name" : "impresso-newsagencies: test project",
+  "linked_list_behavior" : false,
+  "on_click_javascript_action" : null,
+  "traits" : null
+} ]

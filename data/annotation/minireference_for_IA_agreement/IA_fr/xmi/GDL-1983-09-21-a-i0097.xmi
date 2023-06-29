@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:cas="http:///uima/cas.ecore" xmlns:type="http:///de/tudarmstadt/ukp/dkpro/core/api/segmentation/type.ecore" xmlns:custom="http:///webanno/custom.ecore" xmi:version="2.0">
+  <cas:NULL xmi:id="0"/>
+  <type:Sentence xmi:id="2" begin="0" end="8" sofa="1"/>
+  <type:Sentence xmi:id="3" begin="8" end="22" sofa="1"/>
+  <type:Sentence xmi:id="4" begin="22" end="43" sofa="1"/>
+  <type:Sentence xmi:id="5" begin="43" end="59" sofa="1"/>
+  <type:Sentence xmi:id="6" begin="59" end="102" sofa="1"/>
+  <type:Sentence xmi:id="7" begin="102" end="151" sofa="1"/>
+  <type:Sentence xmi:id="8" begin="151" end="199" sofa="1"/>
+  <type:Sentence xmi:id="9" begin="199" end="251" sofa="1"/>
+  <type:Sentence xmi:id="10" begin="251" end="299" sofa="1"/>
+  <type:Sentence xmi:id="11" begin="299" end="352" sofa="1"/>
+  <type:Sentence xmi:id="12" begin="352" end="401" sofa="1"/>
+  <type:Sentence xmi:id="13" begin="401" end="453" sofa="1"/>
+  <type:Sentence xmi:id="14" begin="453" end="503" sofa="1"/>
+  <type:Sentence xmi:id="15" begin="503" end="552" sofa="1"/>
+  <type:Sentence xmi:id="16" begin="552" end="601" sofa="1"/>
+  <type:Sentence xmi:id="17" begin="601" end="643" sofa="1"/>
+  <type:Sentence xmi:id="18" begin="643" end="692" sofa="1"/>
+  <type:Sentence xmi:id="19" begin="692" end="741" sofa="1"/>
+  <type:Sentence xmi:id="20" begin="741" end="783" sofa="1"/>
+  <type:Sentence xmi:id="21" begin="783" end="837" sofa="1"/>
+  <type:Sentence xmi:id="22" begin="837" end="887" sofa="1"/>
+  <type:Sentence xmi:id="23" begin="887" end="942" sofa="1"/>
+  <type:Sentence xmi:id="24" begin="942" end="989" sofa="1"/>
+  <type:Sentence xmi:id="25" begin="989" end="1035" sofa="1"/>
+  <type:Sentence xmi:id="26" begin="1035" end="1083" sofa="1"/>
+  <type:Sentence xmi:id="27" begin="1083" end="1133" sofa="1"/>
+  <type:Sentence xmi:id="28" begin="1133" end="1179" sofa="1"/>
+  <type:Sentence xmi:id="29" begin="1179" end="1237" sofa="1"/>
+  <type:Sentence xmi:id="30" begin="1237" end="1287" sofa="1"/>
+  <type:Sentence xmi:id="31" begin="1287" end="1338" sofa="1"/>
+  <type:Sentence xmi:id="32" begin="1338" end="1392" sofa="1"/>
+  <type:Sentence xmi:id="33" begin="1392" end="1442" sofa="1"/>
+  <type:Sentence xmi:id="34" begin="1442" end="1492" sofa="1"/>
+  <type:Sentence xmi:id="35" begin="1492" end="1546" sofa="1"/>
+  <type:Sentence xmi:id="36" begin="1546" end="1598" sofa="1"/>
+  <type:Sentence xmi:id="37" begin="1598" end="1654" sofa="1"/>
+  <type:Sentence xmi:id="38" begin="1654" end="1695" sofa="1"/>
+  <type:Sentence xmi:id="39" begin="1695" end="1708" sofa="1"/>
+  <type:Sentence xmi:id="40" begin="1708" end="1759" sofa="1"/>
+  <type:Sentence xmi:id="41" begin="1759" end="1812" sofa="1"/>
+  <type:Sentence xmi:id="42" begin="1812" end="1862" sofa="1"/>
+  <type:Sentence xmi:id="43" begin="1862" end="1907" sofa="1"/>
+  <type:Sentence xmi:id="44" begin="1907" end="1951" sofa="1"/>
+  <type:Sentence xmi:id="45" begin="1951" end="2000" sofa="1"/>
+  <type:Sentence xmi:id="46" begin="2000" end="2048" sofa="1"/>
+  <type:Sentence xmi:id="47" begin="2048" end="2096" sofa="1"/>
+  <type:Sentence xmi:id="48" begin="2096" end="2145" sofa="1"/>
+  <type:Sentence xmi:id="49" begin="2145" end="2195" sofa="1"/>
+  <type:Sentence xmi:id="50" begin="2195" end="2242" sofa="1"/>
+  <type:Sentence xmi:id="51" begin="2242" end="2287" sofa="1"/>
+  <type:Sentence xmi:id="52" begin="2287" end="2297" sofa="1"/>
+  <custom:ImpressoImages xmi:id="53" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2694,303,225,64/full/0/default.jpg" begin="0" end="8" sofa="1"/>
+  <custom:ImpressoImages xmi:id="54" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2696,397,525,99/full/0/default.jpg" begin="8" end="22" sofa="1"/>
+  <custom:ImpressoImages xmi:id="55" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2692,484,823,99/full/0/default.jpg" begin="22" end="43" sofa="1"/>
+  <custom:ImpressoImages xmi:id="56" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2694,574,631,99/full/0/default.jpg" begin="43" end="59" sofa="1"/>
+  <custom:ImpressoImages xmi:id="57" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2729,668,794,60/full/0/default.jpg" begin="59" end="102" sofa="1"/>
+  <custom:ImpressoImages xmi:id="58" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2690,705,831,60/full/0/default.jpg" begin="102" end="151" sofa="1"/>
+  <custom:ImpressoImages xmi:id="59" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2692,742,829,60/full/0/default.jpg" begin="151" end="199" sofa="1"/>
+  <custom:ImpressoImages xmi:id="60" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2690,778,831,60/full/0/default.jpg" begin="199" end="251" sofa="1"/>
+  <custom:ImpressoImages xmi:id="61" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2690,815,833,60/full/0/default.jpg" begin="251" end="299" sofa="1"/>
+  <custom:ImpressoImages xmi:id="62" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2690,853,833,60/full/0/default.jpg" begin="299" end="352" sofa="1"/>
+  <custom:ImpressoImages xmi:id="63" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2690,890,831,60/full/0/default.jpg" begin="352" end="401" sofa="1"/>
+  <custom:ImpressoImages xmi:id="64" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2690,926,831,60/full/0/default.jpg" begin="401" end="453" sofa="1"/>
+  <custom:ImpressoImages xmi:id="65" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2690,963,830,60/full/0/default.jpg" begin="453" end="503" sofa="1"/>
+  <custom:ImpressoImages xmi:id="66" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2690,1001,831,60/full/0/default.jpg" begin="503" end="552" sofa="1"/>
+  <custom:ImpressoImages xmi:id="67" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2690,1038,831,60/full/0/default.jpg" begin="552" end="601" sofa="1"/>
+  <custom:ImpressoImages xmi:id="68" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2690,1074,651,60/full/0/default.jpg" begin="601" end="643" sofa="1"/>
+  <custom:ImpressoImages xmi:id="69" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2727,1120,794,60/full/0/default.jpg" begin="643" end="692" sofa="1"/>
+  <custom:ImpressoImages xmi:id="70" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2688,1157,833,60/full/0/default.jpg" begin="692" end="741" sofa="1"/>
+  <custom:ImpressoImages xmi:id="71" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2690,1192,831,60/full/0/default.jpg" begin="741" end="783" sofa="1"/>
+  <custom:ImpressoImages xmi:id="72" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2688,1230,833,60/full/0/default.jpg" begin="783" end="837" sofa="1"/>
+  <custom:ImpressoImages xmi:id="73" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2688,1268,833,60/full/0/default.jpg" begin="837" end="887" sofa="1"/>
+  <custom:ImpressoImages xmi:id="74" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2688,1305,831,60/full/0/default.jpg" begin="887" end="942" sofa="1"/>
+  <custom:ImpressoImages xmi:id="75" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2688,1342,833,60/full/0/default.jpg" begin="942" end="989" sofa="1"/>
+  <custom:ImpressoImages xmi:id="76" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2688,1378,833,60/full/0/default.jpg" begin="989" end="1035" sofa="1"/>
+  <custom:ImpressoImages xmi:id="77" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2688,1415,751,60/full/0/default.jpg" begin="1035" end="1083" sofa="1"/>
+  <custom:ImpressoImages xmi:id="78" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2727,1478,806,60/full/0/default.jpg" begin="1083" end="1133" sofa="1"/>
+  <custom:ImpressoImages xmi:id="79" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2690,1515,833,60/full/0/default.jpg" begin="1133" end="1179" sofa="1"/>
+  <custom:ImpressoImages xmi:id="80" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2690,1551,833,60/full/0/default.jpg" begin="1179" end="1237" sofa="1"/>
+  <custom:ImpressoImages xmi:id="81" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2690,1588,833,60/full/0/default.jpg" begin="1237" end="1287" sofa="1"/>
+  <custom:ImpressoImages xmi:id="82" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2688,1626,835,60/full/0/default.jpg" begin="1287" end="1338" sofa="1"/>
+  <custom:ImpressoImages xmi:id="83" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2688,1663,835,60/full/0/default.jpg" begin="1338" end="1392" sofa="1"/>
+  <custom:ImpressoImages xmi:id="84" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2690,1699,833,60/full/0/default.jpg" begin="1392" end="1442" sofa="1"/>
+  <custom:ImpressoImages xmi:id="85" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2688,1736,839,60/full/0/default.jpg" begin="1442" end="1492" sofa="1"/>
+  <custom:ImpressoImages xmi:id="86" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2688,1774,835,60/full/0/default.jpg" begin="1492" end="1546" sofa="1"/>
+  <custom:ImpressoImages xmi:id="87" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2688,1811,835,60/full/0/default.jpg" begin="1546" end="1598" sofa="1"/>
+  <custom:ImpressoImages xmi:id="88" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2688,1847,835,60/full/0/default.jpg" begin="1598" end="1654" sofa="1"/>
+  <custom:ImpressoImages xmi:id="89" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2688,1884,833,60/full/0/default.jpg" begin="1654" end="1695" sofa="1"/>
+  <custom:ImpressoImages xmi:id="90" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2688,1922,74,60/full/0/default.jpg" begin="1695" end="1708" sofa="1"/>
+  <custom:ImpressoImages xmi:id="91" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2727,1968,791,60/full/0/default.jpg" begin="1708" end="1759" sofa="1"/>
+  <custom:ImpressoImages xmi:id="92" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2688,2003,832,60/full/0/default.jpg" begin="1759" end="1812" sofa="1"/>
+  <custom:ImpressoImages xmi:id="93" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2688,2040,833,60/full/0/default.jpg" begin="1812" end="1862" sofa="1"/>
+  <custom:ImpressoImages xmi:id="94" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2688,2078,833,60/full/0/default.jpg" begin="1862" end="1907" sofa="1"/>
+  <custom:ImpressoImages xmi:id="95" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2685,2115,702,60/full/0/default.jpg" begin="1907" end="1951" sofa="1"/>
+  <custom:ImpressoImages xmi:id="96" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2725,2155,794,60/full/0/default.jpg" begin="1951" end="2000" sofa="1"/>
+  <custom:ImpressoImages xmi:id="97" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2685,2192,834,60/full/0/default.jpg" begin="2000" end="2048" sofa="1"/>
+  <custom:ImpressoImages xmi:id="98" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2690,2230,829,60/full/0/default.jpg" begin="2048" end="2096" sofa="1"/>
+  <custom:ImpressoImages xmi:id="99" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2685,2268,834,60/full/0/default.jpg" begin="2096" end="2145" sofa="1"/>
+  <custom:ImpressoImages xmi:id="100" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2690,2303,829,60/full/0/default.jpg" begin="2145" end="2195" sofa="1"/>
+  <custom:ImpressoImages xmi:id="101" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2685,2340,834,60/full/0/default.jpg" begin="2195" end="2242" sofa="1"/>
+  <custom:ImpressoImages xmi:id="102" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2685,2378,834,60/full/0/default.jpg" begin="2242" end="2287" sofa="1"/>
+  <custom:ImpressoImages xmi:id="103" link="https://impresso-project.ch/api/proxy/iiif/GDL-1983-09-21-a-p0013/2685,2415,137,60/full/0/default.jpg" begin="2287" end="2297" sofa="1"/>
+  <cas:Sofa xmi:id="1" sofaNum="1" sofaID="_InitialView" mimeType="text/plain" sofaString="PÉTITION Droit de vote des Appenzelloises : 1830 signatures Berne, 20 (ATS).-Les femmes appenzelloises veulent que l'égalité des droits entre hommes et femmes soit pleinement respectée, en matière de droits civiques sur le plan cantonal et cantonal au moins. Lancée en juin dernier par la communauté d'intérêt pour une égalité des droits politiques des femmes appenzelloises, une pétition demandant la concrétisation de cette égalité a été déposée mardi au Palais fédéral à Berne. Adressée aux Chambres, elle demande une modification de la Constitution fédérale. En trois mois, 1830 signatures ont été recueillies, dans les Rhodes extérieures. Les listes ont été reçues par le président de la commission des pétitions, le conseiller national Hans Oester. 23 personnes, des femmes en particulier, avaient fait le voyage à Berne. Présente également lors de cette cérémonie, la conseillère nationale valaisanne Françoise Vannay (socialiste), qui en 1981 avait déposé une motion allant dans le même sens. Motion qui n'a pour l'instant pas encore pu être traitée par la Chambre du peuple. Pour les femmes appenzelloises, le fait de ne pas bénéficier, en matière cantonale, des droits politiques, est contraire au principe d'égalité des droits entre hommes et femmes, adopté sur le plan suisse en votation populaire le 14 juin 1981. A leur avis donc la possibilité de participer pleinement à la vie publique constitue un des droits fondamentaux. Ce qui les amène à demander que la Constitution soit modifiée en conséquence. C'est l'article 74, alinéa 4 de la Constitution qui devrait être modifié dans le sens de l'article 39, tel que les experts l'ont formulé dans le projet de révision totale de la Constitution. L'article 74 stipule que les questions de votation et d'élection cantonales relèvent du droit cantonal. Selon le projet des experts en revanche, tous les citoyens suisses disposent du droit de vote également en matière cantonale et communale. Actuellement, les femmes appenzelloises sont les dernières à ne pas disposer de ce droit. Depuis 1969, plusieurs motions ont été déposées, sans succès. Dernier épisode en date, la Landsgemeinde 1982 en Appenzell Rhodes intérieures. A une large majorité, les hommes avaient une nouvelle fois refusé à leurs compagnes de pénétrer dans le « Ring ». "/>
+  <cas:View sofa="1" members="2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103"/>
+</xmi:XMI>

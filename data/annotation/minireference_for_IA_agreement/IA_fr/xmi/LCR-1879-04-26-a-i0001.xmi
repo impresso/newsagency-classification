@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:cas="http:///uima/cas.ecore" xmlns:type="http:///de/tudarmstadt/ukp/dkpro/core/api/segmentation/type.ecore" xmlns:custom="http:///webanno/custom.ecore" xmi:version="2.0">
+  <cas:NULL xmi:id="0"/>
+  <type:Sentence xmi:id="2" begin="0" end="115" sofa="1"/>
+  <type:Sentence xmi:id="3" begin="115" end="290" sofa="1"/>
+  <type:Sentence xmi:id="4" begin="290" end="420" sofa="1"/>
+  <type:Sentence xmi:id="5" begin="420" end="494" sofa="1"/>
+  <type:Sentence xmi:id="6" begin="494" end="629" sofa="1"/>
+  <type:Sentence xmi:id="7" begin="629" end="799" sofa="1"/>
+  <type:Sentence xmi:id="8" begin="799" end="1017" sofa="1"/>
+  <custom:ImpressoImages xmi:id="9" link="https://impresso-project.ch/api/proxy/iiif/LCR-1879-04-26-a-p0001/44,466,1479,48/full/0/default.jpg" begin="0" end="115" sofa="1"/>
+  <custom:ImpressoImages xmi:id="10" link="https://impresso-project.ch/api/proxy/iiif/LCR-1879-04-26-a-p0001/34,486,1672,49/full/0/default.jpg" begin="115" end="290" sofa="1"/>
+  <custom:ImpressoImages xmi:id="11" link="https://impresso-project.ch/api/proxy/iiif/LCR-1879-04-26-a-p0001/34,505,1673,49/full/0/default.jpg" begin="290" end="420" sofa="1"/>
+  <custom:ImpressoImages xmi:id="12" link="https://impresso-project.ch/api/proxy/iiif/LCR-1879-04-26-a-p0001/36,523,1673,50/full/0/default.jpg" begin="420" end="494" sofa="1"/>
+  <custom:ImpressoImages xmi:id="13" link="https://impresso-project.ch/api/proxy/iiif/LCR-1879-04-26-a-p0001/55,541,1647,48/full/0/default.jpg" begin="494" end="629" sofa="1"/>
+  <custom:ImpressoImages xmi:id="14" link="https://impresso-project.ch/api/proxy/iiif/LCR-1879-04-26-a-p0001/16,561,1675,50/full/0/default.jpg" begin="629" end="799" sofa="1"/>
+  <custom:ImpressoImages xmi:id="15" link="https://impresso-project.ch/api/proxy/iiif/LCR-1879-04-26-a-p0001/18,611,1691,49/full/0/default.jpg" begin="799" end="1017" sofa="1"/>
+  <cas:Sofa xmi:id="1" sofaNum="1" sofaID="_InitialView" mimeType="text/plain" sofaString="ON B'ABOHNB A. TOUTE éPOQUE : à Fribourg, aux bureaux du journal, Grandrue, 3 ; PAIX D'ABONNEMENT (FXANCO) payable d'avance-15 nève cbex M. Duraford, libraire Place Notre-Dame, et MM. Grosset et Trembley, libraires, Conlédération Suisse.. Un an, Pr. 13 — Six mois Fr 7 50 Trois mois Pr 4 ¦— ¦—Corraterie, 12, et à tous les bureaux de poste suisses ; à Paris, cbez MM. Havas, Laffite, France, Belgique,... 21 —, 12 _,'7 _ BiiUieretC *. 8, Place de la Bourse.'Allemagne, Autriche. 21 _. it —. 7 — PRIX DES INNONCKS : Pour le canton 15 cent ., pour la Suisse, 20 cent. ; pour l'étranger, 25 et. ; Royaume d'Italie.... 21— » 12 _ 7 _ B * ctA « Bs : 50 cent. la ligne ou son espace. — Prix d'un numéro, 15 centimes. Lettres et argent FRAMCS de port — Insertions, payables d'avance. IMPRIMERIE riucraièBE. Serein d'annonces : Ajtenee de Publia BAASEHST £ lfl 4 ÏOGLKR i Pribourg, tut de la Préfecture, 195. Genèit, Uuiaaue, Neuehilel, Bile ., Bem, lirich et St-Ssli, Interne el Coire, ainti que tel iaee : ulei d'Allemangne "/>
+  <cas:View sofa="1" members="2 3 4 5 6 7 8 9 10 11 12 13 14 15"/>
+</xmi:XMI>

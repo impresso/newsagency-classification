@@ -1,7 +1,0 @@
-# global.columns = TOKEN NE-COARSE-LIT NE-COARSE-METO NE-FINE-LIT NE-FINE-METO NE-FINE-COMP NE-NESTED NEL-LIT NEL-METO RENDER SEG OCR-INFO MISC
-# language = fr
-# newspaper = courriergdl
-# date = 1846-07-29
-# document_id = courriergdl-1846-07-29-a-i0002
-# news-agency-as-source = _
-# segment_iiif_link = https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fn5bvf6%2fpages%2f1/124,2217,824,58/full/0/default.jpg

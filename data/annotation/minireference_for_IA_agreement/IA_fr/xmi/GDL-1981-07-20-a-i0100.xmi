@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:cas="http:///uima/cas.ecore" xmlns:type="http:///de/tudarmstadt/ukp/dkpro/core/api/segmentation/type.ecore" xmlns:custom="http:///webanno/custom.ecore" xmi:version="2.0">
+  <cas:NULL xmi:id="0"/>
+  <type:Sentence xmi:id="2" begin="0" end="55" sofa="1"/>
+  <type:Sentence xmi:id="3" begin="55" end="89" sofa="1"/>
+  <type:Sentence xmi:id="4" begin="89" end="166" sofa="1"/>
+  <type:Sentence xmi:id="5" begin="166" end="258" sofa="1"/>
+  <type:Sentence xmi:id="6" begin="258" end="348" sofa="1"/>
+  <type:Sentence xmi:id="7" begin="348" end="439" sofa="1"/>
+  <type:Sentence xmi:id="8" begin="439" end="527" sofa="1"/>
+  <type:Sentence xmi:id="9" begin="527" end="586" sofa="1"/>
+  <type:Sentence xmi:id="10" begin="586" end="636" sofa="1"/>
+  <type:Sentence xmi:id="11" begin="636" end="688" sofa="1"/>
+  <type:Sentence xmi:id="12" begin="688" end="741" sofa="1"/>
+  <type:Sentence xmi:id="13" begin="741" end="753" sofa="1"/>
+  <type:Sentence xmi:id="14" begin="753" end="805" sofa="1"/>
+  <type:Sentence xmi:id="15" begin="805" end="858" sofa="1"/>
+  <type:Sentence xmi:id="16" begin="858" end="912" sofa="1"/>
+  <type:Sentence xmi:id="17" begin="912" end="958" sofa="1"/>
+  <type:Sentence xmi:id="18" begin="958" end="1012" sofa="1"/>
+  <type:Sentence xmi:id="19" begin="1012" end="1062" sofa="1"/>
+  <type:Sentence xmi:id="20" begin="1062" end="1098" sofa="1"/>
+  <type:Sentence xmi:id="21" begin="1098" end="1143" sofa="1"/>
+  <type:Sentence xmi:id="22" begin="1143" end="1195" sofa="1"/>
+  <type:Sentence xmi:id="23" begin="1195" end="1245" sofa="1"/>
+  <type:Sentence xmi:id="24" begin="1245" end="1296" sofa="1"/>
+  <type:Sentence xmi:id="25" begin="1296" end="1343" sofa="1"/>
+  <type:Sentence xmi:id="26" begin="1343" end="1393" sofa="1"/>
+  <type:Sentence xmi:id="27" begin="1393" end="1438" sofa="1"/>
+  <type:Sentence xmi:id="28" begin="1438" end="1481" sofa="1"/>
+  <type:Sentence xmi:id="29" begin="1481" end="1495" sofa="1"/>
+  <type:Sentence xmi:id="30" begin="1495" end="1515" sofa="1"/>
+  <type:Sentence xmi:id="31" begin="1515" end="1557" sofa="1"/>
+  <type:Sentence xmi:id="32" begin="1557" end="1608" sofa="1"/>
+  <type:Sentence xmi:id="33" begin="1608" end="1652" sofa="1"/>
+  <type:Sentence xmi:id="34" begin="1652" end="1700" sofa="1"/>
+  <type:Sentence xmi:id="35" begin="1700" end="1752" sofa="1"/>
+  <type:Sentence xmi:id="36" begin="1752" end="1790" sofa="1"/>
+  <type:Sentence xmi:id="37" begin="1790" end="1838" sofa="1"/>
+  <type:Sentence xmi:id="38" begin="1838" end="1889" sofa="1"/>
+  <type:Sentence xmi:id="39" begin="1889" end="1942" sofa="1"/>
+  <type:Sentence xmi:id="40" begin="1942" end="1991" sofa="1"/>
+  <type:Sentence xmi:id="41" begin="1991" end="2044" sofa="1"/>
+  <type:Sentence xmi:id="42" begin="2044" end="2094" sofa="1"/>
+  <type:Sentence xmi:id="43" begin="2094" end="2148" sofa="1"/>
+  <type:Sentence xmi:id="44" begin="2148" end="2201" sofa="1"/>
+  <type:Sentence xmi:id="45" begin="2201" end="2207" sofa="1"/>
+  <type:Sentence xmi:id="46" begin="2207" end="2261" sofa="1"/>
+  <type:Sentence xmi:id="47" begin="2261" end="2319" sofa="1"/>
+  <type:Sentence xmi:id="48" begin="2319" end="2334" sofa="1"/>
+  <custom:ImpressoImages xmi:id="49" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1279,224,2057,85/full/0/default.jpg" begin="0" end="55" sofa="1"/>
+  <custom:ImpressoImages xmi:id="50" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1121,351,2394,166/full/0/default.jpg" begin="55" end="89" sofa="1"/>
+  <custom:ImpressoImages xmi:id="51" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1081,532,1634,60/full/0/default.jpg" begin="89" end="166" sofa="1"/>
+  <custom:ImpressoImages xmi:id="52" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1015,576,1700,60/full/0/default.jpg" begin="166" end="258" sofa="1"/>
+  <custom:ImpressoImages xmi:id="53" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1015,620,1698,60/full/0/default.jpg" begin="258" end="348" sofa="1"/>
+  <custom:ImpressoImages xmi:id="54" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1015,663,1699,60/full/0/default.jpg" begin="348" end="439" sofa="1"/>
+  <custom:ImpressoImages xmi:id="55" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1015,707,1700,60/full/0/default.jpg" begin="439" end="527" sofa="1"/>
+  <custom:ImpressoImages xmi:id="56" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1015,751,1131,60/full/0/default.jpg" begin="527" end="586" sofa="1"/>
+  <custom:ImpressoImages xmi:id="57" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1052,822,784,60/full/0/default.jpg" begin="586" end="636" sofa="1"/>
+  <custom:ImpressoImages xmi:id="58" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1015,859,820,60/full/0/default.jpg" begin="636" end="688" sofa="1"/>
+  <custom:ImpressoImages xmi:id="59" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1015,895,820,60/full/0/default.jpg" begin="688" end="741" sofa="1"/>
+  <custom:ImpressoImages xmi:id="60" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1015,932,157,60/full/0/default.jpg" begin="741" end="753" sofa="1"/>
+  <custom:ImpressoImages xmi:id="61" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1050,972,788,60/full/0/default.jpg" begin="753" end="805" sofa="1"/>
+  <custom:ImpressoImages xmi:id="62" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1013,1009,822,60/full/0/default.jpg" begin="805" end="858" sofa="1"/>
+  <custom:ImpressoImages xmi:id="63" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1013,1045,823,60/full/0/default.jpg" begin="858" end="912" sofa="1"/>
+  <custom:ImpressoImages xmi:id="64" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1015,1082,820,60/full/0/default.jpg" begin="912" end="958" sofa="1"/>
+  <custom:ImpressoImages xmi:id="65" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1013,1120,823,60/full/0/default.jpg" begin="958" end="1012" sofa="1"/>
+  <custom:ImpressoImages xmi:id="66" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1013,1157,823,60/full/0/default.jpg" begin="1012" end="1062" sofa="1"/>
+  <custom:ImpressoImages xmi:id="67" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1013,1192,632,60/full/0/default.jpg" begin="1062" end="1098" sofa="1"/>
+  <custom:ImpressoImages xmi:id="68" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1050,1236,786,60/full/0/default.jpg" begin="1098" end="1143" sofa="1"/>
+  <custom:ImpressoImages xmi:id="69" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1013,1272,822,60/full/0/default.jpg" begin="1143" end="1195" sofa="1"/>
+  <custom:ImpressoImages xmi:id="70" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1010,1309,825,60/full/0/default.jpg" begin="1195" end="1245" sofa="1"/>
+  <custom:ImpressoImages xmi:id="71" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1013,1347,823,60/full/0/default.jpg" begin="1245" end="1296" sofa="1"/>
+  <custom:ImpressoImages xmi:id="72" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1010,1384,825,60/full/0/default.jpg" begin="1296" end="1343" sofa="1"/>
+  <custom:ImpressoImages xmi:id="73" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1013,1420,821,60/full/0/default.jpg" begin="1343" end="1393" sofa="1"/>
+  <custom:ImpressoImages xmi:id="74" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1013,1457,823,60/full/0/default.jpg" begin="1393" end="1438" sofa="1"/>
+  <custom:ImpressoImages xmi:id="75" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1010,1495,690,60/full/0/default.jpg" begin="1438" end="1481" sofa="1"/>
+  <custom:ImpressoImages xmi:id="76" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1888,822,321,72/full/0/default.jpg" begin="1481" end="1495" sofa="1"/>
+  <custom:ImpressoImages xmi:id="77" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1885,876,521,72/full/0/default.jpg" begin="1495" end="1515" sofa="1"/>
+  <custom:ImpressoImages xmi:id="78" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1923,936,787,60/full/0/default.jpg" begin="1515" end="1557" sofa="1"/>
+  <custom:ImpressoImages xmi:id="79" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1885,972,825,60/full/0/default.jpg" begin="1557" end="1608" sofa="1"/>
+  <custom:ImpressoImages xmi:id="80" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1885,1009,825,60/full/0/default.jpg" begin="1608" end="1652" sofa="1"/>
+  <custom:ImpressoImages xmi:id="81" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1885,1047,825,60/full/0/default.jpg" begin="1652" end="1700" sofa="1"/>
+  <custom:ImpressoImages xmi:id="82" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1885,1084,825,60/full/0/default.jpg" begin="1700" end="1752" sofa="1"/>
+  <custom:ImpressoImages xmi:id="83" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1885,1120,579,60/full/0/default.jpg" begin="1752" end="1790" sofa="1"/>
+  <custom:ImpressoImages xmi:id="84" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1923,1197,788,60/full/0/default.jpg" begin="1790" end="1838" sofa="1"/>
+  <custom:ImpressoImages xmi:id="85" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1885,1234,826,60/full/0/default.jpg" begin="1838" end="1889" sofa="1"/>
+  <custom:ImpressoImages xmi:id="86" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1885,1272,823,60/full/0/default.jpg" begin="1889" end="1942" sofa="1"/>
+  <custom:ImpressoImages xmi:id="87" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1885,1309,825,60/full/0/default.jpg" begin="1942" end="1991" sofa="1"/>
+  <custom:ImpressoImages xmi:id="88" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1885,1345,838,60/full/0/default.jpg" begin="1991" end="2044" sofa="1"/>
+  <custom:ImpressoImages xmi:id="89" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1885,1382,825,60/full/0/default.jpg" begin="2044" end="2094" sofa="1"/>
+  <custom:ImpressoImages xmi:id="90" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1885,1420,824,60/full/0/default.jpg" begin="2094" end="2148" sofa="1"/>
+  <custom:ImpressoImages xmi:id="91" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1885,1457,824,60/full/0/default.jpg" begin="2148" end="2201" sofa="1"/>
+  <custom:ImpressoImages xmi:id="92" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/1883,1492,83,60/full/0/default.jpg" begin="2201" end="2207" sofa="1"/>
+  <custom:ImpressoImages xmi:id="93" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/2762,1420,823,60/full/0/default.jpg" begin="2207" end="2261" sofa="1"/>
+  <custom:ImpressoImages xmi:id="94" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/2762,1457,826,60/full/0/default.jpg" begin="2261" end="2319" sofa="1"/>
+  <custom:ImpressoImages xmi:id="95" link="https://impresso-project.ch/api/proxy/iiif/GDL-1981-07-20-a-p0012/3062,1492,230,60/full/0/default.jpg" begin="2319" end="2334" sofa="1"/>
+  <cas:Sofa xmi:id="1" sofaNum="1" sofaID="_InitialView" mimeType="text/plain" sofaString="POLOGNE : ÉLU PAR 1311 VOIX CONTRE 568 À M. BARCIKOWSKI M. Kania reste premier secrétaire Varsovie, 19 (ATS / AFP).-M. Stanislaw Kania a été réélu samedi soir premier secrétaire du Parti ouvrier unifié polonais (POUP), devenant ainsi en même temps le premier chef d'un parti communiste ou ouvrier à accéder au pouvoir suprême à la suite d'un vote à bulletins secrets. M. Kania qui a été élu par l'ensemble du congrès du POUP et non pas par le seul comité central comme il est de coutume en régime communiste, a obtenu 1311 voix contre 568 à son « concurrent », M. Kazimierz Barcikowski. L'annonce de son élection a été accueillie par de très vifs applaudissements. Les deux concurrents se sont ensuite donné l'accolade sous les caméras de la télévision. A peine réélu, le 1 er secrétaire n'a pas manqué de souligner, outre sa détermination de poursuivre « ni à gauche, ni à droite, mais tout droit », la ligne du renouveau, ce droit de la Pologne à sa propre spécificité. « Nous sommes, a-t-il déclaré devant les congressistes, un parti marxiste-léniniste, et en même temps profondément polonais ». Dimanche, le président Brejnev a adressé de brèves félicitations à M. Stanislaw Kania, reconduit dans ses fonctions de secrétaire général du Parti ouvrier unifie polonais (POUP), sans y ajouter les compliments d'usage. Le message de M. Brejnev, bref et concis, reflète l'apparente inquiétude du Kremlin à l'égard de M. Kania lui-même et de l'élection démocratique qu'il a remportée. M. Jaruzelski condamne les grèves Le premier ministre polonais, le général Wojciech Jaruzelski, a condamné dimanche les grèves comme moyen de pression sur le gouvernement tout en soulignant que le pouvoir pourrait être amené à « remplir ses devoirs constitutionnels » si « l'anarchie » s'étendait en Pologne. Parlant devant les quelque 2000 délégués au 9 e congrès « extraordinaire » du Parti ouvrier unifié polonais, le chef de l'exécutif, faisant visiblement allusion aux débrayages annoncés par le syndicat « Solidarité » (dockers, compagnie aérienne « Lot ») pour la semaine prochaine, a demandé aux ouvriers de « s'abstenir de toute revendication salariale » en raison de l'état « catastrophique » de l'économie du pays. Stanislaw Kania salue une jeune déléguée qui vient le féliciter de sa réélection au poste de premier secrétaire du Parti (UPI) "/>
+  <cas:View sofa="1" members="2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95"/>
+</xmi:XMI>

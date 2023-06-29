@@ -1,0 +1,11 @@
+Annotator,Inception Project,Newspapers,Number of Articles,Finished Annotation
+eboros,impresso-newsagencies: FR,"JDG, LCR",313,TRUE
+,impresso-newsagencies: FR-Minireference,all,48,TRUE
+mduring,impresso-newsagencies: DE,"luxwort, FZG, DTT, obermosel, waechtersauer, SGZ, EZR",314,TRUE
+,impresso-newsagencies: DE-Minireference,all,48,TRUE
+mehrmann,impresso-newsagencies: FR,"EXP, LLE",311,TRUE
+,impresso-newsagencies: FR-Minireference,all,48,TRUE
+lmarxen,impresso-newsagencies: DE,"buergerbeamten, diekwochen, tageblatt, NTS, WHD, lunion, NZG, LAB, volkfreu1869, OIZ, VHT, courriergdl",50,TRUE
+,impresso-newsagencies: DE-Minireference,all,48,TRUE
+,impresso-newsagencies: FR,"GDL, IMP, indeplux, courriergdl, LSE, lunion, luxwort, luxembourg1935, LNF, GAV, LCE, LCG, CDV, luxzeit1858, avenirgdl, waechtersauer, LBP, volkfreu1869, tageblatt",531,TRUE
+,impresso-newsagencies: FR-Minireference,all,48,TRUE

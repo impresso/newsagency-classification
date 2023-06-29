@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:cas="http:///uima/cas.ecore" xmlns:type="http:///de/tudarmstadt/ukp/dkpro/core/api/segmentation/type.ecore" xmlns:custom="http:///webanno/custom.ecore" xmi:version="2.0">
+  <cas:NULL xmi:id="0"/>
+  <type:Sentence xmi:id="2" begin="0" end="25" sofa="1"/>
+  <type:Sentence xmi:id="3" begin="25" end="44" sofa="1"/>
+  <type:Sentence xmi:id="4" begin="44" end="72" sofa="1"/>
+  <type:Sentence xmi:id="5" begin="72" end="118" sofa="1"/>
+  <type:Sentence xmi:id="6" begin="118" end="158" sofa="1"/>
+  <type:Sentence xmi:id="7" begin="158" end="200" sofa="1"/>
+  <type:Sentence xmi:id="8" begin="200" end="245" sofa="1"/>
+  <type:Sentence xmi:id="9" begin="245" end="286" sofa="1"/>
+  <type:Sentence xmi:id="10" begin="286" end="327" sofa="1"/>
+  <type:Sentence xmi:id="11" begin="327" end="365" sofa="1"/>
+  <type:Sentence xmi:id="12" begin="365" end="404" sofa="1"/>
+  <type:Sentence xmi:id="13" begin="404" end="412" sofa="1"/>
+  <custom:ImpressoImages xmi:id="14" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2f7qnmc6%2fpages%2f1/3321,3304,683,58/full/0/default.jpg" begin="0" end="25" sofa="1"/>
+  <custom:ImpressoImages xmi:id="15" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2f7qnmc6%2fpages%2f1/3399,3376,526,49/full/0/default.jpg" begin="25" end="44" sofa="1"/>
+  <custom:ImpressoImages xmi:id="16" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2f7qnmc6%2fpages%2f1/3328,3442,694,54/full/0/default.jpg" begin="44" end="72" sofa="1"/>
+  <custom:ImpressoImages xmi:id="17" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2f7qnmc6%2fpages%2f1/3290,3484,746,49/full/0/default.jpg" begin="72" end="118" sofa="1"/>
+  <custom:ImpressoImages xmi:id="18" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2f7qnmc6%2fpages%2f1/3288,3528,748,57/full/0/default.jpg" begin="118" end="158" sofa="1"/>
+  <custom:ImpressoImages xmi:id="19" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2f7qnmc6%2fpages%2f1/3287,3569,751,49/full/0/default.jpg" begin="158" end="200" sofa="1"/>
+  <custom:ImpressoImages xmi:id="20" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2f7qnmc6%2fpages%2f1/3278,3659,757,37/full/0/default.jpg" begin="200" end="245" sofa="1"/>
+  <custom:ImpressoImages xmi:id="21" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2f7qnmc6%2fpages%2f1/3288,3675,748,49/full/0/default.jpg" begin="245" end="286" sofa="1"/>
+  <custom:ImpressoImages xmi:id="22" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2f7qnmc6%2fpages%2f1/3278,3717,758,62/full/0/default.jpg" begin="286" end="327" sofa="1"/>
+  <custom:ImpressoImages xmi:id="23" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2f7qnmc6%2fpages%2f1/3289,3759,730,48/full/0/default.jpg" begin="327" end="365" sofa="1"/>
+  <custom:ImpressoImages xmi:id="24" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2f7qnmc6%2fpages%2f1/3288,3803,711,49/full/0/default.jpg" begin="365" end="404" sofa="1"/>
+  <custom:ImpressoImages xmi:id="25" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2f7qnmc6%2fpages%2f1/3864,3858,129,49/full/0/default.jpg" begin="404" end="412" sofa="1"/>
+  <cas:Sofa xmi:id="1" sofaNum="1" sofaID="_InitialView" mimeType="text/plain" sofaString="M. Maisky s’est entretenu avec Lord Plymouth Londres, 23. — M. MTaisky, -ambassadeur dé l’U. R. S. S, à Londres, s’est rendu, ce matin, au Foreign Office,, ou il a eu un entretien, avec lord Plymouth, , On sMt qu’à, la, suite, de. la réponse des autorités de Burgos au projet dé retrait ;des volontaires, le président du comité de non-intervention a l’intention de consulter les membres de cet organisme- Reuter. "/>
+  <cas:View sofa="1" members="2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25"/>
+</xmi:XMI>

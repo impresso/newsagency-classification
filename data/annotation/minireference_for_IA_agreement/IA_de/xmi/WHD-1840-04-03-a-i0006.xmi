@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:cas="http:///uima/cas.ecore" xmlns:type="http:///de/tudarmstadt/ukp/dkpro/core/api/segmentation/type.ecore" xmlns:custom="http:///webanno/custom.ecore" xmi:version="2.0">
+  <cas:NULL xmi:id="0"/>
+  <type:Sentence xmi:id="2" begin="0" end="562" sofa="1"/>
+  <type:Sentence xmi:id="3" begin="562" end="564" sofa="1"/>
+  <type:Sentence xmi:id="4" begin="564" end="1053" sofa="1"/>
+  <type:Sentence xmi:id="5" begin="1053" end="1085" sofa="1"/>
+  <type:Sentence xmi:id="6" begin="1085" end="1583" sofa="1"/>
+  <type:Sentence xmi:id="7" begin="1583" end="1767" sofa="1"/>
+  <type:Sentence xmi:id="8" begin="1767" end="1882" sofa="1"/>
+  <type:Sentence xmi:id="9" begin="1882" end="1894" sofa="1"/>
+  <type:Sentence xmi:id="10" begin="1894" end="1898" sofa="1"/>
+  <type:Sentence xmi:id="11" begin="1898" end="1940" sofa="1"/>
+  <type:Sentence xmi:id="12" begin="1940" end="1942" sofa="1"/>
+  <type:Sentence xmi:id="13" begin="1942" end="2220" sofa="1"/>
+  <type:Sentence xmi:id="14" begin="2220" end="2452" sofa="1"/>
+  <type:Sentence xmi:id="15" begin="2452" end="2535" sofa="1"/>
+  <type:Sentence xmi:id="16" begin="2535" end="2537" sofa="1"/>
+  <type:Sentence xmi:id="17" begin="2537" end="2605" sofa="1"/>
+  <type:Sentence xmi:id="18" begin="2605" end="2638" sofa="1"/>
+  <type:Sentence xmi:id="19" begin="2638" end="2655" sofa="1"/>
+  <type:Sentence xmi:id="20" begin="2655" end="2767" sofa="1"/>
+  <type:Sentence xmi:id="21" begin="2767" end="2769" sofa="1"/>
+  <type:Sentence xmi:id="22" begin="2769" end="2960" sofa="1"/>
+  <custom:ImpressoImages xmi:id="23" link="https://impresso-project.ch/api/proxy/iiif/WHD-1840-04-03-a-p0004/1880,576,426,65/full/0/default.jpg" begin="0" end="562" sofa="1"/>
+  <custom:ImpressoImages xmi:id="24" link="https://impresso-project.ch/api/proxy/iiif/WHD-1840-04-03-a-p0004/1888,645,10,65/full/0/default.jpg" begin="562" end="564" sofa="1"/>
+  <custom:ImpressoImages xmi:id="25" link="https://impresso-project.ch/api/proxy/iiif/WHD-1840-04-03-a-p0004/1636,1023,252,65/full/0/default.jpg" begin="564" end="1053" sofa="1"/>
+  <custom:ImpressoImages xmi:id="26" link="https://impresso-project.ch/api/proxy/iiif/WHD-1840-04-03-a-p0004/1501,1085,507,68/full/0/default.jpg" begin="1053" end="1085" sofa="1"/>
+  <custom:ImpressoImages xmi:id="27" link="https://impresso-project.ch/api/proxy/iiif/WHD-1840-04-03-a-p0004/1591,1468,701,65/full/0/default.jpg" begin="1085" end="1583" sofa="1"/>
+  <custom:ImpressoImages xmi:id="28" link="https://impresso-project.ch/api/proxy/iiif/WHD-1840-04-03-a-p0004/1533,1709,349,64/full/0/default.jpg" begin="1583" end="1767" sofa="1"/>
+  <custom:ImpressoImages xmi:id="29" link="https://impresso-project.ch/api/proxy/iiif/WHD-1840-04-03-a-p0004/1383,1824,870,65/full/0/default.jpg" begin="1767" end="1882" sofa="1"/>
+  <custom:ImpressoImages xmi:id="30" link="https://impresso-project.ch/api/proxy/iiif/WHD-1840-04-03-a-p0004/1551,1866,394,98/full/0/default.jpg" begin="1882" end="1894" sofa="1"/>
+  <custom:ImpressoImages xmi:id="31" link="https://impresso-project.ch/api/proxy/iiif/WHD-1840-04-03-a-p0004/1724,1929,43,65/full/0/default.jpg" begin="1894" end="1898" sofa="1"/>
+  <custom:ImpressoImages xmi:id="32" link="https://impresso-project.ch/api/proxy/iiif/WHD-1840-04-03-a-p0004/2238,1961,1,97/full/0/default.jpg" begin="1898" end="1940" sofa="1"/>
+  <custom:ImpressoImages xmi:id="33" link="https://impresso-project.ch/api/proxy/iiif/WHD-1840-04-03-a-p0004/2013,2036,12,70/full/0/default.jpg" begin="1940" end="1942" sofa="1"/>
+  <custom:ImpressoImages xmi:id="34" link="https://impresso-project.ch/api/proxy/iiif/WHD-1840-04-03-a-p0004/1508,2281,508,70/full/0/default.jpg" begin="1942" end="2220" sofa="1"/>
+  <custom:ImpressoImages xmi:id="35" link="https://impresso-project.ch/api/proxy/iiif/WHD-1840-04-03-a-p0004/1544,2526,730,63/full/0/default.jpg" begin="2220" end="2452" sofa="1"/>
+  <custom:ImpressoImages xmi:id="36" link="https://impresso-project.ch/api/proxy/iiif/WHD-1840-04-03-a-p0004/1923,2669,77,64/full/0/default.jpg" begin="2452" end="2535" sofa="1"/>
+  <custom:ImpressoImages xmi:id="37" link="https://impresso-project.ch/api/proxy/iiif/WHD-1840-04-03-a-p0004/1932,2751,10,65/full/0/default.jpg" begin="2535" end="2537" sofa="1"/>
+  <custom:ImpressoImages xmi:id="38" link="https://impresso-project.ch/api/proxy/iiif/WHD-1840-04-03-a-p0004/1403,2809,527,65/full/0/default.jpg" begin="2537" end="2605" sofa="1"/>
+  <custom:ImpressoImages xmi:id="39" link="https://impresso-project.ch/api/proxy/iiif/WHD-1840-04-03-a-p0004/1350,2891,934,65/full/0/default.jpg" begin="2605" end="2638" sofa="1"/>
+  <custom:ImpressoImages xmi:id="40" link="https://impresso-project.ch/api/proxy/iiif/WHD-1840-04-03-a-p0004/1636,2956,620,53/full/0/default.jpg" begin="2638" end="2655" sofa="1"/>
+  <custom:ImpressoImages xmi:id="41" link="https://impresso-project.ch/api/proxy/iiif/WHD-1840-04-03-a-p0004/1263,3062,1001,65/full/0/default.jpg" begin="2655" end="2767" sofa="1"/>
+  <custom:ImpressoImages xmi:id="42" link="https://impresso-project.ch/api/proxy/iiif/WHD-1840-04-03-a-p0004/1920,3126,8,65/full/0/default.jpg" begin="2767" end="2769" sofa="1"/>
+  <custom:ImpressoImages xmi:id="43" link="https://impresso-project.ch/api/proxy/iiif/WHD-1840-04-03-a-p0004/1262,3301,658,65/full/0/default.jpg" begin="2769" end="2960" sofa="1"/>
+  <cas:Sofa xmi:id="1" sofaNum="1" sofaID="_InitialView" mimeType="text/plain" sofaString="Lütti . Der _Vezirtsgerichlsschreiber : Im Name » der gerichtlichen _AuffaNskommissi _«« , Tablat , den 1 . April , 84 » . Kaufliebhaber siud eingeladen , sich zahlreich einzufinden . He » , _l Stuck Mist und 9 Stück Hühner . Fäßli , Sägen , Hauen , Beile , Necken , Gabeln , Schaufeln , Stroh , Wagen , Vinue » , Schliüe » , _Wiudmühle , Egge » , _Pffug , _Slaude » In verschiedene ! , Haus- » nd _Klichegerä _lhschaften ; ferner in Karre » Dieselbe » bestehen : de » überlassen , weiden . der Debitmassa Huber gegen sogleich baare Bezahlung dem Meistbiete _,,: . Die _Schulgutsverwaltuugsratbs-Kanzlei , Aus Auftrag : Goßau , de » _i . April i 8 a &lt; i . _tuüft _erihcilt wird . ihnen der Bauplan zur _Eiusicht vorgelegt und über das Nähere Aus- Hr » . _Kanionsraih I . I . Schwizcr in Niederdorf _zu melde » , wo zu _iiberuchmen wünsche » , sind eiugelade » , sich bis dc » 25 . d . M . bei Arbeit a » dem neu zu _criichleude » Schulgebäude in Goß ,, » im Akkord Diejenigen Schreiner , Glaser und Deckermeister , welche die betreffende _Auöschreibullg _Holzuerstelgernngs - Anzeige . Forstverwalter der kathol . _Admiiiistraüo » . I . Keel , _Gämperle in dcr Nüli . Ablheilung entweder a » Hrn . _Pfändler im Nößle oder an Ausseher Kaufliebhaber wende » sich behufs der _Vesichiiguug der _bezeichuclen eiue _Parlie sehr _laugschäfiigcs , »» gefälltes Nadelholz _versteigert . talhol . _Korporalim _» des _Kanlons St . Gauen , _geuauxt Nechbeig , _tonsralh Pfändler zum weißen Roßte i » _Flawil aus der Waldung der Dinslags de » 21 . April , Nachmittags 2 Uhr , wird bci Hr » . Kau- Verwalter der kathol . _Admiuistrationiwälder , I . Kcel , St . Fideu , den 2 « . März _, «/ _, _!&gt; . Bei Untcrzeichuctcm ist gauz frischer Lcrchensaame » zu haben . _Lerchensaalneu . C . P . Sch eilt in in St . Gaste » zu beziehen : Bei Gebrüder Ruber in Luzern ist so eben erschiene , ! uud durch Beleuchtung der . WVrmtheilo wider die katholische Kirche . _Preisen « Abthcilimg l fl . Früher « schicu : Erst « Band , erste u « d zweite Abthcilimg . Preis 1 8 kr . tigstcu _Untcrschciduiigslchrc « bcid « christlichen Koufcffioucu . Zweiter Band . Erste Abthcilung , cs sthält : Erörterung dcr wich Von einen , _protcstautjschcn Laien nächst beim Kronbühl , Gemeiude _Wiüenback . Iatob We &gt;) er , Größe von i / 2 Ellen komme . bester Qualität , mit der Jusichcruug , daß das Gewächs davon bis z _»! Unterzeichneter empfiehlt sich hiermit zur Abnahme von _Leinsamen , iu _Oberbüreu . Frau vou Chris mar , Ganz reiner Haber zum Ansäen ist zu haben bei . Donnerstags , de » 2 . April l « _ko . Alil » m » lKt in _Nurschach _Koinprcise . l _Habcrpreise . l st . . « st . kr .- niedriger 1 ! 2 &gt; — mittlerer 1 l _9 &gt; — mindester — , 2 Das Viertel höchster 1 2 N Das Viertel bester — 2 ? . Malz » » » 1- t 3 - » — - — - Bohnen » » » - 5 _lr - » - &gt; - 56 - Gerollte » » » » t - - 2 - , &lt;— _- — .- Rohe Gerste das Viertel vLn ll fl . 6 kr . bis — ff . — tr . Andere Fr » cht » reise "/>
+  <cas:View sofa="1" members="2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43"/>
+</xmi:XMI>

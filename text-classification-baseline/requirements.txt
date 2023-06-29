@@ -1,9 +1,0 @@
-apex==0.9.10dev
-numpy==1.23.5
-PyYAML==6.0
-scikit_learn==1.2.2
-seqeval==1.2.2
-tensorboardX==2.6
-torch==1.13.1
-tqdm==4.65.0
-transformers==4.24.0

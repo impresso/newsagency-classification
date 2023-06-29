@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:cas="http:///uima/cas.ecore" xmlns:type="http:///de/tudarmstadt/ukp/dkpro/core/api/segmentation/type.ecore" xmlns:custom="http:///webanno/custom.ecore" xmi:version="2.0">
+  <cas:NULL xmi:id="0"/>
+  <type:Sentence xmi:id="2" begin="0" end="50" sofa="1"/>
+  <type:Sentence xmi:id="3" begin="50" end="103" sofa="1"/>
+  <type:Sentence xmi:id="4" begin="103" end="158" sofa="1"/>
+  <type:Sentence xmi:id="5" begin="158" end="210" sofa="1"/>
+  <type:Sentence xmi:id="6" begin="210" end="265" sofa="1"/>
+  <type:Sentence xmi:id="7" begin="265" end="319" sofa="1"/>
+  <type:Sentence xmi:id="8" begin="319" end="374" sofa="1"/>
+  <type:Sentence xmi:id="9" begin="374" end="428" sofa="1"/>
+  <type:Sentence xmi:id="10" begin="428" end="476" sofa="1"/>
+  <type:Sentence xmi:id="11" begin="476" end="496" sofa="1"/>
+  <custom:ImpressoImages xmi:id="12" link="https://impresso-project.ch/api/proxy/iiif/JDG-1946-10-01-a-p0008/271,3828,580,42/full/0/default.jpg" begin="0" end="50" sofa="1"/>
+  <custom:ImpressoImages xmi:id="13" link="https://impresso-project.ch/api/proxy/iiif/JDG-1946-10-01-a-p0008/248,3850,600,42/full/0/default.jpg" begin="50" end="103" sofa="1"/>
+  <custom:ImpressoImages xmi:id="14" link="https://impresso-project.ch/api/proxy/iiif/JDG-1946-10-01-a-p0008/248,3872,601,42/full/0/default.jpg" begin="103" end="158" sofa="1"/>
+  <custom:ImpressoImages xmi:id="15" link="https://impresso-project.ch/api/proxy/iiif/JDG-1946-10-01-a-p0008/248,3894,601,42/full/0/default.jpg" begin="158" end="210" sofa="1"/>
+  <custom:ImpressoImages xmi:id="16" link="https://impresso-project.ch/api/proxy/iiif/JDG-1946-10-01-a-p0008/248,3918,603,42/full/0/default.jpg" begin="210" end="265" sofa="1"/>
+  <custom:ImpressoImages xmi:id="17" link="https://impresso-project.ch/api/proxy/iiif/JDG-1946-10-01-a-p0008/246,3940,604,42/full/0/default.jpg" begin="265" end="319" sofa="1"/>
+  <custom:ImpressoImages xmi:id="18" link="https://impresso-project.ch/api/proxy/iiif/JDG-1946-10-01-a-p0008/246,3962,602,42/full/0/default.jpg" begin="319" end="374" sofa="1"/>
+  <custom:ImpressoImages xmi:id="19" link="https://impresso-project.ch/api/proxy/iiif/JDG-1946-10-01-a-p0008/244,3984,604,44/full/0/default.jpg" begin="374" end="428" sofa="1"/>
+  <custom:ImpressoImages xmi:id="20" link="https://impresso-project.ch/api/proxy/iiif/JDG-1946-10-01-a-p0008/244,4006,603,44/full/0/default.jpg" begin="428" end="476" sofa="1"/>
+  <custom:ImpressoImages xmi:id="21" link="https://impresso-project.ch/api/proxy/iiif/JDG-1946-10-01-a-p0008/242,4028,190,42/full/0/default.jpg" begin="476" end="496" sofa="1"/>
+  <cas:Sofa xmi:id="1" sofaNum="1" sofaID="_InitialView" mimeType="text/plain" sofaString="— 118 médecins, c'est-à-dire presque la plupart de ceux occupés dans les cliniques universitaires de la capitale suédoise ont décidé de faire grève. Il s'agit d'une protestation contre une décision du parlement stipulant qu'aucun honoraire ne doit être réclamé pour I établissement de certificats médicaux. Les médecins on » déclaré que les patients se trouvant actuellement dans les hôpitaux continueront de recevoir des soins, mais qu'aucun nouveau malade ne sera accepté en clinique. (Reuter.) "/>
+  <cas:View sofa="1" members="2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21"/>
+</xmi:XMI>

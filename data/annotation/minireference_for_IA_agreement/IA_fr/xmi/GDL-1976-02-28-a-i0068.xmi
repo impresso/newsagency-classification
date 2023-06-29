@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:cas="http:///uima/cas.ecore" xmlns:type="http:///de/tudarmstadt/ukp/dkpro/core/api/segmentation/type.ecore" xmlns:custom="http:///webanno/custom.ecore" xmi:version="2.0">
+  <cas:NULL xmi:id="0"/>
+  <type:Sentence xmi:id="2" begin="0" end="46" sofa="1"/>
+  <type:Sentence xmi:id="3" begin="46" end="87" sofa="1"/>
+  <type:Sentence xmi:id="4" begin="87" end="143" sofa="1"/>
+  <type:Sentence xmi:id="5" begin="143" end="192" sofa="1"/>
+  <type:Sentence xmi:id="6" begin="192" end="243" sofa="1"/>
+  <type:Sentence xmi:id="7" begin="243" end="288" sofa="1"/>
+  <type:Sentence xmi:id="8" begin="288" end="338" sofa="1"/>
+  <type:Sentence xmi:id="9" begin="338" end="389" sofa="1"/>
+  <type:Sentence xmi:id="10" begin="389" end="439" sofa="1"/>
+  <type:Sentence xmi:id="11" begin="439" end="480" sofa="1"/>
+  <custom:ImpressoImages xmi:id="12" link="https://impresso-project.ch/api/proxy/iiif/GDL-1976-02-28-a-p0007/1933,3590,838,53/full/0/default.jpg" begin="0" end="46" sofa="1"/>
+  <custom:ImpressoImages xmi:id="13" link="https://impresso-project.ch/api/proxy/iiif/GDL-1976-02-28-a-p0007/1929,3628,840,51/full/0/default.jpg" begin="46" end="87" sofa="1"/>
+  <custom:ImpressoImages xmi:id="14" link="https://impresso-project.ch/api/proxy/iiif/GDL-1976-02-28-a-p0007/1931,3661,838,53/full/0/default.jpg" begin="87" end="143" sofa="1"/>
+  <custom:ImpressoImages xmi:id="15" link="https://impresso-project.ch/api/proxy/iiif/GDL-1976-02-28-a-p0007/1929,3697,838,53/full/0/default.jpg" begin="143" end="192" sofa="1"/>
+  <custom:ImpressoImages xmi:id="16" link="https://impresso-project.ch/api/proxy/iiif/GDL-1976-02-28-a-p0007/1931,3732,836,51/full/0/default.jpg" begin="192" end="243" sofa="1"/>
+  <custom:ImpressoImages xmi:id="17" link="https://impresso-project.ch/api/proxy/iiif/GDL-1976-02-28-a-p0007/1931,3768,838,51/full/0/default.jpg" begin="243" end="288" sofa="1"/>
+  <custom:ImpressoImages xmi:id="18" link="https://impresso-project.ch/api/proxy/iiif/GDL-1976-02-28-a-p0007/1931,3803,836,51/full/0/default.jpg" begin="288" end="338" sofa="1"/>
+  <custom:ImpressoImages xmi:id="19" link="https://impresso-project.ch/api/proxy/iiif/GDL-1976-02-28-a-p0007/1929,3836,838,53/full/0/default.jpg" begin="338" end="389" sofa="1"/>
+  <custom:ImpressoImages xmi:id="20" link="https://impresso-project.ch/api/proxy/iiif/GDL-1976-02-28-a-p0007/1929,3872,837,53/full/0/default.jpg" begin="389" end="439" sofa="1"/>
+  <custom:ImpressoImages xmi:id="21" link="https://impresso-project.ch/api/proxy/iiif/GDL-1976-02-28-a-p0007/1929,3907,737,51/full/0/default.jpg" begin="439" end="480" sofa="1"/>
+  <cas:Sofa xmi:id="1" sofaNum="1" sofaID="_InitialView" mimeType="text/plain" sofaString="6 Suisse orientale : réunion des Gouvernements cantonaux. — La conférence plénière des Gouvernements cantonaux de Suisse orientale a chargé les chefs'cantonaux des Départements des finances et de l'économie publique de la même région d'établir un plan de mesures de prévoyance pour le cas où la récession irait s'aggravant. Réunie jeudi à Neuhausen (SH), cette conférence était placée sous la direction du chef cantonal des Travaux publics de Schaffhouse, M. Ernst Neukomm. (ATS.) "/>
+  <cas:View sofa="1" members="2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21"/>
+</xmi:XMI>

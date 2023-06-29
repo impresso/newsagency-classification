@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:cas="http:///uima/cas.ecore" xmlns:type="http:///de/tudarmstadt/ukp/dkpro/core/api/segmentation/type.ecore" xmlns:custom="http:///webanno/custom.ecore" xmi:version="2.0">
+  <cas:NULL xmi:id="0"/>
+  <type:Sentence xmi:id="2" begin="0" end="20" sofa="1"/>
+  <type:Sentence xmi:id="3" begin="20" end="32" sofa="1"/>
+  <type:Sentence xmi:id="4" begin="32" end="63" sofa="1"/>
+  <type:Sentence xmi:id="5" begin="63" end="87" sofa="1"/>
+  <type:Sentence xmi:id="6" begin="87" end="126" sofa="1"/>
+  <type:Sentence xmi:id="7" begin="126" end="173" sofa="1"/>
+  <type:Sentence xmi:id="8" begin="173" end="219" sofa="1"/>
+  <type:Sentence xmi:id="9" begin="219" end="268" sofa="1"/>
+  <type:Sentence xmi:id="10" begin="268" end="317" sofa="1"/>
+  <type:Sentence xmi:id="11" begin="317" end="367" sofa="1"/>
+  <type:Sentence xmi:id="12" begin="367" end="415" sofa="1"/>
+  <type:Sentence xmi:id="13" begin="415" end="458" sofa="1"/>
+  <type:Sentence xmi:id="14" begin="458" end="508" sofa="1"/>
+  <type:Sentence xmi:id="15" begin="508" end="549" sofa="1"/>
+  <type:Sentence xmi:id="16" begin="549" end="606" sofa="1"/>
+  <type:Sentence xmi:id="17" begin="606" end="653" sofa="1"/>
+  <type:Sentence xmi:id="18" begin="653" end="704" sofa="1"/>
+  <type:Sentence xmi:id="19" begin="704" end="753" sofa="1"/>
+  <type:Sentence xmi:id="20" begin="753" end="804" sofa="1"/>
+  <type:Sentence xmi:id="21" begin="804" end="842" sofa="1"/>
+  <type:Sentence xmi:id="22" begin="842" end="895" sofa="1"/>
+  <type:Sentence xmi:id="23" begin="895" end="944" sofa="1"/>
+  <type:Sentence xmi:id="24" begin="944" end="991" sofa="1"/>
+  <custom:ImpressoImages xmi:id="25" link="https://impresso-project.ch/api/proxy/iiif/DTT-1960-05-28-a-p0014/233,309,595,103/full/0/default.jpg" begin="0" end="20" sofa="1"/>
+  <custom:ImpressoImages xmi:id="26" link="https://impresso-project.ch/api/proxy/iiif/DTT-1960-05-28-a-p0014/345,372,377,103/full/0/default.jpg" begin="20" end="32" sofa="1"/>
+  <custom:ImpressoImages xmi:id="27" link="https://impresso-project.ch/api/proxy/iiif/DTT-1960-05-28-a-p0014/234,467,593,76/full/0/default.jpg" begin="32" end="63" sofa="1"/>
+  <custom:ImpressoImages xmi:id="28" link="https://impresso-project.ch/api/proxy/iiif/DTT-1960-05-28-a-p0014/327,508,406,75/full/0/default.jpg" begin="63" end="87" sofa="1"/>
+  <custom:ImpressoImages xmi:id="29" link="https://impresso-project.ch/api/proxy/iiif/DTT-1960-05-28-a-p0014/116,562,817,76/full/0/default.jpg" begin="87" end="126" sofa="1"/>
+  <custom:ImpressoImages xmi:id="30" link="https://impresso-project.ch/api/proxy/iiif/DTT-1960-05-28-a-p0014/116,598,648,74/full/0/default.jpg" begin="126" end="173" sofa="1"/>
+  <custom:ImpressoImages xmi:id="31" link="https://impresso-project.ch/api/proxy/iiif/DTT-1960-05-28-a-p0014/153,652,795,74/full/0/default.jpg" begin="173" end="219" sofa="1"/>
+  <custom:ImpressoImages xmi:id="32" link="https://impresso-project.ch/api/proxy/iiif/DTT-1960-05-28-a-p0014/116,688,829,76/full/0/default.jpg" begin="219" end="268" sofa="1"/>
+  <custom:ImpressoImages xmi:id="33" link="https://impresso-project.ch/api/proxy/iiif/DTT-1960-05-28-a-p0014/116,724,829,76/full/0/default.jpg" begin="268" end="317" sofa="1"/>
+  <custom:ImpressoImages xmi:id="34" link="https://impresso-project.ch/api/proxy/iiif/DTT-1960-05-28-a-p0014/118,762,827,76/full/0/default.jpg" begin="317" end="367" sofa="1"/>
+  <custom:ImpressoImages xmi:id="35" link="https://impresso-project.ch/api/proxy/iiif/DTT-1960-05-28-a-p0014/116,797,796,75/full/0/default.jpg" begin="367" end="415" sofa="1"/>
+  <custom:ImpressoImages xmi:id="36" link="https://impresso-project.ch/api/proxy/iiif/DTT-1960-05-28-a-p0014/150,851,783,76/full/0/default.jpg" begin="415" end="458" sofa="1"/>
+  <custom:ImpressoImages xmi:id="37" link="https://impresso-project.ch/api/proxy/iiif/DTT-1960-05-28-a-p0014/115,889,831,75/full/0/default.jpg" begin="458" end="508" sofa="1"/>
+  <custom:ImpressoImages xmi:id="38" link="https://impresso-project.ch/api/proxy/iiif/DTT-1960-05-28-a-p0014/115,923,818,76/full/0/default.jpg" begin="508" end="549" sofa="1"/>
+  <custom:ImpressoImages xmi:id="39" link="https://impresso-project.ch/api/proxy/iiif/DTT-1960-05-28-a-p0014/115,959,830,76/full/0/default.jpg" begin="549" end="606" sofa="1"/>
+  <custom:ImpressoImages xmi:id="40" link="https://impresso-project.ch/api/proxy/iiif/DTT-1960-05-28-a-p0014/115,997,818,76/full/0/default.jpg" begin="606" end="653" sofa="1"/>
+  <custom:ImpressoImages xmi:id="41" link="https://impresso-project.ch/api/proxy/iiif/DTT-1960-05-28-a-p0014/115,1033,828,76/full/0/default.jpg" begin="653" end="704" sofa="1"/>
+  <custom:ImpressoImages xmi:id="42" link="https://impresso-project.ch/api/proxy/iiif/DTT-1960-05-28-a-p0014/115,1068,828,76/full/0/default.jpg" begin="704" end="753" sofa="1"/>
+  <custom:ImpressoImages xmi:id="43" link="https://impresso-project.ch/api/proxy/iiif/DTT-1960-05-28-a-p0014/115,1104,828,76/full/0/default.jpg" begin="753" end="804" sofa="1"/>
+  <custom:ImpressoImages xmi:id="44" link="https://impresso-project.ch/api/proxy/iiif/DTT-1960-05-28-a-p0014/115,1140,818,76/full/0/default.jpg" begin="804" end="842" sofa="1"/>
+  <custom:ImpressoImages xmi:id="45" link="https://impresso-project.ch/api/proxy/iiif/DTT-1960-05-28-a-p0014/115,1176,828,76/full/0/default.jpg" begin="842" end="895" sofa="1"/>
+  <custom:ImpressoImages xmi:id="46" link="https://impresso-project.ch/api/proxy/iiif/DTT-1960-05-28-a-p0014/115,1214,828,76/full/0/default.jpg" begin="895" end="944" sofa="1"/>
+  <custom:ImpressoImages xmi:id="47" link="https://impresso-project.ch/api/proxy/iiif/DTT-1960-05-28-a-p0014/115,1249,831,75/full/0/default.jpg" begin="944" end="991" sofa="1"/>
+  <cas:Sofa xmi:id="1" sofaNum="1" sofaID="_InitialView" mimeType="text/plain" sofaString="Schweizer Flagge auf 8200 m Höhe Zum Erfolg der schweizerischen Dhaulagiri-Expedition , den wir in der gestrigen Ausgabe noch bekanntgeben konnten , ist weiter zu erfahren : Expeditionsleiter Max Eislin erklärte , sechs Mitglieder der schweizerischen Expedition hätten den Gipfel des Dhaulagiri über den nordöstlichen Grat erreicht . Zuletzt mußten sie eine 210 Meter hohe , vertikale Fels- und Eiswand überwinden . Katrnandu . ( Reuter ) Die schweizerische Dhaulagiri-Expedition umfaßt unter der Leitung des 28 jährigen Max Eiselin , Inhaber eines Sportgeschäftes , insgesamt elf Mitglieder , und zwar den 31 jährigen Architekten Peter Diener , den 23 jährigen Studenten Michel Vaucher , den 25 jährigen Ingenieur Hugo Weber , den ebenfalls 25 jährigen Albin Schelbert , den 27 jährigen Postangestellten Ernst Forrer , den Kameramann Norman Dyrenfurth , Jean Roussi , den 41 jährigen polnischen Arzt Dr . Georges Hajdukiewicz , den 30 jährigen polnischen Schriftsteller Adam Skoczylas sowie "/>
+  <cas:View sofa="1" members="2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47"/>
+</xmi:XMI>

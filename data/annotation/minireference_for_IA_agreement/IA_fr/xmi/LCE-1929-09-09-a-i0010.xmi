@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:cas="http:///uima/cas.ecore" xmlns:type="http:///de/tudarmstadt/ukp/dkpro/core/api/segmentation/type.ecore" xmlns:custom="http:///webanno/custom.ecore" xmi:version="2.0">
+  <cas:NULL xmi:id="0"/>
+  <type:Sentence xmi:id="2" begin="0" end="19" sofa="1"/>
+  <type:Sentence xmi:id="3" begin="19" end="64" sofa="1"/>
+  <type:Sentence xmi:id="4" begin="64" end="106" sofa="1"/>
+  <type:Sentence xmi:id="5" begin="106" end="154" sofa="1"/>
+  <type:Sentence xmi:id="6" begin="154" end="205" sofa="1"/>
+  <type:Sentence xmi:id="7" begin="205" end="232" sofa="1"/>
+  <type:Sentence xmi:id="8" begin="232" end="273" sofa="1"/>
+  <type:Sentence xmi:id="9" begin="273" end="314" sofa="1"/>
+  <type:Sentence xmi:id="10" begin="314" end="364" sofa="1"/>
+  <type:Sentence xmi:id="11" begin="364" end="413" sofa="1"/>
+  <type:Sentence xmi:id="12" begin="413" end="461" sofa="1"/>
+  <type:Sentence xmi:id="13" begin="461" end="510" sofa="1"/>
+  <type:Sentence xmi:id="14" begin="510" end="558" sofa="1"/>
+  <type:Sentence xmi:id="15" begin="558" end="605" sofa="1"/>
+  <type:Sentence xmi:id="16" begin="605" end="653" sofa="1"/>
+  <type:Sentence xmi:id="17" begin="653" end="704" sofa="1"/>
+  <type:Sentence xmi:id="18" begin="704" end="751" sofa="1"/>
+  <type:Sentence xmi:id="19" begin="751" end="798" sofa="1"/>
+  <type:Sentence xmi:id="20" begin="798" end="836" sofa="1"/>
+  <type:Sentence xmi:id="21" begin="836" end="879" sofa="1"/>
+  <type:Sentence xmi:id="22" begin="879" end="927" sofa="1"/>
+  <type:Sentence xmi:id="23" begin="927" end="973" sofa="1"/>
+  <type:Sentence xmi:id="24" begin="973" end="1013" sofa="1"/>
+  <type:Sentence xmi:id="25" begin="1013" end="1058" sofa="1"/>
+  <type:Sentence xmi:id="26" begin="1058" end="1105" sofa="1"/>
+  <type:Sentence xmi:id="27" begin="1105" end="1151" sofa="1"/>
+  <type:Sentence xmi:id="28" begin="1151" end="1163" sofa="1"/>
+  <type:Sentence xmi:id="29" begin="1163" end="1204" sofa="1"/>
+  <type:Sentence xmi:id="30" begin="1204" end="1249" sofa="1"/>
+  <type:Sentence xmi:id="31" begin="1249" end="1297" sofa="1"/>
+  <type:Sentence xmi:id="32" begin="1297" end="1343" sofa="1"/>
+  <type:Sentence xmi:id="33" begin="1343" end="1385" sofa="1"/>
+  <type:Sentence xmi:id="34" begin="1385" end="1441" sofa="1"/>
+  <type:Sentence xmi:id="35" begin="1441" end="1453" sofa="1"/>
+  <type:Sentence xmi:id="36" begin="1453" end="1497" sofa="1"/>
+  <type:Sentence xmi:id="37" begin="1497" end="1544" sofa="1"/>
+  <type:Sentence xmi:id="38" begin="1544" end="1595" sofa="1"/>
+  <type:Sentence xmi:id="39" begin="1595" end="1642" sofa="1"/>
+  <type:Sentence xmi:id="40" begin="1642" end="1694" sofa="1"/>
+  <type:Sentence xmi:id="41" begin="1694" end="1730" sofa="1"/>
+  <type:Sentence xmi:id="42" begin="1730" end="1759" sofa="1"/>
+  <type:Sentence xmi:id="43" begin="1759" end="1779" sofa="1"/>
+  <type:Sentence xmi:id="44" begin="1779" end="1827" sofa="1"/>
+  <type:Sentence xmi:id="45" begin="1827" end="1874" sofa="1"/>
+  <type:Sentence xmi:id="46" begin="1874" end="1922" sofa="1"/>
+  <type:Sentence xmi:id="47" begin="1922" end="1971" sofa="1"/>
+  <type:Sentence xmi:id="48" begin="1971" end="2018" sofa="1"/>
+  <type:Sentence xmi:id="49" begin="2018" end="2063" sofa="1"/>
+  <type:Sentence xmi:id="50" begin="2063" end="2109" sofa="1"/>
+  <type:Sentence xmi:id="51" begin="2109" end="2161" sofa="1"/>
+  <type:Sentence xmi:id="52" begin="2161" end="2209" sofa="1"/>
+  <type:Sentence xmi:id="53" begin="2209" end="2258" sofa="1"/>
+  <type:Sentence xmi:id="54" begin="2258" end="2282" sofa="1"/>
+  <custom:ImpressoImages xmi:id="55" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1543,571,323,45/full/0/default.jpg" begin="0" end="19" sofa="1"/>
+  <custom:ImpressoImages xmi:id="56" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1493,623,440,37/full/0/default.jpg" begin="19" end="64" sofa="1"/>
+  <custom:ImpressoImages xmi:id="57" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1473,644,461,38/full/0/default.jpg" begin="64" end="106" sofa="1"/>
+  <custom:ImpressoImages xmi:id="58" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1472,666,462,37/full/0/default.jpg" begin="106" end="154" sofa="1"/>
+  <custom:ImpressoImages xmi:id="59" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1473,688,461,37/full/0/default.jpg" begin="154" end="205" sofa="1"/>
+  <custom:ImpressoImages xmi:id="60" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1473,709,222,37/full/0/default.jpg" begin="205" end="232" sofa="1"/>
+  <custom:ImpressoImages xmi:id="61" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1494,731,399,37/full/0/default.jpg" begin="232" end="273" sofa="1"/>
+  <custom:ImpressoImages xmi:id="62" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1495,778,440,38/full/0/default.jpg" begin="273" end="314" sofa="1"/>
+  <custom:ImpressoImages xmi:id="63" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1474,800,461,37/full/0/default.jpg" begin="314" end="364" sofa="1"/>
+  <custom:ImpressoImages xmi:id="64" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1474,822,448,37/full/0/default.jpg" begin="364" end="413" sofa="1"/>
+  <custom:ImpressoImages xmi:id="65" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1495,843,440,37/full/0/default.jpg" begin="413" end="461" sofa="1"/>
+  <custom:ImpressoImages xmi:id="66" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1474,865,461,37/full/0/default.jpg" begin="461" end="510" sofa="1"/>
+  <custom:ImpressoImages xmi:id="67" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1475,886,461,38/full/0/default.jpg" begin="510" end="558" sofa="1"/>
+  <custom:ImpressoImages xmi:id="68" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1476,908,459,37/full/0/default.jpg" begin="558" end="605" sofa="1"/>
+  <custom:ImpressoImages xmi:id="69" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1475,930,461,37/full/0/default.jpg" begin="605" end="653" sofa="1"/>
+  <custom:ImpressoImages xmi:id="70" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1476,951,461,37/full/0/default.jpg" begin="653" end="704" sofa="1"/>
+  <custom:ImpressoImages xmi:id="71" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1476,973,460,37/full/0/default.jpg" begin="704" end="751" sofa="1"/>
+  <custom:ImpressoImages xmi:id="72" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1476,994,461,38/full/0/default.jpg" begin="751" end="798" sofa="1"/>
+  <custom:ImpressoImages xmi:id="73" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1475,1016,330,37/full/0/default.jpg" begin="798" end="836" sofa="1"/>
+  <custom:ImpressoImages xmi:id="74" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1496,1038,441,37/full/0/default.jpg" begin="836" end="879" sofa="1"/>
+  <custom:ImpressoImages xmi:id="75" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1476,1059,458,37/full/0/default.jpg" begin="879" end="927" sofa="1"/>
+  <custom:ImpressoImages xmi:id="76" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1477,1081,457,37/full/0/default.jpg" begin="927" end="973" sofa="1"/>
+  <custom:ImpressoImages xmi:id="77" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1477,1102,379,38/full/0/default.jpg" begin="973" end="1013" sofa="1"/>
+  <custom:ImpressoImages xmi:id="78" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1498,1152,440,38/full/0/default.jpg" begin="1013" end="1058" sofa="1"/>
+  <custom:ImpressoImages xmi:id="79" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1476,1174,462,38/full/0/default.jpg" begin="1058" end="1105" sofa="1"/>
+  <custom:ImpressoImages xmi:id="80" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1477,1196,462,38/full/0/default.jpg" begin="1105" end="1151" sofa="1"/>
+  <custom:ImpressoImages xmi:id="81" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1477,1219,118,37/full/0/default.jpg" begin="1151" end="1163" sofa="1"/>
+  <custom:ImpressoImages xmi:id="82" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1499,1260,440,38/full/0/default.jpg" begin="1163" end="1204" sofa="1"/>
+  <custom:ImpressoImages xmi:id="83" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1477,1282,406,37/full/0/default.jpg" begin="1204" end="1249" sofa="1"/>
+  <custom:ImpressoImages xmi:id="84" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1499,1328,441,37/full/0/default.jpg" begin="1249" end="1297" sofa="1"/>
+  <custom:ImpressoImages xmi:id="85" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1478,1349,461,37/full/0/default.jpg" begin="1297" end="1343" sofa="1"/>
+  <custom:ImpressoImages xmi:id="86" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1479,1370,460,37/full/0/default.jpg" begin="1343" end="1385" sofa="1"/>
+  <custom:ImpressoImages xmi:id="87" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1479,1391,460,37/full/0/default.jpg" begin="1385" end="1441" sofa="1"/>
+  <custom:ImpressoImages xmi:id="88" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1478,1412,96,37/full/0/default.jpg" begin="1441" end="1453" sofa="1"/>
+  <custom:ImpressoImages xmi:id="89" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1500,1463,440,37/full/0/default.jpg" begin="1453" end="1497" sofa="1"/>
+  <custom:ImpressoImages xmi:id="90" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1478,1484,462,38/full/0/default.jpg" begin="1497" end="1544" sofa="1"/>
+  <custom:ImpressoImages xmi:id="91" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1479,1506,461,37/full/0/default.jpg" begin="1544" end="1595" sofa="1"/>
+  <custom:ImpressoImages xmi:id="92" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1478,1528,462,37/full/0/default.jpg" begin="1595" end="1642" sofa="1"/>
+  <custom:ImpressoImages xmi:id="93" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1479,1549,461,37/full/0/default.jpg" begin="1642" end="1694" sofa="1"/>
+  <custom:ImpressoImages xmi:id="94" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1479,1571,350,37/full/0/default.jpg" begin="1694" end="1730" sofa="1"/>
+  <custom:ImpressoImages xmi:id="95" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1501,1615,272,37/full/0/default.jpg" begin="1730" end="1759" sofa="1"/>
+  <custom:ImpressoImages xmi:id="96" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1480,1636,460,37/full/0/default.jpg" begin="1759" end="1779" sofa="1"/>
+  <custom:ImpressoImages xmi:id="97" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1501,1684,440,37/full/0/default.jpg" begin="1779" end="1827" sofa="1"/>
+  <custom:ImpressoImages xmi:id="98" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1481,1705,460,37/full/0/default.jpg" begin="1827" end="1874" sofa="1"/>
+  <custom:ImpressoImages xmi:id="99" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1488,1727,456,37/full/0/default.jpg" begin="1874" end="1922" sofa="1"/>
+  <custom:ImpressoImages xmi:id="100" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1480,1748,462,38/full/0/default.jpg" begin="1922" end="1971" sofa="1"/>
+  <custom:ImpressoImages xmi:id="101" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1481,1770,461,37/full/0/default.jpg" begin="1971" end="2018" sofa="1"/>
+  <custom:ImpressoImages xmi:id="102" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1481,1792,461,37/full/0/default.jpg" begin="2018" end="2063" sofa="1"/>
+  <custom:ImpressoImages xmi:id="103" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1481,1813,461,37/full/0/default.jpg" begin="2063" end="2109" sofa="1"/>
+  <custom:ImpressoImages xmi:id="104" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1481,1835,462,37/full/0/default.jpg" begin="2109" end="2161" sofa="1"/>
+  <custom:ImpressoImages xmi:id="105" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1481,1856,461,38/full/0/default.jpg" begin="2161" end="2209" sofa="1"/>
+  <custom:ImpressoImages xmi:id="106" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1481,1878,462,37/full/0/default.jpg" begin="2209" end="2258" sofa="1"/>
+  <custom:ImpressoImages xmi:id="107" link="https://impresso-project.ch/api/proxy/iiif/LCE-1929-09-09-a-p0001/1481,1900,188,37/full/0/default.jpg" begin="2258" end="2282" sofa="1"/>
+  <cas:Sofa xmi:id="1" sofaNum="1" sofaID="_InitialView" mimeType="text/plain" sofaString="NOUVELLES O. U JGOR Le dixième Comptoir suisse de Lausanne a été ouvert samedi 7 septembre (le 1 er le 11 septembre 1920). Discours d'inauguration de MM. Eugène Faillettaz, président, du Comptoir, et Paul Rosset, syndic de Lausanne. Dimanche 8 septembre : journée bernoise. Samedi après-midi, a eu lieu au parc de l'Ariana, à Genève, la cérémonie de la pose de la première pierre du nouveau palais de la S. des N. Dans la pierre, une cavité a été aménagée, dans laquelle a été déposé un coffret où l'on a placé des spécimens des différentes pièces de monnaie des Etats représentés à la Xme assemblée ainsi qu'un document sur parchemin, indiquant la date 'le la cérémonie, la nature de l'édifice et le nom des Etats membres de la S. des N. qui prennent part à la présente session. Ce document a été traduit dans une trentaine de langues. Discours de Sir Eric Drummond, secrétaire général. Ali Foroughi Khan, président du Conseil M. G. Guerrero, président de la Xme assemblée M. Haab, président de la Confédération. Le Dr Eckcner a déclaré aux représentants de la presse américaine à New-York qu'il projette d'établir un service régulier de dirigeables pe-Amérique. Les autonomistes bretons provoquent une bagarre à Rennes à la sortie de leur congrès. L'agence Tass prétend que les troupes chinoises ont commencé brusquement samedi une fusillade et une canonnade contre les détachements soviétiques de la frontière du secteur de Nikolshaya sur l'Oussouri. Le septième Congrès catholique de Lucerne a débuté samedi par l'ouverture de l'exposition Nicolas de Elue. A la manifestation de dimanche ont entre autres jiris la parole : Dr Baumberger, président central, les conseillers fédéraux Motta et Musy, les évoques Ambuhl et Desson. Exposition internationale de bourg. T. S. F. F. ri-Les manifestations socialistes du 8 septembre pour le désarmement à Genève, à Neuchâtel et à iarau ont été calmes bien que très fréquentées. On évalue à 14,000 le nombre des participants au meeting d'Aarau. Au retour de la manifestation de Neuchâtel, l'autorisation de déployer le drapeau rouge dans les rues de Fribourg a été interdite par le préfet. Cinq ou six drapeaux rouges ont été séquestrés par les gendarmes, ainsi que des pancartes, stigmatisant « la réaction et le fascisme fribourgeois ». "/>
+  <cas:View sofa="1" members="2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107"/>
+</xmi:XMI>

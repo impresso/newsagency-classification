@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:cas="http:///uima/cas.ecore" xmlns:type="http:///de/tudarmstadt/ukp/dkpro/core/api/segmentation/type.ecore" xmlns:custom="http:///webanno/custom.ecore" xmi:version="2.0">
+  <cas:NULL xmi:id="0"/>
+  <type:Sentence xmi:id="2" begin="0" end="26" sofa="1"/>
+  <type:Sentence xmi:id="3" begin="26" end="71" sofa="1"/>
+  <type:Sentence xmi:id="4" begin="71" end="123" sofa="1"/>
+  <type:Sentence xmi:id="5" begin="123" end="167" sofa="1"/>
+  <type:Sentence xmi:id="6" begin="167" end="218" sofa="1"/>
+  <type:Sentence xmi:id="7" begin="218" end="253" sofa="1"/>
+  <type:Sentence xmi:id="8" begin="253" end="295" sofa="1"/>
+  <type:Sentence xmi:id="9" begin="295" end="341" sofa="1"/>
+  <type:Sentence xmi:id="10" begin="341" end="358" sofa="1"/>
+  <custom:ImpressoImages xmi:id="11" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2f2smbd7%2fpages%2f2/292,3970,631,54/full/0/default.jpg" begin="0" end="26" sofa="1"/>
+  <custom:ImpressoImages xmi:id="12" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2f2smbd7%2fpages%2f2/166,4024,916,60/full/0/default.jpg" begin="26" end="71" sofa="1"/>
+  <custom:ImpressoImages xmi:id="13" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2f2smbd7%2fpages%2f2/125,4071,958,51/full/0/default.jpg" begin="71" end="123" sofa="1"/>
+  <custom:ImpressoImages xmi:id="14" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2f2smbd7%2fpages%2f2/125,4115,937,54/full/0/default.jpg" begin="123" end="167" sofa="1"/>
+  <custom:ImpressoImages xmi:id="15" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2f2smbd7%2fpages%2f2/126,4162,955,50/full/0/default.jpg" begin="167" end="218" sofa="1"/>
+  <custom:ImpressoImages xmi:id="16" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2f2smbd7%2fpages%2f2/125,4203,665,58/full/0/default.jpg" begin="218" end="253" sofa="1"/>
+  <custom:ImpressoImages xmi:id="17" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2f2smbd7%2fpages%2f2/167,4248,912,58/full/0/default.jpg" begin="253" end="295" sofa="1"/>
+  <custom:ImpressoImages xmi:id="18" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2f2smbd7%2fpages%2f2/124,4293,957,53/full/0/default.jpg" begin="295" end="341" sofa="1"/>
+  <custom:ImpressoImages xmi:id="19" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2f2smbd7%2fpages%2f2/124,4338,345,60/full/0/default.jpg" begin="341" end="358" sofa="1"/>
+  <cas:Sofa xmi:id="1" sofaNum="1" sofaID="_InitialView" mimeType="text/plain" sofaString="Die Haltung Griechenlands. Agence Havas meldet: Die Gesanoien des Vier- Verbandes begaben sich zum Ministörprä,ibenten Sllu ludis. Gleich darauf wurde ein kHiniflenat abgehalten. Man glaubt, dah&lt; es (ich um einen.neuen Schritt des Vierverbandes handelt. Athen. 11. Dez. Meldung der Agence Havas: Der französische Gesandte Guillemin wurde vom König empfangen: "/>
+  <cas:View sofa="1" members="2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19"/>
+</xmi:XMI>

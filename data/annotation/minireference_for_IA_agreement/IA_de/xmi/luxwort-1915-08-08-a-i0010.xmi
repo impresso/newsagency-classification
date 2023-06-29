@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:cas="http:///uima/cas.ecore" xmlns:type="http:///de/tudarmstadt/ukp/dkpro/core/api/segmentation/type.ecore" xmlns:custom="http:///webanno/custom.ecore" xmi:version="2.0">
+  <cas:NULL xmi:id="0"/>
+  <type:Sentence xmi:id="2" begin="0" end="23" sofa="1"/>
+  <type:Sentence xmi:id="3" begin="23" end="73" sofa="1"/>
+  <type:Sentence xmi:id="4" begin="73" end="125" sofa="1"/>
+  <type:Sentence xmi:id="5" begin="125" end="178" sofa="1"/>
+  <type:Sentence xmi:id="6" begin="178" end="221" sofa="1"/>
+  <custom:ImpressoImages xmi:id="7" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fhtkn27%2fpages%2f2/386,126,441,51/full/0/default.jpg" begin="0" end="23" sofa="1"/>
+  <custom:ImpressoImages xmi:id="8" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fhtkn27%2fpages%2f2/128,167,1019,51/full/0/default.jpg" begin="23" end="73" sofa="1"/>
+  <custom:ImpressoImages xmi:id="9" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fhtkn27%2fpages%2f2/68,204,1064,51/full/0/default.jpg" begin="73" end="125" sofa="1"/>
+  <custom:ImpressoImages xmi:id="10" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fhtkn27%2fpages%2f2/68,248,1061,57/full/0/default.jpg" begin="125" end="178" sofa="1"/>
+  <custom:ImpressoImages xmi:id="11" link="https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fhtkn27%2fpages%2f2/68,297,996,48/full/0/default.jpg" begin="178" end="221" sofa="1"/>
+  <cas:Sofa xmi:id="1" sofaNum="1" sofaID="_InitialView" mimeType="text/plain" sofaString="Italien und die Türkei. Paris. 8. Aug. Agence Havas berichtet aus Rom: Da bie Türkei auf ihrer gewohnten Veraögerungspolitis «erharrt, hat Italien cine kategorische Forderung um Erklärungen und um an die Pforte gerichtet. "/>
+  <cas:View sofa="1" members="2 3 4 5 6 7 8 9 10 11"/>
+</xmi:XMI>

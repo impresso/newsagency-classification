@@ -1,0 +1,276 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xmi:XMI xmlns:xmi="http://www.omg.org/XMI" xmlns:cas="http:///uima/cas.ecore" xmlns:type="http:///de/tudarmstadt/ukp/dkpro/core/api/segmentation/type.ecore" xmlns:custom="http:///webanno/custom.ecore" xmi:version="2.0">
+  <cas:NULL xmi:id="0"/>
+  <type:Sentence xmi:id="2" begin="0" end="22" sofa="1"/>
+  <type:Sentence xmi:id="3" begin="22" end="75" sofa="1"/>
+  <type:Sentence xmi:id="4" begin="75" end="145" sofa="1"/>
+  <type:Sentence xmi:id="5" begin="145" end="206" sofa="1"/>
+  <type:Sentence xmi:id="6" begin="206" end="259" sofa="1"/>
+  <type:Sentence xmi:id="7" begin="259" end="288" sofa="1"/>
+  <type:Sentence xmi:id="8" begin="288" end="337" sofa="1"/>
+  <type:Sentence xmi:id="9" begin="337" end="367" sofa="1"/>
+  <type:Sentence xmi:id="10" begin="367" end="400" sofa="1"/>
+  <type:Sentence xmi:id="11" begin="400" end="439" sofa="1"/>
+  <type:Sentence xmi:id="12" begin="439" end="473" sofa="1"/>
+  <type:Sentence xmi:id="13" begin="473" end="505" sofa="1"/>
+  <type:Sentence xmi:id="14" begin="505" end="540" sofa="1"/>
+  <type:Sentence xmi:id="15" begin="540" end="558" sofa="1"/>
+  <type:Sentence xmi:id="16" begin="558" end="593" sofa="1"/>
+  <type:Sentence xmi:id="17" begin="593" end="623" sofa="1"/>
+  <type:Sentence xmi:id="18" begin="623" end="669" sofa="1"/>
+  <type:Sentence xmi:id="19" begin="669" end="703" sofa="1"/>
+  <type:Sentence xmi:id="20" begin="703" end="738" sofa="1"/>
+  <type:Sentence xmi:id="21" begin="738" end="779" sofa="1"/>
+  <type:Sentence xmi:id="22" begin="779" end="812" sofa="1"/>
+  <type:Sentence xmi:id="23" begin="812" end="849" sofa="1"/>
+  <type:Sentence xmi:id="24" begin="849" end="886" sofa="1"/>
+  <type:Sentence xmi:id="25" begin="886" end="923" sofa="1"/>
+  <type:Sentence xmi:id="26" begin="923" end="957" sofa="1"/>
+  <type:Sentence xmi:id="27" begin="957" end="994" sofa="1"/>
+  <type:Sentence xmi:id="28" begin="994" end="1026" sofa="1"/>
+  <type:Sentence xmi:id="29" begin="1026" end="1056" sofa="1"/>
+  <type:Sentence xmi:id="30" begin="1056" end="1086" sofa="1"/>
+  <type:Sentence xmi:id="31" begin="1086" end="1124" sofa="1"/>
+  <type:Sentence xmi:id="32" begin="1124" end="1167" sofa="1"/>
+  <type:Sentence xmi:id="33" begin="1167" end="1224" sofa="1"/>
+  <type:Sentence xmi:id="34" begin="1224" end="1264" sofa="1"/>
+  <type:Sentence xmi:id="35" begin="1264" end="1301" sofa="1"/>
+  <type:Sentence xmi:id="36" begin="1301" end="1337" sofa="1"/>
+  <type:Sentence xmi:id="37" begin="1337" end="1378" sofa="1"/>
+  <type:Sentence xmi:id="38" begin="1378" end="1414" sofa="1"/>
+  <type:Sentence xmi:id="39" begin="1414" end="1451" sofa="1"/>
+  <type:Sentence xmi:id="40" begin="1451" end="1484" sofa="1"/>
+  <type:Sentence xmi:id="41" begin="1484" end="1527" sofa="1"/>
+  <type:Sentence xmi:id="42" begin="1527" end="1565" sofa="1"/>
+  <type:Sentence xmi:id="43" begin="1565" end="1603" sofa="1"/>
+  <type:Sentence xmi:id="44" begin="1603" end="1630" sofa="1"/>
+  <type:Sentence xmi:id="45" begin="1630" end="1648" sofa="1"/>
+  <type:Sentence xmi:id="46" begin="1648" end="1696" sofa="1"/>
+  <type:Sentence xmi:id="47" begin="1696" end="1735" sofa="1"/>
+  <type:Sentence xmi:id="48" begin="1735" end="1768" sofa="1"/>
+  <type:Sentence xmi:id="49" begin="1768" end="1806" sofa="1"/>
+  <type:Sentence xmi:id="50" begin="1806" end="1847" sofa="1"/>
+  <type:Sentence xmi:id="51" begin="1847" end="1875" sofa="1"/>
+  <type:Sentence xmi:id="52" begin="1875" end="1907" sofa="1"/>
+  <type:Sentence xmi:id="53" begin="1907" end="1950" sofa="1"/>
+  <type:Sentence xmi:id="54" begin="1950" end="1986" sofa="1"/>
+  <type:Sentence xmi:id="55" begin="1986" end="2021" sofa="1"/>
+  <type:Sentence xmi:id="56" begin="2021" end="2057" sofa="1"/>
+  <type:Sentence xmi:id="57" begin="2057" end="2099" sofa="1"/>
+  <type:Sentence xmi:id="58" begin="2099" end="2131" sofa="1"/>
+  <type:Sentence xmi:id="59" begin="2131" end="2169" sofa="1"/>
+  <type:Sentence xmi:id="60" begin="2169" end="2244" sofa="1"/>
+  <type:Sentence xmi:id="61" begin="2244" end="2319" sofa="1"/>
+  <type:Sentence xmi:id="62" begin="2319" end="2348" sofa="1"/>
+  <type:Sentence xmi:id="63" begin="2348" end="2385" sofa="1"/>
+  <type:Sentence xmi:id="64" begin="2385" end="2420" sofa="1"/>
+  <type:Sentence xmi:id="65" begin="2420" end="2459" sofa="1"/>
+  <type:Sentence xmi:id="66" begin="2459" end="2484" sofa="1"/>
+  <type:Sentence xmi:id="67" begin="2484" end="2515" sofa="1"/>
+  <type:Sentence xmi:id="68" begin="2515" end="2554" sofa="1"/>
+  <type:Sentence xmi:id="69" begin="2554" end="2590" sofa="1"/>
+  <type:Sentence xmi:id="70" begin="2590" end="2625" sofa="1"/>
+  <type:Sentence xmi:id="71" begin="2625" end="2664" sofa="1"/>
+  <type:Sentence xmi:id="72" begin="2664" end="2697" sofa="1"/>
+  <type:Sentence xmi:id="73" begin="2697" end="2733" sofa="1"/>
+  <type:Sentence xmi:id="74" begin="2733" end="2769" sofa="1"/>
+  <type:Sentence xmi:id="75" begin="2769" end="2805" sofa="1"/>
+  <type:Sentence xmi:id="76" begin="2805" end="2839" sofa="1"/>
+  <type:Sentence xmi:id="77" begin="2839" end="2876" sofa="1"/>
+  <type:Sentence xmi:id="78" begin="2876" end="2911" sofa="1"/>
+  <type:Sentence xmi:id="79" begin="2911" end="2949" sofa="1"/>
+  <type:Sentence xmi:id="80" begin="2949" end="2984" sofa="1"/>
+  <type:Sentence xmi:id="81" begin="2984" end="3022" sofa="1"/>
+  <type:Sentence xmi:id="82" begin="3022" end="3054" sofa="1"/>
+  <type:Sentence xmi:id="83" begin="3054" end="3088" sofa="1"/>
+  <type:Sentence xmi:id="84" begin="3088" end="3126" sofa="1"/>
+  <type:Sentence xmi:id="85" begin="3126" end="3162" sofa="1"/>
+  <type:Sentence xmi:id="86" begin="3162" end="3197" sofa="1"/>
+  <type:Sentence xmi:id="87" begin="3197" end="3231" sofa="1"/>
+  <type:Sentence xmi:id="88" begin="3231" end="3271" sofa="1"/>
+  <type:Sentence xmi:id="89" begin="3271" end="3299" sofa="1"/>
+  <type:Sentence xmi:id="90" begin="3299" end="3332" sofa="1"/>
+  <type:Sentence xmi:id="91" begin="3332" end="3375" sofa="1"/>
+  <type:Sentence xmi:id="92" begin="3375" end="3395" sofa="1"/>
+  <type:Sentence xmi:id="93" begin="3395" end="3410" sofa="1"/>
+  <type:Sentence xmi:id="94" begin="3410" end="3453" sofa="1"/>
+  <type:Sentence xmi:id="95" begin="3453" end="3490" sofa="1"/>
+  <type:Sentence xmi:id="96" begin="3490" end="3525" sofa="1"/>
+  <type:Sentence xmi:id="97" begin="3525" end="3562" sofa="1"/>
+  <type:Sentence xmi:id="98" begin="3562" end="3601" sofa="1"/>
+  <type:Sentence xmi:id="99" begin="3601" end="3636" sofa="1"/>
+  <type:Sentence xmi:id="100" begin="3636" end="3677" sofa="1"/>
+  <type:Sentence xmi:id="101" begin="3677" end="3715" sofa="1"/>
+  <type:Sentence xmi:id="102" begin="3715" end="3754" sofa="1"/>
+  <type:Sentence xmi:id="103" begin="3754" end="3789" sofa="1"/>
+  <type:Sentence xmi:id="104" begin="3789" end="3823" sofa="1"/>
+  <type:Sentence xmi:id="105" begin="3823" end="3857" sofa="1"/>
+  <type:Sentence xmi:id="106" begin="3857" end="3891" sofa="1"/>
+  <type:Sentence xmi:id="107" begin="3891" end="3901" sofa="1"/>
+  <type:Sentence xmi:id="108" begin="3901" end="3917" sofa="1"/>
+  <type:Sentence xmi:id="109" begin="3917" end="3958" sofa="1"/>
+  <type:Sentence xmi:id="110" begin="3958" end="3994" sofa="1"/>
+  <type:Sentence xmi:id="111" begin="3994" end="4031" sofa="1"/>
+  <type:Sentence xmi:id="112" begin="4031" end="4067" sofa="1"/>
+  <type:Sentence xmi:id="113" begin="4067" end="4103" sofa="1"/>
+  <type:Sentence xmi:id="114" begin="4103" end="4139" sofa="1"/>
+  <type:Sentence xmi:id="115" begin="4139" end="4178" sofa="1"/>
+  <type:Sentence xmi:id="116" begin="4178" end="4213" sofa="1"/>
+  <type:Sentence xmi:id="117" begin="4213" end="4251" sofa="1"/>
+  <type:Sentence xmi:id="118" begin="4251" end="4287" sofa="1"/>
+  <type:Sentence xmi:id="119" begin="4287" end="4322" sofa="1"/>
+  <type:Sentence xmi:id="120" begin="4322" end="4360" sofa="1"/>
+  <type:Sentence xmi:id="121" begin="4360" end="4399" sofa="1"/>
+  <type:Sentence xmi:id="122" begin="4399" end="4436" sofa="1"/>
+  <type:Sentence xmi:id="123" begin="4436" end="4471" sofa="1"/>
+  <type:Sentence xmi:id="124" begin="4471" end="4495" sofa="1"/>
+  <type:Sentence xmi:id="125" begin="4495" end="4515" sofa="1"/>
+  <type:Sentence xmi:id="126" begin="4515" end="4553" sofa="1"/>
+  <type:Sentence xmi:id="127" begin="4553" end="4587" sofa="1"/>
+  <type:Sentence xmi:id="128" begin="4587" end="4622" sofa="1"/>
+  <type:Sentence xmi:id="129" begin="4622" end="4658" sofa="1"/>
+  <type:Sentence xmi:id="130" begin="4658" end="4694" sofa="1"/>
+  <type:Sentence xmi:id="131" begin="4694" end="4728" sofa="1"/>
+  <type:Sentence xmi:id="132" begin="4728" end="4767" sofa="1"/>
+  <type:Sentence xmi:id="133" begin="4767" end="4802" sofa="1"/>
+  <type:Sentence xmi:id="134" begin="4802" end="4837" sofa="1"/>
+  <type:Sentence xmi:id="135" begin="4837" end="4874" sofa="1"/>
+  <type:Sentence xmi:id="136" begin="4874" end="4902" sofa="1"/>
+  <custom:ImpressoImages xmi:id="137" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/769,270,1001,176/full/0/default.jpg" begin="0" end="22" sofa="1"/>
+  <custom:ImpressoImages xmi:id="138" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/769,436,1304,86/full/0/default.jpg" begin="22" end="75" sofa="1"/>
+  <custom:ImpressoImages xmi:id="139" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/768,490,1314,85/full/0/default.jpg" begin="75" end="145" sofa="1"/>
+  <custom:ImpressoImages xmi:id="140" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/768,543,1318,85/full/0/default.jpg" begin="145" end="206" sofa="1"/>
+  <custom:ImpressoImages xmi:id="141" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/768,596,1064,85/full/0/default.jpg" begin="206" end="259" sofa="1"/>
+  <custom:ImpressoImages xmi:id="142" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/775,721,611,75/full/0/default.jpg" begin="259" end="288" sofa="1"/>
+  <custom:ImpressoImages xmi:id="143" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/773,761,625,75/full/0/default.jpg" begin="288" end="337" sofa="1"/>
+  <custom:ImpressoImages xmi:id="144" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/775,801,613,75/full/0/default.jpg" begin="337" end="367" sofa="1"/>
+  <custom:ImpressoImages xmi:id="145" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/772,841,616,74/full/0/default.jpg" begin="367" end="400" sofa="1"/>
+  <custom:ImpressoImages xmi:id="146" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/773,881,626,74/full/0/default.jpg" begin="400" end="439" sofa="1"/>
+  <custom:ImpressoImages xmi:id="147" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/773,921,627,74/full/0/default.jpg" begin="439" end="473" sofa="1"/>
+  <custom:ImpressoImages xmi:id="148" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/772,959,618,76/full/0/default.jpg" begin="473" end="505" sofa="1"/>
+  <custom:ImpressoImages xmi:id="149" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/773,999,626,76/full/0/default.jpg" begin="505" end="540" sofa="1"/>
+  <custom:ImpressoImages xmi:id="150" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/772,1039,268,76/full/0/default.jpg" begin="540" end="558" sofa="1"/>
+  <custom:ImpressoImages xmi:id="151" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/815,1079,583,76/full/0/default.jpg" begin="558" end="593" sofa="1"/>
+  <custom:ImpressoImages xmi:id="152" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/772,1119,616,76/full/0/default.jpg" begin="593" end="623" sofa="1"/>
+  <custom:ImpressoImages xmi:id="153" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/772,1159,628,76/full/0/default.jpg" begin="623" end="669" sofa="1"/>
+  <custom:ImpressoImages xmi:id="154" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/773,1199,623,76/full/0/default.jpg" begin="669" end="703" sofa="1"/>
+  <custom:ImpressoImages xmi:id="155" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/773,1239,615,76/full/0/default.jpg" begin="703" end="738" sofa="1"/>
+  <custom:ImpressoImages xmi:id="156" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/771,1279,629,76/full/0/default.jpg" begin="738" end="779" sofa="1"/>
+  <custom:ImpressoImages xmi:id="157" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/771,1319,617,75/full/0/default.jpg" begin="779" end="812" sofa="1"/>
+  <custom:ImpressoImages xmi:id="158" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/771,1359,627,75/full/0/default.jpg" begin="812" end="849" sofa="1"/>
+  <custom:ImpressoImages xmi:id="159" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/772,1398,627,76/full/0/default.jpg" begin="849" end="886" sofa="1"/>
+  <custom:ImpressoImages xmi:id="160" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/771,1438,631,76/full/0/default.jpg" begin="886" end="923" sofa="1"/>
+  <custom:ImpressoImages xmi:id="161" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/771,1478,619,76/full/0/default.jpg" begin="923" end="957" sofa="1"/>
+  <custom:ImpressoImages xmi:id="162" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/772,1518,627,76/full/0/default.jpg" begin="957" end="994" sofa="1"/>
+  <custom:ImpressoImages xmi:id="163" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/771,1558,493,76/full/0/default.jpg" begin="994" end="1026" sofa="1"/>
+  <custom:ImpressoImages xmi:id="164" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/812,1598,590,76/full/0/default.jpg" begin="1026" end="1056" sofa="1"/>
+  <custom:ImpressoImages xmi:id="165" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/772,1638,616,76/full/0/default.jpg" begin="1056" end="1086" sofa="1"/>
+  <custom:ImpressoImages xmi:id="166" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/771,1678,620,76/full/0/default.jpg" begin="1086" end="1124" sofa="1"/>
+  <custom:ImpressoImages xmi:id="167" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/772,1718,628,76/full/0/default.jpg" begin="1124" end="1167" sofa="1"/>
+  <custom:ImpressoImages xmi:id="168" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/777,1828,1465,87/full/0/default.jpg" begin="1167" end="1224" sofa="1"/>
+  <custom:ImpressoImages xmi:id="169" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/1465,721,621,75/full/0/default.jpg" begin="1224" end="1264" sofa="1"/>
+  <custom:ImpressoImages xmi:id="170" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/1465,760,619,74/full/0/default.jpg" begin="1264" end="1301" sofa="1"/>
+  <custom:ImpressoImages xmi:id="171" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/1464,800,615,74/full/0/default.jpg" begin="1301" end="1337" sofa="1"/>
+  <custom:ImpressoImages xmi:id="172" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/1465,840,618,74/full/0/default.jpg" begin="1337" end="1378" sofa="1"/>
+  <custom:ImpressoImages xmi:id="173" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/1465,880,623,74/full/0/default.jpg" begin="1378" end="1414" sofa="1"/>
+  <custom:ImpressoImages xmi:id="174" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/1465,919,622,75/full/0/default.jpg" begin="1414" end="1451" sofa="1"/>
+  <custom:ImpressoImages xmi:id="175" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/1464,959,615,75/full/0/default.jpg" begin="1451" end="1484" sofa="1"/>
+  <custom:ImpressoImages xmi:id="176" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/1465,999,622,75/full/0/default.jpg" begin="1484" end="1527" sofa="1"/>
+  <custom:ImpressoImages xmi:id="177" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/1464,1039,620,75/full/0/default.jpg" begin="1527" end="1565" sofa="1"/>
+  <custom:ImpressoImages xmi:id="178" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/1465,1079,623,75/full/0/default.jpg" begin="1565" end="1603" sofa="1"/>
+  <custom:ImpressoImages xmi:id="179" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/1464,1119,411,75/full/0/default.jpg" begin="1603" end="1630" sofa="1"/>
+  <custom:ImpressoImages xmi:id="180" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/1505,1159,570,74/full/0/default.jpg" begin="1630" end="1648" sofa="1"/>
+  <custom:ImpressoImages xmi:id="181" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/1464,1199,627,74/full/0/default.jpg" begin="1648" end="1696" sofa="1"/>
+  <custom:ImpressoImages xmi:id="182" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/1463,1239,625,74/full/0/default.jpg" begin="1696" end="1735" sofa="1"/>
+  <custom:ImpressoImages xmi:id="183" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/1463,1279,624,74/full/0/default.jpg" begin="1735" end="1768" sofa="1"/>
+  <custom:ImpressoImages xmi:id="184" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/1463,1319,625,74/full/0/default.jpg" begin="1768" end="1806" sofa="1"/>
+  <custom:ImpressoImages xmi:id="185" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/1464,1357,627,75/full/0/default.jpg" begin="1806" end="1847" sofa="1"/>
+  <custom:ImpressoImages xmi:id="186" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/1464,1398,453,75/full/0/default.jpg" begin="1847" end="1875" sofa="1"/>
+  <custom:ImpressoImages xmi:id="187" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/1504,1438,575,75/full/0/default.jpg" begin="1875" end="1907" sofa="1"/>
+  <custom:ImpressoImages xmi:id="188" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/1463,1478,627,75/full/0/default.jpg" begin="1907" end="1950" sofa="1"/>
+  <custom:ImpressoImages xmi:id="189" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/1461,1518,625,75/full/0/default.jpg" begin="1950" end="1986" sofa="1"/>
+  <custom:ImpressoImages xmi:id="190" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/1461,1558,627,75/full/0/default.jpg" begin="1986" end="2021" sofa="1"/>
+  <custom:ImpressoImages xmi:id="191" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/1463,1598,615,75/full/0/default.jpg" begin="2021" end="2057" sofa="1"/>
+  <custom:ImpressoImages xmi:id="192" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/1461,1638,630,74/full/0/default.jpg" begin="2057" end="2099" sofa="1"/>
+  <custom:ImpressoImages xmi:id="193" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/1461,1678,620,74/full/0/default.jpg" begin="2099" end="2131" sofa="1"/>
+  <custom:ImpressoImages xmi:id="194" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/1461,1716,627,75/full/0/default.jpg" begin="2131" end="2169" sofa="1"/>
+  <custom:ImpressoImages xmi:id="195" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2156,1002,1309,76/full/0/default.jpg" begin="2169" end="2244" sofa="1"/>
+  <custom:ImpressoImages xmi:id="196" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2158,1043,1308,76/full/0/default.jpg" begin="2244" end="2319" sofa="1"/>
+  <custom:ImpressoImages xmi:id="197" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2156,1083,1310,76/full/0/default.jpg" begin="2319" end="2348" sofa="1"/>
+  <custom:ImpressoImages xmi:id="198" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2160,1162,625,74/full/0/default.jpg" begin="2348" end="2385" sofa="1"/>
+  <custom:ImpressoImages xmi:id="199" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2162,1202,623,74/full/0/default.jpg" begin="2385" end="2420" sofa="1"/>
+  <custom:ImpressoImages xmi:id="200" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2160,1241,621,75/full/0/default.jpg" begin="2420" end="2459" sofa="1"/>
+  <custom:ImpressoImages xmi:id="201" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2162,1281,374,75/full/0/default.jpg" begin="2459" end="2484" sofa="1"/>
+  <custom:ImpressoImages xmi:id="202" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2200,1359,582,74/full/0/default.jpg" begin="2484" end="2515" sofa="1"/>
+  <custom:ImpressoImages xmi:id="203" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2162,1398,617,76/full/0/default.jpg" begin="2515" end="2554" sofa="1"/>
+  <custom:ImpressoImages xmi:id="204" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2160,1438,625,75/full/0/default.jpg" begin="2554" end="2590" sofa="1"/>
+  <custom:ImpressoImages xmi:id="205" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2160,1478,621,75/full/0/default.jpg" begin="2590" end="2625" sofa="1"/>
+  <custom:ImpressoImages xmi:id="206" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2162,1518,620,75/full/0/default.jpg" begin="2625" end="2664" sofa="1"/>
+  <custom:ImpressoImages xmi:id="207" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2160,1558,621,75/full/0/default.jpg" begin="2664" end="2697" sofa="1"/>
+  <custom:ImpressoImages xmi:id="208" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2160,1598,621,75/full/0/default.jpg" begin="2697" end="2733" sofa="1"/>
+  <custom:ImpressoImages xmi:id="209" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2160,1638,618,74/full/0/default.jpg" begin="2733" end="2769" sofa="1"/>
+  <custom:ImpressoImages xmi:id="210" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2162,1678,623,74/full/0/default.jpg" begin="2769" end="2805" sofa="1"/>
+  <custom:ImpressoImages xmi:id="211" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2160,1718,625,74/full/0/default.jpg" begin="2805" end="2839" sofa="1"/>
+  <custom:ImpressoImages xmi:id="212" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2853,1163,619,76/full/0/default.jpg" begin="2839" end="2876" sofa="1"/>
+  <custom:ImpressoImages xmi:id="213" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2853,1203,619,74/full/0/default.jpg" begin="2876" end="2911" sofa="1"/>
+  <custom:ImpressoImages xmi:id="214" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2851,1243,618,76/full/0/default.jpg" begin="2911" end="2949" sofa="1"/>
+  <custom:ImpressoImages xmi:id="215" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2853,1283,620,76/full/0/default.jpg" begin="2949" end="2984" sofa="1"/>
+  <custom:ImpressoImages xmi:id="216" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2851,1323,623,75/full/0/default.jpg" begin="2984" end="3022" sofa="1"/>
+  <custom:ImpressoImages xmi:id="217" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2853,1362,616,76/full/0/default.jpg" begin="3022" end="3054" sofa="1"/>
+  <custom:ImpressoImages xmi:id="218" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2851,1402,623,76/full/0/default.jpg" begin="3054" end="3088" sofa="1"/>
+  <custom:ImpressoImages xmi:id="219" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2851,1442,622,75/full/0/default.jpg" begin="3088" end="3126" sofa="1"/>
+  <custom:ImpressoImages xmi:id="220" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2851,1482,617,75/full/0/default.jpg" begin="3126" end="3162" sofa="1"/>
+  <custom:ImpressoImages xmi:id="221" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2851,1522,625,75/full/0/default.jpg" begin="3162" end="3197" sofa="1"/>
+  <custom:ImpressoImages xmi:id="222" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2851,1562,614,75/full/0/default.jpg" begin="3197" end="3231" sofa="1"/>
+  <custom:ImpressoImages xmi:id="223" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2850,1602,626,75/full/0/default.jpg" begin="3231" end="3271" sofa="1"/>
+  <custom:ImpressoImages xmi:id="224" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2851,1642,617,74/full/0/default.jpg" begin="3271" end="3299" sofa="1"/>
+  <custom:ImpressoImages xmi:id="225" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2851,1680,611,75/full/0/default.jpg" begin="3299" end="3332" sofa="1"/>
+  <custom:ImpressoImages xmi:id="226" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2851,1722,602,74/full/0/default.jpg" begin="3332" end="3375" sofa="1"/>
+  <custom:ImpressoImages xmi:id="227" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2854,1828,406,87/full/0/default.jpg" begin="3375" end="3395" sofa="1"/>
+  <custom:ImpressoImages xmi:id="228" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2851,1895,345,86/full/0/default.jpg" begin="3395" end="3410" sofa="1"/>
+  <custom:ImpressoImages xmi:id="229" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2851,1968,622,74/full/0/default.jpg" begin="3410" end="3453" sofa="1"/>
+  <custom:ImpressoImages xmi:id="230" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2853,2008,621,74/full/0/default.jpg" begin="3453" end="3490" sofa="1"/>
+  <custom:ImpressoImages xmi:id="231" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2853,2048,620,74/full/0/default.jpg" begin="3490" end="3525" sofa="1"/>
+  <custom:ImpressoImages xmi:id="232" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2851,2088,621,74/full/0/default.jpg" begin="3525" end="3562" sofa="1"/>
+  <custom:ImpressoImages xmi:id="233" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2853,2128,620,74/full/0/default.jpg" begin="3562" end="3601" sofa="1"/>
+  <custom:ImpressoImages xmi:id="234" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2853,2167,617,75/full/0/default.jpg" begin="3601" end="3636" sofa="1"/>
+  <custom:ImpressoImages xmi:id="235" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2853,2207,619,75/full/0/default.jpg" begin="3636" end="3677" sofa="1"/>
+  <custom:ImpressoImages xmi:id="236" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2854,2247,619,75/full/0/default.jpg" begin="3677" end="3715" sofa="1"/>
+  <custom:ImpressoImages xmi:id="237" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2854,2287,616,75/full/0/default.jpg" begin="3715" end="3754" sofa="1"/>
+  <custom:ImpressoImages xmi:id="238" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2853,2327,616,75/full/0/default.jpg" begin="3754" end="3789" sofa="1"/>
+  <custom:ImpressoImages xmi:id="239" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2853,2367,621,75/full/0/default.jpg" begin="3789" end="3823" sofa="1"/>
+  <custom:ImpressoImages xmi:id="240" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2854,2407,618,74/full/0/default.jpg" begin="3823" end="3857" sofa="1"/>
+  <custom:ImpressoImages xmi:id="241" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2853,2447,620,74/full/0/default.jpg" begin="3857" end="3891" sofa="1"/>
+  <custom:ImpressoImages xmi:id="242" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2853,2487,143,74/full/0/default.jpg" begin="3891" end="3901" sofa="1"/>
+  <custom:ImpressoImages xmi:id="243" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2855,2563,366,86/full/0/default.jpg" begin="3901" end="3917" sofa="1"/>
+  <custom:ImpressoImages xmi:id="244" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2854,2636,616,74/full/0/default.jpg" begin="3917" end="3958" sofa="1"/>
+  <custom:ImpressoImages xmi:id="245" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2854,2676,618,74/full/0/default.jpg" begin="3958" end="3994" sofa="1"/>
+  <custom:ImpressoImages xmi:id="246" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2853,2716,619,74/full/0/default.jpg" begin="3994" end="4031" sofa="1"/>
+  <custom:ImpressoImages xmi:id="247" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2853,2756,621,74/full/0/default.jpg" begin="4031" end="4067" sofa="1"/>
+  <custom:ImpressoImages xmi:id="248" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2854,2795,619,75/full/0/default.jpg" begin="4067" end="4103" sofa="1"/>
+  <custom:ImpressoImages xmi:id="249" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2855,2835,619,76/full/0/default.jpg" begin="4103" end="4139" sofa="1"/>
+  <custom:ImpressoImages xmi:id="250" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2853,2875,628,75/full/0/default.jpg" begin="4139" end="4178" sofa="1"/>
+  <custom:ImpressoImages xmi:id="251" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2853,2915,624,75/full/0/default.jpg" begin="4178" end="4213" sofa="1"/>
+  <custom:ImpressoImages xmi:id="252" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2855,2955,617,75/full/0/default.jpg" begin="4213" end="4251" sofa="1"/>
+  <custom:ImpressoImages xmi:id="253" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2854,2995,623,75/full/0/default.jpg" begin="4251" end="4287" sofa="1"/>
+  <custom:ImpressoImages xmi:id="254" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2854,3035,620,74/full/0/default.jpg" begin="4287" end="4322" sofa="1"/>
+  <custom:ImpressoImages xmi:id="255" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2854,3075,618,74/full/0/default.jpg" begin="4322" end="4360" sofa="1"/>
+  <custom:ImpressoImages xmi:id="256" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2854,3115,622,74/full/0/default.jpg" begin="4360" end="4399" sofa="1"/>
+  <custom:ImpressoImages xmi:id="257" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2853,3155,620,74/full/0/default.jpg" begin="4399" end="4436" sofa="1"/>
+  <custom:ImpressoImages xmi:id="258" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2853,3195,623,74/full/0/default.jpg" begin="4436" end="4471" sofa="1"/>
+  <custom:ImpressoImages xmi:id="259" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2855,3235,394,74/full/0/default.jpg" begin="4471" end="4495" sofa="1"/>
+  <custom:ImpressoImages xmi:id="260" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2855,3314,414,87/full/0/default.jpg" begin="4495" end="4515" sofa="1"/>
+  <custom:ImpressoImages xmi:id="261" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2855,3388,619,74/full/0/default.jpg" begin="4515" end="4553" sofa="1"/>
+  <custom:ImpressoImages xmi:id="262" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2855,3427,619,75/full/0/default.jpg" begin="4553" end="4587" sofa="1"/>
+  <custom:ImpressoImages xmi:id="263" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2855,3467,619,75/full/0/default.jpg" begin="4587" end="4622" sofa="1"/>
+  <custom:ImpressoImages xmi:id="264" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2854,3507,618,75/full/0/default.jpg" begin="4622" end="4658" sofa="1"/>
+  <custom:ImpressoImages xmi:id="265" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2854,3547,618,75/full/0/default.jpg" begin="4658" end="4694" sofa="1"/>
+  <custom:ImpressoImages xmi:id="266" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2854,3587,616,75/full/0/default.jpg" begin="4694" end="4728" sofa="1"/>
+  <custom:ImpressoImages xmi:id="267" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2855,3627,619,75/full/0/default.jpg" begin="4728" end="4767" sofa="1"/>
+  <custom:ImpressoImages xmi:id="268" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2854,3667,618,74/full/0/default.jpg" begin="4767" end="4802" sofa="1"/>
+  <custom:ImpressoImages xmi:id="269" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2855,3707,617,74/full/0/default.jpg" begin="4802" end="4837" sofa="1"/>
+  <custom:ImpressoImages xmi:id="270" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2854,3747,622,74/full/0/default.jpg" begin="4837" end="4874" sofa="1"/>
+  <custom:ImpressoImages xmi:id="271" link="https://impresso-project.ch/api/proxy/iiif/FZG-1988-04-28-a-p0040/2854,3787,418,74/full/0/default.jpg" begin="4874" end="4902" sofa="1"/>
+  <cas:Sofa xmi:id="1" sofaNum="1" sofaID="_InitialView" mimeType="text/plain" sofaString="Vergiftete Grapefruits Die Gesundheitsbehörden in verschiedenen Ländern in Westeuropa haben eine verstärkte Kontrolle der aus Israel importierter Grapefruits angeordnet , nachdem in den vergangenen Tagen ir Rom vergiftete Früchte dieser Art aufgetaucht sind . Rom / Bern ( sda ) . In der Bundesrepublik Deutschland , Frankreich , Belgier und Österreich werden an den Grenzen die Grapefruits-Ladungen überprüft . In der Schweiz drängen sich nach Auskunft des Bundesamtes füi Gesundheitswesen ( BAG ) keine Massnahmen bezüglich der Abgabe vor Grapefruits auf . Bisher seien nur in einem einziger Supermarkt in Rom vergiftete Grapefruits aufgetaucht , hiess es in einer am Mittwoch in Bern veröffentlichter Mitteilung des BAG . Nichts deute darauf hin , dass vergiftete Früchte übei einen lokal eng begrenzten Raum hinaus angeboten würden . Vorsorglich seien jedoch die Kantonschemiker und die Zollbehörden informiert worden . Zudem stehe die Schweiz über die Botschaft in Rom in engem Kontakt mil den italienischen Fachstellen . Nach anonymen Hinweisen waren in einem Supermarkt im Römer Viertel Tiburtino sechs blau gefärbte Grapefruits aus Israel gefunden worden , in Schweizerische Verkehrszentrale wirbt für den Berqsommei die eine sehr giftige Substanz gespritz worden war . Die Polizei in Rom such die Täter vor allem in Kreisen des italienischen Linksradikalismus . Die ita lienische Polizei hatte am Mittwoch noch keine konkreten Hinweise aufdie Täter . Zu der Aktion gegen den israelischen Obst-Export hatte sich anonyrr eine « Organisation der unterdrückter Volkere bekannt , die bisher nicht ir Erscheinung getreten ist . Das italienische Gesundheitsministerium ordnete am Dienstag abenc die Beschlagnahme aller Grapefruits ir Grossmärkten und im Einzelhandei des Landes an . Aus Israel reiste ein Experte nach Italien , um bei der Such , nach den Tätern zu helfen . Die Entdeckung der vergifteten Zitrusfrüchte hat unterdessen in Italien zu einer Welle der Besorgnis innerhalb der Bevölkerung geführt . Tausende verunsicherte Bürger riefen in der Giftzentrale der römischen Poliklinik an . Grosshändler vernichteten ihre Lagerbestände an Pampelmusen , während In Rom sind , nach einem anonymen Anruf , vergiftete Zitrusfrüchte entdeck worden . Verschiedene Länder Europas untersuchen an der Grenze Grapefruits Ladungen . ( Foto : Kevstone eine Reihe von Cafes und Bars in dei Hauptstadt ihre Gäste informierten dass sie bis auf weiteres keinen Grape fruitsaft ausschenkten . Wie erst am Mittwoch in Rom be kannt wurde , war bereits am 19 . Apri bei einer Polizeistation in Rom dei anonyme Anruf einer bis dahin unbe kannten « Organisation der Proletariei des Mutterlandes und aller unter drückten Völker » eingegangen . Auf grund der präzisen Angaben des Anru fers konnte die Polizei noch in dei gleichen Nacht im Supermarkt « So met » in Tiburtino zwölf Pampelmuser sicherstellen , von denen sechs mi einer möglicherweise toxischen türkis farbenen Substanz durchsetzt waren Allerdings erst sieben Tage nach derr Fund - nachdem drei Meerschwein chen an dem Genuss der Früchte ge storben waren - schlugen die Behörder Alarm . Das oberste römische Gerich hat unterdessen Ermittlungen weger der verspäteten Behördenreaktion angekündigt . Bereits in den Tagen zuvoi waren in Tiburtino Plakate aufgetaucht , in den zum Boykott israelischer Grapefruits aufgerufen wurde . Regionalzug prallte auf Güterwagen Affoltern a . A . ( sda ) . Bei einem Zugs Unglück zwischen Affoltern am Albi : und Mettmenstetten sind zwei Passa giere und zwei PTT-Angestellte verle tzt worden . Ein Regionalzug der Linie Zug-Zürich HB ist gegen zwei Güter wagen geprallt , die bei Rangierarbeiter in Affoltern auf die Strecke Richtunj Mettmenstetten gerollt waren . Die bei den Guterwagen hatten sich im Bahn hof Affoltern selbständig gemacht nachdem die zugehörige Lokomotive zu Rangierzwecken abgekuppelt wor den war . Mehr Aidskranke Basel ( spk ) . Nach der laufenden Stati stik des Bundesamts für Gesundheits wesen ist in der Schweiz die Zahl de Aidskranken erneut gestiegen . Ende Oktober 1987 registrierte man knapp 300 , am Jahresende bereits 355 unc am 31 . März des laufenden Jahres 43 ! aidskranke Personen , worunter 6 ( Frauen . An Aids gestorben sind in un serem Land bisher 209 Menschen . Be den Erkrankten wurden 3 Männer unc 2 Frauen infolge Bluttransfusionen in fiziert : 69 Männer und 33 Frauen sine drogenabhängig , 251 Personen , übri gens ausschliesslich Männer , sine Homo- oder Bisexuelle . Leitungen reduziert Bätterkinden ( sda ) . Die Bernischei Kraftwerke ( BKW ) wollen im Raun Bätterkinden-Limpach im bernischei Mittelland drei bestehende Hochspan nungsleitungen zu einer einzigen zu sammenlegen . Wie die Gesellschaf mitteilte , lässt sich mit dieser Mass nahme die Zahl der Holz- und Beton mästen von rund 300 auf 33 reduzie ren . Die BKW rechnen mit Kosten voi knapp 2 , 5 Mio . Franken . "/>
+  <cas:View sofa="1" members="2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270 271"/>
+</xmi:XMI>
