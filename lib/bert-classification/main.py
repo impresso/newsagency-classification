@@ -34,7 +34,7 @@ if __name__ == '__main__':
                         help="Path to the *csv or *tsv test file.")
     parser.add_argument('--label_map',
                         type=str,
-                        default='',
+                        default='data/label_map.json',
                         help="Path to the *json file for the label mapping.")
     parser.add_argument('--max_sequence_len',
                         type=int, default=64,
@@ -255,7 +255,7 @@ if __name__ == '__main__':
             max_len=args.max_sequence_len,
             label_map=label_map)
 
-    json.dump(label_map, open(os.path.join(args.output_dir, "label_map.json"), "w"))
+    json.dump(label_map, open(os.path.join(args.output_dir, 'data/label_map.json'), "w"))
 
     num_sequence_labels, num_token_labels = test_dataset.get_info()
 
