@@ -188,9 +188,12 @@ if __name__ == '__main__':
     logging.info(
         "Trained models and results will be saved in {}.".format(
             args.output_dir))
-
+    
     # Setup CUDA, GPU & distributed training
-    if args.local_rank == -1 or args.device == 'cuda':
+    if args.device == 'cpu':
+        device = torch.device("cpu")
+        args.n_gpu = 1
+    elif args.local_rank == -1 or args.device == 'cuda':
         device = torch.device(
             "cuda" if torch.cuda.is_available() and args.device == 'cuda' else "cpu")
         args.n_gpu = torch.cuda.device_count()
@@ -200,6 +203,7 @@ if __name__ == '__main__':
         torch.distributed.init_process_group(backend="nccl")
         args.n_gpu = 1
     args.device = device
+    
 
     tokenizer = AutoTokenizer.from_pretrained(args.model_name_or_path)
 
