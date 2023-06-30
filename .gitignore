@@ -4,3 +4,4 @@
 .python-version
 Pipfile.lock
 *.d
+*.pyc
