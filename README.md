@@ -26,7 +26,7 @@ This repository holds the code related to the master project of Lea Marxen on th
 
 ## Usage
 
-The project uses `python 3.10`. For the bert classification, the requirements are stored in `lib/bert-classification/requirements_classification.txt`. For the rest of the code, make an environment with `impresso-na-env.yml`.
+The project uses `python 3.10`. The dependencies for running the code can be found in `requirements.txt`. If only the classification is required, it suffices to install the dependencies specified in `lib/bert-classification/requirements_classification.txt`.
 
 ### Data Specification
 
