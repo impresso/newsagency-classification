@@ -1,3 +1,0 @@
-{"id": "SDT-1930-10-11-a-i0011", "sys_id": "ALIAS BERT MODEL", "nes": [{"type": "newsag", "surface": "Havaas", "name": "Havas", "lOffset": 123, "rOffset": 123, "confidence": "0.975", "id": "SDT-1930-10-11-a-i0011:xxx:xxx:newsag:bert-alias"}]}
-{ "id": "JDG-1951-02-26-a-i0080", "sys_id": "ALIAS BERT MODEL", "nes": []}
-{ "id": "GDL-1987-12-31-a-i0025", "sys_id": "ALIAS BERT MODEL", "nes": []}
