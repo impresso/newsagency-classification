@@ -6,6 +6,9 @@ A few general utilities for transformers_baseline.
 import random
 import logging
 from typing import List, Union
+import time
+from datetime import timedelta
+import json
 
 import numpy as np
 import urllib.request
@@ -139,3 +142,33 @@ def write_predictions_to_tsv(words: List[List[Union[str, None]]],
 
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write('\n'.join(['\t'.join(l) for l in tsv_lines]))
+
+
+class Timer:
+    """ Basic timer"""
+    def __init__(self):
+        self.start = time.time()
+        self.intermediate = time.time()
+
+    def tick(self):
+        elapsed_time = time.time() - self.intermediate
+        self.intermediate = time.time()
+        return str(timedelta(seconds=elapsed_time))
+
+    def stop(self):
+        elapsed_time = time.time() - self.start
+        return str(timedelta(seconds=elapsed_time))
+
+
+def parse_json(filename):
+    if os.path.isfile(filename):
+        with open(filename, 'r') as f:
+            return json.load(f)
+    else:
+        logger.info(f"File {filename} does not exist.")
+
+
+def chunk(list, chunksize):
+    """Yield successive n-sized chunks from list."""
+    for i in range(0, len(list), chunksize):
+        yield list[i:i + chunksize]
