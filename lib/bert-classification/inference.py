@@ -107,8 +107,7 @@ def tokenize(text):
      'lg_comp': 'fr'}
 
 def predict_entities(content_items):
-
-
+    result_json = []
     for ci in content_items:
         entity_json = {
             "entity": "newsag",
@@ -123,7 +122,7 @@ def predict_entities(content_items):
         article = ci['ft']
         sentences = SENTENCE_SEGMENTER[language].segment(article)
 
-        result_json = {"entities": []}
+        cumulative_offset = 0
 
         from tqdm import tqdm
 
@@ -170,19 +169,19 @@ def predict_entities(content_items):
 
             for entity in predicted_entities:
                 if entity[1] != 'O':
+
+                    lOffset = cumulative_offset + sentence.find(entity[0])
+                    rOffset = lOffset + len(entity[0])
+
                     entity_json = {
                         "entity": entity[1],
                         "name": entity[0],
-                        "lOffset": sentence.find(entity[0]),
-                        "rOffset": sentence.find(entity[0]) + len(entity[0])
-                    }
-
-                    entity_json['id'] = ci["id"] + \
-                                        f":{entity_json['lOffset']}:{entity_json['rOffset']}:newsag:bert_{language}"
+                        "lOffset": lOffset,
+                        "rOffset": rOffset,
+                        'id': ci["id"] + f":{entity_json['lOffset']}:{entity_json['rOffset']}:newsag:bert_{language}"}
 
                     print(entity_json)
-                    result_json["entities"].append(entity_json)
-
+                    result_json.append(entity_json)
 
     return result_json
 
