@@ -9,11 +9,11 @@ from dask.diagnostics import ProgressBar
 import dask.bag as db
 from smart_open import smart_open
 from typing import Optional
-
+from tqdm import tqdm
 from dask.distributed import Client
 
 
-# from inference import predict_entities
+from inference import predict_entities
 
 from utils import Timer, chunk
 
@@ -48,7 +48,7 @@ def run_newsagency_tagger(input_dir: str,
     files = glob.glob(path)
     logger.info(f'Number of files: {len(files)}.')
 
-    batches = list(chunk(files, 10))
+    batches = list(chunk(files, 1))
     total = len(batches)
     for i, b in enumerate(batches):
         logger.info(f'Parsing {i}/{total}: {b}')
@@ -57,8 +57,7 @@ def run_newsagency_tagger(input_dir: str,
             .map(json.loads) \
             .filter(lambda ci: ci['tp'] == 'ar')
 
-        bag_mentions = bag_articles.map_partitions(predict_mentions_test) \
-            .map(json.dumps)
+        bag_mentions = bag_articles.map_partitions(predict_entities).map(json.dumps)
 
         with ProgressBar():
             # print(bag_articles.take(2))
@@ -132,6 +131,6 @@ if __name__ == "__main__":
         handlers=handlers,
     )
 
-    client = Client('127.0.0.1:8000')
+    # client = Client('127.0.0.1:8000')
 
     run_newsagency_tagger(arguments.input_dir, arguments.output_dir, arguments.prefix)

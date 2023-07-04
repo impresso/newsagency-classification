@@ -7,3 +7,4 @@ tensorboardX==2.6
 torch==1.13.1
 tqdm==4.65.0
 transformers==4.24.0
+pysbd==0.3.4

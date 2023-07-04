@@ -290,13 +290,15 @@ def evaluate(
                 sequence_logits.detach().cpu().numpy(),
                 axis=0)
             
-            sentences = np.append(sentences, [tokenizer.convert_ids_to_tokens(input_ids) for input_ids in inputs["input_ids"].detach().cpu().numpy()], axis=0)
+            sentences = np.append(sentences, [tokenizer.convert_ids_to_tokens(input_ids)
+                                              for input_ids in inputs["input_ids"].detach().cpu().numpy()], axis=0)
 
             try:
                 # text_sentences = np.append(text_sentences, [text.split(' ') for text in batch["sequence"]], axis=0)
                 text_sentences = text_sentences + [text.split(' ') for text in batch["sequence"]]
             except:
                 import pdb;pdb.set_trace()
+
     out_token_preds = np.argmax(out_token_preds, axis=2)
     out_sequence_preds = np.argmax(out_sequence_preds, axis=1)
 
@@ -313,12 +315,9 @@ def evaluate(
     preds_list = [[] for _ in range(out_token_ids.shape[0])]
     words_list = [[] for _ in range(out_token_ids.shape[0])]
 
-    for idx_sentence, item in enumerate(
-            zip(text_sentences, out_token_ids, out_token_preds)):
+    for idx_sentence, item in enumerate(zip(text_sentences, out_token_ids, out_token_preds)):
         text_sentence, out_label_ids, out_label_preds = item
-        word_ids = tokenizer(
-            text_sentence,
-            is_split_into_words=True).word_ids()
+        word_ids = tokenizer(text_sentence, is_split_into_words=True).word_ids()
         for idx, word in enumerate(text_sentence):
             beginning_index = word_ids.index(idx)
             try:
