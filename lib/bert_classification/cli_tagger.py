@@ -1,103 +1,115 @@
 import argparse
 import logging
-import os
-import sys
-import json
 import glob
-import jsonlines
 from dask.diagnostics import ProgressBar
 import dask.bag as db
-from smart_open import smart_open
 from typing import Optional
-from tqdm import tqdm
-from dask.distributed import Client
-from utils import Timer, chunk
 
+import os
+import sys
+from dask.distributed import Client
+import sys
+
+# The default value might be 1000
+print(sys.getrecursionlimit())
+
+import sys
+sys.setrecursionlimit(10000)  # Increase the recursion limit to 10000
+
+
+# get the current directory
+current_directory = os.path.dirname(os.path.realpath(__file__))
+print(current_directory)
+# add the current directory to sys.path
+sys.path.insert(0, current_directory)
+
+from utils import Timer, chunk
+from nltk.chunk import conlltags2tree
+from nltk import pos_tag
+from nltk.tree import Tree
 logger = logging.getLogger(__name__)
 import numpy as np
 import torch
 from transformers import AutoTokenizer, AutoConfig
-from model import ModelForSequenceAndTokenClassification
 import json
 import os
 import pysbd
 import string
 import re
 import torch.nn.functional as F
-from utils import set_seed, SEED
+# Get the directory of your script
+import os
+import sys
 
-set_seed(2023)
+print("Current directory:", os.getcwd())
+print("Python path:", sys.path)
 
-class MultiSingletonModel:
+# set_seed(2023)
+
+
+
+def load_models(model_paths, label_map_path):
     _instances = {}
     _models = {}
     _tokenizers = {}
 
-    # @staticmethod
-    def getInstance(language, model_path_dict, label_map_path_dict):
-        if language not in MultiSingletonModel._instances:
-            print(f'Instance {language} creating now')
-            MultiSingletonModel(
-                language,
-                model_path_dict[language],
-                label_map_path_dict[language])
-        return MultiSingletonModel._models[language], MultiSingletonModel._tokenizers[language]
+    for language in ['fr', 'de']:
 
-    def __init__(self, language, model_path, label_map_path):
+        current_directory = os.path.dirname(os.path.realpath(__file__))
+        sys.path.insert(0, current_directory)
 
-        if language in MultiSingletonModel._instances:
+        from model import ModelForSequenceAndTokenClassification
+
+        if language in _instances:
             raise Exception(f"Model for language {language} is a singleton!")
         else:
 
             # Load the tokenizer
-            MultiSingletonModel._tokenizers[language] = AutoTokenizer.from_pretrained(
-                model_path, local_files_only=True)
+            _tokenizers[language] = AutoTokenizer.from_pretrained(
+                model_paths[language], local_files_only=True)
 
-            traced_model_path = f"traced_model_{language}.pt"
+            traced_model_path = f"/scratch/newsagency-project/checkpoints/traced_model_{language}.pt"
 
             if os.path.exists(traced_model_path):
                 try:
-                    MultiSingletonModel._models[language] = torch.jit.load(
+                    _models[language] = torch.jit.load(
                         traced_model_path)
                 except Exception:
-                    MultiSingletonModel._models[language] = None
+                    _models[language] = None
             else:
-                MultiSingletonModel._models[language] = None
+                _models[language] = None
 
-            if MultiSingletonModel._models[language] is None:
+            if _models[language] is None:
                 config = AutoConfig.from_pretrained(
-                    model_path,
+                    model_paths[language],
                     problem_type="single_label_classification",
                     local_files_only=True)
 
-                MultiSingletonModel._models[language] = ModelForSequenceAndTokenClassification.from_pretrained(
-                    model_path,
+                _models[language] = ModelForSequenceAndTokenClassification.from_pretrained(
+                    model_paths[language],
                     config=config,
                     num_sequence_labels=2,
                     num_token_labels=len(label_map_path),
                     local_files_only=True)
 
-                MultiSingletonModel._models[language] = MultiSingletonModel._models[language].to(
-                    'cuda' if torch.cuda.is_available() else 'cpu')
-                scripted_model = torch.jit.trace(
-                    MultiSingletonModel._models[language], [
-                        torch.zeros(
-                            (1, 1), dtype=torch.long).to(
-                            'cuda' if torch.cuda.is_available() else 'cpu')], strict=False)
-                torch.jit.save(scripted_model, traced_model_path)
-
-                MultiSingletonModel._models[language] = torch.jit.load(
-                    traced_model_path)
-                MultiSingletonModel._models[language] = MultiSingletonModel._models[language].to(
+                _models[language] = _models[language].to(
                     'cuda' if torch.cuda.is_available() else 'cpu')
 
-                MultiSingletonModel._models[language].eval()
+                # scripted_model = torch.jit.trace(
+                #     _models[language], [
+                #         torch.zeros(
+                #             (1, 1), dtype=torch.long).to(
+                #     'cuda' if torch.cuda.is_available() else 'cpu')], strict=False)
+                # torch.jit.save(scripted_model, traced_model_path)
+                #
+                # _models[language] = torch.jit.load(
+                #     traced_model_path)
+                # _models[language] = _models[language].to(
+                #     'cuda' if torch.cuda.is_available() else 'cpu')
 
-            MultiSingletonModel._instances[language] = self
+                _models[language].eval()
 
-
-
-
+    return _models, _tokenizers
 
 def tokenize(text):
     for punctuation in string.punctuation:
@@ -120,41 +132,100 @@ def tokenize(text):
      'lg_comp': 'fr'}
 
 
+def get_entities(tokens, tags):
+    tags = [tag.replace('S-', 'B-').replace('E-', 'I-') for tag in tags]
+    pos_tags = [pos for token, pos in pos_tag(tokens)]
+
+    conlltags = [(token, pos, tg) for token, pos, tg in zip(tokens, pos_tags, tags)]
+    ne_tree = conlltags2tree(conlltags)
+
+    entities = []
+    idx = 0
+    char_position = 0  # This will hold the current character position
+
+    for subtree in ne_tree:
+        # skipping 'O' tags
+        if type(subtree) == Tree:
+            original_label = subtree.label()
+            original_string = " ".join([token for token, pos in subtree.leaves()])
+
+            entity_start_position = char_position
+            entity_end_position = entity_start_position + len(original_string)
+
+            entities.append((original_string, original_label, (idx, idx + len(subtree)),
+                             (entity_start_position, entity_end_position)))
+            idx += len(subtree)
+
+            # Update the current character position
+            # We add the length of the original string + 1 (for the space)
+            char_position += len(original_string) + 1
+        else:
+            token, pos = subtree
+            # If it's not a named entity, we still need to update the character position
+            char_position += len(token) + 1  # We add 1 for the space
+            idx += 1
+
+    return entities
+
+
+def realign(text_sentence, out_label_preds, TOKENIZERS, language, reverted_label_map):
+    preds_list, words_list, confidence_list = [], [], []
+    word_ids = TOKENIZERS[language](
+        text_sentence, is_split_into_words=True).word_ids()
+    for idx, word in enumerate(text_sentence):
+        beginning_index = word_ids.index(idx)
+        try:
+            preds_list.append(
+                reverted_label_map[out_label_preds[beginning_index]])
+        except Exception as ex:  # the sentence was longer then max_length
+            preds_list.append('O')
+        words_list.append(word)
+    return words_list, preds_list
+
 from tqdm import tqdm
+
+
 def predict_entities(content_items):
+    sys.setrecursionlimit(10000)  # Increase the recursion limit to 10000
+
+    # add the current directory to sys.path
+    # current_directory = os.path.dirname(os.path.realpath(__file__))
+    # sys.path.insert(0, current_directory)
+
     MODEL_PATHS = {
         'fr': '/scratch/newsagency-project/checkpoints/fr/checkpoint-4395',
         'de': '/scratch/newsagency-project/checkpoints/de/checkpoint-1752'}
 
-    with open('data/label_map.json', "r") as f:
-        label_map = json.load(f)
-    reverted_label_map = {v: k for k, v in dict(label_map).items()}
-    LABEL_MAPS = {"fr": reverted_label_map, "de": reverted_label_map}
+    label_map = {"B-org.ent.pressagency.Reuters": 0, "B-org.ent.pressagency.Stefani": 1, "O": 2, "B-org.ent.pressagency.Extel": 3, "B-org.ent.pressagency.Havas": 4, "I-org.ent.pressagency.Xinhua": 5, "I-org.ent.pressagency.Domei": 6, "B-org.ent.pressagency.Belga": 7, "B-org.ent.pressagency.CTK": 8, "B-org.ent.pressagency.ANSA": 9, "B-org.ent.pressagency.DNB": 10, "B-org.ent.pressagency.Domei": 11, "I-pers.ind.articleauthor": 12, "I-org.ent.pressagency.Wolff": 13, "B-org.ent.pressagency.unk": 14, "I-org.ent.pressagency.Stefani": 15, "I-org.ent.pressagency.AFP": 16, "B-org.ent.pressagency.UP-UPI": 17, "I-org.ent.pressagency.ATS-SDA": 18, "I-org.ent.pressagency.unk": 19, "B-org.ent.pressagency.DPA": 20, "B-org.ent.pressagency.AFP": 21, "I-org.ent.pressagency.DNB": 22, "B-pers.ind.articleauthor": 23, "I-org.ent.pressagency.UP-UPI": 24, "B-org.ent.pressagency.Kipa": 25, "B-org.ent.pressagency.Wolff": 26, "B-org.ent.pressagency.ag": 27, "I-org.ent.pressagency.Extel": 28, "I-org.ent.pressagency.ag": 29, "B-org.ent.pressagency.ATS-SDA": 30, "I-org.ent.pressagency.Havas": 31, "I-org.ent.pressagency.Reuters": 32, "B-org.ent.pressagency.Xinhua": 33, "B-org.ent.pressagency.AP": 34, "B-org.ent.pressagency.APA": 35, "I-org.ent.pressagency.ANSA": 36, "B-org.ent.pressagency.DDP-DAPD": 37, "I-org.ent.pressagency.TASS": 38, "I-org.ent.pressagency.AP": 39, "B-org.ent.pressagency.TASS": 40, "B-org.ent.pressagency.Europapress": 41, "B-org.ent.pressagency.SPK-SMP": 42}
 
-    MODELS, TOKENIZERS = {}, {}
-    for language in ['fr', 'de']:
-        model, tokenizer = MultiSingletonModel.getInstance(
-            language, MODEL_PATHS, LABEL_MAPS)
-        MODELS[language] = model
-        TOKENIZERS[language] = tokenizer
+    reverted_label_map = {v: k for k, v in dict(label_map).items()}
+
+    # LABEL_MAPS = {"fr": reverted_label_map, "de": reverted_label_map}
+
+    # MODELS, TOKENIZERS = {}, {}
+    # for language in ['fr', 'de']:
+    #     model, tokenizer = MultiSingletonModel.getInstance(
+    #         language, MODEL_PATHS, LABEL_MAPS)
+    #     MODELS[language] = model.to(
+    #                 'cuda' if torch.cuda.is_available() else 'cpu')
+    #     TOKENIZERS[language] = tokenizer
+
+    MODELS, TOKENIZERS = load_models(MODEL_PATHS, reverted_label_map)
 
     # tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
     SENTENCE_SEGMENTER = {'fr': pysbd.Segmenter(language="fr", clean=False),
                           'de': pysbd.Segmenter(language="de", clean=False)}
 
     MAX_SEQ_LEN = 512
-
-
+    count = 0
+    # for ci in content_items:
+    #     count += 1
+    # print('\nNumber of content_items', count)
+    # total = count
     result_json = []
+
     for ci in content_items:
-        entity_json = {
-            "entity": "newsag",
-            "name": "Reuters",
-            "lOffset": 2637,
-            "rOffset": 2642,
-            "id": ci["id"] + ":2637:2642:newsag:bert"
-        }
-        result_json.append(entity_json)
+        count += 1
 
         language = ci['lg_comp']
         article = ci['ft']
@@ -192,72 +263,23 @@ def predict_entities(content_items):
                 # confidence_scores = probabilities.max(dim=-1)[0].cpu().numpy()
 
                 # print(confidence_scores, len(confidence_scores[0]), len(out_label_preds))
-                from nltk.chunk import conlltags2tree
-                from nltk import pos_tag
-                from nltk.tree import Tree
-                def get_entities(tokens, tags):
-                    tags = [tag.replace('S-', 'B-').replace('E-', 'I-') for tag in tags]
-                    pos_tags = [pos for token, pos in pos_tag(tokens)]
 
-                    conlltags = [(token, pos, tg) for token, pos, tg in zip(tokens, pos_tags, tags)]
-                    ne_tree = conlltags2tree(conlltags)
 
-                    entities = []
-                    idx = 0
-                    char_position = 0  # This will hold the current character position
 
-                    for subtree in ne_tree:
-                        # skipping 'O' tags
-                        if type(subtree) == Tree:
-                            original_label = subtree.label()
-                            original_string = " ".join([token for token, pos in subtree.leaves()])
-
-                            entity_start_position = char_position
-                            entity_end_position = entity_start_position + len(original_string)
-
-                            entities.append((original_string, original_label, (idx, idx + len(subtree)),
-                                             (entity_start_position, entity_end_position)))
-                            idx += len(subtree)
-
-                            # Update the current character position
-                            # We add the length of the original string + 1 (for the space)
-                            char_position += len(original_string) + 1
-                        else:
-                            token, pos = subtree
-                            # If it's not a named entity, we still need to update the character position
-                            char_position += len(token) + 1  # We add 1 for the space
-                            idx += 1
-
-                    return entities
-
-                def realign(text_sentence, out_label_preds):
-
-                    preds_list, words_list, confidence_list = [], [], []
-                    word_ids = TOKENIZERS[language](
-                        text_sentence, is_split_into_words=True).word_ids()
-                    for idx, word in enumerate(text_sentence):
-                        beginning_index = word_ids.index(idx)
-                        try:
-                            preds_list.append(
-                                reverted_label_map[out_label_preds[beginning_index]])
-                        except Exception as ex:  # the sentence was longer then max_length
-                            preds_list.append('O')
-                        words_list.append(word)
-                    return words_list, preds_list
-
-                words_list, preds_list = realign(text_sentence, out_label_preds)
+                words_list, preds_list = realign(text_sentence, out_label_preds,
+                                                 TOKENIZERS, language, reverted_label_map)
                 # print(len(words_list), len(confidence_list))
 
                 entities = get_entities(words_list, preds_list)
                 # if len(entities) > 0: print('\n', entities)
-                predicted_entities = list(zip(words_list, preds_list))
+                # entities = list(zip(words_list, preds_list))
 
                 for entity in entities:
                     if entity[1] != 'O':
                         if entity[0] not in string.punctuation:
                             if len(entity[0]) > 1:
-                                lOffset = cumulative_offset + entity[-1][0]
-                                rOffset = cumulative_offset + entity[-1][1]
+                                lOffset = entity[-1][0]
+                                rOffset = entity[-1][1]
 
                                 entity_json = {
                                     "entity": entity[1],
@@ -265,7 +287,7 @@ def predict_entities(content_items):
                                     "lOffset": lOffset,
                                     "rOffset": rOffset,
                                     # "confidence": entity[2],
-                                    'id': ci["id"] + f":{entity_json['lOffset']}:{entity_json['rOffset']}:newsag:bert_{language}"}
+                                    'id': ci["id"] + f":{lOffset}:{rOffset}:newsag:bert_{language}"}
 
                                 # print(entity_json)
                                 # print(article[lOffset:rOffset], '----',  entity[0], '\n\n')
@@ -306,7 +328,7 @@ def run_newsagency_tagger(input_dir: str,
     files = glob.glob(path)
     logger.info(f'Number of files: {len(files)}.')
 
-    batches = list(chunk(files, 1))
+    batches = list(chunk(files, 10))
     total = len(batches)
     for i, b in enumerate(batches):
         logger.info(f'Parsing {i}/{total}: {b}')
@@ -390,7 +412,7 @@ if __name__ == "__main__":
         handlers=handlers,
     )
 
-    # client = Client('127.0.0.1:8000')
+    client = Client('127.0.0.1:8000')
 
     run_newsagency_tagger(
         arguments.input_dir,

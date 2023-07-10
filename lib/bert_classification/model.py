@@ -1,7 +1,5 @@
 from utils import write_predictions
-import torch
-from torch import nn
-from typing import List, Optional, Tuple, Union
+from typing import Optional, Tuple, Union
 from transformers import (PreTrainedModel,
                           AutoModel, AutoConfig)
 from torch.nn import BCEWithLogitsLoss, CrossEntropyLoss, MSELoss
@@ -10,10 +8,7 @@ from transformers.modeling_outputs import (SequenceClassifierOutput,
 import json
 import numpy as np
 import torch
-from transformers import (AutoTokenizer,
-                          AutoConfig,
-                          AdamW,
-                          get_linear_schedule_with_warmup)
+from transformers import get_linear_schedule_with_warmup
 from sklearn.metrics import accuracy_score, classification_report
 from seqeval.metrics import classification_report as seq_classification_report
 from torch import nn
@@ -25,21 +20,16 @@ from torch.utils.data.distributed import DistributedSampler
 from torch.utils.data import (
     DataLoader,
     RandomSampler,
-    SequentialSampler,
-    TensorDataset)
+    SequentialSampler)
 from transformers import (
-    CONFIG_MAPPING,
-    MODEL_MAPPING,
-    AdamW,
     AutoConfig,
-    AutoModelForTokenClassification,
-    AutoTokenizer,
-    DataCollatorForTokenClassification,
-    PretrainedConfig,
-    SchedulerType,
-    default_data_collator,
-    get_scheduler,
 )
+import sys
+# get the current directory
+current_directory = os.path.dirname(os.path.realpath(__file__))
+print(current_directory)
+# add the current directory to sys.path
+sys.path.insert(0, current_directory)
 from utils import set_seed, SEED
 
 try:
