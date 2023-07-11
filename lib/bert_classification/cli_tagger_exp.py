@@ -179,8 +179,6 @@ def predict_entities(content_items):
     # current_directory = os.path.dirname(os.path.realpath(__file__))
     # sys.path.insert(0, current_directory)
 
-    timings = []
-
     MODEL_PATHS = {
         'fr': '/scratch/newsagency-project/checkpoints/fr/checkpoint-4395',
         'de': '/scratch/newsagency-project/checkpoints/de/checkpoint-1752'}
@@ -192,7 +190,6 @@ def predict_entities(content_items):
 
     load_model_start_time = time.time()
     MODELS, TOKENIZERS = load_models(MODEL_PATHS, reverted_label_map)
-    timings.append({'load_models': time.time() - load_model_start_time})  # Store the time taken
 
     # tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
     SENTENCE_SEGMENTER = {'fr': pysbd.Segmenter(language="fr", clean=False),
@@ -211,21 +208,17 @@ def predict_entities(content_items):
     for ci in tqdm(content_items_list, total=len(content_items_list)):
         count += 1
 
-        timing = {}
-
         language = ci['lg_comp']
         article = ci['ft']
         if language in ['de', 'fr']:
             # TODO: add timing
             segmenter_start_time = time.time()
             sentences = SENTENCE_SEGMENTER[language].segment(article)
-            timing['segment'] = time.time() - segmenter_start_time  # Store the time taken
             cumulative_offset = 0
 
             article_prediction_start_time = time.time()
             timing_article = []
             for sentence in sentences:
-                timing_sentence = {}
                 # TODO: add timing
                 tokenize_start_time = time.time()
                 text_sentence = tokenize(sentence)
@@ -241,7 +234,6 @@ def predict_entities(content_items):
                 )
                 input_ids = torch.tensor([tokenized_inputs['input_ids']]).to(
                     'cuda' if torch.cuda.is_available() else 'cpu')
-                timing_sentence['tokenize_and_tensor'] = time.time() - tokenize_start_time  # Store the time taken
 
                 pred_start_time = time.time()
                 with torch.no_grad():
@@ -258,16 +250,13 @@ def predict_entities(content_items):
                 # confidence_scores = probabilities.max(dim=-1)[0].cpu().numpy()
 
                 # print(confidence_scores, len(confidence_scores[0]), len(out_label_preds))
-                timing_sentence['sentence_prediction'] = time.time() - pred_start_time  # Store the time taken
 
                 realign_start_time = time.time()
                 words_list, preds_list = realign(text_sentence, out_label_preds,
                                                  TOKENIZERS, language, reverted_label_map)
-                timing_sentence['realign'] = time.time() - realign_start_time  # Store the time taken
 
                 get_entities_start_time = time.time()
                 entities = get_entities(words_list, preds_list)
-                timing_sentence['sentence_get_entities'] = time.time() - get_entities_start_time  # Store the time taken
 
                 json_start_time = time.time()
                 for entity in entities:
@@ -288,16 +277,10 @@ def predict_entities(content_items):
                                 # print(entity_json)
                                 # print(article[lOffset:rOffset], '----',  entity[0], '\n\n')
                                 result_json.append(entity_json)
-                timing_sentence['sentence_result_json'] = time.time() - json_start_time  # Store the time taken
                 # Update cumulative offset after processing each sentence
                 cumulative_offset += len(sentence) + 1
-                timing_article.append(timing_sentence)
-            timing['entire_article'] = timing_article
-        timings.append(timing)
         if count > 10:
             break
-    # logger.info(f'Number of timings: {len(timings)}.')
-    # logger.info(f'Number of entities: {len(result_json)}.')
     return result_json
 
 
@@ -369,7 +352,7 @@ def run_newsagency_tagger(input_dir: str,
     files = glob.glob(path)
     logger.info(f'Number of files: {len(files)}. Time taken to read files: {time.time() - file_time_start}')
 
-    batches = list(chunk(files, 10))
+    batches = list(chunk(files, 20))
     total = len(batches)
 
     for i, b in enumerate(batches):
@@ -388,18 +371,16 @@ def run_newsagency_tagger(input_dir: str,
         process_time_start = time.time()
         # with client:
         bag_articles = bag_articles.map_partitions(predict_entities).compute()
-            # bag_articles, timings_articles = zip(processed_articles[:10], processed_articles[10:])
-        bag_articles = db.from_sequence(bag_articles)
+        # bag_articles = db.from_sequence(bag_articles)
         bag_mentions = bag_articles.map(json.dumps)
 
-        # timing['timing_articles'] = [json.dumps(article) for article in timings_articles]
         logger.info(f'Time taken to process articles: {time.time() - process_time_start}')
         timing['process_articles'] = time.time() - process_time_start
 
         write_time_start = time.time()
         with ProgressBar():
-            bag_mentions.to_textfiles(f'{output_dir}/' + '*.jsonl.bz2')
-
+            bag_mentions.to_textfiles(f'{output_dir}/' + '*.jsonl.bz2',
+                                      name_function=lambda x: str(x))
 
         logger.info(f'Time taken to write mentions: {time.time() - write_time_start}')
         timing['write_articles'] = time.time() - write_time_start
@@ -407,7 +388,7 @@ def run_newsagency_tagger(input_dir: str,
         timing['batch_time'] = time.time() - batch_time_start
 
         timings.append(timing)
-        with open('batch_timings.json', 'w') as file:
+        with open('all_files_batch_timings.json', 'w') as file:
             json.dump(timings, file)
 
     # client.close()
