@@ -95,17 +95,17 @@ def load_models(model_paths, label_map_path):
                 _models[language] = _models[language].to(
                     'cuda' if torch.cuda.is_available() else 'cpu')
 
-                # scripted_model = torch.jit.trace(
-                #     _models[language], [
-                #         torch.zeros(
-                #             (1, 1), dtype=torch.long).to(
-                #     'cuda' if torch.cuda.is_available() else 'cpu')], strict=False)
-                # torch.jit.save(scripted_model, traced_model_path)
-                #
-                # _models[language] = torch.jit.load(
-                #     traced_model_path)
-                # _models[language] = _models[language].to(
-                #     'cuda' if torch.cuda.is_available() else 'cpu')
+                scripted_model = torch.jit.trace(
+                    _models[language], [
+                        torch.zeros(
+                            (1, 1), dtype=torch.long).to(
+                    'cuda' if torch.cuda.is_available() else 'cpu')], strict=False)
+                torch.jit.save(scripted_model, traced_model_path)
+
+                _models[language] = torch.jit.load(
+                    traced_model_path)
+                _models[language] = _models[language].to(
+                    'cuda' if torch.cuda.is_available() else 'cpu')
 
                 _models[language].eval()
 
@@ -279,8 +279,8 @@ def predict_entities(content_items):
                                 result_json.append(entity_json)
                 # Update cumulative offset after processing each sentence
                 cumulative_offset += len(sentence) + 1
-        if count > 10:
-            break
+        # if count > 10:
+        #     break
     return result_json
 
 
@@ -369,18 +369,19 @@ def run_newsagency_tagger(input_dir: str,
         timing['read_and_filter'] = time.time() - read_time_start
 
         process_time_start = time.time()
-        # with client:
-        bag_articles = bag_articles.map_partitions(predict_entities).compute()
-        # bag_articles = db.from_sequence(bag_articles)
-        bag_mentions = bag_articles.map(json.dumps)
+        with client:
+            bag_articles = bag_articles.map_partitions(predict_entities).compute()
+            # bag_articles = db.from_sequence(bag_articles)
+            bag_mentions = bag_articles.map(json.dumps)
 
-        logger.info(f'Time taken to process articles: {time.time() - process_time_start}')
-        timing['process_articles'] = time.time() - process_time_start
+            logger.info(f'Time taken to process articles: {time.time() - process_time_start}')
+            timing['process_articles'] = time.time() - process_time_start
 
-        write_time_start = time.time()
-        with ProgressBar():
-            bag_mentions.to_textfiles(f'{output_dir}/' + '*.jsonl.bz2',
-                                      name_function=lambda x: str(x))
+
+            write_time_start = time.time()
+            with ProgressBar():
+                bag_mentions.to_textfiles(f'{output_dir}/' + '*.jsonl.bz2',
+                                          name_function=lambda x: str(x))
 
         logger.info(f'Time taken to write mentions: {time.time() - write_time_start}')
         timing['write_articles'] = time.time() - write_time_start
@@ -391,7 +392,7 @@ def run_newsagency_tagger(input_dir: str,
         with open('all_files_batch_timings.json', 'w') as file:
             json.dump(timings, file)
 
-    # client.close()
+    client.close()
 
     logger.info(f'Total time taken for run_newsagency_tagger: {time.time() - total_time_start}')
 
@@ -466,6 +467,12 @@ if __name__ == "__main__":
     n = torch.cuda.device_count()
     # Connect to an existing Dask scheduler
     # client = Client('127.0.0.1:8000')
+
+    from dask.distributed import Client, LocalCluster
+
+    cluster = LocalCluster(n_workers=2)
+    client = Client(cluster)
+    #
     # #
     # # # Or, start a local Dask cluster
     # client = Client(processes=False)
