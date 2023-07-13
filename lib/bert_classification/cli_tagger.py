@@ -74,6 +74,9 @@ def load_models(model_paths, label_map_path):
                 try:
                     _models[language] = torch.jit.load(
                         traced_model_path)
+
+                    logger.info(f'torch.jit.load: {language}')
+
                 except Exception:
                     _models[language] = None
             else:
@@ -253,6 +256,7 @@ def predict_entities(content_items):
                 )
                 input_ids = torch.tensor([tokenized_inputs['input_ids']]).to(
                     'cuda' if torch.cuda.is_available() else 'cpu')
+
                 timing_sentence['tokenize_and_tensor'] = time.time() - tokenize_start_time  # Store the time taken
 
                 pred_start_time = time.time()
@@ -280,7 +284,8 @@ def predict_entities(content_items):
                 get_entities_start_time = time.time()
                 entities = get_entities(words_list, preds_list)
                 timing_sentence['sentence_get_entities'] = time.time() - get_entities_start_time  # Store the time taken
-
+                # logging.info(str(entities))
+                # logging.info(type(entities))
                 json_start_time = time.time()
                 for entity in entities:
                     if entity[1] != 'O':
@@ -326,41 +331,6 @@ def predict_mentions_test(content_items):
         }
         result_json.append(entity_json)
     return result_json
-
-
-def run_newsagency_tagger(input_dir: str,
-                          output_dir: str,
-                          prefix: Optional[str] = None) -> None:
-    t = Timer()
-    if prefix is not None:
-        path = f"{input_dir}/{prefix}*.jsonl.bz2"
-    else:
-        path = f"{input_dir}/*.jsonl.bz2"
-
-    logger.info(f"Indexing files in {path}")
-
-    files = glob.glob(path)
-    logger.info(f'Number of files: {len(files)}.')
-
-    batches = list(chunk(files, 10))
-    total = len(batches)
-    for i, b in enumerate(batches):
-        logger.info(f'Parsing {i}/{total}: {b}')
-        bag_articles = db.read_text(b) \
-            .filter(lambda s: len(s) > 2) \
-            .map(json.loads) \
-            .filter(lambda ci: ci['tp'] == 'ar')
-
-        bag_mentions = bag_articles.map_partitions(
-            predict_entities).map(json.dumps)
-
-        with ProgressBar():
-            # print(bag_articles.take(2))
-            bag_mentions.to_textfiles(f'{output_dir}/' + '*.jsonl.bz2',
-                                      name_function=lambda x: str(x))
-        logger.info(f"Batch time: {t.tick()}")
-
-
 
 def run_newsagency_tagger(input_dir: str,
                           output_dir: str,

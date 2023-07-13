@@ -107,11 +107,6 @@ class NewsAgencyHandler(BaseHandler):
 
         serialized_file = self.manifest["model"]["serializedFile"]
 
-        # Load corresponding tokenizers
-        MODEL_PATHS = {
-            'fr': 'agency-fr',
-            'de': 'agency-de'}
-
         self.tokenizers['fr'] = AutoTokenizer.from_pretrained(model_dir, local_files_only=True)
         self.tokenizers['de'] = AutoTokenizer.from_pretrained(model_dir, local_files_only=True)
 
@@ -134,71 +129,119 @@ class NewsAgencyHandler(BaseHandler):
 
     def preprocess(self, requests):
 
-        input_ids_batch = None
-        attention_mask_batch = None
         for idx, data in enumerate(requests):
             input_text = data.get("data")
             if input_text is None:
                 input_text = data.get("body")
             if isinstance(input_text, (bytes, bytearray)):
                 input_text = input_text.decode("utf-8")
+                input_text = json.loads(input_text)
+            else:
+                input_text = data
 
             # text = data[0]['body']
-            print(data)
-            print('-----', input_text, type(input_text))
-            input_text = json.loads(input_text)
-            text = input_text['body']
-            text_sentence = tokenize(text)
+            # print(data, type(data), type(data['body']))
 
-            language = input_text['language']  # Assuming that the request contains the 'language' field
-            tokenized_inputs = self.tokenizers[language](
-                text,
-                padding="max_length",
-                truncation=True,
-                max_length=512,
-                # We use this argument because the texts in our dataset are lists
-                # of words (with a label for each word).
-                # is_split_into_words=True
-            )
-            input_ids = torch.tensor([tokenized_inputs['input_ids']]).to(
-                'cuda' if torch.cuda.is_available() else 'cpu')
+            batch_input_ids = []
+            text_sentences = []
+            for item in data['body']:
+                item = json.loads(item)
+                text = item['text']
+                text_sentence = tokenize(text)
 
-            print(input_ids)
-            return input_ids, text_sentence, language
+                language = item['language']  # Assuming that the request contains the 'language' field
+                # print('-----text', text, type(text))
+                # print('-----language', language, type(language))
+                tokenized_inputs = self.tokenizers[language](
+                    text,
+                    padding="max_length",
+                    truncation=True,
+                    max_length=512,
+                    # We use this argument because the texts in our dataset are lists
+                    # of words (with a label for each word).
+                    # is_split_into_words=True
+                )
+                input_ids = torch.tensor([tokenized_inputs['input_ids']], dtype=torch.long).to('cuda'
+                              if torch.cuda.is_available() else 'cpu')
+                batch_input_ids.append(input_ids)
+                text_sentences.append(text_sentence)
+
+            return batch_input_ids, text_sentences, language
 
     def inference(self, inputs):
-        # Choose model based on 'language' field in inputs
-        print(inputs)
-        input_ids, text_sentence, language = inputs
 
+        batch_input_ids, text_sentences, language = inputs
+
+        outputs = []
+        tokens_results = []
         with torch.no_grad():
-            outputs = self.models[language](input_ids)
+            for input_ids in batch_input_ids:
+                output = self.models[language](input_ids)
+                outputs.append(output)
 
-        sequence_result, tokens_result = outputs[0], outputs[1]
+                _, tokens_result = output[0], output[1]
 
-        return sequence_result, tokens_result, text_sentence, language
+                tokens_result = np.argmax(tokens_result['logits'].detach().cpu().numpy(), axis=2)[0]
+                tokens_results.append(tokens_result)
+
+        # TODO: it does not work on batch for now as it was compiled for input 1
+        # batch_input_ids = torch.stack(batch_input_ids, dim=0)
+        # print(batch_input_ids.shape)
+        # output = self.models[language](batch_input_ids)
+
+        return tokens_results, text_sentences, language
 
     def postprocess(self, outputs):
         # postprocess the outputs here, for example, convert predictions to labels
         # outputs = ... # some processing here
 
-        sequence_result, tokens_result, text_sentence, language = outputs
-        token_logits = tokens_result['logits']
-        out_token_preds = token_logits.detach().cpu().numpy()
-        out_label_preds = np.argmax(out_token_preds, axis=2)[0]
+        tokens_results, text_sentences, language = outputs
 
-        # apply softmax to convert logits to probabilities
-        # probabilities = F.softmax(token_logits, dim=-1)
-        # confidence_scores = probabilities.max(dim=-1)[0].cpu().numpy()
+        article_entities = []
+        for token_result, text_sentence in zip(tokens_results, text_sentences):
 
-        # print(confidence_scores, len(confidence_scores[0]), len(out_label_preds))
+            words_list, preds_list = realign(text_sentence, token_result,
+                                             self.tokenizers, language,
+                                             self.reverted_label_map)
+            entities = get_entities(words_list, preds_list)
+            article_entities.append(entities)
+            print('*'*20, 'Result:', entities)
 
-        words_list, preds_list = realign(text_sentence, out_label_preds,
-                                         self.tokenizers, language, self.reverted_label_map)
+        return [article_entities]
 
-        entities = get_entities(words_list, preds_list)
 
-        return entities
+if __name__ == "__main__":
+        import json
 
+        # Create a sample request for testing
+        request_data = {
+            "data": {
+                "body": "L'Agence France-Presse (AFP) est une agence de presse mondiale et généraliste chargée de collecter, vérifier, recouper et diffuser l'information, sous une forme neutre, fiable et utilisable directement par tous types de médias (radios, télévision, presse écrite, sites internet) mais aussi par des grandes entreprises et administrations.",
+                "language": "fr"
+
+            }
+        }
+        request_json = json.dumps(request_data)
+
+        # Instantiate the handler
+        handler = NewsAgencyHandler()
+
+        # Load the context
+        ctx = None  # Replace with the appropriate context
+
+        # Initialize the handler
+        handler.initialize(ctx)
+
+        # Preprocess the request
+        preprocessed_inputs = handler.preprocess([request_json])
+
+        # Perform inference
+        inference_outputs = handler.inference(preprocessed_inputs)
+
+        # Postprocess the outputs
+        postprocessed_outputs = handler.postprocess(inference_outputs)
+
+        # Print the final entities
+        print(postprocessed_outputs)
 
 
