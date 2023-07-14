@@ -377,7 +377,6 @@ def run_newsagency_tagger(input_dir: str,
             logger.info(f'Time taken to process articles: {time.time() - process_time_start}')
             timing['process_articles'] = time.time() - process_time_start
 
-
             write_time_start = time.time()
             with ProgressBar():
                 bag_mentions.to_textfiles(f'{output_dir}/' + '*.jsonl.bz2',

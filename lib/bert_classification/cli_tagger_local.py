@@ -29,8 +29,8 @@ from tqdm import tqdm
 
 import requests
 
-def send_prediction_request(json_request):
-    url = 'http://127.0.0.1:8080/predictions/agency_fr'
+def send_prediction_request(json_request, language):
+    url = f'http://127.0.0.1:8080/predictions/agency_{language}'
 
     headers = {'Content-Type': 'application/json'}
     json_data = json.dumps(json_request)
@@ -83,9 +83,6 @@ def predict_entities(content_items):
             sentences = SENTENCE_SEGMENTER[language].segment(article)
             if len(sentences) > 0:
                 timing['segment'] = time.time() - segmenter_start_time  # Store the time taken
-                cumulative_offset = 0
-
-                article_prediction_start_time = time.time()
                 timing_article = []
 
                 api_requests = []
@@ -94,37 +91,52 @@ def predict_entities(content_items):
 
                 timing_sentence = {}
                 pred_start_time = time.time()
-                article_entities = send_prediction_request(api_requests)
+                article_entities = send_prediction_request(api_requests, language)
                 timing_sentence['sentence_prediction'] = time.time() - pred_start_time  # Store the time taken
 
                 json_start_time = time.time()
-                for entities in article_entities:
+                total_sentence_length = 0
+
+                for entities, sentence in zip(article_entities, sentences):
                     for entity in entities:
                         if entity[1] != 'O':
                             if entity[0] not in string.punctuation:
                                 if len(entity[0]) > 1:
-                                    lOffset = entity[-1][0]
-                                    rOffset = entity[-1][1]
+                                    # TODO: character position
+                                    lOffset = sentence.find(entity[0])
+                                    rOffset = lOffset + len(entity[0])
+
+                                    lArticleOffset = total_sentence_length + lOffset
+                                    rArticleOffset = total_sentence_length + rOffset
+
+                                    # print(sentence)
+                                    # print(entity[0],
+                                    #       '---------', sentence[lOffset:rOffset],
+                                    #       '---------', article[lArticleOffset:lArticleOffset])
+                                    # logger.info(f"Entity {entity[0]} -------- {article[lArticleOffset:rArticleOffset]}")
 
                                     entity_json = {
                                         "entity": entity[1],
                                         "name": entity[0],
                                         "lOffset": lOffset,
                                         "rOffset": rOffset,
+                                        "lArticleOffset": lArticleOffset,
+                                        "rArticleOffset": rArticleOffset,
+                                        "language": language,
                                         'id': ci["id"] + f":{lOffset}:{rOffset}:newsag:bert_{language}"}
 
                                     result_json.append(entity_json)
 
+                    total_sentence_length += len(sentence) + 1
+
                     timing_sentence['sentence_result_json'] = time.time() - json_start_time  # Store the time taken
                     # Update cumulative offset after processing each sentence
-                    cumulative_offset += len(sentence) + 1
                     timing_article.append(timing_sentence)
                 timing['entire_article'] = timing_article
             timings.append(timing)
-            if count > 10:
-                break
-    # logger.info(f'Number of timings: {len(timings)}.')
-    # logger.info(f'Number of entities: {len(result_json)}.')
+            # if count > 10:
+            #     break
+
     return result_json, timings
 
 
@@ -142,12 +154,16 @@ def run_newsagency_tagger(input_dir: str,
     else:
         path = f"{input_dir}/*.jsonl.bz2"
 
+    output_dir_prefix = os.path.join(output_dir, prefix)
+    if not os.path.exists(output_dir_prefix):
+        os.mkdir(output_dir_prefix)
+
     logger.info(f"Indexing files in {path}")
     file_time_start = time.time()
     files = glob.glob(path)
     logger.info(f'Number of files: {len(files)}. Time taken to read files: {time.time() - file_time_start}')
 
-    batches = list(chunk(files, 10))
+    batches = list(chunk(files, 1))
     total = len(batches)
 
     for i, b in enumerate(batches):
@@ -178,8 +194,10 @@ def run_newsagency_tagger(input_dir: str,
             timing['process_articles'] = time.time() - process_time_start
 
             write_time_start = time.time()
+
             with ProgressBar():
-                bag_mentions.to_textfiles(f'{output_dir}/' + '*.jsonl.bz2')
+                bag_mentions.to_textfiles(f'{output_dir_prefix}/' + '*.jsonl.bz2',
+                                          name_function=lambda x: str(x))
 
         logger.info(f'Time taken to write mentions: {time.time() - write_time_start}')
         timing['write_articles'] = time.time() - write_time_start
@@ -187,10 +205,8 @@ def run_newsagency_tagger(input_dir: str,
         timing['batch_time'] = time.time() - batch_time_start
 
         timings.append(timing)
-        with open('batch_timings_dask_ts_batch_8workers10batch.json', 'w') as file:
+        with open('batch_timings_dask_ts_batch_8workers10batch_all.json', 'w') as file:
             json.dump(timings, file)
-
-    client.close()
 
     logger.info(f'Total time taken for run_newsagency_tagger: {time.time() - total_time_start}')
 
@@ -204,6 +220,12 @@ def parse_args():
     parser.add_argument(
         "--input_dir",
         dest="input_dir",
+    )
+
+    parser.add_argument(
+        "--workers",
+        type=int,
+        default=4,
     )
 
     parser.add_argument(
@@ -266,18 +288,8 @@ if __name__ == "__main__":
     # Connect to an existing Dask scheduler
     from dask.distributed import Client, LocalCluster
 
-    cluster = LocalCluster(n_workers=4)
-    client = Client(cluster)    # #
-    # # # Or, start a local Dask cluster
-    # client = Client(processes=False)
-
-    # from dask_cuda import LocalCUDACluster
-    #
-    # with Client(processes=False) as client:
-    #     with LocalCUDACluster(CUDA_VISIBLE_DEVICES="0,1,2,3") as cluster:
-    #         client = Client(cluster)
-
-    from dask.distributed import Worker
+    cluster = LocalCluster(n_workers=arguments.workers)
+    client = Client(cluster)
 
     run_newsagency_tagger(
         arguments.input_dir,
