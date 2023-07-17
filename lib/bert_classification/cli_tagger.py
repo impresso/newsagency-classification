@@ -36,9 +36,7 @@ def send_prediction_request(json_request, language):
     json_data = json.dumps(json_request)
     response = requests.post(url, data=json_data, headers=headers)
 
-    if response.status_code == 200:
-        results = response.json()
-    else:
+    if not response.status_code == 200:
         print(
             f'Failed to send prediction request. Error code: {response.status_code}')
 
