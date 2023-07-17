@@ -129,4 +129,10 @@ Stop:
 torchserve --stop
 ```
 
+API calls depend on the language of the text:
+```
+http://127.0.0.1:8080/predictions/agency_{language}'
+
+{'text': TEXT, 'language': LANGUAGE}
+```
 [TO CONTINUE]
