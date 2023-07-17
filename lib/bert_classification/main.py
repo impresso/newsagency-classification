@@ -135,7 +135,7 @@ if __name__ == '__main__':
         action="store_true",
         help="Whether to run evaluation during training at each logging step.",
     )
-    
+
     parser.add_argument("--do_train",
                         action='store_true',
                         help="Whether to run training.")
@@ -150,7 +150,6 @@ if __name__ == '__main__':
         type=int,
         default=42,
         help="Seed to make experiment reproducible.")
-    
 
     args = parser.parse_args()
 
@@ -168,27 +167,26 @@ if __name__ == '__main__':
             args.max_sequence_len,
             args.epochs,
             args.logging_suffix),
-            )
+    )
     if not os.path.exists(args.output_dir):
         os.mkdir(args.output_dir)
-    
 
-    #logging.basicConfig(level=logging.INFO)
+    # logging.basicConfig(level=logging.INFO)
     logging.root.handlers = []
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
         handlers=[
-        logging.FileHandler(os.path.join(args.output_dir, "logging.log")),
-        logging.StreamHandler()
-    ]
+            logging.FileHandler(os.path.join(args.output_dir, "logging.log")),
+            logging.StreamHandler()
+        ]
     )
     logger = logging.getLogger(__name__)
 
     logging.info(
         "Trained models and results will be saved in {}.".format(
             args.output_dir))
-    
+
     # Setup CUDA, GPU & distributed training
     if args.device == 'cpu':
         device = torch.device("cpu")
@@ -203,17 +201,17 @@ if __name__ == '__main__':
         torch.distributed.init_process_group(backend="nccl")
         args.n_gpu = 1
     args.device = device
-    
 
     tokenizer = AutoTokenizer.from_pretrained(args.model_name_or_path)
 
-    #if label map was not specified, generate it from data and save it in output folder
+    # if label map was not specified, generate it from data and save it in
+    # output folder
     if not args.label_map:
         train_dataset = NewsDataset(
             tsv_dataset=args.train_dataset,
             tokenizer=tokenizer,
             max_len=args.max_sequence_len)
-    
+
         label_map = train_dataset.get_label_map()
 
         # dataset, tokenizer, max_len, test = False, label_map = None
@@ -222,7 +220,7 @@ if __name__ == '__main__':
             tokenizer=tokenizer,
             max_len=args.max_sequence_len,
             label_map=label_map)
-        
+
         label_map = dev_dataset.get_label_map()
 
         test_dataset = NewsDataset(
@@ -232,7 +230,7 @@ if __name__ == '__main__':
             label_map=label_map)
 
         label_map = test_dataset.get_label_map()
-    #if specified, load the label map and use it for the data
+    # if specified, load the label map and use it for the data
     else:
         label_map = json.load(open(args.label_map, "r"))
 
@@ -248,14 +246,19 @@ if __name__ == '__main__':
             max_len=args.max_sequence_len,
             label_map=label_map)
 
-
         test_dataset = NewsDataset(
             tsv_dataset=args.test_dataset,
             tokenizer=tokenizer,
             max_len=args.max_sequence_len,
             label_map=label_map)
 
-    json.dump(label_map, open(os.path.join(args.output_dir, 'data/label_map.json'), "w"))
+    json.dump(
+        label_map,
+        open(
+            os.path.join(
+                args.output_dir,
+                'data/label_map.json'),
+            "w"))
 
     num_sequence_labels, num_token_labels = test_dataset.get_info()
 
@@ -336,32 +339,40 @@ if __name__ == '__main__':
 
         model = model.to(args.device)
 
-        tokenizer = AutoTokenizer.from_pretrained(args.checkpoint, local_files_only=True)
+        tokenizer = AutoTokenizer.from_pretrained(
+            args.checkpoint, local_files_only=True)
 
-        #dev data
-        results, words_list, preds_list, report_bin, report_class = evaluate(args, model, dev_dataset, label_map, tokenizer=tokenizer)
+        # dev data
+        results, words_list, preds_list, report_bin, report_class = evaluate(
+            args, model, dev_dataset, label_map, tokenizer=tokenizer)
 
-        write_predictions(args.output_dir, dev_dataset.get_filename(), words_list, preds_list)
+        write_predictions(
+            args.output_dir,
+            dev_dataset.get_filename(),
+            words_list,
+            preds_list)
 
         results_devset = dict()
         results_devset["global"] = results
         results_devset["sent-level"] = report_bin
         results_devset["token-level"] = report_class
 
-
-        #test data
+        # test data
         results, words_list, preds_list, report_bin, report_class = evaluate(
-        args, model, test_dataset, label_map, tokenizer=tokenizer)
+            args, model, test_dataset, label_map, tokenizer=tokenizer)
 
-        write_predictions(args.output_dir, test_dataset.get_filename(), words_list, preds_list)
+        write_predictions(
+            args.output_dir,
+            test_dataset.get_filename(),
+            words_list,
+            preds_list)
 
         results_testset = dict()
         results_testset["global"] = results
         results_testset["sent-level"] = report_bin
         results_testset["token-level"] = report_class
 
-
-        #results to json
+        # results to json
         all_results = {"dev": results_devset, "test": results_testset}
         if "-de" in test_dataset.get_filename():
             with open(os.path.join(args.output_dir, "all_results_de.json"), "w") as f:
@@ -370,6 +381,5 @@ if __name__ == '__main__':
             with open(os.path.join(args.output_dir, "all_results_fr.json"), "w") as f:
                 json.dump(all_results, f)
         else:
-            logger.info(f"Was not able to deduct language from filename of testset, thus no metrics were saved.")
-
-
+            logger.info(
+                f"Was not able to deduct language from filename of testset, thus no metrics were saved.")

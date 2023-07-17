@@ -2,18 +2,18 @@ import torch
 from torch.utils.data import Dataset
 
 COLUMNS = ["TOKEN",
-    "NE-COARSE-LIT",
-    "NE-COARSE-METO",
-    "NE-FINE-LIT",
-    "NE-FINE-METO",
-    "NE-FINE-COMP",
-    "NE-NESTED",
-    "NEL-LIT",
-    "NEL-METO",
-    "RENDER",
-    "SEG",
-    "OCR-INFO",
-    "MISC"]
+           "NE-COARSE-LIT",
+           "NE-COARSE-METO",
+           "NE-FINE-LIT",
+           "NE-FINE-METO",
+           "NE-FINE-COMP",
+           "NE-NESTED",
+           "NEL-LIT",
+           "NEL-METO",
+           "RENDER",
+           "SEG",
+           "OCR-INFO",
+           "MISC"]
 
 
 def _read_conll(path, encoding='utf-8', sep=None, indexes=None, dropna=True):
@@ -148,7 +148,7 @@ class NewsDataset(Dataset):
             sep='\t',
             indexes=indexes,
             dropna=True)
-       
+
         self.sequence_targets = [int(item[-1]) for item in self.phrases]
         self.token_targets = [item[1][3] for item in self.phrases]
         self.tokens = [item[1][0] for item in self.phrases]
@@ -156,7 +156,7 @@ class NewsDataset(Dataset):
         self.label_map = label_map
         unique_token_labels = set(sum(self.token_targets, []))
         label_mapped = dict(
-                zip(unique_token_labels, range(len(unique_token_labels))))
+            zip(unique_token_labels, range(len(unique_token_labels))))
         missed_labels = set(label_mapped) - set(label_map)
 
         print("Appended following labels to label_map:", missed_labels)
@@ -165,10 +165,8 @@ class NewsDataset(Dataset):
         for i, missed_label in enumerate(missed_labels):
             self.label_map[missed_label] = num_labels + i
 
-
         self.token_targets = [[self.label_map[element]
                                for element in item[1][3]] for item in self.phrases]
-
 
     def __len__(self):
         return len(self.phrases)
@@ -264,4 +262,3 @@ class NewsDataset(Dataset):
         num_sequence_labels = len(set(self.sequence_targets))
         num_token_labels = len(self.label_map)
         return num_sequence_labels, num_token_labels
-
