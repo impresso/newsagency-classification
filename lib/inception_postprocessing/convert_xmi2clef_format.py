@@ -62,6 +62,7 @@ WIKIDATA_IDs = {
     "Extel": "Q1525848",
     "Havas": "Q2826560",
     "Interfax": "Q379271",
+    "Kipa": "Q1522416",
     "PAP": "Q1484980",
     "Reuters": "Q130879",
     "SPK-SMP": "Q2256560",
@@ -72,6 +73,7 @@ WIKIDATA_IDs = {
     "TT": "Q1312158",
     "UP-UPI": "Q493845",
     "Wolff": "Q552226",
+    "Xinhua": "Q204839",
 }
 
 
