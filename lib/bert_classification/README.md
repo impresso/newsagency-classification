@@ -80,3 +80,53 @@ bash run_multilingual.sh
 ```
 
 `run_multilingual.sh` will train on a dataset with French and German articles and evaluate on French and German separately.
+
+## Inference (TorchServe + Dask)
+
+Files:
+```
+export_model.py
+cli_tagger_local.py
+model_handler.py
+```
+
+Necessary libs:
+
+java
+```
+sudo apt-get update
+sudo apt-get install openjdk-11-jdk
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
+```
+
+python >= 3.10
+```
+pip install nvgpu
+pip install pynvml==11.0.0
+pip install onnxruntime
+pip install dask
+python -m pip install "dask[distributed]" —upgrade
+pip install torchserve torch-model-archiver
+```
+
+TorchServe is a flexible and easy-to-use tool for serving and scaling PyTorch models in production. The current models `agency-fr` and `agency-de` are in the associated folders with the same name. The naming convention that TorchServe accepts is similar to HuggingFace models, therefore, the folders containing the models can only be folders with the same names as the models (`agency-fr` and `agency-de`) and they need to be in the same folder where TorchServe is started. TorchServe accepts *pth models but it prefers scripted models with TorchScript. TorchScript is a way to create serializable and optimizable models from PyTorch code.
+
+The models were converted with TorchScript and `export_models.py` saves the compacted models (`agency-fr.mar`, `agency-de.mar`) in the same folders.
+```
+python export_models.py
+```
+
+The models need a handler, code that will let TorchServe know what to do when a model receives an API call: `model_handler.py`
+
+Start:
+```
+torchserve --start --ncs --model-store model_store  --models agency_fr=agency-fr.mar agency_de=agency-de.mar 
+```
+TorchServe loads `agency-fr.mar` and `agency-de.mar`, each with the same model handler.
+
+Stop:
+```
+torchserve --stop
+```
+
+[TO CONTINUE]
