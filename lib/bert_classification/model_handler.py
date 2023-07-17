@@ -1,21 +1,12 @@
-import json
-import torch
-from transformers import AutoTokenizer
 from ts.torch_handler.base_handler import BaseHandler
-import numpy as np
-import os
-import sys
 from nltk.chunk import conlltags2tree
 from nltk import pos_tag
 from nltk.tree import Tree
 import numpy as np
 import torch
-from transformers import AutoTokenizer, AutoConfig
+from transformers import AutoTokenizer
 import json
-import os
 import string
-import re
-import torch.nn.functional as F
 # Get the directory of your script
 import os
 import sys
@@ -89,6 +80,7 @@ class NewsAgencyHandler(BaseHandler):
         super().__init__()
         self.model = None
         self.tokenizer = None
+        self.device = None
 
     def initialize(self, ctx):
         # boilerplate
@@ -98,7 +90,7 @@ class NewsAgencyHandler(BaseHandler):
         self.device = torch.device(
             self.map_location + ":" + str(properties.get("gpu_id")) if torch.cuda.is_available() else self.map_location
         )
-
+        print('*'*100, self.device)
         self.manifest = ctx.manifest
         # model_dir is the inside of your archive!
         # extra-files are in this dir.
@@ -110,11 +102,24 @@ class NewsAgencyHandler(BaseHandler):
 
         self.model = torch.jit.load(serialized_file, map_location=self.device)
 
-        self.model.to(self.map_location)
+        self.model.to(self.device)
         self.model.eval()
 
         self.label_map = {"B-org.ent.pressagency.Reuters": 0, "B-org.ent.pressagency.Stefani": 1, "O": 2,
-                 "B-org.ent.pressagency.Extel": 3, "B-org.ent.pressagency.Havas": 4, "I-org.ent.pressagency.Xinhua": 5, "I-org.ent.pressagency.Domei": 6, "B-org.ent.pressagency.Belga": 7, "B-org.ent.pressagency.CTK": 8, "B-org.ent.pressagency.ANSA": 9, "B-org.ent.pressagency.DNB": 10, "B-org.ent.pressagency.Domei": 11, "I-pers.ind.articleauthor": 12, "I-org.ent.pressagency.Wolff": 13, "B-org.ent.pressagency.unk": 14, "I-org.ent.pressagency.Stefani": 15, "I-org.ent.pressagency.AFP": 16, "B-org.ent.pressagency.UP-UPI": 17, "I-org.ent.pressagency.ATS-SDA": 18, "I-org.ent.pressagency.unk": 19, "B-org.ent.pressagency.DPA": 20, "B-org.ent.pressagency.AFP": 21, "I-org.ent.pressagency.DNB": 22, "B-pers.ind.articleauthor": 23, "I-org.ent.pressagency.UP-UPI": 24, "B-org.ent.pressagency.Kipa": 25, "B-org.ent.pressagency.Wolff": 26, "B-org.ent.pressagency.ag": 27, "I-org.ent.pressagency.Extel": 28, "I-org.ent.pressagency.ag": 29, "B-org.ent.pressagency.ATS-SDA": 30, "I-org.ent.pressagency.Havas": 31, "I-org.ent.pressagency.Reuters": 32, "B-org.ent.pressagency.Xinhua": 33, "B-org.ent.pressagency.AP": 34, "B-org.ent.pressagency.APA": 35, "I-org.ent.pressagency.ANSA": 36, "B-org.ent.pressagency.DDP-DAPD": 37, "I-org.ent.pressagency.TASS": 38, "I-org.ent.pressagency.AP": 39, "B-org.ent.pressagency.TASS": 40, "B-org.ent.pressagency.Europapress": 41, "B-org.ent.pressagency.SPK-SMP": 42}
+                          "B-org.ent.pressagency.Extel": 3, "B-org.ent.pressagency.Havas": 4, "I-org.ent.pressagency.Xinhua": 5,
+                          "I-org.ent.pressagency.Domei": 6, "B-org.ent.pressagency.Belga": 7, "B-org.ent.pressagency.CTK": 8,
+                          "B-org.ent.pressagency.ANSA": 9, "B-org.ent.pressagency.DNB": 10, "B-org.ent.pressagency.Domei": 11,
+                          "I-pers.ind.articleauthor": 12, "I-org.ent.pressagency.Wolff": 13, "B-org.ent.pressagency.unk": 14,
+                          "I-org.ent.pressagency.Stefani": 15, "I-org.ent.pressagency.AFP": 16, "B-org.ent.pressagency.UP-UPI": 17,
+                          "I-org.ent.pressagency.ATS-SDA": 18, "I-org.ent.pressagency.unk": 19, "B-org.ent.pressagency.DPA": 20,
+                          "B-org.ent.pressagency.AFP": 21, "I-org.ent.pressagency.DNB": 22, "B-pers.ind.articleauthor": 23,
+                          "I-org.ent.pressagency.UP-UPI": 24, "B-org.ent.pressagency.Kipa": 25, "B-org.ent.pressagency.Wolff": 26,
+                          "B-org.ent.pressagency.ag": 27, "I-org.ent.pressagency.Extel": 28, "I-org.ent.pressagency.ag": 29,
+                          "B-org.ent.pressagency.ATS-SDA": 30, "I-org.ent.pressagency.Havas": 31, "I-org.ent.pressagency.Reuters": 32,
+                          "B-org.ent.pressagency.Xinhua": 33, "B-org.ent.pressagency.AP": 34, "B-org.ent.pressagency.APA": 35,
+                          "I-org.ent.pressagency.ANSA": 36, "B-org.ent.pressagency.DDP-DAPD": 37, "I-org.ent.pressagency.TASS": 38,
+                          "I-org.ent.pressagency.AP": 39, "B-org.ent.pressagency.TASS": 40, "B-org.ent.pressagency.Europapress": 41,
+                          "B-org.ent.pressagency.SPK-SMP": 42}
 
         self.reverted_label_map = {v: k for k, v in dict(self.label_map).items()}
 
@@ -150,7 +155,8 @@ class NewsAgencyHandler(BaseHandler):
                     # of words (with a label for each word).
                     # is_split_into_words=True
                 )
-                input_ids = torch.tensor([tokenized_inputs['input_ids']], dtype=torch.long).to(self.map_location)
+                print('*' * 100, self.device)
+                input_ids = torch.tensor([tokenized_inputs['input_ids']], dtype=torch.long).to(self.device)
                 batch_input_ids.append(input_ids)
                 text_sentences.append(text_sentence)
 
@@ -171,8 +177,6 @@ class NewsAgencyHandler(BaseHandler):
 
                 tokens_result = np.argmax(tokens_result['logits'].detach().cpu().numpy(), axis=2)[0]
                 tokens_results.append(tokens_result)
-
-        # TODO: it does not work on batch for now as it was compiled for input 1
 
         return tokens_results, text_sentences, language
 

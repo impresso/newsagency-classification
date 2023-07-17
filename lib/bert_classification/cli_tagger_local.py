@@ -42,10 +42,10 @@ def send_prediction_request(json_request, language):
         print(f'Failed to send prediction request. Error code: {response.status_code}')
 
     results = response.json()
-    for result in results:
-        if len(result) > 0:
-            print(result)
-            print('---'*20)
+    # for result in results:
+    #     if len(result) > 0:
+    #         print(result)
+    #         print('---'*20)
     return results
 
 
@@ -151,19 +151,21 @@ def run_newsagency_tagger(input_dir: str,
 
     if prefix is not None:
         path = f"{input_dir}/{prefix}*.jsonl.bz2"
+
+        output_dir_prefix = os.path.join(output_dir, prefix)
+        if not os.path.exists(output_dir_prefix):
+            os.mkdir(output_dir_prefix)
     else:
         path = f"{input_dir}/*.jsonl.bz2"
 
-    output_dir_prefix = os.path.join(output_dir, prefix)
-    if not os.path.exists(output_dir_prefix):
-        os.mkdir(output_dir_prefix)
+        output_dir_prefix = output_dir
 
     logger.info(f"Indexing files in {path}")
     file_time_start = time.time()
     files = glob.glob(path)
     logger.info(f'Number of files: {len(files)}. Time taken to read files: {time.time() - file_time_start}')
 
-    batches = list(chunk(files, 1))
+    batches = list(chunk(files, 10))
     total = len(batches)
 
     for i, b in enumerate(batches):
@@ -253,7 +255,7 @@ def parse_args():
     parser.add_argument(
         "--prefix",
         dest="prefix",
-        default="000",
+        # default="000",
         type=str,
         help="todo",
     )
