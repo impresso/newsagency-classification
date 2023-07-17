@@ -100,7 +100,9 @@ def load_models(model_paths, label_map_path):
 
                 scripted_model = torch.jit.trace(
                     _models[language], [
-                        torch.zeros((1, 1), dtype=torch.long).to('cuda' if torch.cuda.is_available() else 'cpu')], strict=False)
+                        torch.zeros(
+                            (1, 1), dtype=torch.long).to(
+                    'cuda' if torch.cuda.is_available() else 'cpu')], strict=False)
                 torch.jit.save(scripted_model, traced_model_path)
 
                 _models[language] = torch.jit.load(
@@ -390,7 +392,7 @@ def run_newsagency_tagger(input_dir: str,
         timing['batch_time'] = time.time() - batch_time_start
 
         timings.append(timing)
-        with open('batch_timings_dask.json', 'w') as file:
+        with open('data/timinigs/batch_timings_dask.json', 'w') as file:
             json.dump(timings, file)
 
     client.close()
