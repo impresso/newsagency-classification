@@ -13,6 +13,8 @@ import dask.bag as db
 from typing import Optional
 import os
 import sys
+import time
+from dask.distributed import Client, LocalCluster
 # The default value might be 1000
 print(sys.getrecursionlimit())
 
@@ -41,10 +43,6 @@ def send_prediction_request(json_request, language):
             f'Failed to send prediction request. Error code: {response.status_code}')
 
     results = response.json()
-    # for result in results:
-    #     if len(result) > 0:
-    #         print(result)
-    #         print('---'*20)
     return results
 
 
@@ -113,12 +111,6 @@ def predict_entities(content_items):
                                     lArticleOffset = total_sentence_length + lOffset
                                     rArticleOffset = total_sentence_length + rOffset
 
-                                    # print(sentence)
-                                    # print(entity[0],
-                                    #       '---------', sentence[lOffset:rOffset],
-                                    #       '---------', article[lArticleOffset:lArticleOffset])
-                                    # logger.info(f"Entity {entity[0]} -------- {article[lArticleOffset:rArticleOffset]}")
-
                                     entity_json = {
                                         "entity": entity[1],
                                         "name": entity[0],
@@ -148,7 +140,6 @@ def predict_entities(content_items):
 def run_newsagency_tagger(input_dir: str,
                           output_dir: str,
                           prefix: Optional[str] = None) -> None:
-    import time
 
     t = Timer()
     total_time_start = time.time()
@@ -299,10 +290,8 @@ if __name__ == "__main__":
         handlers=handlers,
     )
 
-    # client = Client('127.0.0.1:8000')
     n = torch.cuda.device_count()
     # Connect to an existing Dask scheduler
-    from dask.distributed import Client, LocalCluster
 
     cluster = LocalCluster(n_workers=arguments.workers)
     client = Client(cluster)

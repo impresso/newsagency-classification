@@ -1,6 +1,4 @@
 from tqdm import tqdm
-import torch.nn.functional as F
-import re
 import string
 import pysbd
 import json
@@ -17,12 +15,10 @@ import glob
 from dask.diagnostics import ProgressBar
 import dask.bag as db
 from typing import Optional
-
+import time
 import os
 import sys
-from dask.distributed import Client
-import sys
-
+from dask.distributed import Client, LocalCluster
 # The default value might be 1000
 print(sys.getrecursionlimit())
 
@@ -195,7 +191,7 @@ def realign(
 # TODO: add timing for 100 documents
 def predict_entities(content_items):
     sys.setrecursionlimit(10000)  # Increase the recursion limit to 10000
-    import time
+
     # add the current directory to sys.path
     # current_directory = os.path.dirname(os.path.realpath(__file__))
     # sys.path.insert(0, current_directory)
@@ -395,7 +391,6 @@ def predict_mentions_test(content_items):
 def run_newsagency_tagger(input_dir: str,
                           output_dir: str,
                           prefix: Optional[str] = None) -> None:
-    import time
 
     t = Timer()
     total_time_start = time.time()
@@ -537,20 +532,9 @@ if __name__ == "__main__":
     # client = Client('127.0.0.1:8000')
     n = torch.cuda.device_count()
     # Connect to an existing Dask scheduler
-    from dask.distributed import Client, LocalCluster
 
     cluster = LocalCluster(n_workers=2)
-    client = Client(cluster)    # #
-    # # # Or, start a local Dask cluster
-    # client = Client(processes=False)
-
-    # from dask_cuda import LocalCUDACluster
-    #
-    # with Client(processes=False) as client:
-    #     with LocalCUDACluster(CUDA_VISIBLE_DEVICES="0,1,2,3") as cluster:
-    #         client = Client(cluster)
-
-    from dask.distributed import Worker
+    client = Client(cluster)
 
     run_newsagency_tagger(
         arguments.input_dir,

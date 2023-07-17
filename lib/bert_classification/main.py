@@ -7,7 +7,6 @@ import os
 from dataset import NewsDataset
 import logging
 from transformers import AutoTokenizer, AutoConfig, AdamW
-import yaml
 import json
 from utils import write_predictions
 
