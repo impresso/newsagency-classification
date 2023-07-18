@@ -146,7 +146,7 @@ torch-model-archiver --model-name agency-de --version 1.0 --serialized-file agen
 Then, different processes were started for ˜2200 files, in batches of 100.
 
 ```
-python cli_tagger_local.py --input_dir=DATA_FOLDER --output_dir=na_mentions/ --logfile=log-test.log --workers 64 --prefix 03
+python cli_tagger.py --input_dir=DATA_FOLDER --output_dir=na_mentions/ --logfile=log-test.log --workers 64 --prefix 03
 ```
 where `DATA_FOLDER` contains the `.json` archives that pack around 16,000 articles each, the number of workers is the number of CPUs and the prefix takes all files starting with `03` (100 files).
 
