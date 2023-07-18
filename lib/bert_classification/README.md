@@ -86,7 +86,7 @@ bash run_multilingual.sh
 Files:
 ```
 export_model.py
-cli_tagger_local.py
+cli_tagger.py
 model_handler.py
 ```
 
@@ -111,7 +111,7 @@ pip install torchserve torch-model-archiver
 
 TorchServe is a flexible and easy-to-use tool for serving and scaling PyTorch models in production. The current models `agency-fr` and `agency-de` are in the associated folders with the same name. The naming convention that TorchServe accepts is similar to HuggingFace models, therefore, the folders containing the models can only be folders with the same names as the models (`agency-fr` and `agency-de`) and they need to be in the same folder where TorchServe is started. TorchServe accepts *pth models but it prefers scripted models with TorchScript. TorchScript is a way to create serializable and optimizable models from PyTorch code.
 
-The models were converted with TorchScript and `export_models.py` saves the compacted models (`agency-fr.mar`, `agency-de.mar`) in the same folders.
+The models were converted with TorchScript and `export_models.py` saves the checkpoint files in torchscript (`traced_model_de.pt`, `traced_model_fr.pt`) in the same folders.
 ```
 python export_models.py
 ```
@@ -135,4 +135,19 @@ http://127.0.0.1:8080/predictions/agency_{language}'
 
 {'text': TEXT, 'language': LANGUAGE}
 ```
-[TO CONTINUE]
+
+A key feature of TorchServe is the ability to package all model artifacts into a single model archive file. It is a separate command line interface (CLI), torch-model-archiver, that can take model checkpoints or model definition file with state_dict, and package them into a .mar file. This file can then be redistributed and served by anyone using TorchServe. It takes in the following model artifacts: a model checkpoint file in case of torchscript or a model definition file and a state_dict file in case of eager mode, and other optional assets that may be required to serve the model. The CLI creates a .mar file that TorchServe's server CLI uses to serve the models.
+
+```
+torch-model-archiver --model-name agency-fr --version 1.0 --serialized-file agency-fr/traced_model_fr.pt --handler model_handler --force --extra-files "agency-fr/traced_model_fr.pt,agency-fr/tokenizer_config.json,agency-fr/tokenizer.json,agency-fr/vocab.txt,agency-fr/special_tokens_map.json,agency-fr/config.json,agency-fr/traced_model_fr.pt" --export-path model_store
+
+torch-model-archiver --model-name agency-de --version 1.0 --serialized-file agency-de/traced_model_de.pt --handler model_handler --force --extra-files "agency-de/traced_model_de.pt,agency-de/tokenizer_config.json,agency-de/tokenizer.json,agency-de/vocab.txt,agency-de/special_tokens_map.json,agency-de/config.json,agency-de/traced_model_de.pt" --export-path model_store
+```
+Then, different processes were started for ˜2200 files, in batches of 100.
+
+```
+python cli_tagger_local.py --input_dir=DATA_FOLDER --output_dir=na_mentions/ --logfile=log-test.log --workers 64 --prefix 03
+```
+where `DATA_FOLDER` contains the `.json` archives that pack around 16,000 articles each, the number of workers is the number of CPUs and the prefix takes all files starting with `03` (100 files).
+
+We ran 8 `cli_tagger.py` in parallel, each handling 100 files with `dask` scheduler. The generation of the predictions took 4 days.
