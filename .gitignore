@@ -6,3 +6,5 @@ Pipfile.lock
 *.d
 *.pyc
 *.pyc
+lib/bert_classification/agency-de/
+lib/bert_classification/agency-fr/
