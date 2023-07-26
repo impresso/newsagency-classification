@@ -104,7 +104,7 @@ class NewsAgencyHandler(BaseHandler):
 
         self.device = torch.device(self.map_location + ":" + str(
             properties.get("gpu_id")) if torch.cuda.is_available() else self.map_location)
-        print('*' * 100, self.device)
+
         self.manifest = ctx.manifest
         # model_dir is the inside of your archive!
         # extra-files are in this dir.
@@ -117,7 +117,7 @@ class NewsAgencyHandler(BaseHandler):
 
         self.model = torch.jit.load(serialized_file, map_location=self.device)
 
-        self.model.to(self.device)
+        self.model.to(self.map_location)
         self.model.eval()
 
         self.label_map = {
@@ -165,9 +165,11 @@ class NewsAgencyHandler(BaseHandler):
             "B-org.ent.pressagency.Europapress": 41,
             "B-org.ent.pressagency.SPK-SMP": 42}
 
+        print(self.label_map)
         self.reverted_label_map = {
             v: k for k, v in dict(
                 self.label_map).items()}
+        print(self.reverted_label_map)
 
     def preprocess(self, requests):
 
@@ -196,14 +198,14 @@ class NewsAgencyHandler(BaseHandler):
                     text,
                     padding="max_length",
                     truncation=True,
-                    max_length=512,
+                    max_length=128
                     # We use this argument because the texts in our dataset are lists
                     # of words (with a label for each word).
                     # is_split_into_words=True
                 )
-                print('*' * 100, self.device)
+                # print('*' * 100, self.device)
                 input_ids = torch.tensor(
-                    [tokenized_inputs['input_ids']], dtype=torch.long).to(self.device)
+                    [tokenized_inputs['input_ids']], dtype=torch.long).to(self.map_location)
                 batch_input_ids.append(input_ids)
                 text_sentences.append(text_sentence)
 

@@ -1,3 +1,4 @@
+from typing import Dict, Any
 from tqdm import tqdm
 import string
 import pysbd
@@ -20,27 +21,68 @@ import os
 import sys
 from dask.distributed import Client, LocalCluster
 # The default value might be 1000
-print(sys.getrecursionlimit())
-
 sys.setrecursionlimit(10000)  # Increase the recursion limit to 10000
-
 
 # get the current directory
 current_directory = os.path.dirname(os.path.realpath(__file__))
-print(current_directory)
 # add the current directory to sys.path
 sys.path.insert(0, current_directory)
 
 logger = logging.getLogger(__name__)
 # Get the directory of your script
 
-print("Current directory:", os.getcwd())
-print("Python path:", sys.path)
+MODELS, TOKENIZERS = None, None
 
-# set_seed(2023)
+MODEL_PATHS = {
+    'fr': '/scratch/newsagency-project/checkpoints/fr/checkpoint-4395',
+    'de': '/scratch/newsagency-project/checkpoints/de/checkpoint-1752'}
 
+label_map = {
+    "B-org.ent.pressagency.Reuters": 0,
+    "B-org.ent.pressagency.Stefani": 1,
+    "O": 2,
+    "B-org.ent.pressagency.Extel": 3,
+    "B-org.ent.pressagency.Havas": 4,
+    "I-org.ent.pressagency.Xinhua": 5,
+    "I-org.ent.pressagency.Domei": 6,
+    "B-org.ent.pressagency.Belga": 7,
+    "B-org.ent.pressagency.CTK": 8,
+    "B-org.ent.pressagency.ANSA": 9,
+    "B-org.ent.pressagency.DNB": 10,
+    "B-org.ent.pressagency.Domei": 11,
+    "I-pers.ind.articleauthor": 12,
+    "I-org.ent.pressagency.Wolff": 13,
+    "B-org.ent.pressagency.unk": 14,
+    "I-org.ent.pressagency.Stefani": 15,
+    "I-org.ent.pressagency.AFP": 16,
+    "B-org.ent.pressagency.UP-UPI": 17,
+    "I-org.ent.pressagency.ATS-SDA": 18,
+    "I-org.ent.pressagency.unk": 19,
+    "B-org.ent.pressagency.DPA": 20,
+    "B-org.ent.pressagency.AFP": 21,
+    "I-org.ent.pressagency.DNB": 22,
+    "B-pers.ind.articleauthor": 23,
+    "I-org.ent.pressagency.UP-UPI": 24,
+    "B-org.ent.pressagency.Kipa": 25,
+    "B-org.ent.pressagency.Wolff": 26,
+    "B-org.ent.pressagency.ag": 27,
+    "I-org.ent.pressagency.Extel": 28,
+    "I-org.ent.pressagency.ag": 29,
+    "B-org.ent.pressagency.ATS-SDA": 30,
+    "I-org.ent.pressagency.Havas": 31,
+    "I-org.ent.pressagency.Reuters": 32,
+    "B-org.ent.pressagency.Xinhua": 33,
+    "B-org.ent.pressagency.AP": 34,
+    "B-org.ent.pressagency.APA": 35,
+    "I-org.ent.pressagency.ANSA": 36,
+    "B-org.ent.pressagency.DDP-DAPD": 37,
+    "I-org.ent.pressagency.TASS": 38,
+    "I-org.ent.pressagency.AP": 39,
+    "B-org.ent.pressagency.TASS": 40,
+    "B-org.ent.pressagency.Europapress": 41,
+    "B-org.ent.pressagency.SPK-SMP": 42}
 
-def load_models(model_paths, label_map_path):
+def load_models(model_paths: Dict[str, Any], label_map_path: Dict[str, Any]) -> None:
     _instances = {}
     _models = {}
     _tokenizers = {}
@@ -105,10 +147,6 @@ def load_models(model_paths, label_map_path):
                 _models[language].eval()
 
     return _models, _tokenizers
-
-
-MODELS, TOKENIZERS = None, None
-
 
 def load_models_once(model_paths, reverted_label_map):
     global MODELS, TOKENIZERS
@@ -200,54 +238,6 @@ def predict_entities(content_items):
 
     torch.cuda.empty_cache()
 
-    MODEL_PATHS = {
-        'fr': '/scratch/newsagency-project/checkpoints/fr/checkpoint-4395',
-        'de': '/scratch/newsagency-project/checkpoints/de/checkpoint-1752'}
-
-    label_map = {
-        "B-org.ent.pressagency.Reuters": 0,
-        "B-org.ent.pressagency.Stefani": 1,
-        "O": 2,
-        "B-org.ent.pressagency.Extel": 3,
-        "B-org.ent.pressagency.Havas": 4,
-        "I-org.ent.pressagency.Xinhua": 5,
-        "I-org.ent.pressagency.Domei": 6,
-        "B-org.ent.pressagency.Belga": 7,
-        "B-org.ent.pressagency.CTK": 8,
-        "B-org.ent.pressagency.ANSA": 9,
-        "B-org.ent.pressagency.DNB": 10,
-        "B-org.ent.pressagency.Domei": 11,
-        "I-pers.ind.articleauthor": 12,
-        "I-org.ent.pressagency.Wolff": 13,
-        "B-org.ent.pressagency.unk": 14,
-        "I-org.ent.pressagency.Stefani": 15,
-        "I-org.ent.pressagency.AFP": 16,
-        "B-org.ent.pressagency.UP-UPI": 17,
-        "I-org.ent.pressagency.ATS-SDA": 18,
-        "I-org.ent.pressagency.unk": 19,
-        "B-org.ent.pressagency.DPA": 20,
-        "B-org.ent.pressagency.AFP": 21,
-        "I-org.ent.pressagency.DNB": 22,
-        "B-pers.ind.articleauthor": 23,
-        "I-org.ent.pressagency.UP-UPI": 24,
-        "B-org.ent.pressagency.Kipa": 25,
-        "B-org.ent.pressagency.Wolff": 26,
-        "B-org.ent.pressagency.ag": 27,
-        "I-org.ent.pressagency.Extel": 28,
-        "I-org.ent.pressagency.ag": 29,
-        "B-org.ent.pressagency.ATS-SDA": 30,
-        "I-org.ent.pressagency.Havas": 31,
-        "I-org.ent.pressagency.Reuters": 32,
-        "B-org.ent.pressagency.Xinhua": 33,
-        "B-org.ent.pressagency.AP": 34,
-        "B-org.ent.pressagency.APA": 35,
-        "I-org.ent.pressagency.ANSA": 36,
-        "B-org.ent.pressagency.DDP-DAPD": 37,
-        "I-org.ent.pressagency.TASS": 38,
-        "I-org.ent.pressagency.AP": 39,
-        "B-org.ent.pressagency.TASS": 40,
-        "B-org.ent.pressagency.Europapress": 41,
-        "B-org.ent.pressagency.SPK-SMP": 42}
 
     reverted_label_map = {v: k for k, v in dict(label_map).items()}
 
@@ -369,23 +359,7 @@ def predict_entities(content_items):
         timings.append(timing)
         if count > 10:
             break
-    # logger.info(f'Number of timings: {len(timings)}.')
-    # logger.info(f'Number of entities: {len(result_json)}.')
     return result_json, timings
-
-
-def predict_mentions_test(content_items):
-    result_json = []
-    for ci in content_items:
-        entity_json = {
-            "entity": "newsag",
-            "name": "Reuters",
-            "lOffset": 2637,
-            "rOffset": 2642,
-            "id": ci["id"] + ":2637:2642:newsag:bert"
-        }
-        result_json.append(entity_json)
-    return result_json
 
 
 def run_newsagency_tagger(input_dir: str,
@@ -529,7 +503,6 @@ if __name__ == "__main__":
         handlers=handlers,
     )
 
-    # client = Client('127.0.0.1:8000')
     n = torch.cuda.device_count()
     # Connect to an existing Dask scheduler
 
