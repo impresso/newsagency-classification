@@ -13,9 +13,8 @@ This repository holds the code related to the master project of Lea Marxen on th
   - `annotation/`
   - `sampling/`
   - `split/`
-- `lib/`: Contains python scripts for the classification, conversion of data and helpers.
+- `lib/`: Contains python scripts for the classification and the conversion of data (before and after annotation in Inception).
   - `bert-classification/`
-  - `helpers/`
   - `inception_postprocessing/`
   - `inception_preprocessing/`
 - `notebooks/`: Contains the notebooks used in the creation of the training corpus, annotation and analysis.
