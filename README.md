@@ -51,10 +51,10 @@ The classification baseline has three modes:
 - multiclass classification: a text can only belong to a news agency
 - multiclass and multilabel classification: a text can belong to several news agencies
 
-Additional to the in-model evaluation, the HIPE-scorer (link: [here](https://github.com/hipe-eval/HIPE-scorer) can be downloaded for evaluation on the task of named entity recognition. It provides the possibility to evaluate on different time periods and OCR-levels. In order for the latter to work, we changed ``row["MISC"]`` to ``row["OCR-INFO"] in line 200 of ``HIPE-scorer/hipe_evaluation/utils.py``.
+Additional to the in-model evaluation, the [HIPE-scorer](https://github.com/hipe-eval/HIPE-scorer) can be downloaded for evaluation on the task of named entity recognition. It provides the possibility to evaluate on different time periods and OCR-levels. In order for the latter to work, we changed ``row["MISC"]`` to ``row["OCR-INFO"]`` in line 200 of ``HIPE-scorer/hipe_evaluation/utils.py``.
 
 ## License
 
 newsagency-classification - Lea Marxen    
 Copyright (c) 2023 EPFL    
-This program is licensed under the terms of the [MIT]. 
+This program is licensed under the terms of the MIT. 
