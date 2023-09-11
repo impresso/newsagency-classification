@@ -109,7 +109,7 @@ python -m pip install "dask[distributed]" —upgrade
 pip install torchserve torch-model-archiver
 ```
 
-TorchServe is a flexible and easy-to-use tool for serving and scaling PyTorch models in production. The current models `agency-fr` and `agency-de` are in the associated folders with the same name. The naming convention that TorchServe accepts is similar to HuggingFace models, therefore, the folders containing the models can only be folders with the same names as the models (`agency-fr` and `agency-de`) and they need to be in the same folder where TorchServe is started. TorchServe accepts *pth models but it prefers scripted models with TorchScript. TorchScript is a way to create serializable and optimizable models from PyTorch code.
+TorchServe is a flexible and easy-to-use tool for serving and scaling PyTorch models in production. The current models `newsagency-model-fr` and `newsagency-model-de` are in the associated folders with the same name. The naming convention that TorchServe accepts is similar to HuggingFace models, therefore, the folders containing the models can only be folders with the same names as the models (`newsagency-model-fr` and `newsagency-model-de`) and they need to be in the same folder where TorchServe is started. TorchServe accepts *pth models but it prefers scripted models with TorchScript. TorchScript is a way to create serializable and optimizable models from PyTorch code.
 
 The models were converted with TorchScript and `export_models.py` saves the checkpoint files in torchscript (`traced_model_de.pt`, `traced_model_fr.pt`) in the same folders.
 ```
@@ -120,9 +120,9 @@ The models need a handler, code that will let TorchServe know what to do when a 
 
 Start:
 ```
-torchserve --start --ncs --model-store model_store  --models agency_fr=agency-fr.mar agency_de=agency-de.mar 
+torchserve --start --ncs --model-store model_store  --models agency_fr=newsagency-model-fr.mar agency_de=newsagency-model-de.mar 
 ```
-TorchServe loads `agency-fr.mar` and `agency-de.mar`, each with the same model handler.
+TorchServe loads `newsagency-model-fr.mar` and `newsagency-model-de.mar`, each with the same model handler.
 
 Stop:
 ```
@@ -139,9 +139,9 @@ http://127.0.0.1:8080/predictions/agency_{language}'
 A key feature of TorchServe is the ability to package all model artifacts into a single model archive file. It is a separate command line interface (CLI), torch-model-archiver, that can take model checkpoints or model definition file with state_dict, and package them into a .mar file. This file can then be redistributed and served by anyone using TorchServe. It takes in the following model artifacts: a model checkpoint file in case of torchscript or a model definition file and a state_dict file in case of eager mode, and other optional assets that may be required to serve the model. The CLI creates a .mar file that TorchServe's server CLI uses to serve the models.
 
 ```
-torch-model-archiver --model-name agency-fr --version 1.0 --serialized-file agency-fr/traced_model_fr.pt --handler model_handler --force --extra-files "agency-fr/traced_model_fr.pt,agency-fr/tokenizer_config.json,agency-fr/tokenizer.json,agency-fr/vocab.txt,agency-fr/special_tokens_map.json,agency-fr/config.json,agency-fr/traced_model_fr.pt" --export-path model_store
+torch-model-archiver --model-name newsagency-model-fr --version 1.0 --serialized-file newsagency-model-fr/traced_model_fr.pt --handler model_handler --force --extra-files "newsagency-model-fr/traced_model_fr.pt,newsagency-model-fr/tokenizer_config.json,newsagency-model-fr/tokenizer.json,newsagency-model-fr/vocab.txt,newsagency-model-fr/special_tokens_map.json,newsagency-model-fr/config.json,newsagency-model-fr/traced_model_fr.pt" --export-path model_store
 
-torch-model-archiver --model-name agency-de --version 1.0 --serialized-file agency-de/traced_model_de.pt --handler model_handler --force --extra-files "agency-de/traced_model_de.pt,agency-de/tokenizer_config.json,agency-de/tokenizer.json,agency-de/vocab.txt,agency-de/special_tokens_map.json,agency-de/config.json,agency-de/traced_model_de.pt" --export-path model_store
+torch-model-archiver --model-name newsagency-model-de --version 1.0 --serialized-file newsagency-model-de/traced_model_de.pt --handler model_handler --force --extra-files "newsagency-model-de/traced_model_de.pt,newsagency-model-de/tokenizer_config.json,newsagency-model-de/tokenizer.json,newsagency-model-de/vocab.txt,newsagency-model-de/special_tokens_map.json,newsagency-model-de/config.json,newsagency-model-de/traced_model_de.pt" --export-path model_store
 ```
 Then, different processes were started for ˜2200 files, in batches of 100.
 

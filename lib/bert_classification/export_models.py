@@ -23,8 +23,8 @@ print(current_directory)
 sys.path.insert(0, current_directory)
 
 model_paths = {
-    'fr': 'agency-fr/',
-    'de': 'agency-de/'}
+    'fr': 'newsagency-model-fr/',
+    'de': 'newsagency-model-de/'}
 label_map = {
     "B-org.ent.pressagency.Reuters": 0,
     "B-org.ent.pressagency.Stefani": 1,
@@ -80,7 +80,7 @@ for language in ['fr', 'de']:
     _tokenizers[language] = AutoTokenizer.from_pretrained(
         model_paths[language], local_files_only=True)
 
-    traced_model_path = f"agency-{language}/traced_model_{language}.pt"
+    traced_model_path = f"newsagency-model-{language}/traced_model_{language}.pt"
 
     _models[language] = None
 
