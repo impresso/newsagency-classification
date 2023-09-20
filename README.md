@@ -70,18 +70,14 @@ The annotated dataset is released on [Zenodo](https://doi.org/10.5281/zenodo.833
 | **Train** | de        |      333 |    247,793 |                 493 |
 |           | fr        |      903 |    606,671 |               1,122 |
 | Total     |           |    1,236 |    854,464 |               1,615 |
-|:----------| :-------- | -------: | ---------: | ------------------: |
 | **Dev**   | de        |       32 |     28,745 |                  26 |
 |           | fr        |      110 |     77,746 |                 114 |
 | Total     |           |      142 |    106,491 |                 140 |
-|:----------| :-------- | -------: | ---------: | ------------------: |
 | **Test**  | de        |       32 |     22,437 |                  58 |
 |           | fr        |      120 |     75,057 |                 163 |
 | Total     |           |      152 |     97,494 |                 221 |
-|:----------| :-------- | -------: | ---------: | ------------------: |
 | **All**   | de        |      397 |    298,975 |                 577 |
 |           | fr        |    1,133 |    759,474 |               1,399 |
-|:----------| :-------- | -------: | ---------: | ------------------: |
 | Total     |           |    1,530 |  1,058,449 |               1,976 |
 
 
@@ -94,7 +90,7 @@ The dataset contains the following newsagencies:
 
 #### Example:
 
-```csv
+```
 # global.columns = TOKEN NE-COARSE-LIT NE-COARSE-METO NE-FINE-LIT NE-FINE-METO NE-FINE-COMP NE-NESTED NEL-LIT NEL-METO RENDER SEG OCR-INFO MISC
 # language = fr
 # newspaper = EXP
@@ -102,22 +98,13 @@ The dataset contains the following newsagencies:
 # document_id = EXP-1924-03-27-a-i0077
 # news-agency-as-source = Q2826560
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/EXP-1924-03-27-a-p0005/224,107,285,87/full/0/default.jpg
-POLITIQUE	O	    O	    O	    O	    O	    O	    _	    _	    EndOfLine	    _   	_   	_
-# segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/EXP-1924-03-27-a-p0005/160,202,398,53/full/0/default.jpg
-France	  O	    O	    O   	O   	O	    O	    _   	_	    _	    _	    _   	_
-et	      O	    O	    O     O	    O   	O	    _   	_	    _	    _     _   	_
-Grande	  O	    O	    O	    O	    O   	O	    _   	_	    NoSpaceAfter	_	    _   	_
--	        O	    O	    O   	O   	O   	O	    _	    _   	NoSpaceAfter	_	    _   	_
-Bretagne	O	    O	    O   	O   	O	    O	    _	    _	    EndOfLine	  _	    _   	_
-# segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/EXP-1924-03-27-a-p0005/200,239,319,52/full/0/default.jpg
-
-...
-
-LONDRES	  O	    O   	O   	O   	O   	O   	_	    _   	NoSpaceAfter	_	    _	    _
+POLITIQUE O	    O	    O	    O	    O	    O	    _	    _	    EndOfLine	    _   	_   	_
+# segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/EXP-1924-03-27-a-p0005/129,269,488,53/full/0/default.jpg
+LONDRES   O	    O   	O   	O   	O   	O   	_	    _   	NoSpaceAfter	_	    _	    _
 ,	        O	    O	    O   	O   	O   	O   	_   	_ 	  _ 	  _	    _   	_
 27	      O	    O	    O	    O   	O   	O	    _   	_	    _	    _	    _   	_
 (	        O	    O	    O	    O   	O   	O   	_	    _     NoSpaceAfter	_	    _   	_
-Havaa	    B-org	O	    B-org.ent.pressagency.Havas	  O   	O   	O   	Q2826560	_	    NoSpaceAfter	_	    Transcript:Havas|LED0.20	  _
+Havaa	    B-org	  O	    B-org.ent.pressagency.Havas	  O   	O   	O   	Q2826560	_	    NoSpaceAfter	_	    Transcript:Havas|LED0.20	  _
 )	        O	    O	    O   	O   	O	    O	    _   	_	    NoSpaceAfter	_   	_	    _
 .	        O	    O   	O	    O   	O   	O	    _	    _	    _	    EndOfSentence	    _	    _
 
