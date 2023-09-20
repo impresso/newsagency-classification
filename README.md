@@ -1,10 +1,11 @@
 ## Classification and Exploration of News Agency Content
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8333933.svg)](https://doi.org/10.5281/zenodo.8333933)
 [![Python 3.10](https://img.shields.io/badge/Python-3.10-3776AB.svg?logo=python)](https://www.python.org/) 
 [![PyTorch 1.13](https://img.shields.io/badge/PyTorch-1.3-EE4C2C.svg?logo=pytorch)](https://pytorch.org/docs/1.13/) 
 [![MIT](https://img.shields.io/badge/License-MIT-3DA639.svg?logo=open-source-initiative)](LICENSE)
 
-This repository holds the code related to the master project of Lea Marxen on the classification and exploration of news agency content, based on the _impresso_ corpus. 
+This repository holds the code related to the master project of Lea Marxen on the classification and exploration of news agency content, based on the _impresso_ corpus ([Report](https://infoscience.epfl.ch/record/305129?&ln=en)). 
 The project was implemented in the summer semester 2023, with the supervision of Maud Ehrmann, Emanuela Boros and Marten Düring.
 
 ## About
@@ -56,6 +57,74 @@ The classification baseline has three modes:
 - multiclass and multilabel classification: a text can belong to several news agencies
 
 Additional to the in-model evaluation, the [HIPE-scorer](https://github.com/hipe-eval/HIPE-scorer) can be downloaded for evaluation on the task of named entity recognition. It provides the possibility to evaluate on different time periods and OCR-levels. In order for the latter to work, we changed ``row["MISC"]`` to ``row["OCR-INFO"]`` in line 200 of ``HIPE-scorer/hipe_evaluation/utils.py``.
+
+The two fine-tuned models used for inference on the _impresso_ corpus are released on [Zenodo](https://doi.org/10.5281/zenodo.8333933).
+
+
+## Dataset
+
+The annotated dataset is released on [Zenodo](https://doi.org/10.5281/zenodo.8333933). It contains historical newspaper articles with annotations of news agency mentions. The articles are divided into French (fr) and German (de) subsets and a train, dev and test set respectively. The data is annotated at token-level in the CoNLL format with IOB tagging format.
+
+|           |  **Lg.**  | **Docs** | **Tokens** | **Agency Mentions** |
+|:----------| :-------- | -------: | ---------: | ------------------: |
+| **Train** | de        |      333 |    247,793 |                 493 |
+|           | fr        |      903 |    606,671 |               1,122 |
+| Total     |           |    1,236 |    854,464 |               1,615 |
+|:----------| :-------- | -------: | ---------: | ------------------: |
+| **Dev**   | de        |       32 |     28,745 |                  26 |
+|           | fr        |      110 |     77,746 |                 114 |
+| Total     |           |      142 |    106,491 |                 140 |
+|:----------| :-------- | -------: | ---------: | ------------------: |
+| **Test**  | de        |       32 |     22,437 |                  58 |
+|           | fr        |      120 |     75,057 |                 163 |
+| Total     |           |      152 |     97,494 |                 221 |
+|:----------| :-------- | -------: | ---------: | ------------------: |
+| **All**   | de        |      397 |    298,975 |                 577 |
+|           | fr        |    1,133 |    759,474 |               1,399 |
+|:----------| :-------- | -------: | ---------: | ------------------: |
+| Total     |           |    1,530 |  1,058,449 |               1,976 |
+
+
+Due to an error, there are seven duplicated articles in the French test set (article IDs: courriergdl-1847-10-02-a-i0002, courriergdl-1852-02-14-a-i0002, courriergdl-1860-10-31-a-i0016, courriergdl-1864-12-15-a-i0005, lunion-1860-11-27-a-i0004, lunion-1865-02-05-a-i0012, lunion-1866-02-16-a-i0009).
+
+The dataset contains the following newsagencies:
+
+![Agency-Mentions-per-Split](report/train_dev_test_per_agency.png)
+
+
+#### Example:
+
+```csv
+# global.columns = TOKEN NE-COARSE-LIT NE-COARSE-METO NE-FINE-LIT NE-FINE-METO NE-FINE-COMP NE-NESTED NEL-LIT NEL-METO RENDER SEG OCR-INFO MISC
+# language = fr
+# newspaper = EXP
+# date = 1924-03-27
+# document_id = EXP-1924-03-27-a-i0077
+# news-agency-as-source = Q2826560
+# segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/EXP-1924-03-27-a-p0005/224,107,285,87/full/0/default.jpg
+POLITIQUE	O	    O	    O	    O	    O	    O	    _	    _	    EndOfLine	    _   	_   	_
+# segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/EXP-1924-03-27-a-p0005/160,202,398,53/full/0/default.jpg
+France	  O	    O	    O   	O   	O	    O	    _   	_	    _	    _	    _   	_
+et	      O	    O	    O     O	    O   	O	    _   	_	    _	    _     _   	_
+Grande	  O	    O	    O	    O	    O   	O	    _   	_	    NoSpaceAfter	_	    _   	_
+-	        O	    O	    O   	O   	O   	O	    _	    _   	NoSpaceAfter	_	    _   	_
+Bretagne	O	    O	    O   	O   	O	    O	    _	    _	    EndOfLine	  _	    _   	_
+# segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/EXP-1924-03-27-a-p0005/200,239,319,52/full/0/default.jpg
+
+...
+
+LONDRES	  O	    O   	O   	O   	O   	O   	_	    _   	NoSpaceAfter	_	    _	    _
+,	        O	    O	    O   	O   	O   	O   	_   	_ 	  _ 	  _	    _   	_
+27	      O	    O	    O	    O   	O   	O	    _   	_	    _	    _	    _   	_
+(	        O	    O	    O	    O   	O   	O   	_	    _     NoSpaceAfter	_	    _   	_
+Havaa	    B-org	O	    B-org.ent.pressagency.Havas	  O   	O   	O   	Q2826560	_	    NoSpaceAfter	_	    Transcript:Havas|LED0.20	  _
+)	        O	    O	    O   	O   	O	    O	    _   	_	    NoSpaceAfter	_   	_	    _
+.	        O	    O   	O	    O   	O   	O	    _	    _	    _	    EndOfSentence	    _	    _
+
+...
+```
+
+This article contains the newsagency `Havas` and thus its WikiID `Q2826560` appears on article-level (`# news-agency-as-source`).
 
 ## License
 
