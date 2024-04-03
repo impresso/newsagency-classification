@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "newsagency-classification"
+name = "lib"
 version = "1.0.0"
 description = ""
 authors = ["Lea Marxen <you@example.com>"]
