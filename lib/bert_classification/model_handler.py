@@ -16,7 +16,10 @@ print(current_directory)
 # add the current directory to sys.path
 sys.path.insert(0, current_directory)
 # from cli_tagger_local import get_entities, realign, tokenize
+import logging
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 def tokenize(text):
     # print(text)
