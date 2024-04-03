@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "newsagency-classification"
+version = "0.1.0"
+description = ""
+authors = ["Lea Marxen <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+transformers = "^4.0.0"
+
+[tool.poetry.scripts]
+use-model = 'lib.main:main'  # An example entry point
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
