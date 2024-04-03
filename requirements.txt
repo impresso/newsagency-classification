@@ -19,5 +19,5 @@ StringDist==1.0.9
 tensorboardX==2.6.1
 torch==1.13.1
 tqdm==4.65.0
-transformers==4.30.2
+transformers==4.36.0
 ts==0.5.1
