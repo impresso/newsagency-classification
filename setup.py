@@ -14,7 +14,7 @@ setup(
         'dependency1',
         'dependency2>=1.0.0',
         'apex==0.9.10dev',
-        'dask==2021.10.0',
+        'dask==2023.10.0',
         'datasets==2.13.1',
         'dkpro_cassis==0.7.5',
         'docopt==0.6.2',
