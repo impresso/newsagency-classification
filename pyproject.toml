@@ -7,7 +7,7 @@ authors = ["Lea Marxen <you@example.com>"]
 [tool.poetry.dependencies]
 python = "^3.8"
 apex = "0.9.10.dev"
-dask = "2021.10.0"
+dask = "2023.10.0"
 datasets = "2.13.1"
 dkpro_cassis = "0.7.5"
 docopt = "0.6.2"
