@@ -8,6 +8,8 @@
 runs
 experiments
 trained_models
+lib/bert_classification/trained_models
+lib/bert_classification/trained_models/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
