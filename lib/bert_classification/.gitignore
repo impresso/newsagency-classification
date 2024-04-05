@@ -10,6 +10,10 @@ experiments
 trained_models
 lib/bert_classification/trained_models
 lib/bert_classification/trained_models/*
+bert-newsagency-ner-fr/
+bert-newsagency-ner-de/
+bert-newsagency-ner-fr
+bert-newsagency-ner-de
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
