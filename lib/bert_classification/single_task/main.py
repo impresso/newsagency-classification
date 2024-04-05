@@ -2,11 +2,17 @@
 from model import train, evaluate
 import argparse
 import torch
-from model import ModelForTokenClassification
+
+# from model import ModelForTokenClassification
 import os
 from dataset import NewsDataset
 import logging
-from transformers import AutoTokenizer, AutoConfig, AdamW
+from transformers import (
+    AutoTokenizer,
+    AutoConfig,
+    AdamW,
+    AutoModelForTokenClassification,
+)
 import json
 from utils import write_predictions
 
@@ -280,11 +286,11 @@ if __name__ == "__main__":
     config = AutoConfig.from_pretrained(
         args.model_name_or_path, problem_type="single_label_classification"
     )
+    config.num_labels = num_token_labels
 
-    model = ModelForTokenClassification.from_pretrained(
+    model = AutoModelForTokenClassification.from_pretrained(
         args.model_name_or_path,
         config=config,
-        num_token_labels=num_token_labels,
     )
 
     model = model.to(args.device)
@@ -351,11 +357,10 @@ if __name__ == "__main__":
             problem_type="single_label_classification",
             local_files_only=True,
         )
-
-        model = ModelForTokenClassification.from_pretrained(
+        config.num_labels = num_token_labels
+        model = AutoModelForTokenClassification.from_pretrained(
             args.checkpoint,
             config=config,
-            num_token_labels=num_token_labels,
             local_files_only=True,
         )
 
@@ -366,7 +371,7 @@ if __name__ == "__main__":
         )
 
         # dev data
-        results, words_list, preds_list, report_bin, report_class = evaluate(
+        results, words_list, preds_list, report_class = evaluate(
             args, model, dev_dataset, label_map, tokenizer=tokenizer
         )
 
@@ -376,7 +381,6 @@ if __name__ == "__main__":
 
         results_devset = dict()
         results_devset["global"] = results
-        results_devset["sent-level"] = report_bin
         results_devset["token-level"] = report_class
 
         # test data

@@ -1,11 +1,7 @@
 from transformers import AutoTokenizer, AutoModelForTokenClassification, AutoConfig
 from transformers import pipeline
-from newsagency_ner import (
-    NewsAgencyModelPipeline,
-)
-from model import (
-    ModelForTokenClassification,
-)
+
+from newsagency_ner import NewsAgencyModelPipeline
 from huggingface_hub import HfApi, HfFolder
 
 api = HfApi()
@@ -66,7 +62,7 @@ from transformers.pipelines import PIPELINE_REGISTRY
 from huggingface_hub import Repository
 
 
-def push_model_to_hub(model_dir, model_id):
+def push_model_to_hub(model_dir, model_id, language="fr"):
     # Load the model
     # model = ModelForTokenClassification.from_pretrained(
     #     model_dir,
@@ -86,21 +82,21 @@ def push_model_to_hub(model_dir, model_id):
     tokenizer.push_to_hub(model_id)
 
     # Register your custom pipeline
-    # PIPELINE_REGISTRY.register_pipeline(
-    #     "newsagency-ner",
-    #     pipeline_class=NewsAgencyModelPipeline,
-    #     pt_model=ModelForTokenClassification,
-    # )
-    # model.config.custom_pipelines = {
-    #     "newsagency-ner": {
-    #         "impl": "newsagency_ner.NewsAgencyModelPipeline",
-    #         "pt": ["newsagency_ner.ModelForSequenceAndTokenClassification"],
-    #         "tf": [],
-    #     }
-    # }
+    PIPELINE_REGISTRY.register_pipeline(
+        "newsagency-ner",
+        pipeline_class=NewsAgencyModelPipeline,
+        pt_model=AutoModelForTokenClassification,
+    )
+    model.config.custom_pipelines = {
+        "newsagency-ner": {
+            "impl": "newsagency_ner.NewsAgencyModelPipeline",
+            "pt": ["AutoModelForTokenClassification"],
+            "tf": [],
+        }
+    }
 
-    # classifier = pipeline("newsagency-ner", model=model, tokenizer=tokenizer)
-    classifier = pipeline("ner", model=model, tokenizer=tokenizer)
+    classifier = pipeline("newsagency-ner", model=model, tokenizer=tokenizer)
+    # classifier = pipeline("ner", model=model, tokenizer=tokenizer)
     # classifier = NewsAgencyModelPipeline(model=model, tokenizer=tokenizer)
 
     # Dynamically load the custom model class from the Hugging Face Hub
@@ -118,32 +114,32 @@ def push_model_to_hub(model_dir, model_id):
     # pdb.set_trace()
     # # classifier = pipeline("newsagency-ner", model=model_id)
     #
-    print(classifier("Mon nom est François et j'habite à Paris. (Reuter)"))
+    print(classifier("Mon nom est François et j'habite à Paris. (AFP)"))
+    print(classifier("Mein Name ist Wolfgang und ich wohne in Berlin. (AFP)"))
 
     # Save your model and tokenizer in the local directory
-    model.save_pretrained("bert-newsagency-ner-fr", config=model.config)
-    tokenizer.save_pretrained("bert-newsagency-ner-fr")
-    classifier.save_pretrained("bert-newsagency-ner-fr")
-    # # repo.git_add()  # Add changes
-    # # repo.git_commit("Update model and pipeline")  # Commit changes
-    # # repo.push_to_hub()
+    model.save_pretrained(f"bert-newsagency-ner-{language}", config=model.config)
+    tokenizer.save_pretrained(f"bert-newsagency-ner-{language}")
+    classifier.save_pretrained(f"bert-newsagency-ner-{language}")
+
     api.upload_folder(
         token=HfFolder.get_token(),
-        folder_path="bert-newsagency-ner-fr",
+        folder_path=f"bert-newsagency-ner-{language}",
         path_in_repo="",
-        repo_id="impresso-project/bert-newsagency-ner-fr",
+        repo_id=f"impresso-project/bert-newsagency-ner-{language}",
     )
 
 
 # Directories where the models are saved
 agency_fr_dir = "trained_models/agency-fr"
-agency_fr_dir = "experiments/model_dbmdz_bert_base_french_europeana_cased_max_sequence_length_256_epochs_3_run1311/checkpoint-5244"
+agency_fr_dir = "experiments/model_dbmdz_bert_base_french_europeana_cased_max_sequence_length_256_epochs_3_run1311/checkpoint-11799"
 # agency_de_dir = "trained_models/agency-de"
+agency_de_dir = "experiments/model_bert_base_german_cased_max_sequence_length_256_epochs_3_run887/checkpoint-5322"
 
 # Model IDs on Hugging Face Hub (you can customize these)
 agency_fr_model_id = "impresso-project/bert-newsagency-ner-fr"
-# agency_de_model_id = "impresso-project/bert-newsagency-ner-de"
+agency_de_model_id = "impresso-project/bert-newsagency-ner-de"
 
 # Push the models to the Hugging Face Hub
-push_model_to_hub(agency_fr_dir, agency_fr_model_id)
-# push_model_to_hub(agency_de_dir, agency_de_model_id)
+push_model_to_hub(agency_fr_dir, agency_fr_model_id, language="fr")
+push_model_to_hub(agency_de_dir, agency_de_model_id, language="de")

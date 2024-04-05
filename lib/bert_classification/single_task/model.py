@@ -42,9 +42,8 @@ logger = logging.getLogger(__name__)
 
 
 class ModelForTokenClassification(PreTrainedModel):
-    def __init__(self, config, num_token_labels):
+    def __init__(self, config):
         super().__init__(config)
-        self.num_token_labels = num_token_labels
         self.config = config
 
         self.bert = AutoModel.from_config(config)
@@ -56,7 +55,7 @@ class ModelForTokenClassification(PreTrainedModel):
         self.dropout = nn.Dropout(classifier_dropout)
 
         # For token classification
-        self.token_classifier = nn.Linear(config.hidden_size, self.num_token_labels)
+        self.token_classifier = nn.Linear(config.hidden_size, config.num_labels)
 
         # Initialize weights and apply final processing
         self.post_init()
@@ -132,7 +131,7 @@ class ModelForTokenClassification(PreTrainedModel):
         if token_labels is not None:
             loss_fct = CrossEntropyLoss()
             loss_tokens = loss_fct(
-                token_logits.view(-1, self.num_token_labels), token_labels.view(-1)
+                token_logits.view(-1, self.config.num_labels), token_labels.view(-1)
             )
             loss = loss_tokens
 
@@ -182,7 +181,7 @@ def evaluate(args, model, dataset, label_map, prefix="", tokenizer=None):
             inputs = {
                 "input_ids": batch["input_ids"].to(args.device),
                 "attention_mask": batch["attention_mask"].to(args.device),
-                "token_labels": batch["token_targets"].to(args.device),
+                "labels": batch["token_targets"].to(args.device),
                 "token_type_ids": batch["token_type_ids"].to(args.device),
             }
 
@@ -211,7 +210,7 @@ def evaluate(args, model, dataset, label_map, prefix="", tokenizer=None):
         if out_token_preds is None:
             out_token_preds = token_logits.detach().cpu().numpy()
 
-            out_token_ids = inputs["token_labels"].detach().cpu().numpy()
+            out_token_ids = inputs["labels"].detach().cpu().numpy()
 
             sentences = [
                 tokenizer.convert_ids_to_tokens(input_ids)
@@ -225,7 +224,7 @@ def evaluate(args, model, dataset, label_map, prefix="", tokenizer=None):
             )
 
             out_token_ids = np.append(
-                out_token_ids, inputs["token_labels"].detach().cpu().numpy(), axis=0
+                out_token_ids, inputs["labels"].detach().cpu().numpy(), axis=0
             )
 
             sentences = np.append(
@@ -437,7 +436,7 @@ def train(
             inputs = {
                 "input_ids": batch["input_ids"].to(args.device),
                 "attention_mask": batch["attention_mask"].to(args.device),
-                "token_labels": batch["token_targets"].to(args.device),
+                "labels": batch["token_targets"].to(args.device),
                 "token_type_ids": batch["token_type_ids"].to(args.device),
             }
 
@@ -551,7 +550,7 @@ def train(
     if args.local_rank in [-1, 0]:
         tb_writer.close()
 
-    results, words_list, preds_list, report_bin, report_class = evaluate(
+    results, words_list, preds_list, report_class = evaluate(
         args, model, test_dataset, label_map, tokenizer=tokenizer
     )
 
@@ -561,7 +560,6 @@ def train(
 
     results_testset = dict()
     results_testset["global"] = results
-    results_testset["sent-level"] = report_bin
     results_testset["token-level"] = report_class
 
     all_results = {"dev": results_devset, "test": results_testset}

@@ -1,14 +1,11 @@
-from transformers import (
-    AutoTokenizer,
-    Pipeline,
-)
+from transformers import Pipeline
 import numpy as np
 import torch
-from torch import nn
 from nltk.chunk import conlltags2tree
 from nltk import pos_tag
 from nltk.tree import Tree
 import string
+import torch.nn.functional as F
 
 label2id = {
     "B-org.ent.pressagency.Reuters": 0,
@@ -66,7 +63,29 @@ def tokenize(text):
     return text.split()
 
 
-def get_entities(tokens, tags):
+def get_entities(tokens, tags, confidences):
+    """postprocess the outputs here, for example, convert predictions to labels
+    [
+        {
+            "entity": "B-org.ent.pressagency.AFP",
+            "score": 0.99669313,
+            "index": 13,
+            "word": "AF",
+            "start": 43,
+            "end": 45,
+        },
+        {
+            "entity": "I-org.ent.pressagency.AFP",
+            "score": 0.42747754,
+            "index": 14,
+            "word": "##P",
+            "start": 45,
+            "end": 46,
+        },
+    ]
+
+    [[('AFP', 'org.ent.pressagency.AFP', (12, 13), (47, 50))]]
+    """
     tags = [tag.replace("S-", "B-").replace("E-", "I-") for tag in tags]
     pos_tags = [pos for token, pos in pos_tag(tokens)]
 
@@ -74,7 +93,7 @@ def get_entities(tokens, tags):
     ne_tree = conlltags2tree(conlltags)
 
     entities = []
-    idx = 0
+    idx: int = 0
     char_position = 0  # This will hold the current character position
 
     for subtree in ne_tree:
@@ -87,12 +106,14 @@ def get_entities(tokens, tags):
             entity_end_position = entity_start_position + len(original_string)
 
             entities.append(
-                (
-                    original_string,
-                    original_label,
-                    (idx, idx + len(subtree)),
-                    (entity_start_position, entity_end_position),
-                )
+                {
+                    "entity": original_label,
+                    "score": np.average(confidences[idx : idx + len(subtree)]),
+                    "index": idx,
+                    "word": original_string,
+                    "start": entity_start_position,
+                    "end": entity_end_position,
+                }
             )
             idx += len(subtree)
 
@@ -109,7 +130,9 @@ def get_entities(tokens, tags):
     return entities
 
 
-def realign(text_sentence, out_label_preds, tokenizer, reverted_label_map):
+def realign(
+    text_sentence, out_label_preds, softmax_scores, tokenizer, reverted_label_map
+):
     preds_list, words_list, confidence_list = [], [], []
     word_ids = tokenizer(text_sentence, is_split_into_words=True).word_ids()
     for idx, word in enumerate(text_sentence):
@@ -117,27 +140,15 @@ def realign(text_sentence, out_label_preds, tokenizer, reverted_label_map):
         try:
             beginning_index = word_ids.index(idx)
             preds_list.append(reverted_label_map[out_label_preds[beginning_index]])
+            confidence_list.append(softmax_scores[0][beginning_index].max())
         except Exception as ex:  # the sentence was longer then max_length
             preds_list.append("O")
+            confidence_list.append(0.0)
         words_list.append(word)
-    return words_list, preds_list
+    return words_list, preds_list, confidence_list
 
 
 class NewsAgencyModelPipeline(Pipeline):
-    # def __init__(self, model_id, config, **kwargs):
-    #     super().__init__(model_id, config, **kwargs)
-    #     self.tokenizer = AutoTokenizer.from_pretrained(model_id)
-    #
-    #     self.model = ModelForSequenceAndTokenClassification.from_pretrained(
-    #         model_id,
-    #         num_sequence_labels=2,
-    #         num_token_labels=len(label2id),
-    #     )
-    #     self.model.eval()  # Set the model to evaluation mode
-    # def __init__(self, model, tokenizer, **kwargs):
-    #     super().__init__(self, model, tokenizer, **kwargs)
-    #     self.model = model
-    #     self.tokenizer = tokenizer
 
     def _sanitize_parameters(self, **kwargs):
         # Add any additional parameter handling if necessary
@@ -145,13 +156,7 @@ class NewsAgencyModelPipeline(Pipeline):
 
     def preprocess(self, text, **kwargs):
         tokenized_inputs = self.tokenizer(
-            text,
-            padding="max_length",
-            truncation=True,
-            max_length=128,
-            # We use this argument because the texts in our dataset are lists
-            # of words (with a label for each word).
-            # is_split_into_words=True
+            text, padding="max_length", truncation=True, max_length=256
         )
 
         text_sentence = tokenize(text)
@@ -167,75 +172,31 @@ class NewsAgencyModelPipeline(Pipeline):
         return outputs, text_sentence
 
     def postprocess(self, outputs, **kwargs):
-        # postprocess the outputs here, for example, convert predictions to labels
-        # outputs = ... # some processing here
+        """
+        Postprocess the outputs of the model
+        :param outputs:
+        :param kwargs:
+        :return:
+        """
+        tokens_result, text_sentence = outputs
 
-        outputs, text_sentence = outputs
-        try:
-            _, tokens_result = outputs[0], outputs[1]
-        except:
-            tokens_result = outputs[0]
+        # Get raw logits and convert to numpy array
+        logits = tokens_result["logits"].detach().cpu().numpy()
 
-        tokens_result = np.argmax(
-            tokens_result["logits"].detach().cpu().numpy(), axis=2
-        )[0]
+        # Compute the most likely token ids
+        tokens_result = np.argmax(logits, axis=2)[0]
 
-        words_list, preds_list = realign(
+        # Calculate softmax scores for better interpretability
+        softmax_scores = F.softmax(torch.from_numpy(logits), dim=-1).numpy()
+
+        words_list, preds_list, confidence_list = realign(
             text_sentence,
             tokens_result,
+            softmax_scores,
             self.tokenizer,
             id2label,
         )
 
-        entities = get_entities(words_list, preds_list)
-        # print('*'*20, 'Result:', entities)
+        entities = get_entities(words_list, preds_list, confidence_list)
 
-        return [entities]
-
-    # def postprocess(self, outputs, **kwargs):
-    #
-    #     # Extract and process logits
-    #     outputs, inputs = outputs[0], outputs[1]
-    #
-    #     token_logits, sequence_logits = outputs[0], outputs[1]
-    #
-    #     token_logits = token_logits.logits.detach().cpu().numpy()
-    #     sequence_logits = sequence_logits.logits.detach().cpu().numpy()
-    #
-    #     text_sentences = [
-    #         self.tokenizer.convert_ids_to_tokens(input_ids)
-    #         for input_ids in inputs["input_ids"].detach().cpu().numpy()
-    #     ]
-    #
-    #     sequence_preds = np.argmax(token_logits, axis=-1)
-    #     token_preds = np.argmax(sequence_logits, axis=1)
-    #
-    #     # sequence_preds = torch.argmax(sequence_logits, dim=-1)
-    #     # token_preds = torch.argmax(token_logits, dim=-1)
-    #
-    #     preds_list = [[] for _ in range(token_preds.shape[0])]
-    #     words_list = [[] for _ in range(token_preds.shape[0])]
-    #
-    #     for idx_sentence, item in enumerate(zip(text_sentences, token_preds)):
-    #         text_sentence, out_label_preds = item
-    #         word_ids = self.tokenizer(
-    #             text_sentence, is_split_into_words=True
-    #         ).word_ids()
-    #         for idx, word in enumerate(text_sentence):
-    #             beginning_index = word_ids.index(idx)
-    #
-    #             try:
-    #                 preds_list[idx_sentence].append(
-    #                     id2label[out_label_preds[beginning_index]]
-    #                 )
-    #             except BaseException:  # the sentence was longer then max_length
-    #                 preds_list[idx_sentence].append("O")
-    #             words_list[idx_sentence].append(word)
-    #
-    #     import pdb
-    #
-    #     pdb.set_trace()
-    #     return {
-    #         "sequence_classification": sequence_preds.cpu().numpy(),
-    #         "token_classification": token_preds.cpu().numpy(),
-    #     }
+        return entities
