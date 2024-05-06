@@ -1,5 +1,6 @@
-## Classification and Exploration of News Agency Content in Historical News
+## Detecction and Exploration of News Agency Releases in Historical Newspapers
 
+Where did the news come from?     
 This repository contains the code related to the master thesis of Lea Marxen on the detection and study of news agency mentions in historical news articles from the _impresso_ corpus ([MA Thesis Report](https://infoscience.epfl.ch/record/305129?&ln=en)). 
 The project was carried out in the spring semester of 2023 under the supervision of Maud Ehrmann, Emanuela Boros and Marten Düring.
 
