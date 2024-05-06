@@ -1,6 +1,6 @@
-## Detection of News Agency Releases in Historical Newspapers
+# Detection of News Agency Releases in Historical Newspapers
  
-This repository contains the code related to the master thesis of Lea Marxen on the detection and study of news agency mentions in historical news articles from the _impresso_ corpus ([MA Thesis Report](https://infoscience.epfl.ch/record/305129?&ln=en)).     
+This repository contains the code related to the master thesis of Lea Marxen on the detection and study of news agency mentions in historical news articles from the _impresso_ corpus (see also the thesis report [Where Did the News come from?](https://infoscience.epfl.ch/record/305129?&ln=en)).     
 
 The project was carried out in the spring semester of 2023 under the supervision of Maud Ehrmann, Emanuela Boros and Marten Düring.
 
@@ -121,11 +121,10 @@ This article contains the news agency `Havas` and thus its WikiID `Q2826560` app
 
 ## Project
 
-This thesis was carried out in the context of the '_impresso_ - Media Monitoring of the Past' projects, which aim to develop new approaches to the exploration of historical media content across time, language and national borders.
+This thesis was carried out in the context of the '[_impresso_ - Media Monitoring of the Past](https://impresso-project.ch)' projects, which aim to develop new approaches to the exploration of historical media content across time, language and national borders.
 
 The first _impresso_ project (2017-2020) compiled and semantically enriched a corpus of digitised Swiss and Luxembourg newspapers and designed a system architecture and user interface, which together form the [impresso app](https://impresso-project.ch/app). It was supported by the Swiss National Science Foundation (grant No. CRSII5_173719).
 
 The second, follow-up project (2023-2027) '_impresso_ - Media Monitoring of the Past II. Beyond Borders: Connecting Historical Newspapers and Radio' continues this effort and proposes to overcome language and media barriers and, for the first time, to enable the joint exploration of newspaper and radio archive contents across time, language and national borders.  Leveraging an unprecedented corpus of transnational print and broadcast media,  it aims to enrich and connect these sources into a common vector space, and to design appropriate, meaningful and transparent exploration capabilities for historical research from a transmedia and transnational perspective. It is supported by the Swiss National Science Foundation (grant No. CRSII5_213585) and the Luxembourg National Research Fund (grant No. 17498891).
 
-For more information please refer to https://impresso-project.ch.
 
