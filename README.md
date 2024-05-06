@@ -1,28 +1,28 @@
-## Classification and Exploration of News Agency Content
+## Classification and Exploration of News Agency Content in Historical News
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8333933.svg)](https://doi.org/10.5281/zenodo.8333933)
 [![Python 3.10](https://img.shields.io/badge/Python-3.10-3776AB.svg?logo=python)](https://www.python.org/) 
 [![PyTorch 1.13](https://img.shields.io/badge/PyTorch-1.3-EE4C2C.svg?logo=pytorch)](https://pytorch.org/docs/1.13/) 
 [![MIT](https://img.shields.io/badge/License-MIT-3DA639.svg?logo=open-source-initiative)](LICENSE)
 
-This repository holds the code related to the master project of Lea Marxen on the classification and exploration of news agency content, based on the _impresso_ corpus ([Report](https://infoscience.epfl.ch/record/305129?&ln=en)). 
-The project was implemented in the summer semester 2023, with the supervision of Maud Ehrmann, Emanuela Boros and Marten Düring.
+This repository contains the code related to the master thesis of Lea Marxen on the detection and study of news agency mentions in historical news articles from the _impresso_ corpus ([MA Thesis Report](https://infoscience.epfl.ch/record/305129?&ln=en)). 
+The project was carried out in the spring semester of 2023 under the supervision of Maud Ehrmann, Emanuela Boros and Marten Düring.
 
 ## About
 
-Since their beginnings in the 1830s and 1840s, news agencies have played an important role in the national and international news market, aiming to deliver news as fast and as reliable as possible. While we know that newspapers have been using agency content for a long time to produce their stories, the amount to which the agencies shape our news often remains unclear. Although researchers have already addressed this question, recently by using computational methods to assess the influence of news agencies at present, large-scale studies on the role of news agencies in the past continue to be rare.
+Since their beginnings in the 1830s and 1840s, news agencies have played an important role in the national and international news market, aiming to deliver news as quickly and reliably as possible. While we know that newspapers have long used agency content to produce their stories, the extent to which the agencies shape our news is often unclear. Although researchers have already addressed this question, most recently by using computational methods to assess the influence of news agencies in today's news, large-scale studies of the role of news agencies in the past remain rare.
 
-This project aims to bridge this gap by detecting news agencies in a large corpus of Swiss and Luxembourgish newspaper articles (the impresso corpus) for the years 1840-2000 using deep learning methods. For this, we first build and annotate a multilingual dataset with news agency mentions, which we then use to train and evaluate several BERT-based agency detection and classification models. Based on these experiments, we choose two models (for French and German) for the inference on the impresso corpus.
+This master thesis aims to fill this gap by detecting news agencies in a large corpus of Swiss and Luxembourgish newspaper articles (the impresso corpus) for the years 1840-2000 using deep learning methods. We first build and annotate a two datasets (in French and German) with news agency mentions, which we then use to train and evaluate several BERT-based news agency detection and classification models. Based on these experiments, we choose two models for the inference on the whole _impresso_ corpus.
 
 
 ## Research Summary
 
-Results show that ca. 10% of the articles explicitly reference news agencies, with the greatest share of agency content after 1940, although systematic citation of agencies already started slowly in the 1910s.
-Differences in the usage of agency content across time, countries and languages as well as between newspapers reveal a complex network of news flows, whose exploration provides many opportunities for future work.
+The results show that about 10% of the articles make explicit reference to news agencies, with the largest proportion of agency content occurring after 1940, although the systematic citation of news agencies began slowly in the 1910s.
+Differences in the use of agency content across time, countries and languages, as well as between newspapers, reveal a complex network of news flows, the exploration of which offers many opportunities for future work.
 
 ## Organization
 
-- `annotation_settings/`: Contains the planning and settings for annotation with Inception.
+- `annotation_settings/`: Contains the planning and settings for annotation with Inception (DHLAB's instance).
   - `inception_settings/`: Contains specifications for inception settings, e.g. the TypeSystem and tagset.
   - `Annotation Guidelines for Newsagency Classification v2.pdf`
   - `annotation_planning_per_annotator.csv`
@@ -40,7 +40,7 @@ Differences in the usage of agency content across time, countries and languages 
   - `2_annotation/`
   - `3_classification/`
   - `4_analysis/`
-- `report/`: Contains the report of the master project (Pdf and Zip for Latex).
+- `report/`: Contains the report of the master project (PDF and Zip of Latex sources).
 
 ## Installation and Usage
 
@@ -63,7 +63,7 @@ The two fine-tuned models used for inference on the _impresso_ corpus are releas
 
 ## Dataset
 
-The annotated dataset is released on [Zenodo](https://doi.org/10.5281/zenodo.8333933). It contains historical newspaper articles with annotations of news agency mentions. The articles are divided into French (fr) and German (de) subsets and a train, dev and test set respectively. The data is annotated at token-level in the CoNLL format with IOB tagging format.
+The annotated dataset is released on [Zenodo](https://doi.org/10.5281/zenodo.8333933). It contains historical newspaper articles with annotations of news agency mentions. The articles are divided into French (fr) and German (de) subsets and a train, dev and test set respectively. The data is annotated at token level in the CoNLL format with IOB tagging format.
 
 |           |  **Lg.**  | **Docs** | **Tokens** | **Agency Mentions** |
 |:----------| :-------- | -------: | ---------: | ------------------: |
@@ -83,7 +83,7 @@ The annotated dataset is released on [Zenodo](https://doi.org/10.5281/zenodo.833
 
 Due to an error, there are seven duplicated articles in the French test set (article IDs: courriergdl-1847-10-02-a-i0002, courriergdl-1852-02-14-a-i0002, courriergdl-1860-10-31-a-i0016, courriergdl-1864-12-15-a-i0005, lunion-1860-11-27-a-i0004, lunion-1865-02-05-a-i0012, lunion-1866-02-16-a-i0009).
 
-The dataset contains the following newsagencies:
+The dataset contains the following news agencies:
 
 ![Agency-Mentions-per-Split](report/train_dev_test_per_agency.png)
 
@@ -111,10 +111,20 @@ Havaa	    B-org	  O	    B-org.ent.pressagency.Havas	  O   	O   	O   	Q2826560	_	
 ...
 ```
 
-This article contains the newsagency `Havas` and thus its WikiID `Q2826560` appears on article-level (`# news-agency-as-source`).
+This article contains the news agency `Havas` and thus its WikiID `Q2826560` appears on article-level (`# news-agency-as-source`).
 
-## License
+## Copyright and License
 
-newsagency-classification - Lea Marxen    
-Copyright (c) 2023 EPFL    
-This program is licensed under the terms of the MIT. 
+- Copyright (c) 2023 Lea Marxen and EPFL for the code
+- Code license: MIT
+
+## Project
+
+This thesis was carried out in the context of the '_impresso_ - Media Monitoring of the Past' projects, which aim to develop new approaches to the exploration of historical media content across time, language and national borders.
+
+The first _impresso_ project (2017-2020) compiled and semantically enriched a corpus of digitised Swiss and Luxembourg newspapers and designed a system architecture and user interface, which together form the [impresso app](https://impresso-project.ch/app). It was supported by the Swiss National Science Foundation (grant No. CRSII5_173719).
+
+The second, follow-up project (2023-2027) '_impresso_ - Media Monitoring of the Past II. Beyond Borders: Connecting Historical Newspapers and Radio' continues this effort and proposes to overcome language and media barriers and, for the first time, to enable the joint exploration of newspaper and radio archive contents across time, language and national borders.  Leveraging an unprecedented corpus of transnational print and broadcast media,  it aims to enrich and connect these sources into a common vector space, and to design appropriate, meaningful and transparent exploration capabilities for historical research from a transmedia and transnational perspective. It is supported by the Swiss National Science Foundation (grant No. CRSII5_213585) and the Luxembourg National Research Fund (grant No. 17498891).
+
+More information at https://impresso-project.ch.
+
