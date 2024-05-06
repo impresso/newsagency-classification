@@ -1,11 +1,12 @@
 ## Detection of News Agency Releases in Historical Newspapers
  
-This repository contains the code related to the master thesis of Lea Marxen on the detection and study of news agency mentions in historical news articles from the _impresso_ corpus ([MA Thesis Report](https://infoscience.epfl.ch/record/305129?&ln=en)). 
+This repository contains the code related to the master thesis of Lea Marxen on the detection and study of news agency mentions in historical news articles from the _impresso_ corpus ([MA Thesis Report](https://infoscience.epfl.ch/record/305129?&ln=en)).     
+
 The project was carried out in the spring semester of 2023 under the supervision of Maud Ehrmann, Emanuela Boros and Marten Düring.
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8333933.svg)](https://doi.org/10.5281/zenodo.8333933)
 [![Python 3.10](https://img.shields.io/badge/Python-3.10-3776AB.svg?logo=python)](https://www.python.org/) 
 [![PyTorch 1.13](https://img.shields.io/badge/PyTorch-1.3-EE4C2C.svg?logo=pytorch)](https://pytorch.org/docs/1.13/) 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8333933.svg)](https://doi.org/10.5281/zenodo.8333933)
 [![MIT](https://img.shields.io/badge/License-MIT-3DA639.svg?logo=open-source-initiative)](LICENSE)
 
 ## About
@@ -20,7 +21,7 @@ This master thesis aims to fill this gap by detecting news agencies in a large c
 The results show that about 10% of the articles make explicit reference to news agencies, with the largest proportion of agency content occurring after 1940, although the systematic citation of news agencies began slowly in the 1910s.
 Differences in the use of agency content across time, countries and languages, as well as between newspapers, reveal a complex network of news flows, the exploration of which offers many opportunities for future work.
 
-## Organization
+## Repository Organization
 
 - `annotation_settings/`: Contains the planning and settings for annotation with Inception (DHLAB's instance).
   - `inception_settings/`: Contains specifications for inception settings, e.g. the TypeSystem and tagset.
@@ -47,7 +48,7 @@ Differences in the use of agency content across time, countries and languages, a
 The project uses `python 3.10`. The dependencies for running the code can be found in `requirements.txt`. If only the classification is required, it suffices to install the dependencies specified in `lib/bert-classification/requirements_classification.txt`.
 
 
-### Text Classification 
+### News Agency Detection and Classification 
 
 The model is based on `AutoModelForSequenceClassification` provided by the `transformers` library and it is a generic model class that will be instantiated as one of the sequence classification model classes of the library when created with the `from_pretrained(pretrained_model_name_or_path)` method.
 
@@ -115,7 +116,7 @@ This article contains the news agency `Havas` and thus its WikiID `Q2826560` app
 
 ## Copyright and License
 
-- Copyright (c) 2023 Lea Marxen and EPFL for the code
+- Copyright (c) 2023 for the code: Lea Marxen and EPFL
 - Code license: MIT
 
 ## Project
@@ -126,5 +127,5 @@ The first _impresso_ project (2017-2020) compiled and semantically enriched a co
 
 The second, follow-up project (2023-2027) '_impresso_ - Media Monitoring of the Past II. Beyond Borders: Connecting Historical Newspapers and Radio' continues this effort and proposes to overcome language and media barriers and, for the first time, to enable the joint exploration of newspaper and radio archive contents across time, language and national borders.  Leveraging an unprecedented corpus of transnational print and broadcast media,  it aims to enrich and connect these sources into a common vector space, and to design appropriate, meaningful and transparent exploration capabilities for historical research from a transmedia and transnational perspective. It is supported by the Swiss National Science Foundation (grant No. CRSII5_213585) and the Luxembourg National Research Fund (grant No. 17498891).
 
-More information at https://impresso-project.ch.
+For more information please refer to https://impresso-project.ch.
 
