@@ -42,11 +42,12 @@ logger = logging.getLogger(__name__)
 
 
 class ModelForSequenceAndTokenClassification(PreTrainedModel):
-    def __init__(self, config, num_sequence_labels, num_token_labels):
+    def __init__(self, config, num_sequence_labels, num_token_labels, do_classif=False):
         super().__init__(config)
         self.num_token_labels = num_token_labels
         self.num_sequence_labels = num_sequence_labels
         self.config = config
+        self.do_classif = do_classif
 
         self.bert = AutoModel.from_config(config)
         classifier_dropout = (
@@ -59,10 +60,11 @@ class ModelForSequenceAndTokenClassification(PreTrainedModel):
         # For token classification
         self.token_classifier = nn.Linear(config.hidden_size, self.num_token_labels)
 
-        # For the entire sequence classification
-        self.sequence_classifier = nn.Linear(
-            config.hidden_size, self.num_sequence_labels
-        )
+        if do_classif:
+            # For the entire sequence classification
+            self.sequence_classifier = nn.Linear(
+                config.hidden_size, self.num_sequence_labels
+            )
 
         # Initialize weights and apply final processing
         self.post_init()
@@ -137,11 +139,12 @@ class ModelForSequenceAndTokenClassification(PreTrainedModel):
         token_output = self.dropout(token_output)
         token_logits = self.token_classifier(token_output)
 
-        # For the entire sequence classification
-        pooled_output = outputs[1]
+        if self.do_classif:
+            # For the entire sequence classification
+            pooled_output = outputs[1]
 
-        pooled_output = self.dropout(pooled_output)
-        sequence_logits = self.sequence_classifier(pooled_output)
+            pooled_output = self.dropout(pooled_output)
+            sequence_logits = self.sequence_classifier(pooled_output)
 
         # Computing the loss as the average of both losses
         loss = None
@@ -152,44 +155,59 @@ class ModelForSequenceAndTokenClassification(PreTrainedModel):
                 token_logits.view(-1, self.num_token_labels), token_labels.view(-1)
             )
 
-            if self.config.problem_type == "regression":
-                loss_fct = MSELoss()
-                if self.num_sequence_labels == 1:
+            if self.do_classif:
+                if self.config.problem_type == "regression":
+                    loss_fct = MSELoss()
+                    if self.num_sequence_labels == 1:
+                        loss_sequence = loss_fct(
+                            sequence_logits.squeeze(), sequence_labels.squeeze()
+                        )
+                    else:
+                        loss_sequence = loss_fct(sequence_logits, sequence_labels)
+                if self.config.problem_type == "single_label_classification":
+                    loss_fct = CrossEntropyLoss()
                     loss_sequence = loss_fct(
-                        sequence_logits.squeeze(), sequence_labels.squeeze()
+                        sequence_logits.view(-1, self.num_sequence_labels),
+                        sequence_labels.view(-1),
                     )
-                else:
+                elif self.config.problem_type == "multi_label_classification":
+                    loss_fct = BCEWithLogitsLoss()
                     loss_sequence = loss_fct(sequence_logits, sequence_labels)
-            if self.config.problem_type == "single_label_classification":
-                loss_fct = CrossEntropyLoss()
-                loss_sequence = loss_fct(
-                    sequence_logits.view(-1, self.num_sequence_labels),
-                    sequence_labels.view(-1),
-                )
-            elif self.config.problem_type == "multi_label_classification":
-                loss_fct = BCEWithLogitsLoss()
-                loss_sequence = loss_fct(sequence_logits, sequence_labels)
 
-            loss = loss_tokens + loss_sequence
+                loss = loss_tokens + loss_sequence
+            else:
+                loss = loss_tokens
 
         if not return_dict:
-            output = (
-                sequence_logits,
-                token_logits,
-            ) + outputs[2:]
-            return ((loss,) + output) if loss is not None else output
+            if self.do_classif:
+                output = (
+                    sequence_logits,
+                    token_logits,
+                ) + outputs[2:]
+                return ((loss,) + output) if loss is not None else output
+            else:
+                output = (token_logits,) + outputs[2:]
+                return ((loss,) + output) if loss is not None else output
 
-        return SequenceClassifierOutput(
-            loss=loss,
-            logits=sequence_logits,
-            hidden_states=outputs.hidden_states,
-            attentions=outputs.attentions,
-        ), TokenClassifierOutput(
-            loss=loss,
-            logits=token_logits,
-            hidden_states=outputs.hidden_states,
-            attentions=outputs.attentions,
-        )
+        if self.do_classif:
+            return SequenceClassifierOutput(
+                loss=loss,
+                logits=sequence_logits,
+                hidden_states=outputs.hidden_states,
+                attentions=outputs.attentions,
+            ), TokenClassifierOutput(
+                loss=loss,
+                logits=token_logits,
+                hidden_states=outputs.hidden_states,
+                attentions=outputs.attentions,
+            )
+        else:
+            return TokenClassifierOutput(
+                loss=loss,
+                logits=token_logits,
+                hidden_states=outputs.hidden_states,
+                attentions=outputs.attentions,
+            )
 
 
 def evaluate(args, model, dataset, label_map, prefix="", tokenizer=None):

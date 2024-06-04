@@ -6,6 +6,7 @@ from nltk import pos_tag
 from nltk.tree import Tree
 import string
 import torch.nn.functional as F
+import re
 
 label2id = {
     "B-org.ent.pressagency.Reuters": 0,
@@ -63,7 +64,34 @@ def tokenize(text):
     return text.split()
 
 
-def get_entities(tokens, tags, confidences):
+# def normalize_text(text):
+#     # Normalize spaces around punctuation marks
+#     normalized_text = re.sub(r"\s*([,.-~'\"*«^§!?@#$%&()])\s*", r"\1", text)
+#     return normalized_text
+
+
+def find_entity_indices(article, entity):
+    """
+    Find all occurrences of an entity in the article and return their indices.
+
+    :param article: The complete article text.
+    :param entity: The entity to search for.
+    :return: A list of tuples (lArticleOffset, rArticleOffset) for each occurrence.
+    """
+
+    # normalized_target = normalize_text(entity)
+    # normalized_document = normalize_text(article)
+
+    entity_indices = []
+    for match in re.finditer(re.escape(entity), article):
+        start_idx = match.start()
+        end_idx = match.end()
+        entity_indices.append((start_idx, end_idx))
+
+    return entity_indices
+
+
+def get_entities(tokens, tags, confidences, text):
     """postprocess the outputs here, for example, convert predictions to labels
     [
         {
@@ -94,7 +122,6 @@ def get_entities(tokens, tags, confidences):
 
     entities = []
     idx: int = 0
-    char_position = 0  # This will hold the current character position
 
     for subtree in ne_tree:
         # skipping 'O' tags
@@ -102,29 +129,30 @@ def get_entities(tokens, tags, confidences):
             original_label = subtree.label()
             original_string = " ".join([token for token, pos in subtree.leaves()])
 
-            entity_start_position = char_position
-            entity_end_position = entity_start_position + len(original_string)
-
-            entities.append(
-                {
-                    "entity": original_label,
-                    "score": np.average(confidences[idx : idx + len(subtree)]),
-                    "index": idx,
-                    "word": original_string,
-                    "start": entity_start_position,
-                    "end": entity_end_position,
-                }
-            )
+            for indices in find_entity_indices(text, original_string):
+                entity_start_position = indices[0]
+                entity_end_position = indices[1]
+                entities.append(
+                    {
+                        "entity": original_label,
+                        "score": np.average(confidences[idx : idx + len(subtree)]),
+                        "index": idx,
+                        "word": original_string,
+                        "start": entity_start_position,
+                        "end": entity_end_position,
+                    }
+                )
+                assert (
+                    text[entity_start_position:entity_end_position] == original_string
+                )
             idx += len(subtree)
 
             # Update the current character position
             # We add the length of the original string + 1 (for the space)
-            char_position += len(original_string) + 1
         else:
             token, pos = subtree
             # If it's not a named entity, we still need to update the character
             # position
-            char_position += len(token) + 1  # We add 1 for the space
             idx += 1
 
     return entities
@@ -160,16 +188,19 @@ class NewsAgencyModelPipeline(Pipeline):
         )
 
         text_sentence = tokenize(text)
-        return tokenized_inputs, text_sentence
+        return tokenized_inputs, text_sentence, text
 
     def _forward(self, inputs):
-        inputs, text_sentence = inputs
+        inputs, text_sentence, text = inputs
         input_ids = torch.tensor([inputs["input_ids"]], dtype=torch.long).to(
             self.model.device
         )
+        attention_mask = torch.tensor([inputs["attention_mask"]], dtype=torch.long).to(
+            self.model.device
+        )
         with torch.no_grad():
-            outputs = self.model(input_ids)
-        return outputs, text_sentence
+            outputs = self.model(input_ids, attention_mask)
+        return outputs, text_sentence, text
 
     def postprocess(self, outputs, **kwargs):
         """
@@ -178,7 +209,7 @@ class NewsAgencyModelPipeline(Pipeline):
         :param kwargs:
         :return:
         """
-        tokens_result, text_sentence = outputs
+        tokens_result, text_sentence, text = outputs
 
         # Get raw logits and convert to numpy array
         logits = tokens_result["logits"].detach().cpu().numpy()
@@ -197,6 +228,6 @@ class NewsAgencyModelPipeline(Pipeline):
             id2label,
         )
 
-        entities = get_entities(words_list, preds_list, confidence_list)
+        entities = get_entities(words_list, preds_list, confidence_list, text)
 
         return entities

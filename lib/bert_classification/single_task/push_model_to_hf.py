@@ -63,11 +63,7 @@ from huggingface_hub import Repository
 
 
 def push_model_to_hub(model_dir, model_id, language="fr"):
-    # Load the model
-    # model = ModelForTokenClassification.from_pretrained(
-    #     model_dir,
-    #     num_token_labels=len(label2id),
-    # )
+
     model = AutoModelForTokenClassification.from_pretrained(model_dir)
     tokenizer = AutoTokenizer.from_pretrained(model_dir)
 
@@ -90,32 +86,19 @@ def push_model_to_hub(model_dir, model_id, language="fr"):
     model.config.custom_pipelines = {
         "newsagency-ner": {
             "impl": "newsagency_ner.NewsAgencyModelPipeline",
-            "pt": ["AutoModelForTokenClassification"],
+            "pt": ["BertForTokenClassification"],
             "tf": [],
         }
     }
 
     classifier = pipeline("newsagency-ner", model=model, tokenizer=tokenizer)
-    # classifier = pipeline("ner", model=model, tokenizer=tokenizer)
-    # classifier = NewsAgencyModelPipeline(model=model, tokenizer=tokenizer)
 
-    # Dynamically load the custom model class from the Hugging Face Hub
-    # config = AutoConfig.from_pretrained(model_id, trust_remote_code=True)
-    # model = AutoModelForTokenClassification.from_pretrained(
-    #     model_id, config=config, trust_remote_code=True
-    # )
-    #
-    # # Load the tokenizer
-    # tokenizer = AutoTokenizer.from_pretrained(model_id)
-    # classifier = pipeline("newsagency-ner", model=model, tokenizer=tokenizer)
-    #
-    # import pdb
-    #
-    # pdb.set_trace()
-    # # classifier = pipeline("newsagency-ner", model=model_id)
-    #
     print(classifier("Mon nom est François et j'habite à Paris. (AFP)"))
-    print(classifier("Mein Name ist Wolfgang und ich wohne in Berlin. (AFP)"))
+    print(
+        classifier(
+            "Des chercheurs de l'Université de Cambridge ont développé une nouvelle technique de calcul quantique qui promet d'augmenter exponentiellement les vitesses de calcul. Cette percée, décrite comme un 'bond quantique' dans la technologie informatique, pourrait ouvrir la voie à des capacités de traitement de données ultra-rapides et sécurisées. Cette avancée est censée avoir le potentiel d'impacter significativement les domaines de la cryptographie, de la science des matériaux et de la modélisation des systèmes complexes. Les experts dans le domaine ont exprimé leur enthousiasme face aux progrès rapides et à leurs implications pour les innovations technologiques futures. Le rapport complet sur ces découvertes a été publié dans la prestigieuse revue Nature Physics. (Reuters) "
+        )
+    )
 
     # Save your model and tokenizer in the local directory
     model.save_pretrained(f"bert-newsagency-ner-{language}", config=model.config)
@@ -131,9 +114,7 @@ def push_model_to_hub(model_dir, model_id, language="fr"):
 
 
 # Directories where the models are saved
-agency_fr_dir = "trained_models/agency-fr"
 agency_fr_dir = "experiments/model_dbmdz_bert_base_french_europeana_cased_max_sequence_length_256_epochs_3_run1311/checkpoint-11799"
-# agency_de_dir = "trained_models/agency-de"
 agency_de_dir = "experiments/model_bert_base_german_cased_max_sequence_length_256_epochs_3_run887/checkpoint-5322"
 
 # Model IDs on Hugging Face Hub (you can customize these)
