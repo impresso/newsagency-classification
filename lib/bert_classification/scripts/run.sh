@@ -8,6 +8,7 @@ logging_suffix_values=(1 2 3 4 5)
 #
 # Get the language from the first command line argument
 language=$1
+gpu=$2
 #
 # Check if language parameter was provided
 if [ -z "$language" ]
@@ -22,7 +23,7 @@ then
     #models=("xlm-roberta-base")
     #models=("dbmdz/bert-base-french-europeana-cased")
     models=("bert-base-multilingual-cased" "dbmdz/bert-base-french-europeana-cased" "bert-base-cased" "camembert-base" "dbmdz/bert-base-historic-multilingual-cased" "xlm-roberta-base")
-    log_steps=5860 #1465*4
+    log_steps=1477 #1465*4
 fi
 
 if [ $language == "de" ]
@@ -59,7 +60,7 @@ Block_comment
 
             echo "Running experiment with model = $model, max_seq_len = $max_seq_len, language = $language and logging_suffix = $logging_suffix"
 
-            CUDA_VISIBLE_DEVICES=1 TOKENIZERS_PARALLELISM=false python3 main.py \
+            CUDA_VISIBLE_DEVICES=$gpu TOKENIZERS_PARALLELISM=false python3 main.py \
                 --model_name_or_path $model \
                 --train_dataset ../../data/annotated_data/$language/newsagency-data-train-$language.tsv \
                 --dev_dataset ../../data/annotated_data/$language/newsagency-data-dev-$language.tsv \
@@ -67,7 +68,7 @@ Block_comment
                 --label_map ../../data/annotated_data/label_map.json \
                 --output_dir experiments \
                 --device cuda \
-                --train_batch_size 2 \
+                --train_batch_size 16 \
                 --logging_steps $log_steps \
                 --save_steps $log_steps \
                 --max_sequence_len $max_seq_len \

@@ -265,7 +265,7 @@ def evaluate(args, model, dataset, label_map, prefix="", tokenizer=None):
 
             outputs = model(**inputs)
 
-            if model.do_classif():
+            if model.do_classif:
 
                 sequence_result, tokens_result = outputs[0], outputs[1]
                 token_logits = tokens_result.logits
@@ -289,7 +289,7 @@ def evaluate(args, model, dataset, label_map, prefix="", tokenizer=None):
             out_token_preds = token_logits.detach().cpu().numpy()
             out_token_ids = inputs["token_labels"].detach().cpu().numpy()
 
-            if model.do_classif():
+            if model.do_classif:
                 out_sequence_preds = sequence_logits.detach().cpu().numpy()
                 out_sequence_ids = inputs["sequence_labels"].detach().cpu().numpy()
 
@@ -307,7 +307,7 @@ def evaluate(args, model, dataset, label_map, prefix="", tokenizer=None):
                 out_token_ids, inputs["token_labels"].detach().cpu().numpy(), axis=0
             )
 
-            if model.do_classif():
+            if model.do_classif:
                 out_sequence_ids = np.append(
                     out_sequence_ids,
                     inputs["sequence_labels"].detach().cpu().numpy(),
@@ -339,7 +339,7 @@ def evaluate(args, model, dataset, label_map, prefix="", tokenizer=None):
     out_token_preds = np.argmax(out_token_preds, axis=2)
     out_sequence_preds = np.argmax(out_sequence_preds, axis=1)
 
-    if model.do_classif():
+    if model.do_classif:
         logger.info("Evaluation for yes/no classification.")
         report_bin = classification_report(
             out_sequence_ids, out_sequence_preds, digits=4
@@ -540,7 +540,7 @@ def train(
 
             outputs = model(**inputs)
 
-            if model.do_classif():
+            if model.do_classif:
                 sequence_result, tokens_result = outputs[0], outputs[1]
                 # model outputs are always tuple in pytorch-transformers (see doc)
                 loss = sequence_result.loss
