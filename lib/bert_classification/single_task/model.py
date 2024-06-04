@@ -29,7 +29,7 @@ current_directory = os.path.dirname(os.path.realpath(__file__))
 print(current_directory)
 # add the current directory to sys.path
 sys.path.insert(0, current_directory)
-from utils import set_seed, SEED
+# from utils import set_seed, SEED
 
 try:
     from torch.utils.tensorboard import SummaryWriter
@@ -41,13 +41,10 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-class ModelForSequenceAndTokenClassification(PreTrainedModel):
-    def __init__(self, config, num_sequence_labels, num_token_labels, do_classif=False):
+class ModelForTokenClassification(PreTrainedModel):
+    def __init__(self, config):
         super().__init__(config)
-        self.num_token_labels = num_token_labels
-        self.num_sequence_labels = num_sequence_labels
         self.config = config
-        self.do_classif = do_classif
 
         self.bert = AutoModel.from_config(config)
         classifier_dropout = (
@@ -58,13 +55,7 @@ class ModelForSequenceAndTokenClassification(PreTrainedModel):
         self.dropout = nn.Dropout(classifier_dropout)
 
         # For token classification
-        self.token_classifier = nn.Linear(config.hidden_size, self.num_token_labels)
-
-        if do_classif:
-            # For the entire sequence classification
-            self.sequence_classifier = nn.Linear(
-                config.hidden_size, self.num_sequence_labels
-            )
+        self.token_classifier = nn.Linear(config.hidden_size, config.num_labels)
 
         # Initialize weights and apply final processing
         self.post_init()
@@ -102,15 +93,11 @@ class ModelForSequenceAndTokenClassification(PreTrainedModel):
         head_mask: Optional[torch.Tensor] = None,
         inputs_embeds: Optional[torch.Tensor] = None,
         token_labels: Optional[torch.Tensor] = None,
-        sequence_labels: Optional[torch.Tensor] = None,
         offset_mapping: Optional[torch.Tensor] = None,
         output_attentions: Optional[bool] = None,
         output_hidden_states: Optional[bool] = None,
         return_dict: Optional[bool] = None,
-    ) -> Union[
-        Union[Tuple[torch.Tensor], SequenceClassifierOutput],
-        Union[Tuple[torch.Tensor], TokenClassifierOutput],
-    ]:
+    ) -> Union[Tuple[torch.Tensor], TokenClassifierOutput]:
         r"""
         labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*):
             Labels for computing the sequence classification/regression loss. Indices should be in `[0, ...,
@@ -139,75 +126,21 @@ class ModelForSequenceAndTokenClassification(PreTrainedModel):
         token_output = self.dropout(token_output)
         token_logits = self.token_classifier(token_output)
 
-        if self.do_classif:
-            # For the entire sequence classification
-            pooled_output = outputs[1]
-
-            pooled_output = self.dropout(pooled_output)
-            sequence_logits = self.sequence_classifier(pooled_output)
-
         # Computing the loss as the average of both losses
         loss = None
         if token_labels is not None:
             loss_fct = CrossEntropyLoss()
-            # import pdb;pdb.set_trace()
             loss_tokens = loss_fct(
-                token_logits.view(-1, self.num_token_labels), token_labels.view(-1)
+                token_logits.view(-1, self.config.num_labels), token_labels.view(-1)
             )
+            loss = loss_tokens
 
-            if self.do_classif:
-                if self.config.problem_type == "regression":
-                    loss_fct = MSELoss()
-                    if self.num_sequence_labels == 1:
-                        loss_sequence = loss_fct(
-                            sequence_logits.squeeze(), sequence_labels.squeeze()
-                        )
-                    else:
-                        loss_sequence = loss_fct(sequence_logits, sequence_labels)
-                if self.config.problem_type == "single_label_classification":
-                    loss_fct = CrossEntropyLoss()
-                    loss_sequence = loss_fct(
-                        sequence_logits.view(-1, self.num_sequence_labels),
-                        sequence_labels.view(-1),
-                    )
-                elif self.config.problem_type == "multi_label_classification":
-                    loss_fct = BCEWithLogitsLoss()
-                    loss_sequence = loss_fct(sequence_logits, sequence_labels)
-
-                loss = loss_tokens + loss_sequence
-            else:
-                loss = loss_tokens
-
-        if not return_dict:
-            if self.do_classif:
-                output = (
-                    sequence_logits,
-                    token_logits,
-                ) + outputs[2:]
-                return ((loss,) + output) if loss is not None else output
-            else:
-                output = (token_logits,) + outputs[2:]
-                return ((loss,) + output) if loss is not None else output
-
-        if self.do_classif:
-            return SequenceClassifierOutput(
-                loss=loss,
-                logits=sequence_logits,
-                hidden_states=outputs.hidden_states,
-                attentions=outputs.attentions,
-            ), TokenClassifierOutput(
-                loss=loss,
-                logits=token_logits,
-                hidden_states=outputs.hidden_states,
-                attentions=outputs.attentions,
-            )
-        else:
-            return TokenClassifierOutput(
-                loss=loss,
-                logits=token_logits,
-                hidden_states=outputs.hidden_states,
-                attentions=outputs.attentions,
-            )
+        return TokenClassifierOutput(
+            loss=loss,
+            logits=token_logits,
+            hidden_states=outputs.hidden_states,
+            attentions=outputs.attentions,
+        )
 
 
 def evaluate(args, model, dataset, label_map, prefix="", tokenizer=None):
@@ -234,8 +167,8 @@ def evaluate(args, model, dataset, label_map, prefix="", tokenizer=None):
     logger.info("  Batch size = %d", args.eval_batch_size)
     eval_loss = 0.0
     nb_eval_steps = 0
-    out_sequence_ids, out_token_ids = None, None
-    out_sequence_preds, out_token_preds = None, None
+    out_token_ids = None
+    out_token_preds = None
     sentences, text_sentences = None, None
     offset_mappings = None
     model.eval()
@@ -248,8 +181,7 @@ def evaluate(args, model, dataset, label_map, prefix="", tokenizer=None):
             inputs = {
                 "input_ids": batch["input_ids"].to(args.device),
                 "attention_mask": batch["attention_mask"].to(args.device),
-                "sequence_labels": batch["sequence_targets"].to(args.device),
-                "token_labels": batch["token_targets"].to(args.device),
+                "labels": batch["token_targets"].to(args.device),
                 "token_type_ids": batch["token_type_ids"].to(args.device),
             }
 
@@ -262,13 +194,11 @@ def evaluate(args, model, dataset, label_map, prefix="", tokenizer=None):
 
             outputs = model(**inputs)
 
-            sequence_result, tokens_result = outputs[0], outputs[1]
+            tokens_result = outputs
             token_logits = tokens_result.logits
 
             # the second return value is logits
-            sequence_logits = sequence_result.logits
-
-            tmp_eval_loss = sequence_result.loss
+            tmp_eval_loss = tokens_result.loss
 
             if args.n_gpu > 1:
                 # mean() to average on multi-gpu parallel evaluating
@@ -279,10 +209,8 @@ def evaluate(args, model, dataset, label_map, prefix="", tokenizer=None):
 
         if out_token_preds is None:
             out_token_preds = token_logits.detach().cpu().numpy()
-            out_sequence_preds = sequence_logits.detach().cpu().numpy()
 
-            out_token_ids = inputs["token_labels"].detach().cpu().numpy()
-            out_sequence_ids = inputs["sequence_labels"].detach().cpu().numpy()
+            out_token_ids = inputs["labels"].detach().cpu().numpy()
 
             sentences = [
                 tokenizer.convert_ids_to_tokens(input_ids)
@@ -294,17 +222,9 @@ def evaluate(args, model, dataset, label_map, prefix="", tokenizer=None):
             out_token_preds = np.append(
                 out_token_preds, token_logits.detach().cpu().numpy(), axis=0
             )
-            out_sequence_ids = np.append(
-                out_sequence_ids,
-                inputs["sequence_labels"].detach().cpu().numpy(),
-                axis=0,
-            )
 
             out_token_ids = np.append(
-                out_token_ids, inputs["token_labels"].detach().cpu().numpy(), axis=0
-            )
-            out_sequence_preds = np.append(
-                out_sequence_preds, sequence_logits.detach().cpu().numpy(), axis=0
+                out_token_ids, inputs["labels"].detach().cpu().numpy(), axis=0
             )
 
             sentences = np.append(
@@ -327,11 +247,6 @@ def evaluate(args, model, dataset, label_map, prefix="", tokenizer=None):
                 pdb.set_trace()
 
     out_token_preds = np.argmax(out_token_preds, axis=2)
-    out_sequence_preds = np.argmax(out_sequence_preds, axis=1)
-
-    logger.info("Evaluation for yes/no classification.")
-    report_bin = classification_report(out_sequence_ids, out_sequence_preds, digits=4)
-    logger.info("\n%s", report_bin)
 
     eval_loss = eval_loss / nb_eval_steps
 
@@ -378,7 +293,7 @@ def evaluate(args, model, dataset, label_map, prefix="", tokenizer=None):
     for key in sorted(results.keys()):
         logger.info("  %s = %s", key, str(results[key]))
 
-    return results, words_list, preds_list, report_bin, report_class
+    return results, words_list, preds_list, report_class
 
 
 def train(
@@ -502,7 +417,7 @@ def train(
         desc="Epoch",
         disable=args.local_rank not in [-1, 0],
     )
-    set_seed(SEED)  # Added here for reproductibility
+    # set_seed(SEED)  # Added here for reproductibility
 
     results_devset = {result: [] for result in ["global", "sent-level", "token-level"]}
     for _ in train_iterator:
@@ -521,16 +436,15 @@ def train(
             inputs = {
                 "input_ids": batch["input_ids"].to(args.device),
                 "attention_mask": batch["attention_mask"].to(args.device),
-                "sequence_labels": batch["sequence_targets"].to(args.device),
-                "token_labels": batch["token_targets"].to(args.device),
+                "labels": batch["token_targets"].to(args.device),
                 "token_type_ids": batch["token_type_ids"].to(args.device),
             }
 
             outputs = model(**inputs)
 
-            sequence_result, tokens_result = outputs[0], outputs[1]
+            tokens_result = outputs
             # model outputs are always tuple in pytorch-transformers (see doc)
-            loss = sequence_result.loss
+            loss = tokens_result.loss
 
             if args.n_gpu > 1:
                 loss = loss.mean()  # mean() to average on multi-gpu parallel training
@@ -586,7 +500,6 @@ def train(
                             )
 
                         results_devset["global"].append(results)
-                        results_devset["sent-level"].append(report_bin)
                         results_devset["token-level"].append(report_class)
 
                     tb_writer.add_scalar("lr", scheduler.get_lr()[0], global_step)

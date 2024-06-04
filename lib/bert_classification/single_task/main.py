@@ -1,12 +1,18 @@
-from utils import set_seed, SEED
+# from utils import set_seed, SEED
 from model import train, evaluate
 import argparse
 import torch
-from model import ModelForSequenceAndTokenClassification
+
+# from model import ModelForTokenClassification
 import os
 from dataset import NewsDataset
 import logging
-from transformers import AutoTokenizer, AutoConfig, AdamW
+from transformers import (
+    AutoTokenizer,
+    AutoConfig,
+    AdamW,
+    AutoModelForTokenClassification,
+)
 import json
 from utils import write_predictions
 
@@ -157,18 +163,12 @@ if __name__ == "__main__":
     parser.add_argument(
         "--seed", type=int, default=42, help="Seed to make experiment reproducible."
     )
-    parser.add_argument(
-        "--do_classif",
-        action="store_true",
-        help="Whether to run binary classification or not.",
-    )
 
     args = parser.parse_args()
 
-    set_seed(args.seed)
+    # set_seed(args.seed)
 
     args.model_name_or_path = args.model_name_or_path.lower()
-    do_classif = args.do_classif
 
     if not os.path.exists(args.output_dir):
         os.mkdir(args.output_dir)
@@ -248,6 +248,8 @@ if __name__ == "__main__":
         )
 
         label_map = test_dataset.get_label_map()
+
+        json.dump(label_map, open("../../../data/label_map.json", "w"))
     # if specified, load the label map and use it for the data
     else:
         label_map = json.load(open(args.label_map, "r"))
@@ -273,10 +275,6 @@ if __name__ == "__main__":
             label_map=label_map,
         )
 
-    json.dump(
-        label_map, open(os.path.join(args.output_dir, "data/label_map.json"), "w")
-    )
-
     num_sequence_labels, num_token_labels = test_dataset.get_info()
 
     logging.info(
@@ -288,13 +286,11 @@ if __name__ == "__main__":
     config = AutoConfig.from_pretrained(
         args.model_name_or_path, problem_type="single_label_classification"
     )
+    config.num_labels = num_token_labels
 
-    model = ModelForSequenceAndTokenClassification.from_pretrained(
+    model = AutoModelForTokenClassification.from_pretrained(
         args.model_name_or_path,
         config=config,
-        num_sequence_labels=num_sequence_labels,
-        num_token_labels=num_token_labels,
-        do_classif=do_classif,
     )
 
     model = model.to(args.device)
@@ -361,12 +357,10 @@ if __name__ == "__main__":
             problem_type="single_label_classification",
             local_files_only=True,
         )
-
-        model = ModelForSequenceAndTokenClassification.from_pretrained(
+        config.num_labels = num_token_labels
+        model = AutoModelForTokenClassification.from_pretrained(
             args.checkpoint,
             config=config,
-            num_sequence_labels=num_sequence_labels,
-            num_token_labels=num_token_labels,
             local_files_only=True,
         )
 
@@ -377,7 +371,7 @@ if __name__ == "__main__":
         )
 
         # dev data
-        results, words_list, preds_list, report_bin, report_class = evaluate(
+        results, words_list, preds_list, report_class = evaluate(
             args, model, dev_dataset, label_map, tokenizer=tokenizer
         )
 
@@ -387,7 +381,6 @@ if __name__ == "__main__":
 
         results_devset = dict()
         results_devset["global"] = results
-        results_devset["sent-level"] = report_bin
         results_devset["token-level"] = report_class
 
         # test data
