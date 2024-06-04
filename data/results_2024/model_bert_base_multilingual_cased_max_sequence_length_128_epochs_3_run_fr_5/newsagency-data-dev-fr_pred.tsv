@@ -13167,7 +13167,7 @@ juin	O	O	O	O	O	O	_	_	_	_	_	_
 (	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 1026	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 )	O	O	O	O	O	O	_	_	_	EndOfSentence	_	_
-Victor	O	O	O	O	O	O	_	_	_	_	LED0.00	_
+Victor	B-pers	O	B-pers.ind.articleauthor	O	O	O	_	_	_	_	LED0.00	_
 Wolff	O	O	O	O	O	O	_	_	NoSpaceAfter	_	LED0.00	_
 ,	O	O	O	O	O	O	_	_	_	_	_	_
 notaire	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
@@ -15418,7 +15418,7 @@ l	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 Orangerie	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/EXP-1862-08-16-a-p0002/2725,403,502,74/full/0/default.jpg
 maison	O	O	O	O	O	O	_	_	_	_	_	_
-Reuter	B-org	O	B-org.ent.pressagency.Reuters	O	O	O	_	_	_	_	_	_
+Reuter	O	O	O	O	O	O	_	_	_	_	_	_
 _	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	_	EndOfSentence	_	_
 à	O	O	O	O	O	O	_	_	_	_	_	_
@@ -15744,7 +15744,7 @@ avril	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 L	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 '	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 agence	O	O	O	O	O	O	_	_	_	_	_	_
-Stefani	B-org	O	B-org.ent.pressagency.Stefani	O	O	O	Q1415690	_	_	_	LED0.00	_
+Stefani	O	O	O	O	O	O	Q1415690	_	_	_	LED0.00	_
 reçoit	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 ,	O	O	O	O	O	O	_	_	_	_	_	_
 au	O	O	O	O	O	O	_	_	_	_	_	_
@@ -19309,7 +19309,7 @@ après	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 le	O	O	O	O	O	O	_	_	_	_	_	_
 correspondant	O	O	O	O	O	O	_	_	_	_	_	_
 de	O	O	O	O	O	O	_	_	_	_	_	_
-Reuter	O	O	O	O	O	O	Q130879	_	_	_	LED0.00	_
+Reuter	B-org	O	B-org.ent.pressagency.Reuters	O	O	O	Q130879	_	_	_	LED0.00	_
 à	O	O	O	O	O	O	_	_	_	_	_	_
 Amsterdam	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 ,	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
@@ -20406,7 +20406,7 @@ BERLIN	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 ,	O	O	O	O	O	O	_	_	_	_	_	_
 9	O	O	O	O	O	O	_	_	_	_	_	_
 (	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-Agence	B-org	O	B-org.ent.pressagency.AP	O	O	O	_	_	NoSpaceAfter	_	_	_
+Agence	B-org	O	B-org.ent.pressagency.Extel	O	O	O	_	_	NoSpaceAfter	_	_	_
 )	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	_	EndOfSentence	_	_
 "	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
@@ -20673,7 +20673,7 @@ VARSOVIE	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 ,	O	O	O	O	O	O	_	_	_	_	_	_
 9	O	O	O	O	O	O	_	_	_	_	_	_
 (	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-Pat	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
+Pat	B-org	O	B-org.ent.pressagency.AP	O	O	O	_	_	NoSpaceAfter	_	_	_
 )	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	_	EndOfSentence	_	_
 —	O	O	O	O	O	O	_	_	_	_	_	_
@@ -22235,7 +22235,7 @@ BERLIN	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 ,	O	O	O	O	O	O	_	_	_	_	_	_
 23	O	O	O	O	O	O	_	_	_	_	_	_
 (	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-D	B-org	O	B-org.ent.pressagency.unk	O	O	O	Q1205856	_	NoSpaceAfter	_	LED0.00	_
+D	B-org	O	B-org.ent.pressagency.DNB	O	O	O	Q1205856	_	NoSpaceAfter	_	LED0.00	_
 .	I-org	O	I-org.ent.pressagency.unk	O	O	O	Q1205856	_	_	_	LED0.00	_
 N	I-org	O	I-org.ent.pressagency.unk	O	O	O	Q1205856	_	NoSpaceAfter	_	LED0.00	_
 .	I-org	O	I-org.ent.pressagency.unk	O	O	O	Q1205856	_	_	_	LED0.00	_
@@ -22673,7 +22673,7 @@ BERLIN	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 ,	O	O	O	O	O	O	_	_	_	_	_	_
 23	O	O	O	O	O	O	_	_	_	_	_	_
 (	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-D	B-org	O	B-org.ent.pressagency.unk	O	O	O	Q1205856	_	NoSpaceAfter	_	LED0.00	_
+D	B-pers	O	B-pers.ind.articleauthor	O	O	O	Q1205856	_	NoSpaceAfter	_	LED0.00	_
 .	I-org	O	I-org.ent.pressagency.unk	O	O	O	Q1205856	_	_	_	LED0.00	_
 N	I-org	O	I-org.ent.pressagency.unk	O	O	O	Q1205856	_	NoSpaceAfter	_	LED0.00	_
 .	I-org	O	I-org.ent.pressagency.unk	O	O	O	Q1205856	_	_	_	LED0.00	_
@@ -23784,11 +23784,11 @@ BONN	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 29	O	O	O	O	O	O	_	_	_	_	_	_
 (	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 O	B-org	O	B-org.ent.pressagency.unk	O	O	O	_	_	NoSpaceAfter	_	LED0.00	_
-.	I-org	O	I-org.ent.pressagency.AFP	O	O	O	_	_	_	_	LED0.00	_
+.	I-org	O	I-org.ent.pressagency.unk	O	O	O	_	_	_	_	LED0.00	_
 P	I-org	O	I-org.ent.pressagency.AFP	O	O	O	_	_	NoSpaceAfter	_	LED0.00	_
-.	I-org	O	I-org.ent.pressagency.AFP	O	O	O	_	_	_	_	LED0.00	_
+.	I-org	O	I-org.ent.pressagency.unk	O	O	O	_	_	_	_	LED0.00	_
 A	I-org	O	I-org.ent.pressagency.AFP	O	O	O	_	_	NoSpaceAfter	_	LED0.00	_
-.	I-org	O	I-org.ent.pressagency.AFP	O	O	O	_	_	NoSpaceAfter	_	LED0.00	_
+.	I-org	O	I-org.ent.pressagency.unk	O	O	O	_	_	NoSpaceAfter	_	LED0.00	_
 )	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	_	EndOfSentence	_	_
 —	O	O	O	O	O	O	_	_	_	_	_	_
@@ -26464,7 +26464,7 @@ l	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 ats	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	NoSpaceAfter	_	_	_
 -	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 af	B-org	O	B-org.ent.pressagency.AFP	O	O	O	_	_	_	_	_	_
-p	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
+p	I-org	O	I-org.ent.pressagency.AFP	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/EXP-1999-06-03-a-p0014/1264,3041,216,91/full/0/default.jpg
 Bagdad	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/EXP-1999-06-03-a-p0014/1259,3096,396,91/full/0/default.jpg
@@ -37177,8 +37177,8 @@ Le	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	NoSpaceAfter	EndOfSentence	_	_
 '	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	_	EndOfSentence	_	_
-/	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-.	O	O	O	O	O	O	_	_	_	EndOfSentence	_	_
+/	B-pers	O	B-pers.ind.articleauthor	O	O	O	_	_	NoSpaceAfter	_	_	_
+.	I-pers	O	I-pers.ind.articleauthor	O	O	O	_	_	_	EndOfSentence	_	_
 "	O	O	O	O	O	O	_	_	_	_	_	_
 ;	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/GDL-1938-12-27-a-p0004/102,3895,711,101/full/0/default.jpg
@@ -41476,7 +41476,7 @@ plans	O	O	O	O	O	O	_	_	_	_	_	_
 de	O	O	O	O	O	O	_	_	_	_	_	_
 défense	O	O	O	O	O	O	_	_	_	_	_	_
 (	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-DPC	B-org	O	B-org.ent.pressagency.DPA	O	O	O	_	_	NoSpaceAfter	_	_	_
+DPC	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 )	O	O	O	O	O	O	_	_	_	_	_	_
 de	O	O	O	O	O	O	_	_	_	_	_	_
 l	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
@@ -42416,7 +42416,7 @@ Téléphone	O	O	O	O	O	O	_	_	_	_	_	_
 Corp	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	_	EndOfSentence	_	_
 (	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-NTT	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	NoSpaceAfter	_	_	_
+NTT	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 )	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 ,	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/GDL-1987-11-09-a-p0021/2735,2634,824,60/full/0/default.jpg
@@ -62455,7 +62455,7 @@ directeur	O	O	O	O	O	O	_	_	_	_	_	_
 de	O	O	O	O	O	O	_	_	_	_	_	_
 l	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 '	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-ATS	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	NoSpaceAfter	_	_	_
+ATS	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 ,	O	O	O	O	O	O	_	_	_	_	_	_
 a	O	O	O	O	O	O	_	_	_	_	_	_
 rendu	O	O	O	O	O	O	_	_	_	_	_	_
@@ -75757,7 +75757,7 @@ Importants	O	O	O	O	O	O	_	_	_	_	_	_
 travaux	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/LLE-1966-03-04-a-p0006/1939,4728,838,65/full/0/default.jpg
 (	O	O	O	O	O	O	_	_	_	_	_	_
-P	O	O	O	O	O	O	_	_	_	_	_	_
+P	B-org	O	B-org.ent.pressagency.unk	O	O	O	_	_	_	_	_	_
 )	O	O	O	O	O	O	_	_	_	_	_	_
 —	O	O	O	O	O	O	_	_	_	_	_	_
 On	O	O	O	O	O	O	_	_	_	_	_	_
@@ -82017,7 +82017,7 @@ d	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 sc	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	_	EndOfSentence	_	_
 /	O	O	O	O	O	O	_	_	_	_	_	_
-urs	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
+urs	B-org	O	B-org.ent.pressagency.Havas	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/LSE-1918-11-11-a-p0004/54,1219,431,42/full/0/default.jpg
 .	O	O	O	O	O	O	_	_	_	EndOfSentence	_	_
 ont	O	O	O	O	O	O	_	_	_	_	_	_
@@ -83657,7 +83657,7 @@ Australie	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 # segment_iiif_link = https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2fd9tr05%2fpages%2f3/1109,620,806,51/full/0/default.jpg
 L	O	O	O	O	O	O	_	_	_	_	_	_
 '	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-Agence	O	O	O	O	O	O	_	_	_	_	_	_
+Agence	B-org	O	B-org.ent.pressagency.Reuters	O	O	O	_	_	_	_	_	_
 Reuter	B-org	O	B-org.ent.pressagency.Reuters	O	O	O	_	_	_	_	_	_
 de	O	O	O	O	O	O	_	_	_	_	_	_
 Bombay	O	O	O	O	O	O	_	_	_	_	_	_
