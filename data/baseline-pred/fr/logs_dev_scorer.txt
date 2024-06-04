@@ -1,2 +1,0 @@
-2024-06-04 14:51:01,755 - WARNING - ../../data/baseline-pred/fr/newsagency-data-dev-fr_pred.tsv - Spurious entity label 'ORG.ENT.PRESSAGENCY.PAP' in column ['NE-FINE-LIT'] of system response file: '../../data/baseline-pred/fr/newsagency-data-dev-fr_pred.tsv'.                 As the tag is not part of the gold standard, it is ignored in the evaluation.
-2024-06-04 14:51:01,979 - WARNING - ../../data/baseline-pred/fr/newsagency-data-dev-fr_pred.tsv - No tags in the column '['NE-NESTED']' of the system response file: '../../data/baseline-pred/fr/newsagency-data-dev-fr_pred.tsv'
