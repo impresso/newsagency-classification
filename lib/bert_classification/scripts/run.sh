@@ -30,7 +30,7 @@ if [ $language == "de" ]
 then
     models=("dbmdz/bert-base-german-europeana-cased" "bert-base-cased" "bert-base-german-cased" "bert-base-multilingual-cased" "dbmdz/bert-base-historic-multilingual-cased" "xlm-roberta-base")
     #models=("bert-base-german-cased") # "xlm-roberta-base")
-    log_steps=2336 #584*4
+    log_steps=666 #584*4
 fi
 
 #
