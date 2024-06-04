@@ -273,6 +273,7 @@ def evaluate(args, model, dataset, label_map, prefix="", tokenizer=None):
                 # the second return value is logits
                 sequence_logits = sequence_result.logits
             else:
+                tokens_result = outputs
                 token_logits = outputs.logits
                 sequence_logits = None
 
@@ -337,9 +338,9 @@ def evaluate(args, model, dataset, label_map, prefix="", tokenizer=None):
                 pdb.set_trace()
 
     out_token_preds = np.argmax(out_token_preds, axis=2)
-    out_sequence_preds = np.argmax(out_sequence_preds, axis=1)
 
     if model.do_classif:
+        out_sequence_preds = np.argmax(out_sequence_preds, axis=1)
         logger.info("Evaluation for yes/no classification.")
         report_bin = classification_report(
             out_sequence_ids, out_sequence_preds, digits=4

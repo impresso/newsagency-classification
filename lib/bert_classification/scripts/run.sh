@@ -79,7 +79,7 @@ Block_comment
 
             echo "Running evaluation for model = $model, max_seq_len = $max_seq_len, language = $language and logging_suffix = $logging_suffix"
 
-            python3 HIPE-scorer/clef_evaluation.py \
+            python HIPE-scorer/clef_evaluation.py \
                 --ref ../../data/annotated_data/$language/newsagency-data-dev-$language.tsv \
                 --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-dev-${language}_pred.tsv \
                 --task nerc_fine \
@@ -87,7 +87,7 @@ Block_comment
                 --hipe_edition HIPE-2022 \
                 --log ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/logs_dev_scorer.txt
 
-            python3 HIPE-scorer/clef_evaluation.py \
+            python HIPE-scorer/clef_evaluation.py \
                 --ref ../../data/annotated_data/$language/newsagency-data-test-$language.tsv \
                 --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-test-${language}_pred.tsv \
                 --task nerc_fine \
