@@ -569,8 +569,10 @@ def train(
                     # average well
                     if args.local_rank == -1 and args.evaluate_during_training:
 
-                        results, words_list, preds_list, report_class = evaluate(
-                            args, model, dev_dataset, label_map, tokenizer=tokenizer
+                        results, words_list, preds_list, report_bin, report_class = (
+                            evaluate(
+                                args, model, dev_dataset, label_map, tokenizer=tokenizer
+                            )
                         )
 
                         write_predictions(
@@ -637,7 +639,7 @@ def train(
     if args.local_rank in [-1, 0]:
         tb_writer.close()
 
-    results, words_list, preds_list, report_class = evaluate(
+    results, words_list, preds_list, report_bin, report_class = evaluate(
         args, model, test_dataset, label_map, tokenizer=tokenizer
     )
 
