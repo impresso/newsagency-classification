@@ -273,9 +273,7 @@ if __name__ == "__main__":
             label_map=label_map,
         )
 
-    json.dump(
-        label_map, open(os.path.join(args.output_dir, "data/label_map.json"), "w")
-    )
+        json.dump(label_map, open(os.path.join(args.output_dir, "label_map.json"), "w"))
 
     num_sequence_labels, num_token_labels = test_dataset.get_info()
 

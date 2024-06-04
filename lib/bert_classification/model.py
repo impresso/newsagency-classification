@@ -77,6 +77,9 @@ class ModelForSequenceAndTokenClassification(PreTrainedModel):
     config_class = AutoConfig
     _keys_to_ignore_on_load_missing = [r"position_ids"]
 
+    def do_classif(self):
+        return self.do_classif
+
     def _init_weights(self, module):
         """Initialize the weights"""
         if isinstance(module, nn.Linear):
@@ -262,13 +265,18 @@ def evaluate(args, model, dataset, label_map, prefix="", tokenizer=None):
 
             outputs = model(**inputs)
 
-            sequence_result, tokens_result = outputs[0], outputs[1]
-            token_logits = tokens_result.logits
+            if model.do_classif():
 
-            # the second return value is logits
-            sequence_logits = sequence_result.logits
+                sequence_result, tokens_result = outputs[0], outputs[1]
+                token_logits = tokens_result.logits
 
-            tmp_eval_loss = sequence_result.loss
+                # the second return value is logits
+                sequence_logits = sequence_result.logits
+            else:
+                token_logits = outputs.logits
+                sequence_logits = None
+
+            tmp_eval_loss = tokens_result.loss
 
             if args.n_gpu > 1:
                 # mean() to average on multi-gpu parallel evaluating
@@ -279,10 +287,11 @@ def evaluate(args, model, dataset, label_map, prefix="", tokenizer=None):
 
         if out_token_preds is None:
             out_token_preds = token_logits.detach().cpu().numpy()
-            out_sequence_preds = sequence_logits.detach().cpu().numpy()
-
             out_token_ids = inputs["token_labels"].detach().cpu().numpy()
-            out_sequence_ids = inputs["sequence_labels"].detach().cpu().numpy()
+
+            if model.do_classif():
+                out_sequence_preds = sequence_logits.detach().cpu().numpy()
+                out_sequence_ids = inputs["sequence_labels"].detach().cpu().numpy()
 
             sentences = [
                 tokenizer.convert_ids_to_tokens(input_ids)
@@ -294,18 +303,19 @@ def evaluate(args, model, dataset, label_map, prefix="", tokenizer=None):
             out_token_preds = np.append(
                 out_token_preds, token_logits.detach().cpu().numpy(), axis=0
             )
-            out_sequence_ids = np.append(
-                out_sequence_ids,
-                inputs["sequence_labels"].detach().cpu().numpy(),
-                axis=0,
-            )
-
             out_token_ids = np.append(
                 out_token_ids, inputs["token_labels"].detach().cpu().numpy(), axis=0
             )
-            out_sequence_preds = np.append(
-                out_sequence_preds, sequence_logits.detach().cpu().numpy(), axis=0
-            )
+
+            if model.do_classif():
+                out_sequence_ids = np.append(
+                    out_sequence_ids,
+                    inputs["sequence_labels"].detach().cpu().numpy(),
+                    axis=0,
+                )
+                out_sequence_preds = np.append(
+                    out_sequence_preds, sequence_logits.detach().cpu().numpy(), axis=0
+                )
 
             sentences = np.append(
                 sentences,
@@ -329,10 +339,15 @@ def evaluate(args, model, dataset, label_map, prefix="", tokenizer=None):
     out_token_preds = np.argmax(out_token_preds, axis=2)
     out_sequence_preds = np.argmax(out_sequence_preds, axis=1)
 
-    logger.info("Evaluation for yes/no classification.")
-    report_bin = classification_report(out_sequence_ids, out_sequence_preds, digits=4)
-    logger.info("\n%s", report_bin)
-
+    if model.do_classif():
+        logger.info("Evaluation for yes/no classification.")
+        report_bin = classification_report(
+            out_sequence_ids, out_sequence_preds, digits=4
+        )
+        logger.info("\n%s", report_bin)
+    else:
+        logger.info("No sequence classification was performed.")
+        report_bin = None
     eval_loss = eval_loss / nb_eval_steps
 
     label_map = {label: i for i, label in label_map.items()}
@@ -372,8 +387,6 @@ def evaluate(args, model, dataset, label_map, prefix="", tokenizer=None):
     logger.info("Evaluation for named entity recognition & classification.")
     report_class = seq_classification_report(out_label_list, preds_list, digits=4)
     logger.info("\n%s", report_class)
-
-    logger.info("Evaluation for named entity recognition classification.")
     logger.info("***** Eval results %s *****", prefix)
     for key in sorted(results.keys()):
         logger.info("  %s = %s", key, str(results[key]))
@@ -511,7 +524,6 @@ def train(
         )
         for step, batch in enumerate(epoch_iterator):
 
-            # import pdb;pdb.set_trace()
             # Skip past any already trained steps if resuming training
             if steps_trained_in_current_epoch > 0:
                 steps_trained_in_current_epoch -= 1
@@ -528,9 +540,13 @@ def train(
 
             outputs = model(**inputs)
 
-            sequence_result, tokens_result = outputs[0], outputs[1]
-            # model outputs are always tuple in pytorch-transformers (see doc)
-            loss = sequence_result.loss
+            if model.do_classif():
+                sequence_result, tokens_result = outputs[0], outputs[1]
+                # model outputs are always tuple in pytorch-transformers (see doc)
+                loss = sequence_result.loss
+            else:
+                tokens_result = outputs
+                loss = tokens_result.loss
 
             if args.n_gpu > 1:
                 loss = loss.mean()  # mean() to average on multi-gpu parallel training

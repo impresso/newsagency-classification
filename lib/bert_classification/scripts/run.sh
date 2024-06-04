@@ -61,9 +61,9 @@ Block_comment
 
             CUDA_VISIBLE_DEVICES=1 TOKENIZERS_PARALLELISM=false python3 main.py \
                 --model_name_or_path $model \
-                --train_dataset ../../data/annotated_data/$language/newsagency-data-2-train-$language.tsv \
-                --dev_dataset ../../data/annotated_data/$language/newsagency-data-2-dev-$language.tsv \
-                --test_dataset ../../data/annotated_data/$language/newsagency-data-2-test-$language.tsv \
+                --train_dataset ../../data/annotated_data/$language/newsagency-data-train-$language.tsv \
+                --dev_dataset ../../data/annotated_data/$language/newsagency-data-dev-$language.tsv \
+                --test_dataset ../../data/annotated_data/$language/newsagency-data-test-$language.tsv \
                 --label_map ../../data/annotated_data/label_map.json \
                 --output_dir experiments \
                 --device cuda \
@@ -79,16 +79,16 @@ Block_comment
             echo "Running evaluation for model = $model, max_seq_len = $max_seq_len, language = $language and logging_suffix = $logging_suffix"
 
             python3 HIPE-scorer/clef_evaluation.py \
-                --ref ../../data/annotated_data/$language/newsagency-data-2-dev-$language.tsv \
-                --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-2-dev-${language}_pred.tsv \
+                --ref ../../data/annotated_data/$language/newsagency-data-dev-$language.tsv \
+                --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-dev-${language}_pred.tsv \
                 --task nerc_fine \
                 --outdir ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix} \
                 --hipe_edition HIPE-2022 \
                 --log ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/logs_dev_scorer.txt
 
             python3 HIPE-scorer/clef_evaluation.py \
-                --ref ../../data/annotated_data/$language/newsagency-data-2-test-$language.tsv \
-                --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-2-test-${language}_pred.tsv \
+                --ref ../../data/annotated_data/$language/newsagency-data-test-$language.tsv \
+                --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-test-${language}_pred.tsv \
                 --task nerc_fine \
                 --outdir ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix} \
                 --hipe_edition HIPE-2022 \
