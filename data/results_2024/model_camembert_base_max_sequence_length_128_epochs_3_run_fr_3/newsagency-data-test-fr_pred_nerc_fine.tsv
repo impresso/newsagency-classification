@@ -1,0 +1,69 @@
+System	Evaluation	Label	P	R	F1	F1_std	P_std	R_std	TP	FP	FN
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ALL	0.818	0.643	0.72				81	18	45
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.AFP	0.909	1.0	0.952				20	2	0
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.AG	0	0.0	0				0	0	3
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.ANSA	0	0.0	0				0	0	1
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.AP	0.75	1.0	0.857				6	2	0
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.APA	0	0.0	0				0	0	1
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.DNB	0.5	0.333	0.4				1	1	2
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.DPA	0.0	0.0	0				0	1	2
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.HAVAS	0.867	0.684	0.765				26	4	12
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.KIPA	0.0	0.0	0				0	1	1
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.REUTERS	0.88	0.786	0.83				22	3	6
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.STEFANI	1.0	1.0	1.0				2	0	0
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.UNK	1.0	0.286	0.444				2	0	5
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.WOLFF	0.5	0.5	0.5				2	2	2
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.XINHUA	0	0.0	0				0	0	1
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	PERS.IND.ARTICLEAUTHOR	0.0	0.0	0				0	2	9
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-strict-TIME-ALL-LED-ALL	ALL	0.768	0.603	0.676				76	23	50
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.AFP	0.909	1.0	0.952				20	2	0
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.AG	0	0.0	0				0	0	3
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.ANSA	0	0.0	0				0	0	1
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.AP	0.75	1.0	0.857				6	2	0
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.APA	0	0.0	0				0	0	1
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.DNB	0.5	0.333	0.4				1	1	2
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.DPA	0.0	0.0	0				0	1	2
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.HAVAS	0.767	0.605	0.676				23	7	15
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.KIPA	0.0	0.0	0				0	1	1
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.REUTERS	0.88	0.786	0.83				22	3	6
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.STEFANI	1.0	1.0	1.0				2	0	0
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.UNK	0.0	0.0	0				0	2	7
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.WOLFF	0.5	0.5	0.5				2	2	2
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.XINHUA	0	0.0	0				0	0	1
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-micro-strict-TIME-ALL-LED-ALL	PERS.IND.ARTICLEAUTHOR	0.0	0.0	0				0	2	9
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ALL	0.841	0.66	0.875	0.241	0.325	0.434			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.AFP	0.9	1.0	0.976	0.086	0.271	0.0			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.AG		0.0				0.0			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.ANSA		0.0				0.0			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.AP	0.778	1.0	0.96	0.08	0.369	0.0			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.APA		0.0				0.0			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.DNB	0.5	0.5	0.5	0.5	0.5	0.5			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.DPA	0.0	0.0	0.0	0.0	0.0	0.0			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.HAVAS	0.853	0.716	0.928	0.152	0.333	0.406			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.KIPA	0.0	0.0	0.0	0.0	0.0	0.0			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.REUTERS	0.864	0.803	0.954	0.108	0.343	0.354			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.STEFANI	1.0	1.0	1.0	0.0	0.0	0.0			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.UNK	1.0	0.2	1.0	0.0	0.0	0.4			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.WOLFF	0.333	0.333	1.0	0.0	0.471	0.471			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.XINHUA		0.0				0.0			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	PERS.IND.ARTICLEAUTHOR	0.0	0.0			0.0	0.0			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ALL	0.782	0.611	0.811	0.317	0.376	0.448			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.AFP	0.9	1.0	0.976	0.086	0.271	0.0			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.AG		0.0				0.0			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.ANSA		0.0				0.0			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.AP	0.778	1.0	0.96	0.08	0.369	0.0			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.APA		0.0				0.0			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.DNB	0.5	0.5	0.5	0.5	0.5	0.5			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.DPA	0.0	0.0	0.0	0.0	0.0	0.0			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.HAVAS	0.676	0.558	0.728	0.393	0.452	0.456			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.KIPA	0.0	0.0	0.0	0.0	0.0	0.0			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.REUTERS	0.864	0.803	0.954	0.108	0.343	0.354			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.STEFANI	1.0	1.0	1.0	0.0	0.0	0.0			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.UNK	0.0	0.0	0.0	0.0	0.0	0.0			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.WOLFF	0.333	0.333	1.0	0.0	0.471	0.471			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.XINHUA		0.0				0.0			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-FINE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	PERS.IND.ARTICLEAUTHOR	0.0	0.0			0.0	0.0			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-NESTED-micro-fuzzy-TIME-ALL-LED-ALL	ALL	0	0	0				0	0	0
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-NESTED-micro-strict-TIME-ALL-LED-ALL	ALL	0	0	0				0	0	0
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-NESTED-macro_doc-fuzzy-TIME-ALL-LED-ALL	ALL									
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-NESTED-macro_doc-strict-TIME-ALL-LED-ALL	ALL									

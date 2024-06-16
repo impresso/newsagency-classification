@@ -1,0 +1,13 @@
+System	Evaluation	Label	P	R	F1	F1_std	P_std	R_std	TP	FP	FN
+./experiments/model_xlm_roberta_base_max_sequence_length_256_epochs_3_run_de_5/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ALL	0.556	0.769	0.645				20	16	6
+./experiments/model_xlm_roberta_base_max_sequence_length_256_epochs_3_run_de_5/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG	0.556	0.87	0.678				20	16	3
+./experiments/model_xlm_roberta_base_max_sequence_length_256_epochs_3_run_de_5/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	PERS	0	0.0	0				0	0	3
+./experiments/model_xlm_roberta_base_max_sequence_length_256_epochs_3_run_de_5/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-micro-strict-TIME-ALL-LED-ALL	ALL	0.528	0.731	0.613				19	17	7
+./experiments/model_xlm_roberta_base_max_sequence_length_256_epochs_3_run_de_5/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG	0.528	0.826	0.644				19	17	4
+./experiments/model_xlm_roberta_base_max_sequence_length_256_epochs_3_run_de_5/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-micro-strict-TIME-ALL-LED-ALL	PERS	0	0.0	0				0	0	3
+./experiments/model_xlm_roberta_base_max_sequence_length_256_epochs_3_run_de_5/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ALL	0.765	0.729	0.933	0.125	0.424	0.39			
+./experiments/model_xlm_roberta_base_max_sequence_length_256_epochs_3_run_de_5/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG	0.765	0.833	0.974	0.089	0.424	0.35			
+./experiments/model_xlm_roberta_base_max_sequence_length_256_epochs_3_run_de_5/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	PERS		0.0				0.0			
+./experiments/model_xlm_roberta_base_max_sequence_length_256_epochs_3_run_de_5/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ALL	0.706	0.667	0.856	0.277	0.456	0.421			
+./experiments/model_xlm_roberta_base_max_sequence_length_256_epochs_3_run_de_5/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG	0.706	0.767	0.897	0.274	0.456	0.403			
+./experiments/model_xlm_roberta_base_max_sequence_length_256_epochs_3_run_de_5/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	PERS		0.0				0.0			
