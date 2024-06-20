@@ -45,15 +45,15 @@ Block_comment
             #<<Block_comment 
             CUDA_VISIBLE_DEVICES=1 TOKENIZERS_PARALLELISM=false python main.py \
                 --model_name_or_path $model \
-                --train_dataset ../../data/annotated_data/de/newsagency-data-train-de.tsv \
+                --train_dataset ../../data/annotated_data/newsagency-data-train-all-fr.tsv \
                 --dev_dataset ../../data/annotated_data/de/newsagency-data-dev-de.tsv \
                 --test_dataset ../../data/annotated_data/de/newsagency-data-test-de.tsv \
                 --label_map ../../data/annotated_data/label_map.json \
                 --output_dir experiments \
                 --device cuda \
                 --train_batch_size 16 \
-                --logging_steps 666 \
-                --save_steps 666 \
+                --logging_steps 2143 \
+                --save_steps 2143 \
                 --max_sequence_len $max_seq_len \
                 --logging_suffix $logging_suffix \
                 --evaluate_during_training \
@@ -65,21 +65,21 @@ Block_comment
             #evaluation for French dataset
             CUDA_VISIBLE_DEVICES=1 TOKENIZERS_PARALLELISM=false python main.py \
                 --model_name_or_path $model \
-                --train_dataset ../../data/annotated_data/fr/newsagency-data-train-fr.tsv \
+                --train_dataset ../../data/annotated_data/newsagency-data-train-all-fr.tsv \
                 --dev_dataset ../../data/annotated_data/fr/newsagency-data-dev-fr.tsv \
                 --test_dataset ../../data/annotated_data/fr/newsagency-data-test-fr.tsv \
                 --label_map ../../data/annotated_data/label_map.json \
                 --output_dir experiments \
                 --device cuda \
                 --train_batch_size 16 \
-                --logging_steps 1477 \
-                --save_steps 1477 \
+                --logging_steps 2143 \
+                --save_steps 2143 \
                 --max_sequence_len $max_seq_len \
                 --logging_suffix $logging_suffix \
                 --evaluate_during_training \
                 --checkpoint ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/$checkpoint \
                 --seed $run \
-                --do_train --do_eval
+                --do_eval
 
             #evaluation on German dataset
             # nerc-fine
@@ -109,7 +109,7 @@ Block_comment
                 --log ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/logs_dev_scorer.txt
 
             python HIPE-scorer/clef_evaluation.py \
-                --ref ../../data/annotated_data/newsagency-data-test-fr.tsv \
+                --ref ../../data/annotated_data/fr/newsagency-data-test-fr.tsv \
                 --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-test-fr_pred.tsv \
                 --task nerc_fine \
                 --outdir ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix} \
@@ -144,7 +144,7 @@ Block_comment
                 --log ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/logs_dev_scorer.txt
 
             python HIPE-scorer/clef_evaluation.py \
-                --ref ../../data/annotated_data/newsagency-data-test-fr.tsv \
+                --ref ../../data/annotated_data/fr/newsagency-data-test-fr.tsv \
                 --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-test-fr_pred.tsv \
                 --task nerc_coarse \
                 --outdir ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix} \
