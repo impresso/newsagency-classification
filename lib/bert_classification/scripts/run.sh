@@ -60,7 +60,7 @@ Block_comment
 
             echo "Running experiment with model = $model, max_seq_len = $max_seq_len, language = $language and logging_suffix = $logging_suffix"
 
-            CUDA_VISIBLE_DEVICES=$gpu TOKENIZERS_PARALLELISM=false python3 main.py \
+            CUDA_VISIBLE_DEVICES=$gpu TOKENIZERS_PARALLELISM=false python main.py \
                 --model_name_or_path $model \
                 --train_dataset ../../data/annotated_data/$language/newsagency-data-train-$language.tsv \
                 --dev_dataset ../../data/annotated_data/$language/newsagency-data-dev-$language.tsv \

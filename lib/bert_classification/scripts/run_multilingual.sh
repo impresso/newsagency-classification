@@ -37,50 +37,49 @@ Block_comment
         # Loop over the logging_suffix_values array
         for run in "${logging_suffix_values[@]}"
         do
-            echo "Running experiment with model = $model, max_seq_len = $max_seq_len, language = $language and logging_suffix = $logging_suffix"
 
             logging_suffix=_${language}_$run
+            echo "Running experiment with model = $model, max_seq_len = $max_seq_len, language = $language and logging_suffix = $logging_suffix"
 
             #if only want to test on fr dataset, comment this block
             #<<Block_comment 
-            CUDA_VISIBLE_DEVICES=0 TOKENIZERS_PARALLELISM=false python3 main.py \
+            CUDA_VISIBLE_DEVICES=1 TOKENIZERS_PARALLELISM=false python main.py \
                 --model_name_or_path $model \
-                --train_dataset ./../data/$language/newsagency-data-2-train-$language.tsv \
-                --dev_dataset ./../data/de/newsagency-data-2-dev-de.tsv \
-                --test_dataset ./../data/de/newsagency-data-2-test-de.tsv \
-                --label_map ./../data/label_map.json \
+                --train_dataset ../../data/annotated_data/de/newsagency-data-train-de.tsv \
+                --dev_dataset ../../data/annotated_data/de/newsagency-data-dev-de.tsv \
+                --test_dataset ../../data/annotated_data/de/newsagency-data-test-de.tsv \
+                --label_map ../../data/annotated_data/label_map.json \
                 --output_dir experiments \
                 --device cuda \
-                --train_batch_size 2 \
-                --logging_steps $log_steps \
-                --save_steps $log_steps \
+                --train_batch_size 16 \
+                --logging_steps 666 \
+                --save_steps 666 \
                 --max_sequence_len $max_seq_len \
                 --logging_suffix $logging_suffix \
                 --evaluate_during_training \
                 --seed $run \
-                --do_train
-#Block_comment
+                --do_train --do_eval
 
             echo "Running evaluation for model = $model, max_seq_len = $max_seq_len, language = $language and logging_suffix = $logging_suffix"
 
             #evaluation for French dataset
-            CUDA_VISIBLE_DEVICES=0 TOKENIZERS_PARALLELISM=false python3 main.py \
+            CUDA_VISIBLE_DEVICES=1 TOKENIZERS_PARALLELISM=false python main.py \
                 --model_name_or_path $model \
-                --train_dataset ./../data/$language/newsagency-data-2-train-$language.tsv \
-                --dev_dataset ./../data/fr/newsagency-data-2-dev-fr.tsv \
-                --test_dataset ./../data/fr/newsagency-data-2-test-fr.tsv \
-                --label_map ./../data/label_map.json \
+                --train_dataset ../../data/annotated_data/fr/newsagency-data-train-fr.tsv \
+                --dev_dataset ../../data/annotated_data/fr/newsagency-data-dev-fr.tsv \
+                --test_dataset ../../data/annotated_data/fr/newsagency-data-test-fr.tsv \
+                --label_map ../../data/annotated_data/label_map.json \
                 --output_dir experiments \
                 --device cuda \
-                --train_batch_size 2 \
-                --logging_steps $log_steps \
-                --save_steps $log_steps \
+                --train_batch_size 16 \
+                --logging_steps 1477 \
+                --save_steps 1477 \
                 --max_sequence_len $max_seq_len \
                 --logging_suffix $logging_suffix \
                 --evaluate_during_training \
                 --checkpoint ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/$checkpoint \
-                --seed $run
-                #--do_train
+                --seed $run \
+                --do_train --do_eval
 
             #evaluation on German dataset
             # nerc-fine
@@ -151,6 +150,7 @@ Block_comment
                 --outdir ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix} \
                 --hipe_edition HIPE-2022 \
                 --log ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/logs_test_scorer.txt
+
 
         done
     done
