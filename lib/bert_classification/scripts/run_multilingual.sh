@@ -33,7 +33,7 @@ do
             checkpoint="checkpoint-6153"
         fi
 Block_comment
-
+        checkpoint="checkpoint-6429"
         # Loop over the logging_suffix_values array
         for run in "${logging_suffix_values[@]}"
         do
