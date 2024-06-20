@@ -83,38 +83,75 @@ Block_comment
                 #--do_train
 
             #evaluation on German dataset
-            python3 HIPE-scorer/clef_evaluation.py \
-                --ref ./../data/de/newsagency-data-2-dev-de.tsv \
-                --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-2-dev-de_pred.tsv \
+            # nerc-fine
+            python HIPE-scorer/clef_evaluation.py \
+                --ref ../../data/annotated_data/de/newsagency-data-dev-de.tsv \
+                --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-dev-de_pred.tsv \
                 --task nerc_fine \
                 --outdir ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix} \
                 --hipe_edition HIPE-2022 \
                 --log ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/logs_dev_scorer.txt
 
-            python3 HIPE-scorer/clef_evaluation.py \
-                --ref ./../data/de/newsagency-data-2-test-de.tsv \
-                --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-2-test-de_pred.tsv \
+            python HIPE-scorer/clef_evaluation.py \
+                --ref ../../data/annotated_data/de/newsagency-data-test-de.tsv \
+                --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-test-de_pred.tsv \
                 --task nerc_fine \
                 --outdir ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix} \
                 --hipe_edition HIPE-2022 \
                 --log ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/logs_test_scorer.txt
 
             #evaluation on French dataset
-            python3 HIPE-scorer/clef_evaluation.py \
-                --ref ./../data/fr/newsagency-data-2-dev-fr.tsv \
-                --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-2-dev-fr_pred.tsv \
+            python HIPE-scorer/clef_evaluation.py \
+                --ref ../../data/annotated_data/fr/newsagency-data-dev-fr.tsv \
+                --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-dev-fr_pred.tsv \
                 --task nerc_fine \
                 --outdir ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix} \
                 --hipe_edition HIPE-2022 \
                 --log ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/logs_dev_scorer.txt
 
-            python3 HIPE-scorer/clef_evaluation.py \
-                --ref ./../data/fr/newsagency-data-2-test-fr.tsv \
-                --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-2-test-fr_pred.tsv \
+            python HIPE-scorer/clef_evaluation.py \
+                --ref ../../data/annotated_data/newsagency-data-test-fr.tsv \
+                --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-test-fr_pred.tsv \
                 --task nerc_fine \
                 --outdir ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix} \
                 --hipe_edition HIPE-2022 \
                 --log ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/logs_test_scorer.txt
+
+            #evaluation on German dataset
+            # nerc-coarse
+            python HIPE-scorer/clef_evaluation.py \
+                --ref ../../data/annotated_data/de/newsagency-data-dev-de.tsv \
+                --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-dev-de_pred.tsv \
+                --task nerc_coarse \
+                --outdir ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix} \
+                --hipe_edition HIPE-2022 \
+                --log ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/logs_dev_scorer.txt
+
+            python HIPE-scorer/clef_evaluation.py \
+                --ref ../../data/annotated_data/de/newsagency-data-test-de.tsv \
+                --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-test-de_pred.tsv \
+                --task nerc_coarse \
+                --outdir ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix} \
+                --hipe_edition HIPE-2022 \
+                --log ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/logs_test_scorer.txt
+
+            #evaluation on French dataset
+            python HIPE-scorer/clef_evaluation.py \
+                --ref ../../data/annotated_data/fr/newsagency-data-dev-fr.tsv \
+                --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-dev-fr_pred.tsv \
+                --task nerc_coarse \
+                --outdir ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix} \
+                --hipe_edition HIPE-2022 \
+                --log ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/logs_dev_scorer.txt
+
+            python HIPE-scorer/clef_evaluation.py \
+                --ref ../../data/annotated_data/newsagency-data-test-fr.tsv \
+                --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-test-fr_pred.tsv \
+                --task nerc_coarse \
+                --outdir ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix} \
+                --hipe_edition HIPE-2022 \
+                --log ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/logs_test_scorer.txt
+
         done
     done
 done
