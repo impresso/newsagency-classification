@@ -1,0 +1,13 @@
+System	Evaluation	Label	P	R	F1	F1_std	P_std	R_std	TP	FP	FN
+./experiments/model_bert_base_multilingual_cased_max_sequence_length_256_epochs_3_run_multilingual_3/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ALL	0.69	0.769	0.727				20	9	6
+./experiments/model_bert_base_multilingual_cased_max_sequence_length_256_epochs_3_run_multilingual_3/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG	0.769	0.87	0.816				20	6	3
+./experiments/model_bert_base_multilingual_cased_max_sequence_length_256_epochs_3_run_multilingual_3/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	PERS	0.0	0.0	0				0	3	3
+./experiments/model_bert_base_multilingual_cased_max_sequence_length_256_epochs_3_run_multilingual_3/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-micro-strict-TIME-ALL-LED-ALL	ALL	0.69	0.769	0.727				20	9	6
+./experiments/model_bert_base_multilingual_cased_max_sequence_length_256_epochs_3_run_multilingual_3/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG	0.769	0.87	0.816				20	6	3
+./experiments/model_bert_base_multilingual_cased_max_sequence_length_256_epochs_3_run_multilingual_3/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-micro-strict-TIME-ALL-LED-ALL	PERS	0.0	0.0	0				0	3	3
+./experiments/model_bert_base_multilingual_cased_max_sequence_length_256_epochs_3_run_multilingual_3/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ALL	0.781	0.729	0.908	0.142	0.394	0.39			
+./experiments/model_bert_base_multilingual_cased_max_sequence_length_256_epochs_3_run_multilingual_3/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG	0.833	0.833	0.949	0.12	0.35	0.35			
+./experiments/model_bert_base_multilingual_cased_max_sequence_length_256_epochs_3_run_multilingual_3/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	PERS	0.0	0.0			0.0	0.0			
+./experiments/model_bert_base_multilingual_cased_max_sequence_length_256_epochs_3_run_multilingual_3/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ALL	0.781	0.729	0.908	0.142	0.394	0.39			
+./experiments/model_bert_base_multilingual_cased_max_sequence_length_256_epochs_3_run_multilingual_3/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG	0.833	0.833	0.949	0.12	0.35	0.35			
+./experiments/model_bert_base_multilingual_cased_max_sequence_length_256_epochs_3_run_multilingual_3/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	PERS	0.0	0.0			0.0	0.0			

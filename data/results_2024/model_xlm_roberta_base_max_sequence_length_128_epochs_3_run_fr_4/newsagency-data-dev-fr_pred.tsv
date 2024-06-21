@@ -13168,7 +13168,7 @@ juin	O	O	O	O	O	O	_	_	_	_	_	_
 1026	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 )	O	O	O	O	O	O	_	_	_	EndOfSentence	_	_
 Victor	O	O	O	O	O	O	_	_	_	_	LED0.00	_
-Wolff	O	O	O	O	O	O	_	_	NoSpaceAfter	_	LED0.00	_
+Wolff	B-org	O	B-org.ent.pressagency.Wolff	O	O	O	_	_	NoSpaceAfter	_	LED0.00	_
 ,	O	O	O	O	O	O	_	_	_	_	_	_
 notaire	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	EndOfLine	EndOfSentence	_	_
@@ -14247,7 +14247,7 @@ bon	O	O	O	O	O	O	_	_	_	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/EXP-1849-02-22-a-p0003/545,2357,432,46/full/0/default.jpg
 S	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 '	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-atlresser	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	_	_	_	_
+atlresser	O	O	O	O	O	O	_	_	_	_	_	_
 à	O	O	O	O	O	O	_	_	_	_	_	_
 elle	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 -	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
@@ -14889,7 +14889,7 @@ galelas	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/EXP-1849-02-22-a-p0003/1039,1289,410,46/full/0/default.jpg
 S	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 '	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-atlresser	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	_	_	_	_
+atlresser	O	O	O	O	O	O	_	_	_	_	_	_
 à	O	O	O	O	O	O	_	_	_	_	_	_
 MM	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	_	EndOfSentence	_	_
@@ -14979,7 +14979,7 @@ mansarde	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	_	EndOfSentence	_	_
 S	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 '	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-atlresser	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	_	_	_	_
+atlresser	O	O	O	O	O	O	_	_	_	_	_	_
 au	O	O	O	O	O	O	_	_	_	_	_	_
 propriétaire	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/EXP-1849-02-22-a-p0003/1017,1495,433,46/full/0/default.jpg
@@ -20266,7 +20266,7 @@ OSLO	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 ,	O	O	O	O	O	O	_	_	_	_	_	_
 14	O	O	O	O	O	O	_	_	_	_	_	_
 (	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-Wolff	O	O	O	O	O	O	Q552226	_	NoSpaceAfter	_	LED0.00	_
+Wolff	B-org	O	B-org.ent.pressagency.Wolff	O	O	O	Q552226	_	NoSpaceAfter	_	LED0.00	_
 )	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	_	EndOfSentence	_	_
 —	O	O	O	O	O	O	_	_	_	_	_	_
@@ -21895,7 +21895,7 @@ ALGER	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 ,	O	O	O	O	O	O	_	_	_	_	_	_
 23	O	O	O	O	O	O	_	_	_	_	_	_
 (	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-Reuter	O	O	O	O	O	O	Q130879	_	NoSpaceAfter	_	LED0.00	_
+Reuter	B-org	O	B-org.ent.pressagency.Reuters	O	O	O	Q130879	_	NoSpaceAfter	_	LED0.00	_
 )	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	_	EndOfSentence	_	_
 —	O	O	O	O	O	O	_	_	_	_	_	_
@@ -23066,7 +23066,7 @@ NAPLES	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 ,	O	O	O	O	O	O	_	_	_	_	_	_
 23	O	O	O	O	O	O	_	_	_	_	_	_
 (	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-Reuter	O	O	O	O	O	O	Q130879	_	NoSpaceAfter	_	LED0.00	_
+Reuter	B-org	O	B-org.ent.pressagency.Reuters	O	O	O	Q130879	_	NoSpaceAfter	_	LED0.00	_
 )	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	_	EndOfSentence	_	_
 —	O	O	O	O	O	O	_	_	_	_	_	_
@@ -23617,7 +23617,7 @@ LONDRES	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 ,	O	O	O	O	O	O	_	_	_	_	_	_
 29	O	O	O	O	O	O	_	_	_	_	_	_
 (	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-Reuter	O	O	O	O	O	O	Q130879	_	NoSpaceAfter	_	LED0.00	_
+Reuter	B-org	O	B-org.ent.pressagency.Reuters	O	O	O	Q130879	_	NoSpaceAfter	_	LED0.00	_
 )	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	_	EndOfSentence	_	_
 —	O	O	O	O	O	O	_	_	_	_	_	_
@@ -23942,7 +23942,7 @@ LONDRES	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 ,	O	O	O	O	O	O	_	_	_	_	_	_
 9	O	O	O	O	O	O	_	_	_	_	_	_
 (	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-Reuter	O	O	O	O	O	O	Q130879	_	NoSpaceAfter	_	LED0.00	_
+Reuter	B-org	O	B-org.ent.pressagency.Reuters	O	O	O	Q130879	_	NoSpaceAfter	_	LED0.00	_
 )	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	_	EndOfSentence	_	_
 —	O	O	O	O	O	O	_	_	_	_	_	_
@@ -25630,7 +25630,7 @@ cantonale	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/EXP-1980-06-23-a-p0019/207,1198,189,74/full/0/default.jpg
 VALAIS	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/EXP-1980-06-23-a-p0019/36,1307,253,39/full/0/default.jpg
-SION	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	_	_	_	_
+SION	O	O	O	O	O	O	_	_	_	_	_	_
 (	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 ATS	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	Q430109	_	NoSpaceAfter	_	LED0.00	_
 )	O	O	O	O	O	O	_	_	_	_	_	_
@@ -26036,7 +26036,7 @@ LAUSANNE	O	O	O	O	O	O	_	_	_	_	_	_
 (	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 ATS	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	Q430109	_	NoSpaceAfter	_	LED0.00	_
 )	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-.	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	NoSpaceAfter	EndOfSentence	_	_
+.	O	O	O	O	O	O	_	_	NoSpaceAfter	EndOfSentence	_	_
 -	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 C	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 '	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
@@ -29357,7 +29357,7 @@ l	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 '	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 agence	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/GDL-1891-09-23-a-p0002/182,3447,855,60/full/0/default.jpg
-Havas	B-org	O	B-org.ent.pressagency.Havas	O	O	O	Q2826560	_	_	_	LED0.00	_
+Havas	O	O	O	O	O	O	Q2826560	_	_	_	LED0.00	_
 dit	O	O	O	O	O	O	_	_	_	_	_	_
 que	O	O	O	O	O	O	_	_	_	_	_	_
 le	O	O	O	O	O	O	_	_	_	_	_	_
@@ -32603,7 +32603,7 @@ la	O	O	O	O	O	O	_	_	_	_	_	_
 —	O	O	O	O	O	O	_	_	_	_	_	_
 P	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	_	_	_	_
-Q	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
+Q	I-pers	O	I-pers.ind.articleauthor	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	_	_	_	_
 le	O	O	O	O	O	O	_	_	_	_	_	_
 13	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
@@ -38361,7 +38361,7 @@ décembre	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/GDL-1938-12-27-a-p0004/925,3203,709,55/full/0/default.jpg
 (	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-Hayas	B-org	O	B-org.ent.pressagency.Havas	O	O	O	_	_	NoSpaceAfter	_	_	_
+Hayas	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 )	O	O	O	O	O	O	_	_	_	_	_	_
 —	O	O	O	O	O	O	_	_	_	_	_	_
@@ -40700,10 +40700,10 @@ Corp	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 Union	O	O	O	O	O	O	_	_	_	_	_	_
 Carbide	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/GDL-1956-09-15-a-p0008/4304,3372,230,49/full/0/default.jpg
-United	O	O	O	O	O	O	_	_	_	_	_	_
+United	B-org	O	B-org.ent.pressagency.UP-UPI	O	O	O	_	_	_	_	_	_
 Aircraft	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/GDL-1956-09-15-a-p0008/4306,3405,250,47/full/0/default.jpg
-United	O	O	O	O	O	O	_	_	_	_	_	_
+United	B-org	O	B-org.ent.pressagency.UP-UPI	O	O	O	_	_	_	_	_	_
 St	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	_	EndOfSentence	_	_
 Steel	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
@@ -41004,7 +41004,7 @@ UNIS	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/GDL-1964-02-06-a-p0012/2880,5698,632,52/full/0/default.jpg
 WASHINGTON	O	O	O	O	O	O	_	_	_	_	_	_
 (	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-Afp	O	O	O	O	O	O	Q40464	_	NoSpaceAfter	_	LED0.00	_
+Afp	B-org	O	B-org.ent.pressagency.AFP	O	O	O	Q40464	_	NoSpaceAfter	_	LED0.00	_
 -	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 Ap	B-org	O	B-org.ent.pressagency.AP	O	O	O	Q40469	_	NoSpaceAfter	_	LED0.00	_
 )	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
@@ -42259,7 +42259,7 @@ Le	O	O	O	O	O	O	_	_	_	_	_	_
 Conseil	O	O	O	O	O	O	_	_	_	_	_	_
 d	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 '	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-Etat	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	_	_	_	_
+Etat	O	O	O	O	O	O	_	_	_	_	_	_
 reçu	O	O	O	O	O	O	_	_	_	_	_	_
 en	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/GDL-1987-09-25-a-p0017/2742,3972,238,64/full/0/default.jpg
@@ -43005,7 +43005,7 @@ le	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 cabinet	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	EndOfLine	EndOfSentence	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/IMP-1898-06-24-a-p0003/533,612,346,43/full/0/default.jpg
-Agence	O	O	O	O	O	O	Q430109	_	_	_	LED0.00	_
+Agence	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	Q430109	_	_	_	LED0.00	_
 télégraphique	I-org	O	I-org.ent.pressagency.ATS-SDA	O	O	O	Q430109	_	_	_	LED0.00	_
 suisse	I-org	O	I-org.ent.pressagency.ATS-SDA	O	O	O	Q430109	_	EndOfLine	_	LED0.00	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/IMP-1898-06-24-a-p0003/514,637,403,52/full/0/default.jpg
@@ -44517,8 +44517,8 @@ de	O	O	O	O	O	O	_	_	_	_	_	_
 l	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 '	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 Agence	O	O	O	O	O	O	Q430109	_	_	_	LED0.00	_
-télégraphique	O	O	O	O	O	O	Q430109	_	_	_	LED0.00	_
-suisse	O	O	O	O	O	O	Q430109	_	EndOfLine	_	LED0.00	_
+télégraphique	I-org	O	I-org.ent.pressagency.ATS-SDA	O	O	O	Q430109	_	_	_	LED0.00	_
+suisse	I-org	O	I-org.ent.pressagency.ATS-SDA	O	O	O	Q430109	_	EndOfLine	_	LED0.00	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/IMP-1908-08-07-a-p0004/1196,1022,75,52/full/0/default.jpg
 6	O	O	O	O	O	O	_	_	_	_	_	_
 AOUT	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
@@ -45701,7 +45701,7 @@ LONDRES	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 12	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	_	EndOfSentence	_	_
 —	O	O	O	O	O	O	_	_	_	_	_	_
-Reuter	O	O	O	O	O	O	Q130879	_	_	_	LED0.00	_
+Reuter	B-org	O	B-org.ent.pressagency.Reuters	O	O	O	Q130879	_	_	_	LED0.00	_
 —	O	O	O	O	O	O	_	_	_	_	_	_
 Dans	O	O	O	O	O	O	_	_	_	_	_	_
 une	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
@@ -47045,9 +47045,9 @@ paix	O	O	O	O	O	O	_	_	_	_	_	_
 [	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 (	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 ATS	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	Q430109	_	NoSpaceAfter	_	LED0.00	_
-,	O	O	O	O	O	O	_	_	_	_	_	_
+,	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	_	_	_	_
 Impar	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-.	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
+.	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	NoSpaceAfter	_	_	_
 )	O	O	O	O	O	O	_	_	EndOfLine	EndOfSentence	_	_
 
 # language = fr
@@ -51122,7 +51122,7 @@ M	O	O	O	O	O	O	_	_	_	_	_	_
 KS	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/JDG-1858-09-14-a-p0004/1943,1005,472,60/full/0/default.jpg
 aux	O	O	O	O	O	O	_	_	_	_	_	_
-Bains	B-org	O	B-org.ent.pressagency.Havas	O	O	O	_	_	_	_	_	_
+Bains	O	O	O	O	O	O	_	_	_	_	_	_
 de	O	O	O	O	O	O	_	_	_	_	_	_
 Loëche	O	O	O	O	O	O	_	_	_	_	_	_
 (	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
@@ -52872,7 +52872,7 @@ mars	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 —	O	O	O	O	O	O	_	_	_	_	_	_
 La	O	O	O	O	O	O	_	_	_	_	_	_
 Correspondance	O	O	O	O	O	O	_	_	_	_	_	_
-Havai	B-org	O	B-org.ent.pressagency.Havas	O	O	O	_	_	NoSpaceAfter	_	_	_
+Havai	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 ,	O	O	O	O	O	O	_	_	_	_	_	_
 dans	O	O	O	O	O	O	_	_	_	_	_	_
 une	O	O	O	O	O	O	_	_	_	_	_	_
@@ -55672,7 +55672,7 @@ f	O	O	O	O	O	O	_	_	_	_	_	_
 .	O	O	O	O	O	O	_	_	_	EndOfSentence	_	_
 i	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 -	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-ap	B-org	O	B-org.ent.pressagency.AP	O	O	O	_	_	_	_	_	_
+ap	O	O	O	O	O	O	_	_	_	_	_	_
 "	O	O	O	O	O	O	_	_	_	_	_	_
 appartement	O	O	O	O	O	O	_	_	_	_	_	_
 de	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
@@ -56277,7 +56277,7 @@ offres	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 gnées	O	O	O	O	O	O	_	_	_	_	_	_
 do	O	O	O	O	O	O	_	_	_	_	_	_
 certifl	O	O	O	O	O	O	_	_	_	_	_	_
-ats	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	_	_	_	_
+ats	O	O	O	O	O	O	_	_	_	_	_	_
 d	O	O	O	O	O	O	_	_	_	_	_	_
 études	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 ,	O	O	O	O	O	O	_	_	_	_	_	_
@@ -61258,7 +61258,7 @@ U	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	_	EndOfSentence	_	_
 R	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	_	_	_	_
-S	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
+S	I-pers	O	I-pers.ind.articleauthor	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	_	_	_	_
 S	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	_	_	_	_
@@ -62148,7 +62148,7 @@ OAS	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 ,	O	O	O	O	O	O	_	_	_	_	_	_
 crée	O	O	O	O	O	O	_	_	_	_	_	_
 une	O	O	O	O	O	O	_	_	_	_	_	_
-atmosphère	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	_	_	_	_
+atmosphère	O	O	O	O	O	O	_	_	_	_	_	_
 lourde	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	EndOfLine	EndOfSentence	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/JDG-1961-10-04-a-p0001/862,1174,604,44/full/0/default.jpg
@@ -62369,12 +62369,12 @@ Béziers	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	_	EndOfSentence	_	_
 —	O	O	O	O	O	O	_	_	_	_	_	_
 (	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-A	O	O	O	O	O	O	Q40464	_	NoSpaceAfter	_	LED0.00	_
-.	O	O	O	O	O	O	Q40464	_	_	_	LED0.00	_
+A	B-org	O	B-org.ent.pressagency.AFP	O	O	O	Q40464	_	NoSpaceAfter	_	LED0.00	_
+.	I-org	O	I-org.ent.pressagency.AFP	O	O	O	Q40464	_	_	_	LED0.00	_
 F	I-org	O	I-org.ent.pressagency.AFP	O	O	O	Q40464	_	NoSpaceAfter	_	LED0.00	_
-.	O	O	O	O	O	O	Q40464	_	_	_	LED0.00	_
-P	O	O	O	O	O	O	Q40464	_	NoSpaceAfter	_	LED0.00	_
-.	O	O	O	O	O	O	Q40464	_	NoSpaceAfter	_	LED0.00	_
+.	I-org	O	I-org.ent.pressagency.AFP	O	O	O	Q40464	_	_	_	LED0.00	_
+P	I-org	O	I-org.ent.pressagency.AFP	O	O	O	Q40464	_	NoSpaceAfter	_	LED0.00	_
+.	I-org	O	I-org.ent.pressagency.AFP	O	O	O	Q40464	_	NoSpaceAfter	_	LED0.00	_
 )	O	O	O	O	O	O	_	_	_	_	_	_
 Inculpé	O	O	O	O	O	O	_	_	_	_	_	_
 d	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
@@ -62444,10 +62444,10 @@ Genève	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 ATS	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	Q430109	_	NoSpaceAfter	_	LED0.00	_
 )	O	O	O	O	O	O	_	_	_	_	_	_
 M	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-.	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	_	_	_	_
+.	O	O	O	O	O	O	_	_	_	_	_	_
 Albert	O	O	O	O	O	O	_	_	_	_	_	_
 Gossin	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-,	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	EndOfLine	_	_	_
+,	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/JDG-1967-03-08-a-p0004/785,387,614,46/full/0/default.jpg
 vice	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 -	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
@@ -62455,16 +62455,16 @@ directeur	O	O	O	O	O	O	_	_	_	_	_	_
 de	O	O	O	O	O	O	_	_	_	_	_	_
 l	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 '	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-ATS	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	NoSpaceAfter	_	_	_
+ATS	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 ,	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	_	_	_	_
 a	O	O	O	O	O	O	_	_	_	_	_	_
 rendu	O	O	O	O	O	O	_	_	_	_	_	_
 hommage	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-,	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	_	_	_	_
+,	O	O	O	O	O	O	_	_	_	_	_	_
 en	O	O	O	O	O	O	_	_	_	_	_	_
 ces	O	O	O	O	O	O	_	_	_	_	_	_
 termes	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-,	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	EndOfLine	_	_	_
+,	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/JDG-1967-03-08-a-p0004/785,413,610,46/full/0/default.jpg
 lundi	O	O	O	O	O	O	_	_	_	_	_	_
 soir	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
@@ -62472,7 +62472,7 @@ soir	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 à	O	O	O	O	O	O	_	_	_	_	_	_
 22	O	O	O	O	O	O	_	_	_	_	_	_
 h	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-.	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	_	EndOfSentence	_	_
+.	O	O	O	O	O	O	_	_	_	EndOfSentence	_	_
 30	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 ,	O	O	O	O	O	O	_	_	_	_	_	_
 devant	O	O	O	O	O	O	_	_	_	_	_	_
@@ -63621,11 +63621,11 @@ Wassen	O	O	O	O	O	O	_	_	_	_	_	_
 (	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 UR	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 )	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-,	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	_	_	_	_
+,	O	O	O	O	O	O	_	_	_	_	_	_
 (	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 ATS	O	O	O	O	O	O	Q430109	_	NoSpaceAfter	_	LED0.00	_
 )	O	O	O	O	O	O	_	_	_	_	_	_
-.	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	NoSpaceAfter	EndOfSentence	_	_
+.	O	O	O	O	O	O	_	_	NoSpaceAfter	EndOfSentence	_	_
 -	O	O	O	O	O	O	_	_	_	_	_	_
 La	O	O	O	O	O	O	_	_	_	_	_	_
 direction	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
@@ -63954,7 +63954,7 @@ Unies	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 1	O	O	O	O	O	O	_	_	_	_	_	_
 er	O	O	O	O	O	O	_	_	_	_	_	_
 (	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-Reuter	O	O	O	O	O	O	Q130879	_	NoSpaceAfter	_	LED0.00	_
+Reuter	B-org	O	B-org.ent.pressagency.Reuters	O	O	O	Q130879	_	NoSpaceAfter	_	LED0.00	_
 )	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 -	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
@@ -66114,9 +66114,9 @@ Rudolf	O	O	O	O	O	O	_	_	_	_	_	_
 Ruch	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/JDG-1987-12-23-a-p0011/1075,5212,735,60/full/0/default.jpg
 (	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-ATS	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	Q430109	_	NoSpaceAfter	_	LED0.00	_
+ATS	O	O	O	O	O	O	Q430109	_	NoSpaceAfter	_	LED0.00	_
 )	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-.	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	NoSpaceAfter	EndOfSentence	_	_
+.	O	O	O	O	O	O	_	_	NoSpaceAfter	EndOfSentence	_	_
 -	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 L	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 '	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
@@ -66206,7 +66206,7 @@ fonction	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 # document_id = JDG-1990-04-03-a-i0117
 # news-agency-as-source = Q430109
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/JDG-1990-04-03-a-p0016/1105,3630,228,92/full/0/default.jpg
-TESSIN	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	EndOfLine	_	_	_
+TESSIN	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/JDG-1990-04-03-a-p0016/1112,3740,1195,150/full/0/default.jpg
 Recours	O	O	O	O	O	O	_	_	_	_	_	_
 en	O	O	O	O	O	O	_	_	_	_	_	_
@@ -66252,7 +66252,7 @@ Lojacono	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 ,	O	O	O	O	O	O	_	_	_	_	_	_
 35	O	O	O	O	O	O	_	_	_	_	_	_
 ans	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-,	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	EndOfLine	_	_	_
+,	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/JDG-1990-04-03-a-p0016/1105,4140,825,62/full/0/default.jpg
 comparaîtra	O	O	O	O	O	O	_	_	_	_	_	_
 dès	O	O	O	O	O	O	_	_	_	_	_	_
@@ -66289,10 +66289,10 @@ la	O	O	O	O	O	O	_	_	_	_	_	_
 tentative	O	O	O	O	O	O	_	_	_	_	_	_
 d	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 '	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-attaque	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	_	_	_	_
+attaque	O	O	O	O	O	O	_	_	_	_	_	_
 à	O	O	O	O	O	O	_	_	_	_	_	_
 main	O	O	O	O	O	O	_	_	_	_	_	_
-armée	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	NoSpaceAfter	_	_	_
+armée	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 ,	O	O	O	O	O	O	_	_	_	_	_	_
 doit	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/JDG-1990-04-03-a-p0016/1105,4290,415,65/full/0/default.jpg
@@ -66987,7 +66987,7 @@ pinède	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/JDG-1990-08-23-a-p0024/188,2698,634,90/full/0/default.jpg
 et	O	O	O	O	O	O	_	_	_	_	_	_
 de	O	O	O	O	O	O	_	_	_	_	_	_
-garrigue	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	_	_	_	_
+garrigue	O	O	O	O	O	O	_	_	_	_	_	_
 réduits	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/JDG-1990-08-23-a-p0024/188,2768,684,92/full/0/default.jpg
 en	O	O	O	O	O	O	_	_	_	_	_	_
@@ -67005,7 +67005,7 @@ Reuter	B-org	O	B-org.ent.pressagency.Reuters	O	O	O	_	_	_	_	_	_
 /	O	O	O	O	O	O	_	_	_	_	_	_
 AFP	B-org	O	B-org.ent.pressagency.AFP	O	O	O	_	_	NoSpaceAfter	_	_	_
 )	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-.	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	NoSpaceAfter	EndOfSentence	_	_
+.	O	O	O	O	O	O	_	_	NoSpaceAfter	EndOfSentence	_	_
 -	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 Les	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/JDG-1990-08-23-a-p0024/185,2888,727,60/full/0/default.jpg
@@ -71501,7 +71501,7 @@ environs	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 imrné	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 -	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 -	O	O	O	O	O	O	_	_	_	_	_	_
-ats	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	_	_	_	_
+ats	O	O	O	O	O	O	_	_	_	_	_	_
 ,	O	O	O	O	O	O	_	_	_	_	_	_
 %	O	O	O	O	O	O	_	_	_	_	_	_
 oliambres	O	O	O	O	O	O	_	_	_	_	_	_
@@ -74940,11 +74940,11 @@ police	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 correctionnelle	O	O	O	O	O	O	_	_	_	_	_	_
 de	O	O	O	O	O	O	_	_	_	_	_	_
 Lausanne	O	O	O	O	O	O	_	_	_	_	_	_
-,	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	_	_	_	_
+,	O	O	O	O	O	O	_	_	_	_	_	_
 preside	O	O	O	O	O	O	_	_	_	_	_	_
 par	O	O	O	O	O	O	_	_	_	_	_	_
 M	O	O	O	O	O	O	_	_	_	_	_	_
-.	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	_	EndOfSentence	_	_
+.	O	O	O	O	O	O	_	_	_	EndOfSentence	_	_
 P	O	O	O	O	O	O	_	_	_	_	_	_
 .	O	O	O	O	O	O	_	_	_	EndOfSentence	_	_
 R	O	O	O	O	O	O	_	_	_	_	_	_
@@ -75428,10 +75428,10 @@ ont	O	O	O	O	O	O	_	_	_	_	_	_
 fini	O	O	O	O	O	O	_	_	_	_	_	_
 par	O	O	O	O	O	O	_	_	_	_	_	_
 arreter	O	O	O	O	O	O	_	_	_	_	_	_
-,	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	_	_	_	_
+,	O	O	O	O	O	O	_	_	_	_	_	_
 apres	O	O	O	O	O	O	_	_	_	_	_	_
 enquete	O	O	O	O	O	O	_	_	_	_	_	_
-,	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	_	_	_	_
+,	O	O	O	O	O	O	_	_	_	_	_	_
 une	O	O	O	O	O	O	_	_	_	_	_	_
 bände	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/LLE-1965-08-16-a-p0005/2824,4046,871,63/full/0/default.jpg
@@ -75439,7 +75439,7 @@ de	O	O	O	O	O	O	_	_	_	_	_	_
 onze	O	O	O	O	O	O	_	_	_	_	_	_
 jeunes	O	O	O	O	O	O	_	_	_	_	_	_
 dölinquants	O	O	O	O	O	O	_	_	_	_	_	_
-,	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	_	_	_	_
+,	O	O	O	O	O	O	_	_	_	_	_	_
 äges	O	O	O	O	O	O	_	_	_	_	_	_
 de	O	O	O	O	O	O	_	_	_	_	_	_
 15	O	O	O	O	O	O	_	_	_	_	_	_
@@ -75716,7 +75716,7 @@ paysannerie	O	O	O	O	O	O	_	_	_	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/LLE-1966-03-04-a-p0006/1967,4313,695,58/full/0/default.jpg
 I	O	O	O	O	O	O	_	_	_	_	_	_
 tieiart	O	O	O	O	O	O	_	_	_	_	_	_
-I	O	O	O	O	O	O	_	_	_	_	_	_
+I	B-org	O	B-org.ent.pressagency.Havas	O	O	O	_	_	_	_	_	_
 ^	O	O	O	O	O	O	_	_	_	_	_	_
 mm	O	O	O	O	O	O	_	_	_	_	_	_
 _	O	O	O	O	O	O	_	_	_	_	_	_
@@ -76261,7 +76261,7 @@ la	O	O	O	O	O	O	_	_	_	_	_	_
 route	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/LLE-1966-03-04-a-p0006/2845,5258,838,64/full/0/default.jpg
 (	O	O	O	O	O	O	_	_	_	_	_	_
-ATS	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	Q430109	_	_	_	LED0.00	_
+ATS	O	O	O	O	O	O	Q430109	_	_	_	LED0.00	_
 )	O	O	O	O	O	O	_	_	_	_	_	_
 —	O	O	O	O	O	O	_	_	_	_	_	_
 La	O	O	O	O	O	O	_	_	_	_	_	_
@@ -76274,17 +76274,17 @@ de	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/LLE-1966-03-04-a-p0006/2808,5293,875,65/full/0/default.jpg
 lecole	O	O	O	O	O	O	_	_	_	_	_	_
 maternelle	O	O	O	O	O	O	_	_	_	_	_	_
-,	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	_	_	_	_
+,	O	O	O	O	O	O	_	_	_	_	_	_
 a	O	O	O	O	O	O	_	_	_	_	_	_
 traverse	O	O	O	O	O	O	_	_	_	_	_	_
 inopinöment	O	O	O	O	O	O	_	_	_	_	_	_
 la	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/LLE-1966-03-04-a-p0006/2808,5330,861,63/full/0/default.jpg
 chaussöe	O	O	O	O	O	O	_	_	_	_	_	_
-,	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	_	_	_	_
+,	O	O	O	O	O	O	_	_	_	_	_	_
 ä	O	O	O	O	O	O	_	_	_	_	_	_
 Unterslsggenthal	O	O	O	O	O	O	_	_	_	_	_	_
-.	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	_	EndOfSentence	_	_
+.	O	O	O	O	O	O	_	_	_	EndOfSentence	_	_
 Elle	O	O	O	O	O	O	_	_	_	_	_	_
 s	O	O	O	O	O	O	_	_	_	_	_	_
 est	O	O	O	O	O	O	_	_	_	_	_	_
@@ -78184,7 +78184,7 @@ rlp	O	O	O	O	O	O	_	_	_	_	_	_
 ipiinpç	O	O	O	O	O	O	_	_	_	_	_	_
 «	O	O	O	O	O	O	_	_	_	_	_	_
 ançpmnloi	O	O	O	O	O	O	_	_	_	_	_	_
-attendent	B-org	O	B-org.ent.pressagency.ATS-SDA	O	O	O	_	_	_	_	_	_
+attendent	O	O	O	O	O	O	_	_	_	_	_	_
 au	O	O	O	O	O	O	_	_	_	_	_	_
 DOrtillon	O	O	O	O	O	O	_	_	_	_	_	_
 Colette	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
@@ -81719,7 +81719,7 @@ L	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 ’	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 agence	O	O	O	O	O	O	_	_	_	_	_	_
 télégraphique	O	O	O	O	O	O	_	_	_	_	_	_
-Wolff	O	O	O	O	O	O	_	_	_	_	_	_
+Wolff	B-org	O	B-org.ent.pressagency.Wolff	O	O	O	_	_	_	_	_	_
 a	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/LSE-1918-11-11-a-p0004/58,686,425,42/full/0/default.jpg
 été	O	O	O	O	O	O	_	_	_	_	_	_
@@ -82543,7 +82543,7 @@ information	O	O	O	O	O	O	_	_	_	_	_	_
 d	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 ’	O	O	O	O	O	O	_	_	_	_	_	_
 «	O	O	O	O	O	O	_	_	_	_	_	_
-United	O	O	O	O	O	O	Q493845	_	_	_	LED0.00	_
+United	B-org	O	B-org.ent.pressagency.UP-UPI	O	O	O	Q493845	_	_	_	LED0.00	_
 Press	O	O	O	O	O	O	Q493845	_	_	_	LED0.00	_
 »	O	O	O	O	O	O	_	_	EndOfLine	_	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/LSE-1942-07-24-a-p0004/82,981,429,43/full/0/default.jpg
@@ -82575,7 +82575,7 @@ Berlin	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 juillet	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 .	O	O	O	O	O	O	_	_	_	EndOfSentence	_	_
 (	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
-DNB	O	O	O	O	O	O	Q1205856	_	NoSpaceAfter	_	LED0.00	_
+DNB	B-org	O	B-org.ent.pressagency.DPA	O	O	O	Q1205856	_	NoSpaceAfter	_	LED0.00	_
 .	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 )	O	O	O	O	O	O	_	_	EndOfLine	EndOfSentence	_	_
 # segment_iiif_link = https://impresso-project.ch/api/proxy/iiif/LSE-1942-07-24-a-p0004/558,310,409,43/full/0/default.jpg
@@ -85575,7 +85575,7 @@ dit	O	O	O	O	O	O	_	_	_	_	_	_
 l	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 ’	O	O	O	O	O	O	_	_	NoSpaceAfter	_	_	_
 Agence	O	O	O	O	O	O	Q2826560	_	_	_	LED0.00	_
-Havas	B-org	O	B-org.ent.pressagency.Havas	O	O	O	Q2826560	_	NoSpaceAfter	_	LED0.00	_
+Havas	I-org	O	I-org.ent.pressagency.Havas	O	O	O	Q2826560	_	NoSpaceAfter	_	LED0.00	_
 .	O	O	O	O	O	O	_	_	EndOfLine	EndOfSentence	_	_
 # segment_iiif_link = https://iiif.eluxemburgensia.lu/iiif/2/ark:%2f70795%2f254p1b%2fpages%2f3/1949,3489,850,53/full/0/default.jpg
 Nous	O	O	O	O	O	O	_	_	_	_	_	_
