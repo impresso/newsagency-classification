@@ -4,4 +4,4 @@ For training the models, first copy the scripts from (scripts)[https://github.co
 
 ## HuggingFace
 
-To push to HF, run `python push_model_to_hf.py`. For now, the script pushes the best models (ie trained with multilingual DeBERTa) and will push them in `impresso-project` on HF.
+To push to HF, run `python push_model_to_hf.py`. For now, the script pushes the best models --the latest checkpoints-- (ie trained with multilingual DeBERTa) and will push them in `impresso-project` on HF.
