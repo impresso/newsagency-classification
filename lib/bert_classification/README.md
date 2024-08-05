@@ -1,5 +1,5 @@
 ## Multitask classification (binary and multiclass, sequence-based and token-based classification)
-#### of news agencies content at token-level and article-level
+### of news agencies content at token-level and article-level
 
 ## hipe2020 working example
 - the data is annotated at token-level in the [CoNLL format](https://universaldependencies.org/format.html) with [IOB tagging format](https://www.geeksforgeeks.org/nlp-iob-tags/) for several types of entities (pers, org, loc, etc.).
