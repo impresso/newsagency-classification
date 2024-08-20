@@ -15,6 +15,8 @@ Both scripts will create a new folder called `experiments` where the models will
 To push to HF, run `python push_model_to_hf.py`. For now, the script pushes the best models --the latest checkpoints-- (ie trained with multilingual DeBERTa) and will push them in `impresso-project` on HF.
 
 ### Example run:
+
+This code was utilised to generate the multiligual model in the Impresso App with the following hyperparameters.
 ```python
 CUDA_VISIBLE_DEVICES=2 TOKENIZERS_PARALLELISM=false python main.py \
                 --model_name_or_path dbmdz/bert-medium-historic-multilingual-cased \
@@ -34,3 +36,4 @@ CUDA_VISIBLE_DEVICES=2 TOKENIZERS_PARALLELISM=false python main.py \
                 --do_train
 
 ```
+
