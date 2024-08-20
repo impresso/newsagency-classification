@@ -18,7 +18,7 @@ To push to HF, run `python push_model_to_hf.py`. For now, the script pushes the 
 
 This code was utilised to generate the multiligual model in the Impresso App with the following hyperparameters.
 ```python
-CUDA_VISIBLE_DEVICES=2 TOKENIZERS_PARALLELISM=false python main.py \
+TOKENIZERS_PARALLELISM=false python main.py \
                 --model_name_or_path dbmdz/bert-medium-historic-multilingual-cased \
                 --train_dataset ../../../data/annotated_data/multilingual/newsagency-data-train-multilingual.tsv \
                 --dev_dataset ../../../data/annotated_data/de/newsagency-data-dev-de.tsv \
@@ -36,4 +36,6 @@ CUDA_VISIBLE_DEVICES=2 TOKENIZERS_PARALLELISM=false python main.py \
                 --do_train
 
 ```
+
+For choosing a specific GPU, you can add `CUDA_VISIBLE_DEVICES=2` for example for the GPU 2 before `python main.py`.
 
