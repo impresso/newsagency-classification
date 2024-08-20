@@ -1,6 +1,6 @@
 ## Models
 
-For training the models, first copy the scripts from (scripts)[https://github.com/impresso/newsagency-classification/tree/main/lib/bert_classification/scripts] in this folder and run both `run.sh` and `run_multilingual.sh`. 
+For training the models, first copy the scripts from [scripts](https://github.com/impresso/newsagency-classification/tree/main/lib/bert_classification/scripts) in this folder and run both `run.sh` and `run_multilingual.sh`. 
 
 ```
 bash run.sh de
