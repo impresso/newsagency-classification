@@ -1,5 +1,5 @@
 ## Multitask classification (binary and multiclass, sequence-based and token-based classification)
-#### of news agencies content at token-level and article-level
+### of news agencies content at token-level and article-level
 
 ## hipe2020 working example
 - the data is annotated at token-level in the [CoNLL format](https://universaldependencies.org/format.html) with [IOB tagging format](https://www.geeksforgeeks.org/nlp-iob-tags/) for several types of entities (pers, org, loc, etc.).
@@ -54,19 +54,23 @@ CUDA_VISIBLE_DEVICES=1 TOKENIZERS_PARALLELISM=false python main.py \
       --evaluate_during_training \
       --do_train
 ```
-
-`--model_name_or_path`: the preffered languge model (by default, `bert-base-cased`);\
+`CUDA_VISIBLE_DEVICES=1`: choose on which GPU will the model be trained, if `CUDA_VISIBLE_DEVICES` is not mentioned, the model will be trained in parallel on all available GPUs.
+`--model_name_or_path`: the languge model (by default, `bert-base-cased`);\
 Other models can be found at [HuggingFace](https://huggingface.co/), such as models trained on [historical documents](https://huggingface.co/dbmdz/). To change a model, one needs to specify the name in the HuggingFace site, e.g., for [hmBERT](https://huggingface.co/dbmdz/bert-base-historic-multilingual-cased), `--model_name_or_path dbmdz/bert-base-historic-multilingual-cased`;\
 `--train_dataset`, `--dev_dataset`, and `--test_dataset`: point to the path of the *.tsv files;\
 `--output_dir`: points to the folder where the experiments (models and predictions) are saved;\
 `--device`: can be `cuda` or `cpu`
+`--do_classif`: for performing sentence classification (a sentence can contain or not a mention of a news agency
 
 ## Evaluation with HIPE-scorer:
 ```
-python clef_evaluation.py --ref ../data/newsagency/newsagency-data-dev-fr.tsv \
+python clef_evaluation.py \
+      --ref ../data/newsagency/newsagency-data-dev-fr.tsv \
       --pred ../experiments/model_bert_base_cased_max_sequence_length_64_epochs_3/newsagency-data-dev-fr_pred.tsv \
-      --task nerc_coarse --outdir ../experiments/model_bert_base_cased_max_sequence_length_64_epochs_3 \
-      --hipe_edition HIPE-2022 --log ../experiments/model_bert_base_cased_max_sequence_length_64_epochs_3/logs_scorer.txt
+      --task nerc_coarse \
+      --outdir ../experiments/model_bert_base_cased_max_sequence_length_64_epochs_3 \
+      --hipe_edition HIPE-2022 \
+      --log ../experiments/model_bert_base_cased_max_sequence_length_64_epochs_3/logs_scorer.txt
 ```
 For fine-grained, change to --task nerc_fine
 

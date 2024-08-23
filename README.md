@@ -33,7 +33,8 @@ Differences in the use of agency content across time, countries and languages, a
   - `sampling/`
   - `split/`
 - `lib/`: Contains python scripts for the classification and the conversion of data (before and after annotation in Inception).
-  - `bert-classification/`: Contains the text classification model as well as the code for its application on the _impresso_ corpus.
+  - `bert-classification/`: Contains the token and the text classification model as well as the code for its application on the _impresso_ corpus.
+      - `single_task`: Contains on the token classification model and the code for pushing it to HuggingFace. 
   - `inception_postprocessing/`
   - `inception_preprocessing/`
 - `notebooks/`: Contains the notebooks used in the creation of the training corpus, annotation and analysis.
