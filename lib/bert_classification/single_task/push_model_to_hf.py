@@ -101,26 +101,38 @@ def push_model_to_hub(model_dir, model_id, language="fr"):
     )
 
     # Save your model and tokenizer in the local directory
-    model.save_pretrained(f"bert-newsagency-ner-{language}", config=model.config)
-    tokenizer.save_pretrained(f"bert-newsagency-ner-{language}")
-    classifier.save_pretrained(f"bert-newsagency-ner-{language}")
+    model.save_pretrained(f"ner-newsagency-bert-{language}", config=model.config)
+    tokenizer.save_pretrained(f"ner-newsagency-bert-{language}")
+    classifier.save_pretrained(f"ner-newsagency-bert-{language}")
 
     api.upload_folder(
         token=HfFolder.get_token(),
-        folder_path=f"bert-newsagency-ner-{language}",
+        folder_path=f"ner-newsagency-bert-{language}",
         path_in_repo="",
-        repo_id=f"impresso-project/bert-newsagency-ner-{language}",
+        repo_id=f"impresso-project/ner-newsagency-bert-{language}",
     )
 
 
 # Directories where the models are saved
 agency_fr_dir = "experiments/model_dbmdz_bert_base_french_europeana_cased_max_sequence_length_256_epochs_3_run1311/checkpoint-11799"
-agency_de_dir = "experiments/model_bert_base_german_cased_max_sequence_length_256_epochs_3_run887/checkpoint-5322"
+# experiments/model_dbmdz_bert_base_french_europeana_cased_max_sequence_length_256_epochs_3_run1311/checkpoint-11799
+# agency_fr_dir = "experiments/model_dbmdz_bert_base_french_europeana_cased_max_sequence_length_256_epochs_3_run_fr_1/checkpoint-4431"
+# agency_de_dir = "experiments/model_bert_base_german_cased_max_sequence_length_256_epochs_3_run887/checkpoint-5322"
+# agency_de_dir = "experiments/model_bert_base_german_cased_max_sequence_length_256_epochs_3_run_de_1/checkpoint-1998"
+agency_multilingual_dir = "experiments/model_dbmdz_bert_base_historic_multilingual_cased_max_sequence_length_128_epochs_3_run_fr_5/checkpoint-4431"
+
+# NEWSAGENCY_MODEL = "dbmdz_bert_base_historic_multilingual_de_and_fr"
+# NEWSAGENCY_MODEL_NAME = "../newsagency-classification/lib/bert_classification/experiments/model_dbmdz_bert_base_historic_multilingual_cased_max_sequence_length_128_epochs_3_run_fr_5/checkpoint-4431/"
+
 
 # Model IDs on Hugging Face Hub (you can customize these)
-agency_fr_model_id = "impresso-project/bert-newsagency-ner-fr"
-agency_de_model_id = "impresso-project/bert-newsagency-ner-de"
+agency_fr_model_id = "impresso-project/ner-newsagency-bert-fr"
+# agency_de_model_id = "impresso-project/ner-newsagency-bert-de"
+agency_multilingual_id = "impresso-project/ner-newsagency-bert-multilingual"
 
 # Push the models to the Hugging Face Hub
 push_model_to_hub(agency_fr_dir, agency_fr_model_id, language="fr")
-push_model_to_hub(agency_de_dir, agency_de_model_id, language="de")
+# push_model_to_hub(agency_de_dir, agency_de_model_id, language="de")
+# push_model_to_hub(
+#     agency_multilingual_dir, agency_multilingual_id, language="multilingual"
+# )

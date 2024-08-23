@@ -1,0 +1,13 @@
+System	Evaluation	Label	P	R	F1	F1_std	P_std	R_std	TP	FP	FN
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-COARSE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ALL	0.824	0.687	0.749				112	24	51
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-COARSE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG	0.836	0.727	0.778				112	22	42
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-COARSE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	PERS	0.0	0.0	0				0	2	9
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-COARSE-LIT-micro-strict-TIME-ALL-LED-ALL	ALL	0.757	0.632	0.689				103	33	60
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-COARSE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG	0.769	0.669	0.715				103	31	51
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-COARSE-LIT-micro-strict-TIME-ALL-LED-ALL	PERS	0.0	0.0	0				0	2	9
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-COARSE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ALL	0.839	0.715	0.85	0.249	0.313	0.409			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-COARSE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG	0.854	0.777	0.868	0.226	0.297	0.37			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-COARSE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	PERS	0.0	0.0			0.0	0.0			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-COARSE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ALL	0.787	0.648	0.789	0.334	0.371	0.436			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-COARSE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG	0.8	0.705	0.806	0.322	0.36	0.413			
+./experiments/model_camembert_base_max_sequence_length_128_epochs_3_run_fr_3/newsagency-data-test-fr_pred.tsv	NE-COARSE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	PERS	0.0	0.0			0.0	0.0			

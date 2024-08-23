@@ -185,6 +185,15 @@ if __name__ == "__main__":
     if not os.path.exists(args.output_dir):
         os.mkdir(args.output_dir)
 
+    if "multilingual" not in args.logging_suffix:
+        # we only look for results if we are not in multilingual mode
+        for lang in ["fr", "de"]:
+            if os.path.exists(
+                os.path.join(args.output_dir, f"all_results_{lang}.json")
+            ):
+                logging.info(f"Results already exist in {args.output_dir}.")
+                exit()
+
     # logging.basicConfig(level=logging.INFO)
     logging.root.handlers = []
     logging.basicConfig(
@@ -273,9 +282,7 @@ if __name__ == "__main__":
             label_map=label_map,
         )
 
-    json.dump(
-        label_map, open(os.path.join(args.output_dir, "data/label_map.json"), "w")
-    )
+        json.dump(label_map, open(os.path.join(args.output_dir, "label_map.json"), "w"))
 
     num_sequence_labels, num_token_labels = test_dataset.get_info()
 

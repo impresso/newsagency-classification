@@ -1,0 +1,53 @@
+System	Evaluation	Label	P	R	F1	F1_std	P_std	R_std	TP	FP	FN
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ALL	0.789	0.651	0.713				56	15	30
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.AFP	0.684	0.867	0.765				13	6	2
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.AG	0	0.0	0				0	0	1
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.AP	1.0	0.625	0.769				5	0	3
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.DNB	0	0.0	0				0	0	3
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.EXTEL	0	0.0	0				0	0	1
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.HAVAS	0.852	0.885	0.868				23	4	3
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.REUTERS	0.867	0.65	0.743				13	2	7
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.STEFANI	0	0.0	0				0	0	1
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.UNK	0	0.0	0				0	0	4
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.WOLFF	0.4	0.667	0.5				2	3	1
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	PERS.IND.ARTICLEAUTHOR	0	0.0	0				0	0	4
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-micro-strict-TIME-ALL-LED-ALL	ALL	0.746	0.616	0.675				53	18	33
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.AFP	0.684	0.867	0.765				13	6	2
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.AG	0	0.0	0				0	0	1
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.AP	1.0	0.625	0.769				5	0	3
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.DNB	0	0.0	0				0	0	3
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.EXTEL	0	0.0	0				0	0	1
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.HAVAS	0.741	0.769	0.755				20	7	6
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.REUTERS	0.867	0.65	0.743				13	2	7
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.STEFANI	0	0.0	0				0	0	1
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.UNK	0	0.0	0				0	0	4
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.WOLFF	0.4	0.667	0.5				2	3	1
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-micro-strict-TIME-ALL-LED-ALL	PERS.IND.ARTICLEAUTHOR	0	0.0	0				0	0	4
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ALL	0.833	0.667	0.914	0.151	0.359	0.42			
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.AFP	0.792	0.833	0.967	0.1	0.38	0.373			
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.AG		0.0				0.0			
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.AP	1.0	0.571	1.0	0.0	0.0	0.495			
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.DNB		0.0				0.0			
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.EXTEL		0.0				0.0			
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.HAVAS	0.833	0.903	0.96	0.092	0.357	0.252			
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.REUTERS	0.846	0.678	0.952	0.107	0.361	0.432			
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.STEFANI		0.0				0.0			
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.UNK		0.0				0.0			
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.WOLFF	0.333	0.5	1.0	0.0	0.471	0.5			
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	PERS.IND.ARTICLEAUTHOR		0.0				0.0			
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ALL	0.77	0.61	0.839	0.282	0.409	0.438			
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.AFP	0.792	0.833	0.967	0.1	0.38	0.373			
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.AG		0.0				0.0			
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.AP	1.0	0.571	1.0	0.0	0.0	0.495			
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.DNB		0.0				0.0			
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.EXTEL		0.0				0.0			
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.HAVAS	0.683	0.736	0.784	0.374	0.453	0.412			
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.REUTERS	0.846	0.678	0.952	0.107	0.361	0.432			
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.STEFANI		0.0				0.0			
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.UNK		0.0				0.0			
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG.ENT.PRESSAGENCY.WOLFF	0.333	0.5	1.0	0.0	0.471	0.5			
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-FINE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	PERS.IND.ARTICLEAUTHOR		0.0				0.0			
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-NESTED-micro-fuzzy-TIME-ALL-LED-ALL	ALL	0	0	0				0	0	0
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-NESTED-micro-strict-TIME-ALL-LED-ALL	ALL	0	0	0				0	0	0
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-NESTED-macro_doc-fuzzy-TIME-ALL-LED-ALL	ALL									
+./experiments/model_xlm_roberta_base_max_sequence_length_64_epochs_3_run_fr_2/newsagency-data-dev-fr_pred.tsv	NE-NESTED-macro_doc-strict-TIME-ALL-LED-ALL	ALL									

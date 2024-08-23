@@ -1,0 +1,13 @@
+System	Evaluation	Label	P	R	F1	F1_std	P_std	R_std	TP	FP	FN
+./experiments/model_dbmdz_bert_base_german_europeana_cased_max_sequence_length_256_epochs_3_run_de_3/newsagency-data-test-de_pred.tsv	NE-COARSE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ALL	0.774	0.828	0.8				48	14	10
+./experiments/model_dbmdz_bert_base_german_europeana_cased_max_sequence_length_256_epochs_3_run_de_3/newsagency-data-test-de_pred.tsv	NE-COARSE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG	0.787	0.857	0.821				48	13	8
+./experiments/model_dbmdz_bert_base_german_europeana_cased_max_sequence_length_256_epochs_3_run_de_3/newsagency-data-test-de_pred.tsv	NE-COARSE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	PERS	0.0	0.0	0				0	1	2
+./experiments/model_dbmdz_bert_base_german_europeana_cased_max_sequence_length_256_epochs_3_run_de_3/newsagency-data-test-de_pred.tsv	NE-COARSE-LIT-micro-strict-TIME-ALL-LED-ALL	ALL	0.742	0.793	0.767				46	16	12
+./experiments/model_dbmdz_bert_base_german_europeana_cased_max_sequence_length_256_epochs_3_run_de_3/newsagency-data-test-de_pred.tsv	NE-COARSE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG	0.754	0.821	0.786				46	15	10
+./experiments/model_dbmdz_bert_base_german_europeana_cased_max_sequence_length_256_epochs_3_run_de_3/newsagency-data-test-de_pred.tsv	NE-COARSE-LIT-micro-strict-TIME-ALL-LED-ALL	PERS	0.0	0.0	0				0	1	2
+./experiments/model_dbmdz_bert_base_german_europeana_cased_max_sequence_length_256_epochs_3_run_de_3/newsagency-data-test-de_pred.tsv	NE-COARSE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ALL	0.669	0.893	0.891	0.164	0.42	0.202			
+./experiments/model_dbmdz_bert_base_german_europeana_cased_max_sequence_length_256_epochs_3_run_de_3/newsagency-data-test-de_pred.tsv	NE-COARSE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG	0.669	0.941	0.91	0.114	0.42	0.13			
+./experiments/model_dbmdz_bert_base_german_europeana_cased_max_sequence_length_256_epochs_3_run_de_3/newsagency-data-test-de_pred.tsv	NE-COARSE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	PERS	0.0	0.0			0.0	0.0			
+./experiments/model_dbmdz_bert_base_german_europeana_cased_max_sequence_length_256_epochs_3_run_de_3/newsagency-data-test-de_pred.tsv	NE-COARSE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ALL	0.655	0.879	0.876	0.175	0.412	0.212			
+./experiments/model_dbmdz_bert_base_german_europeana_cased_max_sequence_length_256_epochs_3_run_de_3/newsagency-data-test-de_pred.tsv	NE-COARSE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG	0.655	0.927	0.895	0.131	0.412	0.149			
+./experiments/model_dbmdz_bert_base_german_europeana_cased_max_sequence_length_256_epochs_3_run_de_3/newsagency-data-test-de_pred.tsv	NE-COARSE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	PERS	0.0	0.0			0.0	0.0			

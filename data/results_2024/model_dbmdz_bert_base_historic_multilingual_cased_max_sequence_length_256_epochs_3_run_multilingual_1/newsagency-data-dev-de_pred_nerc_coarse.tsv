@@ -1,0 +1,13 @@
+System	Evaluation	Label	P	R	F1	F1_std	P_std	R_std	TP	FP	FN
+./experiments/model_dbmdz_bert_base_historic_multilingual_cased_max_sequence_length_256_epochs_3_run_multilingual_1/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ALL	0.808	0.808	0.808				21	5	5
+./experiments/model_dbmdz_bert_base_historic_multilingual_cased_max_sequence_length_256_epochs_3_run_multilingual_1/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG	0.913	0.913	0.913				21	2	2
+./experiments/model_dbmdz_bert_base_historic_multilingual_cased_max_sequence_length_256_epochs_3_run_multilingual_1/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	PERS	0.0	0.0	0				0	3	3
+./experiments/model_dbmdz_bert_base_historic_multilingual_cased_max_sequence_length_256_epochs_3_run_multilingual_1/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-micro-strict-TIME-ALL-LED-ALL	ALL	0.808	0.808	0.808				21	5	5
+./experiments/model_dbmdz_bert_base_historic_multilingual_cased_max_sequence_length_256_epochs_3_run_multilingual_1/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG	0.913	0.913	0.913				21	2	2
+./experiments/model_dbmdz_bert_base_historic_multilingual_cased_max_sequence_length_256_epochs_3_run_multilingual_1/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-micro-strict-TIME-ALL-LED-ALL	PERS	0.0	0.0	0				0	3	3
+./experiments/model_dbmdz_bert_base_historic_multilingual_cased_max_sequence_length_256_epochs_3_run_multilingual_1/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ALL	0.853	0.76	0.95	0.101	0.338	0.391			
+./experiments/model_dbmdz_bert_base_historic_multilingual_cased_max_sequence_length_256_epochs_3_run_multilingual_1/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG	0.867	0.867	1.0	0.0	0.34	0.34			
+./experiments/model_dbmdz_bert_base_historic_multilingual_cased_max_sequence_length_256_epochs_3_run_multilingual_1/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	PERS	0.0	0.0			0.0	0.0			
+./experiments/model_dbmdz_bert_base_historic_multilingual_cased_max_sequence_length_256_epochs_3_run_multilingual_1/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ALL	0.853	0.76	0.95	0.101	0.338	0.391			
+./experiments/model_dbmdz_bert_base_historic_multilingual_cased_max_sequence_length_256_epochs_3_run_multilingual_1/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG	0.867	0.867	1.0	0.0	0.34	0.34			
+./experiments/model_dbmdz_bert_base_historic_multilingual_cased_max_sequence_length_256_epochs_3_run_multilingual_1/newsagency-data-dev-de_pred.tsv	NE-COARSE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	PERS	0.0	0.0			0.0	0.0			

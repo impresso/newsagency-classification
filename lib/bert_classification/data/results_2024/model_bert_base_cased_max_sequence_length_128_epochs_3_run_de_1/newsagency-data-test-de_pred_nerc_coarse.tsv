@@ -1,0 +1,13 @@
+System	Evaluation	Label	P	R	F1	F1_std	P_std	R_std	TP	FP	FN
+./experiments/model_bert_base_cased_max_sequence_length_128_epochs_3_run_de_1/newsagency-data-test-de_pred.tsv	NE-COARSE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ALL	0.849	0.776	0.811				45	8	13
+./experiments/model_bert_base_cased_max_sequence_length_128_epochs_3_run_de_1/newsagency-data-test-de_pred.tsv	NE-COARSE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG	0.849	0.804	0.826				45	8	11
+./experiments/model_bert_base_cased_max_sequence_length_128_epochs_3_run_de_1/newsagency-data-test-de_pred.tsv	NE-COARSE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	PERS	0	0.0	0				0	0	2
+./experiments/model_bert_base_cased_max_sequence_length_128_epochs_3_run_de_1/newsagency-data-test-de_pred.tsv	NE-COARSE-LIT-micro-strict-TIME-ALL-LED-ALL	ALL	0.849	0.776	0.811				45	8	13
+./experiments/model_bert_base_cased_max_sequence_length_128_epochs_3_run_de_1/newsagency-data-test-de_pred.tsv	NE-COARSE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG	0.849	0.804	0.826				45	8	11
+./experiments/model_bert_base_cased_max_sequence_length_128_epochs_3_run_de_1/newsagency-data-test-de_pred.tsv	NE-COARSE-LIT-micro-strict-TIME-ALL-LED-ALL	PERS	0	0.0	0				0	0	2
+./experiments/model_bert_base_cased_max_sequence_length_128_epochs_3_run_de_1/newsagency-data-test-de_pred.tsv	NE-COARSE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ALL	0.756	0.873	0.896	0.163	0.409	0.225			
+./experiments/model_bert_base_cased_max_sequence_length_128_epochs_3_run_de_1/newsagency-data-test-de_pred.tsv	NE-COARSE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG	0.756	0.921	0.932	0.121	0.409	0.17			
+./experiments/model_bert_base_cased_max_sequence_length_128_epochs_3_run_de_1/newsagency-data-test-de_pred.tsv	NE-COARSE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	PERS		0.0				0.0			
+./experiments/model_bert_base_cased_max_sequence_length_128_epochs_3_run_de_1/newsagency-data-test-de_pred.tsv	NE-COARSE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ALL	0.756	0.873	0.896	0.163	0.409	0.225			
+./experiments/model_bert_base_cased_max_sequence_length_128_epochs_3_run_de_1/newsagency-data-test-de_pred.tsv	NE-COARSE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG	0.756	0.921	0.932	0.121	0.409	0.17			
+./experiments/model_bert_base_cased_max_sequence_length_128_epochs_3_run_de_1/newsagency-data-test-de_pred.tsv	NE-COARSE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	PERS		0.0				0.0			

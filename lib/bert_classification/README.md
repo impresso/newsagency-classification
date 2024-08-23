@@ -44,9 +44,9 @@ Training a model based on `bert-base-cased`:
 ```
 CUDA_VISIBLE_DEVICES=1 TOKENIZERS_PARALLELISM=false python main.py \
       --model_name_or_path bert-base-cased\
-      --train_dataset data/hipe2020/fr/HIPE-2022-v2.1-hipe2020-train-fr.tsv \
-      --dev_dataset data/hipe2020/fr/HIPE-2022-v2.1-hipe2020-dev-fr.tsv \
-      --test_dataset data/hipe2020/fr/HIPE-2022-v2.1-hipe2020-test-fr.tsv \
+      --train_dataset ../../data/newsagency/newsagency-data-train-fr.tsv \
+      --dev_dataset ../../data/newsagency/newsagency-data-dev-fr.tsv \
+      --test_dataset ../../data/newsagency/newsagency-data-test-fr.tsv \
       --output_dir experiments \
       --device cuda \
       --train_batch_size 16 \
@@ -75,11 +75,11 @@ python clef_evaluation.py \
 For fine-grained, change to --task nerc_fine
 
 ## Running with `bash` scripts 
-Both to train and evaluate the models
+Both to train and evaluate the models on a GPU (in the example, it's the second argument: 0 or 1)
 
 ```
-bash run.sh de
-bash run.sh fr
+bash run.sh de 0
+bash run.sh fr 1
 bash run_multilingual.sh
 ```
 

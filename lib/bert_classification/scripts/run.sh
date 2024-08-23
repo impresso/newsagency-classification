@@ -8,6 +8,7 @@ logging_suffix_values=(1 2 3 4 5)
 #
 # Get the language from the first command line argument
 language=$1
+gpu=$2
 #
 # Check if language parameter was provided
 if [ -z "$language" ]
@@ -21,15 +22,15 @@ then
     # Define a list of models
     #models=("xlm-roberta-base")
     #models=("dbmdz/bert-base-french-europeana-cased")
-    models=("bert-base-multilingual-cased" "dbmdz/bert-base-french-europeana-cased" "bert-base-cased" "camembert-base" "bert-base-multilingual-cased" "dbmdz/bert-base-historic-multilingual-cased" "xlm-roberta-base")
-    log_steps=5860 #1465*4
+    models=("bert-base-multilingual-cased" "dbmdz/bert-base-french-europeana-cased" "bert-base-cased" "camembert-base" "dbmdz/bert-base-historic-multilingual-cased" "xlm-roberta-base")
+    log_steps=1477 #1465*4
 fi
 
 if [ $language == "de" ]
 then
     models=("dbmdz/bert-base-german-europeana-cased" "bert-base-cased" "bert-base-german-cased" "bert-base-multilingual-cased" "dbmdz/bert-base-historic-multilingual-cased" "xlm-roberta-base")
     #models=("bert-base-german-cased") # "xlm-roberta-base")
-    log_steps=2336 #584*4
+    log_steps=666 #584*4
 fi
 
 #
@@ -59,15 +60,15 @@ Block_comment
 
             echo "Running experiment with model = $model, max_seq_len = $max_seq_len, language = $language and logging_suffix = $logging_suffix"
 
-            CUDA_VISIBLE_DEVICES=1 TOKENIZERS_PARALLELISM=false python3 main.py \
+            CUDA_VISIBLE_DEVICES=$gpu TOKENIZERS_PARALLELISM=false python main.py \
                 --model_name_or_path $model \
-                --train_dataset ./../data/$language/newsagency-data-2-train-$language.tsv \
-                --dev_dataset ./../data/$language/newsagency-data-2-dev-$language.tsv \
-                --test_dataset ./../data/$language/newsagency-data-2-test-$language.tsv \
-                --label_map ./../data/label_map.json \
+                --train_dataset ../../data/annotated_data/$language/newsagency-data-train-$language.tsv \
+                --dev_dataset ../../data/annotated_data/$language/newsagency-data-dev-$language.tsv \
+                --test_dataset ../../data/annotated_data/$language/newsagency-data-test-$language.tsv \
+                --label_map ../../data/annotated_data/label_map.json \
                 --output_dir experiments \
                 --device cuda \
-                --train_batch_size 2 \
+                --train_batch_size 16 \
                 --logging_steps $log_steps \
                 --save_steps $log_steps \
                 --max_sequence_len $max_seq_len \
@@ -78,18 +79,34 @@ Block_comment
 
             echo "Running evaluation for model = $model, max_seq_len = $max_seq_len, language = $language and logging_suffix = $logging_suffix"
 
-            python3 HIPE-scorer/clef_evaluation.py \
-                --ref ./../data/$language/newsagency-data-2-dev-$language.tsv \
-                --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-2-dev-${language}_pred.tsv \
+            python HIPE-scorer/clef_evaluation.py \
+                --ref ../../data/annotated_data/$language/newsagency-data-dev-$language.tsv \
+                --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-dev-${language}_pred.tsv \
                 --task nerc_fine \
                 --outdir ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix} \
                 --hipe_edition HIPE-2022 \
                 --log ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/logs_dev_scorer.txt
 
-            python3 HIPE-scorer/clef_evaluation.py \
-                --ref ./../data/$language/newsagency-data-2-test-$language.tsv \
-                --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-2-test-${language}_pred.tsv \
+            python HIPE-scorer/clef_evaluation.py \
+                --ref ../../data/annotated_data/$language/newsagency-data-test-$language.tsv \
+                --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-test-${language}_pred.tsv \
                 --task nerc_fine \
+                --outdir ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix} \
+                --hipe_edition HIPE-2022 \
+                --log ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/logs_test_scorer.txt
+
+            python HIPE-scorer/clef_evaluation.py \
+                --ref ../../data/annotated_data/$language/newsagency-data-dev-$language.tsv \
+                --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-dev-${language}_pred.tsv \
+                --task nerc_coarse \
+                --outdir ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix} \
+                --hipe_edition HIPE-2022 \
+                --log ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/logs_dev_scorer.txt
+
+            python HIPE-scorer/clef_evaluation.py \
+                --ref ../../data/annotated_data/$language/newsagency-data-test-$language.tsv \
+                --pred ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/newsagency-data-test-${language}_pred.tsv \
+                --task nerc_coarse \
                 --outdir ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix} \
                 --hipe_edition HIPE-2022 \
                 --log ./experiments/model_${model_path}_max_sequence_length_${max_seq_len}_epochs_3_run${logging_suffix}/logs_test_scorer.txt
