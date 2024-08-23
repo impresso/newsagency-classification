@@ -44,7 +44,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--label_map",
         type=str,
-        default="data/label_map.json",
+        default="label_map.json",
         help="Path to the *json file for the label mapping.",
     )
     parser.add_argument(
@@ -249,7 +249,7 @@ if __name__ == "__main__":
 
         label_map = test_dataset.get_label_map()
 
-        json.dump(label_map, open("../../../data/label_map.json", "w"))
+        json.dump(label_map, open("label_map.json", "w"))
     # if specified, load the label map and use it for the data
     else:
         label_map = json.load(open(args.label_map, "r"))
