@@ -26,8 +26,10 @@ This sentence has one coarse entity of type `loc`, thus the article-level class 
 ### Language model-based classifier
 
 The multiclass classifier will have two predictions heads:
-- for predicting at token-level the entities (Munich is a `loc`)
-- for predicting at article-level the class (`has_locations`)
+- for predicting at token-level the entities (eg Munich is a `loc`)
+- for predicting at article-level the class (eg `has_locations`)
+
+> For training a model that is single-task, predicts only the news agencies with the prediction of `has_locations`, please check the code in [single_task](/single_task).
 
 ## How-tos
 
