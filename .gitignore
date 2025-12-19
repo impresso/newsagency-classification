@@ -4,6 +4,8 @@
 .python-version
 Pipfile.lock
 *.d
+lib/bert_classification/single_task/ner-newsagency-bert-fr/
+lib/bert_classification/single_task/ner-newsagency-bert-de/
 *.pyc
 *.pyc
 lib/bert_classification/agency-de/
