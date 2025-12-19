@@ -6,5 +6,7 @@ Pipfile.lock
 *.d
 *.pyc
 *.pyc
+lib/bert_classification/single_task/ner-newsagency-bert-de/
+lib/bert_classification/single_task/ner-newsagency-bert-fr/
 lib/bert_classification/agency-de/
 lib/bert_classification/agency-fr/
